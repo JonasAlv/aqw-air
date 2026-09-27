@@ -1,0 +1,1132 @@
+package ui;
+
+#if flash
+import com.aqwapi.Api;
+import com.aqwapi.modules.CombatEngine;
+import com.aqwapi.modules.ScriptManager;
+import com.aqwapi.utils.ApiLogger;
+import flash.display.Shape;
+import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
+import flash.events.MouseEvent;
+import flash.geom.Point;
+import flash.text.TextField;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
+import flash.ui.Keyboard;
+import ui.ApiNotificationManager;
+import ui.Overlay;
+import ui.prompts.ApiPrompts;
+import util.HelperSetting;
+
+enum DashboardTab {
+    TabScripts;
+    TabAutomation;
+    TabEnhancements;
+    TabSettings;
+}
+
+class ApiDashboardModal extends Sprite {
+    private static var _instance:ApiDashboardModal = null;
+
+    public static function show(overlay:Dynamic, pocket:Dynamic = null):Void {
+        close();
+        _instance = new ApiDashboardModal(overlay, pocket);
+        if (overlay != null) {
+            overlay.addChild(_instance);
+        }
+    }
+
+    public static function close():Void {
+        if (_instance != null && _instance.parent != null) {
+            _instance.parent.removeChild(_instance);
+        }
+        _instance = null;
+    }
+
+    public static function isOpen():Bool {
+        return _instance != null && _instance.parent != null;
+    }
+
+    // Modal layout constants
+    private static inline var DIALOG_WIDTH:Float = 760;
+    private static inline var DIALOG_HEIGHT:Float = 440;
+    private static inline var SIDEBAR_WIDTH:Float = 170;
+    private static inline var CONTENT_WIDTH:Float = 550;
+    private static inline var CONTENT_HEIGHT:Float = 370;
+
+    private var _overlay:Dynamic;
+    private var _pocket:Dynamic;
+    private var _backdrop:Sprite;
+    private var _window:Sprite;
+
+    private var _currentTab:DashboardTab = TabScripts;
+    private var _tabButtons:Map<DashboardTab, Sprite> = new Map<DashboardTab, Sprite>();
+    private var _tabLabels:Map<DashboardTab, TextField> = new Map<DashboardTab, TextField>();
+
+    private var _contentViewport:Sprite;
+    private var _contentMask:Shape;
+    private var _contentContainer:Sprite;
+
+    // Scrolling state
+    private var _scrollbarTrack:Shape;
+    private var _scrollbarThumb:Shape;
+    private var _isDraggingScroll:Bool = false;
+    private var _dragStartY:Float = 0;
+    private var _dragStartContentY:Float = 0;
+
+    public function new(overlay:Dynamic, pocket:Dynamic) {
+        super();
+        _overlay = overlay;
+        _pocket = pocket;
+
+        var stageW:Float = 960;
+        var stageH:Float = 500;
+        if (overlay != null && overlay.stage != null) {
+            stageW = overlay.stage.stageWidth > 0 ? overlay.stage.stageWidth : 960;
+            stageH = overlay.stage.stageHeight > 0 ? overlay.stage.stageHeight : 500;
+        }
+
+        // 1. Semi-transparent backdrop
+        _backdrop = new Sprite();
+        _backdrop.graphics.beginFill(0x000000, 0.65);
+        _backdrop.graphics.drawRect(0, 0, stageW, stageH);
+        _backdrop.graphics.endFill();
+        _backdrop.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (e.target == _backdrop) close();
+        });
+        addChild(_backdrop);
+
+        // 2. Main Dialog Window
+        _window = new Sprite();
+        _window.graphics.beginFill(0x121212, 0.98);
+        _window.graphics.lineStyle(1, 0x2A2A2A);
+        _window.graphics.drawRoundRect(0, 0, DIALOG_WIDTH, DIALOG_HEIGHT, 8, 8);
+        _window.graphics.endFill();
+
+        _window.x = (stageW - DIALOG_WIDTH) / 2;
+        _window.y = (stageH - DIALOG_HEIGHT) / 2;
+        addChild(_window);
+
+        // 3. Header Bar
+        setupHeader();
+
+        // 4. Sidebar Tabs
+        setupSidebar();
+
+        // 5. Content Viewport
+        setupContentViewport();
+
+        // 6. Render Initial Tab
+        switchTab(TabScripts);
+
+        // 7. Global Stage Listeners
+        addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+        addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+    }
+
+    private function onAddedToStage(e:Event):Void {
+        if (stage != null) {
+            stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+        }
+    }
+
+    private function onRemovedFromStage(e:Event):Void {
+        if (stage != null) {
+            stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+            stage.removeEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
+            stage.removeEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
+        }
+    }
+
+    private function onKeyDown(e:KeyboardEvent):Void {
+        if (e.keyCode == 27) { // ESC key
+            close();
+        }
+    }
+
+    // =========================================================================
+    // HEADER
+    // =========================================================================
+
+    private function setupHeader():Void {
+        // Divider line below header
+        _window.graphics.lineStyle(1, 0x242424);
+        _window.graphics.moveTo(0, 48);
+        _window.graphics.lineTo(DIALOG_WIDTH, 48);
+
+        // Title
+        var titleTxt = new TextField();
+        var titleFmt = new TextFormat("_sans", 16, 0xEEEEEE, true);
+        titleTxt.defaultTextFormat = titleFmt;
+        titleTxt.text = "API Dashboard";
+        titleTxt.x = 22;
+        titleTxt.y = 13;
+        titleTxt.width = 180;
+        titleTxt.height = 28;
+        titleTxt.selectable = false;
+        titleTxt.mouseEnabled = false;
+        _window.addChild(titleTxt);
+
+        // Subtitle badge
+        var badgeTxt = new TextField();
+        var badgeFmt = new TextFormat("_sans", 11, 0x666666, false);
+        badgeTxt.defaultTextFormat = badgeFmt;
+        badgeTxt.text = "Control Center";
+        badgeTxt.x = 175;
+        badgeTxt.y = 17;
+        badgeTxt.width = 120;
+        badgeTxt.height = 20;
+        badgeTxt.selectable = false;
+        badgeTxt.mouseEnabled = false;
+        _window.addChild(badgeTxt);
+
+        // Close Button (✕)
+        var closeBtn = new Sprite();
+        var cbW:Float = 32;
+        var cbH:Float = 28;
+        closeBtn.graphics.beginFill(0x1E1E1E, 1);
+        closeBtn.graphics.lineStyle(1, 0x333333);
+        closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
+        closeBtn.graphics.endFill();
+        closeBtn.buttonMode = true;
+        closeBtn.x = DIALOG_WIDTH - cbW - 14;
+        closeBtn.y = 10;
+
+        var closeTxt = new TextField();
+        var closeFmt = new TextFormat("_sans", 13, 0xAAAAAA, true);
+        closeFmt.align = TextFormatAlign.CENTER;
+        closeTxt.defaultTextFormat = closeFmt;
+        closeTxt.text = "✕";
+        closeTxt.width = cbW;
+        closeTxt.y = (cbH - 18) / 2;
+        closeTxt.selectable = false;
+        closeTxt.mouseEnabled = false;
+        closeBtn.addChild(closeTxt);
+
+        closeBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            closeBtn.graphics.clear();
+            closeBtn.graphics.beginFill(0x990000, 1);
+            closeBtn.graphics.lineStyle(1, 0xCC0000);
+            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
+            closeBtn.graphics.endFill();
+            closeTxt.textColor = 0xFFFFFF;
+        });
+        closeBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            closeBtn.graphics.clear();
+            closeBtn.graphics.beginFill(0x1E1E1E, 1);
+            closeBtn.graphics.lineStyle(1, 0x333333);
+            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
+            closeBtn.graphics.endFill();
+            closeTxt.textColor = 0xAAAAAA;
+        });
+        closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            close();
+        });
+        _window.addChild(closeBtn);
+    }
+
+    // =========================================================================
+    // SIDEBAR
+    // =========================================================================
+
+    private function setupSidebar():Void {
+        // Vertical divider line between sidebar and content
+        _window.graphics.lineStyle(1, 0x242424);
+        _window.graphics.moveTo(SIDEBAR_WIDTH + 14, 48);
+        _window.graphics.lineTo(SIDEBAR_WIDTH + 14, DIALOG_HEIGHT);
+
+        var tabs = [
+            { id: TabScripts, label: "Scripts" },
+            { id: TabAutomation, label: "Automation" },
+            { id: TabEnhancements, label: "Enhancements" },
+            { id: TabSettings, label: "Settings" }
+        ];
+
+        var tabY:Float = 60;
+        var tabW:Float = SIDEBAR_WIDTH - 12;
+        var tabH:Float = 38;
+
+        for (t in tabs) {
+            var btn = createTabButton(t.label, tabW, tabH, t.id);
+            btn.x = 14;
+            btn.y = tabY;
+            _window.addChild(btn);
+            tabY += tabH + 8;
+        }
+    }
+
+    private function createTabButton(label:String, w:Float, h:Float, tabId:DashboardTab):Sprite {
+        var btn = new Sprite();
+        btn.buttonMode = true;
+
+        var txt = new TextField();
+        var fmt = new TextFormat("_sans", 13, 0x888888, true);
+        txt.defaultTextFormat = fmt;
+        txt.text = label;
+        txt.x = 16;
+        txt.y = (h - 18) / 2;
+        txt.width = w - 24;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+
+        btn.addChild(txt);
+        _tabButtons.set(tabId, btn);
+        _tabLabels.set(tabId, txt);
+
+        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            switchTab(tabId);
+        });
+
+        btn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            if (_currentTab != tabId) {
+                renderTabGraphic(btn, w, h, false, true);
+                txt.textColor = 0xCCCCCC;
+            }
+        });
+
+        btn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            if (_currentTab != tabId) {
+                renderTabGraphic(btn, w, h, false, false);
+                txt.textColor = 0x888888;
+            }
+        });
+
+        renderTabGraphic(btn, w, h, false, false);
+        return btn;
+    }
+
+    private function renderTabGraphic(btn:Sprite, w:Float, h:Float, isActive:Bool, isHover:Bool):Void {
+        btn.graphics.clear();
+        if (isActive) {
+            btn.graphics.beginFill(0x880000, 1);
+            btn.graphics.lineStyle(1, 0xAA0000);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+
+            btn.graphics.beginFill(0xFF3333, 1);
+            btn.graphics.lineStyle(0, 0, 0);
+            btn.graphics.drawRoundRect(0, 4, 3, h - 8, 2, 2);
+            btn.graphics.endFill();
+        } else if (isHover) {
+            btn.graphics.beginFill(0x222222, 1);
+            btn.graphics.lineStyle(1, 0x3A3A3A);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+        } else {
+            btn.graphics.beginFill(0x171717, 1);
+            btn.graphics.lineStyle(1, 0x242424);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+        }
+    }
+
+    private function switchTab(tabId:DashboardTab):Void {
+        _currentTab = tabId;
+
+        var tabW:Float = SIDEBAR_WIDTH - 12;
+        var tabH:Float = 38;
+
+        for (t in _tabButtons.keys()) {
+            var btn = _tabButtons.get(t);
+            var txt = _tabLabels.get(t);
+            var isActive = (t == tabId);
+            renderTabGraphic(btn, tabW, tabH, isActive, false);
+            txt.textColor = isActive ? 0xFFFFFF : 0x888888;
+        }
+
+        renderTabContent(tabId);
+    }
+
+    // =========================================================================
+    // CONTENT VIEWPORT & SCROLLING
+    // =========================================================================
+
+    private function setupContentViewport():Void {
+        _contentViewport = new Sprite();
+        _contentViewport.x = SIDEBAR_WIDTH + 26;
+        _contentViewport.y = 56;
+        _window.addChild(_contentViewport);
+
+        _contentMask = new Shape();
+        _contentMask.graphics.beginFill(0xFF0000);
+        _contentMask.graphics.drawRect(0, 0, CONTENT_WIDTH, CONTENT_HEIGHT);
+        _contentMask.graphics.endFill();
+        _contentMask.x = _contentViewport.x;
+        _contentMask.y = _contentViewport.y;
+        _window.addChild(_contentMask);
+
+        _contentContainer = new Sprite();
+        _contentViewport.addChild(_contentContainer);
+        _contentViewport.mask = _contentMask;
+
+        _scrollbarTrack = new Shape();
+        _scrollbarTrack.x = _contentViewport.x + CONTENT_WIDTH - 8;
+        _scrollbarTrack.y = _contentViewport.y;
+        _window.addChild(_scrollbarTrack);
+
+        _scrollbarThumb = new Shape();
+        _scrollbarThumb.x = _scrollbarTrack.x;
+        _scrollbarThumb.y = _scrollbarTrack.y;
+        _window.addChild(_scrollbarThumb);
+
+        _window.addEventListener(MouseEvent.MOUSE_WHEEL, function(e:MouseEvent):Void {
+            if (_contentContainer.height <= CONTENT_HEIGHT) return;
+            var maxScroll = CONTENT_HEIGHT - _contentContainer.height;
+            _contentContainer.y += e.delta * 25;
+            if (_contentContainer.y > 0) _contentContainer.y = 0;
+            if (_contentContainer.y < maxScroll) _contentContainer.y = maxScroll;
+            updateScrollbar();
+        });
+
+        _contentViewport.addEventListener(MouseEvent.MOUSE_DOWN, onContentMouseDown);
+    }
+
+    private function onContentMouseDown(e:MouseEvent):Void {
+        if (stage == null || _contentContainer.height <= CONTENT_HEIGHT) return;
+        _isDraggingScroll = false;
+        _dragStartY = stage.mouseY;
+        _dragStartContentY = _contentContainer.y;
+
+        stage.addEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
+        stage.addEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
+    }
+
+    private function onStageMouseMove(e:MouseEvent):Void {
+        if (stage == null || _contentContainer.height <= CONTENT_HEIGHT) return;
+        var dy = stage.mouseY - _dragStartY;
+        if (!_isDraggingScroll && Math.abs(dy) > 4) {
+            _isDraggingScroll = true;
+        }
+        if (_isDraggingScroll) {
+            var newY = _dragStartContentY + dy;
+            var maxScroll = CONTENT_HEIGHT - _contentContainer.height;
+            if (newY > 0) newY = 0;
+            if (newY < maxScroll) newY = maxScroll;
+            _contentContainer.y = newY;
+            updateScrollbar();
+        }
+    }
+
+    private function onStageMouseUp(e:MouseEvent):Void {
+        if (stage != null) {
+            stage.removeEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
+            stage.removeEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
+        }
+        _isDraggingScroll = false;
+    }
+
+    private function updateScrollbar():Void {
+        var totalH = _contentContainer.height;
+        if (totalH <= CONTENT_HEIGHT) {
+            _scrollbarTrack.visible = false;
+            _scrollbarThumb.visible = false;
+            return;
+        }
+
+        _scrollbarTrack.visible = true;
+        _scrollbarThumb.visible = true;
+
+        var sbW:Float = 6;
+        _scrollbarTrack.graphics.clear();
+        _scrollbarTrack.graphics.beginFill(0x1E1E1E, 0.8);
+        _scrollbarTrack.graphics.drawRoundRect(0, 0, sbW, CONTENT_HEIGHT, 3, 3);
+        _scrollbarTrack.graphics.endFill();
+
+        var viewRatio = CONTENT_HEIGHT / totalH;
+        var thumbH = Math.max(20, CONTENT_HEIGHT * viewRatio);
+        var scrollRatio = -_contentContainer.y / (totalH - CONTENT_HEIGHT);
+        var thumbY = scrollRatio * (CONTENT_HEIGHT - thumbH);
+
+        _scrollbarThumb.graphics.clear();
+        _scrollbarThumb.graphics.beginFill(0x555555, 0.9);
+        _scrollbarThumb.graphics.drawRoundRect(0, thumbY, sbW, thumbH, 3, 3);
+        _scrollbarThumb.graphics.endFill();
+    }
+
+    // =========================================================================
+    // ITEM ROW RENDERERS
+    // =========================================================================
+
+    private function clearContent():Void {
+        while (_contentContainer.numChildren > 0) {
+            _contentContainer.removeChildAt(0);
+        }
+        _contentContainer.y = 0;
+        updateScrollbar();
+    }
+
+    private function addItemRow(
+        title:String,
+        description:String,
+        actionType:String,
+        actionLabel:String,
+        isPrimary:Bool,
+        onClick:Void->Void,
+        getToggleState:Void->Bool = null
+    ):Void {
+        var rowW:Float = CONTENT_WIDTH - 20;
+        var rowH:Float = 60;
+        var currentY:Float = _contentContainer.numChildren > 0 ? (_contentContainer.height + 8) : 0;
+
+        var card = new Sprite();
+        card.graphics.beginFill(0x181818, 1);
+        card.graphics.lineStyle(1, 0x242424);
+        card.graphics.drawRoundRect(0, 0, rowW, rowH, 6, 6);
+        card.graphics.endFill();
+        card.y = currentY;
+
+        // Title
+        var titleTxt = new TextField();
+        var titleFmt = new TextFormat("_sans", 13, 0xFFFFFF, true);
+        titleTxt.defaultTextFormat = titleFmt;
+        titleTxt.text = title;
+        titleTxt.x = 14;
+        titleTxt.y = 8;
+        titleTxt.width = 345;
+        titleTxt.height = 20;
+        titleTxt.selectable = false;
+        titleTxt.mouseEnabled = false;
+        card.addChild(titleTxt);
+
+        // Description (Word wrapped & full width so text never clips!)
+        var descTxt = new TextField();
+        var descFmt = new TextFormat("_sans", 11, 0x888888, false);
+        descTxt.defaultTextFormat = descFmt;
+        descTxt.text = description;
+        descTxt.x = 14;
+        descTxt.y = 28;
+        descTxt.width = 345;
+        descTxt.height = 28;
+        descTxt.wordWrap = true;
+        descTxt.multiline = true;
+        descTxt.selectable = false;
+        descTxt.mouseEnabled = false;
+        card.addChild(descTxt);
+
+        var actionX = rowW - 126;
+        var actionY = 14;
+
+        if (actionType == "toggle") {
+            var toggleBtn = createToggleControl(116, 32, getToggleState, onClick);
+            toggleBtn.x = actionX;
+            toggleBtn.y = actionY;
+            card.addChild(toggleBtn);
+        } else {
+            var btn = createActionButton(actionLabel, 116, 32, isPrimary, onClick);
+            btn.x = actionX;
+            btn.y = actionY;
+            card.addChild(btn);
+        }
+
+        _contentContainer.addChild(card);
+        updateScrollbar();
+    }
+
+    private function createActionButton(label:String, w:Float, h:Float, isPrimary:Bool, onClick:Void->Void):Sprite {
+        var btn = new Sprite();
+        btn.buttonMode = true;
+
+        var bg = isPrimary ? 0x880000 : 0x1E1E1E;
+        var border = isPrimary ? 0xAA0000 : 0x333333;
+        var hoverBg = isPrimary ? 0xAA0000 : 0x2A2A2A;
+        var hoverBorder = isPrimary ? 0xDD0000 : 0x555555;
+        var textColor = isPrimary ? 0xFFFFFF : 0xCCCCCC;
+
+        btn.graphics.beginFill(bg, 1);
+        btn.graphics.lineStyle(1, border);
+        btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+        btn.graphics.endFill();
+
+        var txt = new TextField();
+        var fmt = new TextFormat("_sans", 12, textColor, true);
+        fmt.align = TextFormatAlign.CENTER;
+        txt.defaultTextFormat = fmt;
+        txt.text = label;
+        txt.width = w;
+        txt.y = (h - 18) / 2;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+        btn.addChild(txt);
+
+        btn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            btn.graphics.clear();
+            btn.graphics.beginFill(hoverBg, 1);
+            btn.graphics.lineStyle(1, hoverBorder);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+            btn.graphics.endFill();
+            txt.textColor = 0xFFFFFF;
+        });
+
+        btn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            btn.graphics.clear();
+            btn.graphics.beginFill(bg, 1);
+            btn.graphics.lineStyle(1, border);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+            btn.graphics.endFill();
+            txt.textColor = textColor;
+        });
+
+        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (onClick != null) onClick();
+        });
+
+        return btn;
+    }
+
+    private function createToggleControl(w:Float, h:Float, getState:Void->Bool, onToggle:Void->Void):Sprite {
+        var btn = new Sprite();
+        btn.buttonMode = true;
+
+        var txt = new TextField();
+        var fmt = new TextFormat("_sans", 11, 0xFFFFFF, true);
+        fmt.align = TextFormatAlign.CENTER;
+        txt.defaultTextFormat = fmt;
+        txt.width = w;
+        txt.y = (h - 18) / 2;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+        btn.addChild(txt);
+
+        var updateVisual = function():Void {
+            var active = (getState != null) ? getState() : false;
+            btn.graphics.clear();
+            if (active) {
+                btn.graphics.beginFill(0x102818, 1);
+                btn.graphics.lineStyle(1, 0x246638);
+                btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+                btn.graphics.endFill();
+                txt.textColor = 0x44DD66;
+                txt.text = "● Enabled";
+            } else {
+                btn.graphics.beginFill(0x1E1E1E, 1);
+                btn.graphics.lineStyle(1, 0x333333);
+                btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+                btn.graphics.endFill();
+                txt.textColor = 0x777777;
+                txt.text = "○ Disabled";
+            }
+        };
+
+        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (onToggle != null) onToggle();
+            updateVisual();
+        });
+
+        btn.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
+            updateVisual();
+        });
+
+        updateVisual();
+        return btn;
+    }
+
+    // =========================================================================
+    // TAB CONTENTS
+    // =========================================================================
+
+    private function renderTabContent(tabId:DashboardTab):Void {
+        clearContent();
+
+        switch (tabId) {
+            case TabScripts:
+                renderScriptsTab();
+            case TabAutomation:
+                renderAutomationTab();
+            case TabEnhancements:
+                renderEnhancementsTab();
+            case TabSettings:
+                renderSettingsTab();
+        }
+    }
+
+    private function renderScriptsTab():Void {
+        // 1. Paste Script
+        addItemRow(
+            "Paste Script",
+            "Paste raw HScript code and execute it immediately in the runtime engine.",
+            "button",
+            "Paste",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showPastePrompt(_overlay);
+            }
+        );
+
+        // 2. Load Script from file
+        #if air
+        addItemRow(
+            "Load Script File",
+            "Browse and load an .hscript or text file directly from your local filesystem.",
+            "button",
+            "Load",
+            false,
+            function():Void {
+                try {
+                    var fileCls:Dynamic = untyped __global__["flash.filesystem.File"];
+                    var fsCls:Dynamic = untyped __global__["flash.filesystem.FileStream"];
+                    var fmCls:Dynamic = untyped __global__["flash.filesystem.FileMode"];
+                    var ffCls:Dynamic = untyped __global__["flash.net.FileFilter"];
+
+                    var file = fileCls.desktopDirectory;
+                    file.addEventListener("select", function(ev:Dynamic):Void {
+                        var stream = Type.createInstance(fsCls, []);
+                        stream.open(file, fmCls.READ);
+                        var content:String = stream.readUTFBytes(stream.bytesAvailable);
+                        stream.close();
+
+                        close();
+                        ScriptManager.SINGLETON.loadScript(content);
+                        ScriptManager.SINGLETON.start();
+                        ApiNotificationManager.notify("Loaded: " + file.name);
+                    });
+                    file.browseForOpen("Select Script", [Type.createInstance(ffCls, ["HScript / Text (*.hscript, *.txt)", "*.hscript;*.txt"])]);
+                } catch (e:Dynamic) {
+                    ApiNotificationManager.notify("File error: " + e);
+                }
+            }
+        );
+        #end
+
+        // 3. Script Engine State (Run/Stop toggle)
+        addItemRow(
+            "Script Runner",
+            "Controls active script execution. Turn off to immediately abort any running script.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                if (ScriptManager.SINGLETON.isRunning) {
+                    ScriptManager.SINGLETON.stop();
+                    ApiNotificationManager.notify("Script stopped.");
+                } else {
+                    ScriptManager.SINGLETON.start();
+                    ApiNotificationManager.notify("Script started.");
+                }
+            },
+            function():Bool {
+                return ScriptManager.SINGLETON.isRunning;
+            }
+        );
+
+        // 4. Clear Log
+        addItemRow(
+            "Clear Bot Log",
+            "Truncates bot.log to start fresh for monitoring and debugging sessions.",
+            "button",
+            "Clear Log",
+            false,
+            function():Void {
+                ApiLogger.clearLog();
+                ApiNotificationManager.notify("bot.log cleared!");
+            }
+        );
+    }
+
+    private function renderAutomationTab():Void {
+        // 1. Auto-Quest
+        addItemRow(
+            "Auto-Quest",
+            "Automatically accept and turn in quests by IDs in the background.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showQuestPrompt(_overlay);
+            }
+        );
+
+        // 2. Custom Auto-Combat
+        addItemRow(
+            "Custom Auto-Combat",
+            "Setup custom skill combo sequences and targeting rules.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showCombatPrompt(_overlay);
+            }
+        );
+
+        // 3. Smart Combat
+        addItemRow(
+            "Smart Combat (Class-Aware)",
+            "Auto-detects equipped class and executes optimal skill combos and priority rotations.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showSmartCombatPrompt(_overlay);
+            }
+        );
+
+        // 4. Smart Combat Toggle
+        addItemRow(
+            "Toggle Smart Combat",
+            "Enable or disable automatic skill casting during combat.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var current = (Api.combat != null && Api.combat.isRunning());
+                var next = !current;
+                HelperSetting.setBool("api_smart_combat_active", next);
+                if (Api.combat != null) {
+                    if (next) Api.combat.startSmart();
+                    else Api.combat.stop();
+                }
+                ApiNotificationManager.notify("Smart Combat: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.combat != null && Api.combat.isRunning());
+            }
+        );
+
+        // 5. Auto Leveling (ShadowBattleon)
+        addItemRow(
+            "Auto Leveling (ShadowBattleon)",
+            "Level 1 to 100 fast automated leveling farm in /shadowbattleon.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                if (ScriptManager.SINGLETON.isRunning) {
+                    ScriptManager.SINGLETON.stop();
+                    ApiLogger.info("AutoLeveling", "[Auto Leveling] Stopped.");
+                    ApiNotificationManager.notify("Auto Leveling stopped.");
+                } else {
+                    ApiLogger.info("AutoLeveling", "[Auto Leveling] Starting ShadowBattleon Doomed Troll farm...");
+                    ApiNotificationManager.notify("Auto Leveling started!");
+                    var script = getAutoLevelingScript();
+                    ScriptManager.SINGLETON.loadScript(script);
+                    ScriptManager.SINGLETON.start();
+                }
+            },
+            function():Bool {
+                return ScriptManager.SINGLETON.isRunning;
+            }
+        );
+    }
+
+    private function renderEnhancementsTab():Void {
+        var curClass = (Api.player != null && Api.player.className != null && Api.player.className != "") ? Api.player.className : "Equipped Class";
+
+        // 1. One-Click Smart Enhance (Equipped)
+        addItemRow(
+            "Smart Enhance (Equipped)",
+            "Auto-detects " + curClass + " & unlocks, then enhances equipped weapon, class, helm, and cape to the optimal build.",
+            "button",
+            "Enhance",
+            true, // Primary red button!
+            function():Void {
+                if (Api.enhancement != null) {
+                    if (Api.enhancement.isBusy) {
+                        ApiNotificationManager.notify("Enhancement queue is currently busy!");
+                        return;
+                    }
+                    ApiNotificationManager.notify("SmartEnhancing " + curClass + "...");
+                    Api.enhancement.smartEnhance(null, function():Void {
+                        ApiNotificationManager.notify("SmartEnhance finished!");
+                    });
+                }
+            }
+        );
+
+        // 2. Custom Enhance Gear (Modal)
+        addItemRow(
+            "Custom Enhance Gear...",
+            "Choose custom base enhancement types and Awe/Forge special traits for equipped gear.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showCustomEnhancePrompt(_overlay);
+            }
+        );
+
+        // 3. Lvl 50+ Enhancements
+        var lvl50Shops = [
+            { name: "Healer Enh", id: 762 },
+            { name: "Lucky Enh", id: 763 },
+            { name: "Spellbreaker Enh", id: 764 },
+            { name: "Wizard Enh", id: 765 },
+            { name: "Hybrid Enh", id: 766 },
+            { name: "Thief Enh", id: 767 },
+            { name: "Fighter Enh", id: 768 }
+        ];
+        addItemRow(
+            "Lvl 50+ Enhancements",
+            "Browse and load level 50+ normal enhancement shops.",
+            "button",
+            "Open Shop",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showEnhancementPrompt(_overlay, "Lvl 50+ Enhancements", lvl50Shops, false);
+            }
+        );
+
+        // 4. Awe Enhancements
+        var aweShops = [
+            { name: "Fighter Awe", id: 635 },
+            { name: "Wizard Awe", id: 636 },
+            { name: "Thief Awe", id: 637 },
+            { name: "Healer Awe", id: 638 },
+            { name: "Lucky Awe", id: 639 },
+            { name: "Hybrid Awe", id: 633 }
+        ];
+        addItemRow(
+            "Awe Enhancements",
+            "Browse and load Blade of Awe enhancement shops.",
+            "button",
+            "Open Shop",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showEnhancementPrompt(_overlay, "Awe Enhancements", aweShops, false);
+            }
+        );
+
+        // 5. Forge Enhancements
+        var forgeShops = [
+            { name: "Weapon Enh", id: 2142 },
+            { name: "Cape Enh", id: 2143 },
+            { name: "Helmet Enh", id: 2164 }
+        ];
+        addItemRow(
+            "Forge Enhancements",
+            "Browse and load Forge enhancement shops (auto-joins /forge).",
+            "button",
+            "Open Shop",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showEnhancementPrompt(_overlay, "Forge Enhancements", forgeShops, true);
+            }
+        );
+    }
+
+    private function renderSettingsTab():Void {
+        // 1. Load Shop by ID
+        addItemRow(
+            "Load Shop by ID",
+            "Load any game shop directly by entering its numeric Shop ID.",
+            "button",
+            "Load Shop",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showShopPrompt(_overlay);
+            }
+        );
+
+        // 2. Toggle Bank
+        addItemRow(
+            "Open / Close Bank",
+            "Open or close your bank storage from anywhere without needing a bank pet.",
+            "button",
+            "Toggle Bank",
+            false,
+            function():Void {
+                if (Api.inventory != null) Api.inventory.toggleBank();
+            }
+        );
+
+        // 3. Infinite Range
+        addItemRow(
+            "Infinite Range",
+            "Attack and use skills across the entire screen without range limits.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_infinite_range", false);
+                var next = !cur;
+                HelperSetting.setBool("api_infinite_range", next);
+                if (Api.combat != null) {
+                    Api.combat.infiniteRange = next;
+                    if (next) Api.combat.applyInfiniteRange();
+                }
+                ApiNotificationManager.notify("Infinite Range: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.combat != null && Api.combat.infiniteRange);
+            }
+        );
+
+        // 4. Death Spawn
+        addItemRow(
+            "Death Spawn (Same Room)",
+            "Automatically sets your respawn point to your current room so you never walk back on death.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_death_spawn", false);
+                var next = !cur;
+                HelperSetting.setBool("api_death_spawn", next);
+                if (Api.map != null) Api.map.autoDeathSpawn = next;
+                ApiNotificationManager.notify("Death Spawn: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.map != null && Api.map.autoDeathSpawn);
+            }
+        );
+
+        // 5. Private Rooms
+        addItemRow(
+            "Private Rooms",
+            "Automatically join private rooms (e.g. map-100000). Turn off to join public rooms.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_private_rooms", true);
+                var next = !cur;
+                HelperSetting.setBool("api_private_rooms", next);
+                if (Api.map != null) Api.map.usePrivateRoom = next;
+                ApiNotificationManager.notify("Private Rooms: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.map != null && Api.map.usePrivateRoom);
+            }
+        );
+
+        // 6. Accept All Loot
+        addItemRow(
+            "Accept All Loot",
+            "Automatically accept and pick up all dropped items.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_accept_loot", false);
+                var next = !cur;
+                HelperSetting.setBool("api_accept_loot", next);
+                if (Api.drop != null) {
+                    Api.drop.acceptAll = next;
+                    if (next) {
+                        Api.drop.scanScreenDrops();
+                        Api.drop.acceptAllDrops();
+                    }
+                }
+                ApiNotificationManager.notify("Accept All Loot: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.drop != null && Api.drop.acceptAll);
+            }
+        );
+
+        // 7. Accept AC Drops
+        addItemRow(
+            "Accept AC Drops",
+            "Automatically accept all AC-tagged (free storage) items.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_accept_ac_drops", false);
+                var next = !cur;
+                HelperSetting.setBool("api_accept_ac_drops", next);
+                if (Api.drop != null) {
+                    Api.drop.acceptACs = next;
+                    if (next) {
+                        Api.drop.scanScreenDrops();
+                        Api.drop.acceptACDrops();
+                    }
+                }
+                ApiNotificationManager.notify("Accept AC Drops: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.drop != null && Api.drop.acceptACs);
+            }
+        );
+
+        // 8. SWF RAM Cache
+        addItemRow(
+            "SWF RAM Cache",
+            "Caches loaded maps and classes to RAM to eliminate reloading. (Requires more RAM).",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SWF_CACHE, next);
+                if (_pocket != null && _pocket.config != null) {
+                    try { _pocket.config.option_swf_cache = next; } catch (_:Dynamic) {}
+                }
+                ApiNotificationManager.notify("SWF Cache: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                if (_pocket != null && _pocket.config != null) {
+                    try { return _pocket.config.option_swf_cache == true; } catch (_:Dynamic) {}
+                }
+                return HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, false);
+            }
+        );
+    }
+
+    private static function getAutoLevelingScript():String {
+        return '//hscript
+function onStart() {
+    bot.log("[Auto Leveling] Starting ShadowBattleon Doomed Troll farm...");
+    bot.drop.acceptAll = true;
+    bot.quest.loadMultiple([9421, 9422, 9423]);
+    bot.combat.equipLoadout("farm");
+    bot.map.join("shadowbattleon", "Enter", "Spawn");
+    bot.sleep(2000);
+    bot.combat.start(true);
+}
+
+function onTick() {
+    if (bot.map.name != "shadowbattleon") {
+        bot.map.join("shadowbattleon", "Enter", "Spawn");
+        bot.sleep(2000);
+        return;
+    }
+    if (bot.cell != "r11") {
+        bot.jump("r11", "Spawn");
+        bot.sleep(1000);
+        return;
+    }
+    if (!bot.quest.hasActive(9421)) {
+        bot.quest.accept(9421);
+    }
+    if (bot.quest.canComplete(9421)) {
+        bot.quest.complete(9421);
+        bot.sleep(1000);
+    }
+    if (!bot.quest.hasActive(9422)) {
+        bot.quest.accept(9422);
+    }
+    if (bot.quest.canComplete(9422)) {
+        bot.quest.complete(9422);
+        bot.sleep(1000);
+    }
+    if (!bot.quest.hasActive(9423)) {
+        bot.quest.accept(9423);
+    }
+    if (bot.quest.canComplete(9423)) {
+        bot.quest.complete(9423);
+        bot.sleep(1000);
+    }
+    if (!bot.combat.isInCombat && !bot.combat.auto) {
+        bot.combat.start(true);
+    }
+}
+';
+    }
+}
+#else
+class ApiDashboardModal {
+    public static function show(overlay:Dynamic, pocket:Dynamic = null):Void {}
+    public static function close():Void {}
+}
+#end

@@ -462,22 +462,42 @@ function onStop() {
     }
 
     private static function setupFloatingMenuButton(pocket:Dynamic, overlay:Overlay):Void {
+        var btnW:Float = 115;
+        var btnH:Float = 32;
+
         var icon = new Sprite();
-        icon.graphics.beginFill(0x990000, 0.95);
-        icon.graphics.lineStyle(1, 0x660000);
-        icon.graphics.drawRoundRect(0, 0, 80, 35, 8, 8);
+        icon.graphics.beginFill(0x161616, 0.95);
+        icon.graphics.lineStyle(1, 0x333333);
+        icon.graphics.drawRoundRect(0, 0, btnW, btnH, 6, 6);
         icon.graphics.endFill();
 
         var txt = new TextField();
-        var fmt = new TextFormat("_sans", 14, 0xFFFFFF, true);
+        var fmt = new TextFormat("_sans", 12, 0xEEEEEE, true);
         fmt.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = fmt;
-        txt.text = "Menu";
-        txt.width = 80;
-        txt.y = 8;
+        txt.text = "API Dashboard";
+        txt.width = btnW;
+        txt.y = 6;
         txt.selectable = false;
         txt.mouseEnabled = false;
         icon.addChild(txt);
+
+        icon.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            icon.graphics.clear();
+            icon.graphics.beginFill(0x252525, 0.98);
+            icon.graphics.lineStyle(1, 0x880000);
+            icon.graphics.drawRoundRect(0, 0, btnW, btnH, 6, 6);
+            icon.graphics.endFill();
+            txt.textColor = 0xFFFFFF;
+        });
+        icon.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            icon.graphics.clear();
+            icon.graphics.beginFill(0x161616, 0.95);
+            icon.graphics.lineStyle(1, 0x333333);
+            icon.graphics.drawRoundRect(0, 0, btnW, btnH, 6, 6);
+            icon.graphics.endFill();
+            txt.textColor = 0xEEEEEE;
+        });
 
         icon.x = 80;
         icon.y = 10;
@@ -516,8 +536,8 @@ function onStop() {
                     var sh:Float = theStage.stageHeight > 0 ? theStage.stageHeight : 500;
                     if (nx < 0) nx = 0;
                     if (ny < 0) ny = 0;
-                    if (nx > sw - 80) nx = sw - 80;
-                    if (ny > sh - 35) ny = sh - 35;
+                    if (nx > sw - btnW) nx = sw - btnW;
+                    if (ny > sh - btnH) ny = sh - btnH;
                     icon.x = nx;
                     icon.y = ny;
                 }
@@ -529,16 +549,16 @@ function onStop() {
 
         icon.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
             if (hasDragged) return;
-            overlay.menus = apiMenus;
-            overlay.gotoAndStop("Panel");
-            if (lastSelectedMenu != null) {
-                overlay.selectMenu(lastSelectedMenu);
+            if (ApiDashboardModal.isOpen()) {
+                ApiDashboardModal.close();
+            } else {
+                ApiDashboardModal.show(overlay, pocket);
             }
         });
 
-        // Hide icon when panel is open
+        // Hide floating button while dashboard or host panel is open
         overlay.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            var isPanelOpen:Bool = (overlay.currentFrameLabel == "Panel");
+            var isPanelOpen:Bool = (overlay.currentFrameLabel == "Panel" || ApiDashboardModal.isOpen());
             icon.visible = !isPanelOpen;
         });
     }
