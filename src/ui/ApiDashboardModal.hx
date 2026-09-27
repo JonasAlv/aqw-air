@@ -184,44 +184,43 @@ class ApiDashboardModal extends Sprite {
         badgeTxt.mouseEnabled = false;
         _window.addChild(badgeTxt);
 
-        // Close Button (✕)
+        // Close Button (Vector ✕)
         var closeBtn = new Sprite();
         var cbW:Float = 32;
         var cbH:Float = 28;
-        closeBtn.graphics.beginFill(0x1E1E1E, 1);
-        closeBtn.graphics.lineStyle(1, 0x333333);
-        closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
-        closeBtn.graphics.endFill();
         closeBtn.buttonMode = true;
         closeBtn.x = DIALOG_WIDTH - cbW - 14;
         closeBtn.y = 10;
 
-        var closeTxt = new TextField();
-        var closeFmt = new TextFormat("_sans", 13, 0xAAAAAA, true);
-        closeFmt.align = TextFormatAlign.CENTER;
-        closeTxt.defaultTextFormat = closeFmt;
-        closeTxt.text = "✕";
-        closeTxt.width = cbW;
-        closeTxt.y = (cbH - 18) / 2;
-        closeTxt.selectable = false;
-        closeTxt.mouseEnabled = false;
-        closeBtn.addChild(closeTxt);
+        var renderCloseBtn = function(isHover:Bool):Void {
+            closeBtn.graphics.clear();
+            var bg = isHover ? 0x990000 : 0x1E1E1E;
+            var border = isHover ? 0xCC0000 : 0x333333;
+            var xColor = isHover ? 0xFFFFFF : 0xAAAAAA;
+
+            // Background & Border
+            closeBtn.graphics.beginFill(bg, 1);
+            closeBtn.graphics.lineStyle(1, border);
+            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
+            closeBtn.graphics.endFill();
+
+            // Crisp Vector ✕ Icon (No font dependency!)
+            var cx:Float = cbW / 2;
+            var cy:Float = cbH / 2;
+            var size:Float = 4.5;
+            closeBtn.graphics.lineStyle(2, xColor, 1);
+            closeBtn.graphics.moveTo(cx - size, cy - size);
+            closeBtn.graphics.lineTo(cx + size, cy + size);
+            closeBtn.graphics.moveTo(cx + size, cy - size);
+            closeBtn.graphics.lineTo(cx - size, cy + size);
+        };
+        renderCloseBtn(false);
 
         closeBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
-            closeBtn.graphics.clear();
-            closeBtn.graphics.beginFill(0x990000, 1);
-            closeBtn.graphics.lineStyle(1, 0xCC0000);
-            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
-            closeBtn.graphics.endFill();
-            closeTxt.textColor = 0xFFFFFF;
+            renderCloseBtn(true);
         });
         closeBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
-            closeBtn.graphics.clear();
-            closeBtn.graphics.beginFill(0x1E1E1E, 1);
-            closeBtn.graphics.lineStyle(1, 0x333333);
-            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
-            closeBtn.graphics.endFill();
-            closeTxt.textColor = 0xAAAAAA;
+            renderCloseBtn(false);
         });
         closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
             close();
@@ -1126,9 +1125,130 @@ class ApiDashboardModal extends Sprite {
                 return HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, false);
             }
         );
+
+        // 9. HUD: Smart Combat Button
+        addItemRow(
+            "HUD: Smart Combat Button",
+            "Places an on-screen toggle button with live ON/OFF indicator to enable/disable Smart Combat directly.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("smart_combat");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("smart_combat", next);
+                ApiNotificationManager.notify("HUD Smart Combat: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("smart_combat");
+            }
+        );
+
+        // 10. HUD: Script Runner Button
+        addItemRow(
+            "HUD: Script Runner Button",
+            "Places an on-screen Start/Stop button to quickly control running scripts without opening the menu.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("script_runner");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("script_runner", next);
+                ApiNotificationManager.notify("HUD Script Runner: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("script_runner");
+            }
+        );
+
+        // 11. HUD: Smart Enhance Button
+        addItemRow(
+            "HUD: Smart Enhance Button",
+            "Places a 1-tap quick enhancement button on screen to enhance equipped gear for your active class.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("smart_enhance");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("smart_enhance", next);
+                ApiNotificationManager.notify("HUD Smart Enhance: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("smart_enhance");
+            }
+        );
+
+        // 12. HUD: Auto Leveling Button
+        addItemRow(
+            "HUD: Auto Leveling Button",
+            "Places an on-screen Start/Stop button for the ShadowBattleon XP leveling farm.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("auto_leveling");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("auto_leveling", next);
+                ApiNotificationManager.notify("HUD Auto Leveling: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("auto_leveling");
+            }
+        );
+
+        // 13. HUD: Infinite Range Button
+        addItemRow(
+            "HUD: Infinite Range Button",
+            "Places an on-screen toggle button to toggle Infinite Range attack capabilities on the fly.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("infinite_range");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("infinite_range", next);
+                ApiNotificationManager.notify("HUD Infinite Range: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("infinite_range");
+            }
+        );
+
+        // 14. HUD: Accept Loot Button
+        addItemRow(
+            "HUD: Accept Loot Button",
+            "Places an on-screen toggle button to toggle automatic loot drop pickup.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("accept_loot");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("accept_loot", next);
+                ApiNotificationManager.notify("HUD Accept Loot: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("accept_loot");
+            }
+        );
+
+        // 15. Reset HUD Button Positions
+        addItemRow(
+            "Reset HUD Button Positions",
+            "Resets all on-screen draggable HUD buttons back to their default positions along the top bar.",
+            "button",
+            "Reset",
+            false,
+            function():Void {
+                ApiHudManager.resetAllPositions();
+                ApiNotificationManager.notify("HUD button positions reset to defaults!");
+            }
+        );
     }
 
-    private static function getAutoLevelingScript():String {
+    public static function getAutoLevelingScript():String {
         return '//hscript
 function onStart() {
     bot.log("[Auto Leveling] Starting ShadowBattleon Doomed Troll farm...");

@@ -34,6 +34,47 @@ class ApiPromptModal {
         title.mouseEnabled = false;
         container.addChild(title);
 
+        // Vector Close Button (✕) in top-right corner
+        var closeBtn = new Sprite();
+        var cbW:Float = 26;
+        var cbH:Float = 22;
+        closeBtn.buttonMode = true;
+        closeBtn.x = w - cbW - 8;
+        closeBtn.y = 8;
+
+        var renderCloseBtn = function(isHover:Bool):Void {
+            closeBtn.graphics.clear();
+            var bg = isHover ? 0x990000 : 0x1E1E1E;
+            var border = isHover ? 0xCC0000 : 0x333333;
+            var xColor = isHover ? 0xFFFFFF : 0xAAAAAA;
+
+            closeBtn.graphics.beginFill(bg, 1);
+            closeBtn.graphics.lineStyle(1, border);
+            closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 4, 4);
+            closeBtn.graphics.endFill();
+
+            var cx:Float = cbW / 2;
+            var cy:Float = cbH / 2;
+            var size:Float = 3.5;
+            closeBtn.graphics.lineStyle(2, xColor, 1);
+            closeBtn.graphics.moveTo(cx - size, cy - size);
+            closeBtn.graphics.lineTo(cx + size, cy + size);
+            closeBtn.graphics.moveTo(cx + size, cy - size);
+            closeBtn.graphics.lineTo(cx - size, cy + size);
+        };
+        renderCloseBtn(false);
+
+        closeBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            renderCloseBtn(true);
+        });
+        closeBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            renderCloseBtn(false);
+        });
+        closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            close();
+        });
+        container.addChild(closeBtn);
+
         _currentContainer = container;
         return container;
     }
