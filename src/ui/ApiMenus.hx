@@ -235,25 +235,6 @@ class ApiMenus {
         });
         opts.push(customCombatCheck);
 
-        var autoQuestCheck = new Check(null, false, "Auto Quest", "Start accepting and completing quests.", true, function(o:Dynamic):Void {
-            tryAction("Auto Quest", function() {
-                var c:Check = cast o;
-                if (c.state) {
-                    overlay.gotoAndStop("Init");
-                    ApiPrompts.showQuestPrompt(overlay);
-                } else {
-                    if (Api.quest != null) Api.quest.stopAuto();
-                }
-            });
-        });
-        autoQuestCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (Api.quest != null && autoQuestCheck.state != Api.quest.isAutoRunning) {
-                autoQuestCheck.state = Api.quest.isAutoRunning;
-                autoQuestCheck.syncState();
-            }
-        });
-        opts.push(autoQuestCheck);
-
         var autoLevelingCheck = new Check(null, false, "Auto Leveling", "Auto grind XP in shadowbattleon.", true, function(o:Dynamic):Void {
             tryAction("Auto Leveling", function() {
                 var c:Check = cast o;
@@ -262,11 +243,11 @@ class ApiMenus {
 '//hscript
 var lastAccept = 0.0;
 var lastTurnIn = 0.0;
-var loggedLock = false;
 
 function onStart() {
     bot.log("Auto Leveling (ShadowBattleon) started");
     bot.drop.acceptAll = true;
+    bot.quest.loadMultiple([9421, 9422, 9423]);
     bot.combat.equipLoadout("farm");
     bot.map.join("shadowbattleon", "Enter", "Spawn");
     bot.sleep(2000);
@@ -296,42 +277,33 @@ function onTick() {
         bot.combat.start(true);
     }
 
-    // ShadowBattleon medal quests require storyline progression (slot 511 >= 32)
-    var isUnlocked = bot.quest.getQuestValue(511) >= 32 || bot.quest.isAvailable(9421);
-    if (!isUnlocked) {
-        if (!loggedLock) {
-            loggedLock = true;
-            bot.log("ShadowBattleon quests locked (QS 511 < 32). Grinding monsters directly for XP!");
-        }
-    } else {
-        var curTime = now();
+    var curTime = now();
 
-        // 1. Accept missing quests with a 5-second cooldown to avoid server spam
-        if (curTime - lastAccept >= 5000) {
-            if (!bot.quest.isAccepted(9421)) {
-                bot.quest.accept(9421);
-                lastAccept = curTime;
-            } else if (!bot.quest.isAccepted(9422)) {
-                bot.quest.accept(9422);
-                lastAccept = curTime;
-            } else if (!bot.quest.isAccepted(9423)) {
-                bot.quest.accept(9423);
-                lastAccept = curTime;
-            }
+    // 1. Accept missing quests (throttled every 3 seconds)
+    if (curTime - lastAccept >= 3000) {
+        if (!bot.quest.isAccepted(9421)) {
+            bot.quest.accept(9421);
+            lastAccept = curTime;
+        } else if (!bot.quest.isAccepted(9422)) {
+            bot.quest.accept(9422);
+            lastAccept = curTime;
+        } else if (!bot.quest.isAccepted(9423)) {
+            bot.quest.accept(9423);
+            lastAccept = curTime;
         }
+    }
 
-        // 2. Turn in completed quests with a 2-second cooldown
-        if (curTime - lastTurnIn >= 2000) {
-            if (bot.quest.isAccepted(9421) && (bot.quest.canComplete(9421) || bot.inventory.getItemCount("Shadow Hunt Medal") >= 5)) {
-                bot.quest.turnIn(9421);
-                lastTurnIn = curTime;
-            } else if (bot.quest.isAccepted(9422) && (bot.quest.canComplete(9422) || bot.inventory.getItemCount("Mega Shadow Hunt Medal") >= 3)) {
-                bot.quest.turnIn(9422);
-                lastTurnIn = curTime;
-            } else if (bot.quest.isAccepted(9423) && (bot.quest.canComplete(9423) || bot.inventory.getItemCount("Infested Flesh") >= 6)) {
-                bot.quest.turnIn(9423);
-                lastTurnIn = curTime;
-            }
+    // 2. Turn in completed quests (2-second cooldown for server response)
+    if (curTime - lastTurnIn >= 2000) {
+        if (bot.quest.isAccepted(9421) && (bot.quest.canComplete(9421) || bot.inventory.getItemCount("Shadow Hunt Medal") >= 5)) {
+            bot.quest.turnIn(9421);
+            lastTurnIn = curTime;
+        } else if (bot.quest.isAccepted(9422) && (bot.quest.canComplete(9422) || bot.inventory.getItemCount("Mega Shadow Hunt Medal") >= 3)) {
+            bot.quest.turnIn(9422);
+            lastTurnIn = curTime;
+        } else if (bot.quest.isAccepted(9423) && (bot.quest.canComplete(9423) || bot.inventory.getItemCount("Infested Flesh") >= 6)) {
+            bot.quest.turnIn(9423);
+            lastTurnIn = curTime;
         }
     }
 
