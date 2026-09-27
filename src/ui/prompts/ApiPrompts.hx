@@ -152,7 +152,7 @@ class ApiPrompts {
         var loadBtn = ApiPromptModal.createButton("Load Script", 120, 30, function():Void {
             var txt = input.text;
             ApiPromptModal.close();
-            ScriptManager.SINGLETON.loadScript(txt, "Custom");
+            ScriptManager.SINGLETON.loadScript(txt);
             ApiNotificationManager.notify("Script loaded successfully!");
         }, false);
         loadBtn.x = 160;
