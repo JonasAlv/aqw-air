@@ -765,7 +765,20 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 4. Smart Combat Toggle
+        // 4. Combat Mode Editor
+        addItemRow(
+            "Combat Mode Editor",
+            "Create, customize, and save skill combo rotations directly to userSkills.json.",
+            "button",
+            "Open Editor",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showCombatModeEditorPrompt(_overlay);
+            }
+        );
+
+        // 5. Smart Combat Toggle
         addItemRow(
             "Toggle Smart Combat",
             "Enable or disable automatic skill casting during combat.",
