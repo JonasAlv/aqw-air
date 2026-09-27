@@ -258,7 +258,87 @@ class ApiMenus {
             tryAction("Auto Leveling", function() {
                 var c:Check = cast o;
                 if (c.state) {
-                    var script = "EQUIPCLASS farm\nLOADQUEST 9421,9422,9423\nJOIN shadowbattleon,Enter,Spawn\nAUTOQUEST 9421,9422,9423\nEQUIPCLASS farm\nCOMBAT smart\n";
+                    var script = 
+'//hscript
+function onStart() {
+    log("Auto Leveling (ShadowBattleon) started");
+    equipClass("farm");
+    join("shadowbattleon", "Enter", "Spawn");
+    sleep(2000);
+}
+
+function onTick() {
+    if (!player.isAlive) {
+        sleep(1000);
+        return;
+    }
+
+    if (map.name.toLowerCase() != "shadowbattleon") {
+        join("shadowbattleon", "Enter", "Spawn");
+        sleep(2500);
+        return;
+    }
+
+    if (player.cell != "Enter") {
+        jump("Enter", "Spawn");
+        sleep(800);
+        return;
+    }
+
+    // Ensure quests are accepted
+    if (!isQuestAccepted(9421)) {
+        loadQuest(9421);
+        acceptQuest(9421);
+        sleep(400);
+        return;
+    }
+    if (!isQuestAccepted(9422)) {
+        loadQuest(9422);
+        acceptQuest(9422);
+        sleep(400);
+        return;
+    }
+    if (!isQuestAccepted(9423)) {
+        loadQuest(9423);
+        acceptQuest(9423);
+        sleep(400);
+        return;
+    }
+
+    // Turn in completed quests
+    if (getItemCount("Shadow Hunt Medal") >= 5) {
+        turnIn(9421);
+        acceptQuest(9421);
+        sleep(600);
+        return;
+    }
+    if (getItemCount("Mega Shadow Hunt Medal") >= 3) {
+        turnIn(9422);
+        acceptQuest(9422);
+        sleep(600);
+        return;
+    }
+    if (getItemCount("Infested Flesh") >= 6) {
+        turnIn(9423);
+        acceptQuest(9423);
+        sleep(600);
+        return;
+    }
+
+    // Auto pickup drops
+    getDrops("all");
+
+    // Maintain smart combat
+    if (!isCombatOn()) {
+        startCombat(true);
+    }
+}
+
+function onStop() {
+    log("Auto Leveling stopped");
+    stopCombat();
+}
+';
                     ScriptManager.SINGLETON.reset();
                     ScriptManager.SINGLETON.loadScript(script);
                     ScriptManager.SINGLETON.start();
