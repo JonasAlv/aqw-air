@@ -12,6 +12,7 @@ import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.text.TextField;
+import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
@@ -68,6 +69,7 @@ class ApiDashboardModal extends Sprite {
     private var _contentViewport:Sprite;
     private var _contentMask:Shape;
     private var _contentContainer:Sprite;
+    private var _totalContentHeight:Float = 0;
 
     // Scrolling state
     private var _scrollbarTrack:Shape;
@@ -372,8 +374,9 @@ class ApiDashboardModal extends Sprite {
         _window.addChild(_scrollbarThumb);
 
         _window.addEventListener(MouseEvent.MOUSE_WHEEL, function(e:MouseEvent):Void {
-            if (_contentContainer.height <= CONTENT_HEIGHT) return;
-            var maxScroll = CONTENT_HEIGHT - _contentContainer.height;
+            var totalH = getTotalContentHeight();
+            if (totalH <= CONTENT_HEIGHT) return;
+            var maxScroll = CONTENT_HEIGHT - totalH;
             _contentContainer.y += e.delta * 25;
             if (_contentContainer.y > 0) _contentContainer.y = 0;
             if (_contentContainer.y < maxScroll) _contentContainer.y = maxScroll;
@@ -384,7 +387,8 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function onContentMouseDown(e:MouseEvent):Void {
-        if (stage == null || _contentContainer.height <= CONTENT_HEIGHT) return;
+        var totalH = getTotalContentHeight();
+        if (stage == null || totalH <= CONTENT_HEIGHT) return;
         _isDraggingScroll = false;
         _dragStartY = stage.mouseY;
         _dragStartContentY = _contentContainer.y;
@@ -394,14 +398,15 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function onStageMouseMove(e:MouseEvent):Void {
-        if (stage == null || _contentContainer.height <= CONTENT_HEIGHT) return;
+        var totalH = getTotalContentHeight();
+        if (stage == null || totalH <= CONTENT_HEIGHT) return;
         var dy = stage.mouseY - _dragStartY;
         if (!_isDraggingScroll && Math.abs(dy) > 4) {
             _isDraggingScroll = true;
         }
         if (_isDraggingScroll) {
             var newY = _dragStartContentY + dy;
-            var maxScroll = CONTENT_HEIGHT - _contentContainer.height;
+            var maxScroll = CONTENT_HEIGHT - totalH;
             if (newY > 0) newY = 0;
             if (newY < maxScroll) newY = maxScroll;
             _contentContainer.y = newY;
@@ -418,7 +423,7 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function updateScrollbar():Void {
-        var totalH = _contentContainer.height;
+        var totalH = getTotalContentHeight();
         if (totalH <= CONTENT_HEIGHT) {
             _scrollbarTrack.visible = false;
             _scrollbarThumb.visible = false;
@@ -453,8 +458,13 @@ class ApiDashboardModal extends Sprite {
         while (_contentContainer.numChildren > 0) {
             _contentContainer.removeChildAt(0);
         }
+        _totalContentHeight = 0;
         _contentContainer.y = 0;
         updateScrollbar();
+    }
+
+    private function getTotalContentHeight():Float {
+        return _totalContentHeight > 6 ? (_totalContentHeight - 6) : _totalContentHeight;
     }
 
     private function addItemRow(
@@ -467,60 +477,90 @@ class ApiDashboardModal extends Sprite {
         getToggleState:Void->Bool = null
     ):Void {
         var rowW:Float = CONTENT_WIDTH - 20;
-        var rowH:Float = 60;
-        var currentY:Float = _contentContainer.numChildren > 0 ? (_contentContainer.height + 8) : 0;
+        var btnW:Float = 116;
+        var btnH:Float = 32;
+        var padX:Float = 14;
+        var gapBtn:Float = 14;
+        var textW:Float = rowW - padX - btnW - gapBtn - 8;
 
         var card = new Sprite();
-        card.graphics.beginFill(0x181818, 1);
-        card.graphics.lineStyle(1, 0x242424);
-        card.graphics.drawRoundRect(0, 0, rowW, rowH, 6, 6);
-        card.graphics.endFill();
-        card.y = currentY;
 
         // Title
         var titleTxt = new TextField();
         var titleFmt = new TextFormat("_sans", 13, 0xFFFFFF, true);
         titleTxt.defaultTextFormat = titleFmt;
         titleTxt.text = title;
-        titleTxt.x = 14;
-        titleTxt.y = 8;
-        titleTxt.width = 345;
-        titleTxt.height = 20;
+        titleTxt.x = padX;
+        titleTxt.y = 10;
+        titleTxt.width = textW;
+        titleTxt.wordWrap = true;
+        titleTxt.multiline = true;
+        titleTxt.autoSize = TextFieldAutoSize.LEFT;
         titleTxt.selectable = false;
         titleTxt.mouseEnabled = false;
         card.addChild(titleTxt);
 
-        // Description (Word wrapped & full width so text never clips!)
+        // Description (Word wrapped & autoSize so text scales dynamically without clipping!)
         var descTxt = new TextField();
         var descFmt = new TextFormat("_sans", 11, 0x888888, false);
         descTxt.defaultTextFormat = descFmt;
         descTxt.text = description;
-        descTxt.x = 14;
-        descTxt.y = 28;
-        descTxt.width = 345;
-        descTxt.height = 28;
+        descTxt.x = padX;
+        descTxt.y = titleTxt.y + titleTxt.height + 3;
+        descTxt.width = textW;
         descTxt.wordWrap = true;
         descTxt.multiline = true;
+        descTxt.autoSize = TextFieldAutoSize.LEFT;
         descTxt.selectable = false;
         descTxt.mouseEnabled = false;
         card.addChild(descTxt);
 
-        var actionX = rowW - 126;
-        var actionY = 14;
+        // Dynamic height calculation based on actual content
+        var textBottom:Float = descTxt.y + descTxt.height + 10;
+        var minCardH:Float = btnH + 18; // 50px
+        var cardH:Float = Math.max(minCardH, textBottom);
+
+        // Action button / toggle vertically centered within dynamic card height
+        var actionX:Float = rowW - padX - btnW;
+        var actionY:Float = (cardH - btnH) / 2;
 
         if (actionType == "toggle") {
-            var toggleBtn = createToggleControl(116, 32, getToggleState, onClick);
+            var toggleBtn = createToggleControl(btnW, btnH, getToggleState, onClick);
             toggleBtn.x = actionX;
             toggleBtn.y = actionY;
             card.addChild(toggleBtn);
         } else {
-            var btn = createActionButton(actionLabel, 116, 32, isPrimary, onClick);
+            var btn = createActionButton(actionLabel, btnW, btnH, isPrimary, onClick);
             btn.x = actionX;
             btn.y = actionY;
             card.addChild(btn);
         }
 
+        // Draw card background with hover responsiveness
+        var renderCardBg = function(isHover:Bool):Void {
+            card.graphics.clear();
+            card.graphics.beginFill(isHover ? 0x1C1C1C : 0x181818, 1);
+            card.graphics.lineStyle(1, isHover ? 0x2E2E2E : 0x242424);
+            card.graphics.drawRoundRect(0, 0, rowW, cardH, 6, 6);
+            card.graphics.endFill();
+        };
+        renderCardBg(false);
+
+        card.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            renderCardBg(true);
+        });
+        card.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            renderCardBg(false);
+        });
+
+        // Snap vertically directly below previous card
+        card.x = 0;
+        card.y = _totalContentHeight;
         _contentContainer.addChild(card);
+
+        // Advance vertical anchor snapping to the next card with 6px gap
+        _totalContentHeight += cardH + 6;
+
         updateScrollbar();
     }
 
@@ -545,7 +585,8 @@ class ApiDashboardModal extends Sprite {
         txt.defaultTextFormat = fmt;
         txt.text = label;
         txt.width = w;
-        txt.y = (h - 18) / 2;
+        txt.height = 20;
+        txt.y = (h - 20) / 2;
         txt.selectable = false;
         txt.mouseEnabled = false;
         btn.addChild(txt);
@@ -584,7 +625,8 @@ class ApiDashboardModal extends Sprite {
         fmt.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = fmt;
         txt.width = w;
-        txt.y = (h - 18) / 2;
+        txt.height = 20;
+        txt.y = (h - 20) / 2;
         txt.selectable = false;
         txt.mouseEnabled = false;
         btn.addChild(txt);
