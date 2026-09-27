@@ -1,6 +1,6 @@
 package ui;
 
-import com.aqwapi.AqwApi;
+import com.aqwapi.Api;
 import com.aqwapi.events.ApiEvent;
 
 #if flash
@@ -34,12 +34,12 @@ class ApiNotificationManager {
     private var _pendingMessages:Array<{ id:String, message:String, sticky:Bool }> = [];
 
     public function new() {
-        AqwApi.dispatcher.addEventListener(ApiEvent.NOTIFICATION, onApiNotification);
-        AqwApi.dispatcher.addEventListener(ApiEvent.STICKY_NOTIFICATION, onStickyNotification);
-        AqwApi.dispatcher.addEventListener(ApiEvent.REMOVE_STICKY, onRemoveSticky);
-        AqwApi.dispatcher.addEventListener(ApiEvent.COMBAT_TOGGLED, onApiNotification);
-        AqwApi.dispatcher.addEventListener(ApiEvent.SCRIPT_STARTED, onApiNotification);
-        AqwApi.dispatcher.addEventListener(ApiEvent.SCRIPT_STOPPED, onApiNotification);
+        Api.dispatcher.addEventListener(ApiEvent.NOTIFICATION, onApiNotification);
+        Api.dispatcher.addEventListener(ApiEvent.STICKY_NOTIFICATION, onStickyNotification);
+        Api.dispatcher.addEventListener(ApiEvent.REMOVE_STICKY, onRemoveSticky);
+        Api.dispatcher.addEventListener(ApiEvent.COMBAT_TOGGLED, onApiNotification);
+        Api.dispatcher.addEventListener(ApiEvent.SCRIPT_STARTED, onApiNotification);
+        Api.dispatcher.addEventListener(ApiEvent.SCRIPT_STOPPED, onApiNotification);
     }
 
     #if flash

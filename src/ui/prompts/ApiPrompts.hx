@@ -1,7 +1,7 @@
 package ui.prompts;
 
 #if flash
-import com.aqwapi.AqwApi;
+import com.aqwapi.Api;
 import com.aqwapi.modules.CombatEngine;
 import com.aqwapi.modules.ScriptManager;
 import com.aqwapi.modules.UserSkillsManager;
@@ -32,8 +32,8 @@ class ApiPrompts {
                 var qid = (pQid != null) ? pQid : 0;
                 if (qid > 0) validIds.push(qid);
             }
-            if (validIds.length > 0 && AqwApi.quest != null) {
-                AqwApi.quest.startAuto(validIds.join(","));
+            if (validIds.length > 0 && Api.quest != null) {
+                Api.quest.startAuto(validIds.join(","));
             }
             ApiPromptModal.close();
         }, false);
@@ -91,8 +91,8 @@ class ApiPrompts {
                 var trimmed = StringTools.trim(s);
                 if (trimmed.length > 0) validSeq.push(trimmed);
             }
-            if (validSeq.length > 0 && AqwApi.combat != null) {
-                AqwApi.combat.startCustom(validSeq.join(","), selectedMode);
+            if (validSeq.length > 0 && Api.combat != null) {
+                Api.combat.startCustom(validSeq.join(","), selectedMode);
             }
             ApiPromptModal.close();
         }, false);
@@ -122,8 +122,8 @@ class ApiPrompts {
             var pShopId:Null<Int> = Std.parseInt(StringTools.trim(input.text));
             var shopId = (pShopId != null) ? pShopId : 0;
             ApiPromptModal.close();
-            if (shopId > 0 && AqwApi.shop != null) {
-                AqwApi.shop.loadShop(shopId);
+            if (shopId > 0 && Api.shop != null) {
+                Api.shop.loadShop(shopId);
                 ApiNotificationManager.notify("Loading Shop: " + shopId);
             }
         }, false);
@@ -199,17 +199,17 @@ class ApiPrompts {
         var loadBtn = ApiPromptModal.createButton("Load Shop", 120, 35, function():Void {
             ApiPromptModal.close();
             if (requireForge) {
-                if (AqwApi.map != null && AqwApi.map.name != null && AqwApi.map.name.toLowerCase() != "forge") {
-                    AqwApi.map.join("forge", "Enter", "Spawn");
+                if (Api.map != null && Api.map.name != null && Api.map.name.toLowerCase() != "forge") {
+                    Api.map.join("forge", "Enter", "Spawn");
                     ApiNotificationManager.notify("Joining forge map...");
                     haxe.Timer.delay(function():Void {
-                        if (AqwApi.shop != null) AqwApi.shop.loadShop(selectedId);
+                        if (Api.shop != null) Api.shop.loadShop(selectedId);
                         ApiNotificationManager.notify("Loading Shop: " + selectedName);
                     }, 3500);
                     return;
                 }
             }
-            if (AqwApi.shop != null) AqwApi.shop.loadShop(selectedId);
+            if (Api.shop != null) Api.shop.loadShop(selectedId);
             ApiNotificationManager.notify("Loading Shop: " + selectedName);
         }, true);
         loadBtn.x = 40;
@@ -293,11 +293,11 @@ class ApiPrompts {
                 HelperSetting.setString("api_smart_mode", selectedModeStr);
                 CombatEngine.smartClass = selectedClassStr;
                 CombatEngine.skillMode = selectedModeStr;
-                if (selectedClassStr != "" && selectedClassStr != "Current" && AqwApi.inventory != null) {
-                    AqwApi.inventory.equip(selectedClassStr);
+                if (selectedClassStr != "" && selectedClassStr != "Current" && Api.inventory != null) {
+                    Api.inventory.equip(selectedClassStr);
                 }
-                if (AqwApi.combat != null) {
-                    AqwApi.combat.mode = selectedModeStr;
+                if (Api.combat != null) {
+                    Api.combat.mode = selectedModeStr;
                 }
                 ApiNotificationManager.notify("Smart Combat Config: " + selectedClassStr + " [" + selectedModeStr + "]");
                 ApiPromptModal.close();
@@ -357,8 +357,8 @@ class ApiPrompts {
                 };
 
                 // ONLY classes currently in player's inventory
-                if (AqwApi.game != null && AqwApi.game.world != null && AqwApi.game.world.myAvatar != null) {
-                    var av:Dynamic = AqwApi.game.world.myAvatar;
+                if (Api.game != null && Api.game.world != null && Api.game.world.myAvatar != null) {
+                    var av:Dynamic = Api.game.world.myAvatar;
                     if (av.items != null && Std.isOfType(av.items, Array)) {
                         var items:Array<Dynamic> = cast av.items;
                         for (it in items) {
@@ -739,8 +739,8 @@ class ApiPrompts {
                         CombatEngine.smartClass = cName;
                         CombatEngine.skillMode = mName;
                         try {
-                            if (AqwApi.combat != null) {
-                                AqwApi.combat.mode = mName;
+                            if (Api.combat != null) {
+                                Api.combat.mode = mName;
                             }
                         } catch (_:Dynamic) {}
 
@@ -807,8 +807,8 @@ class ApiPrompts {
                     CombatEngine.smartClass = cName;
                     CombatEngine.skillMode = mName;
                     try {
-                        if (AqwApi.combat != null) {
-                            AqwApi.combat.mode = mName;
+                        if (Api.combat != null) {
+                            Api.combat.mode = mName;
                         }
                     } catch (_:Dynamic) {}
                     ApiNotificationManager.notify("Activated [" + cName + " : " + mName + "] for Smart Combat!");
@@ -877,7 +877,7 @@ class ApiPrompts {
                                 var fallbackMode = (remainingModes.length > 0 && remainingModes[0] != "[+ New Mode]") ? remainingModes[0] : "Base";
                                 CombatEngine.skillMode = fallbackMode;
                                 try { HelperSetting.setString("api_smart_mode", fallbackMode); } catch (_:Dynamic) {}
-                                try { if (AqwApi.combat != null) AqwApi.combat.mode = fallbackMode; } catch (_:Dynamic) {}
+                                try { if (Api.combat != null) Api.combat.mode = fallbackMode; } catch (_:Dynamic) {}
                             }
 
                             var freshClassOpts = getAllClassOptions();
@@ -1073,9 +1073,9 @@ class ApiPrompts {
         };
 
         // Inventory armors/classes
-        if (AqwApi.game != null && AqwApi.game.world != null && AqwApi.game.world.myAvatar != null && AqwApi.game.world.myAvatar.items != null) {
+        if (Api.game != null && Api.game.world != null && Api.game.world.myAvatar != null && Api.game.world.myAvatar.items != null) {
             try {
-                var items:Dynamic = AqwApi.game.world.myAvatar.items;
+                var items:Dynamic = Api.game.world.myAvatar.items;
                 if (Std.isOfType(items, Array)) {
                     for (item in (cast items : Array<Dynamic>)) {
                         if (item == null || item.sName == null) continue;
@@ -1143,8 +1143,8 @@ class ApiPrompts {
         try {
             var cur:String = CombatEngine.getCurrentClassName();
             if (cur != "" && cur.toLowerCase() != "current") return cur;
-            if (AqwApi.game != null && AqwApi.game.world != null && AqwApi.game.world.myAvatar != null) {
-                var av:Dynamic = AqwApi.game.world.myAvatar;
+            if (Api.game != null && Api.game.world != null && Api.game.world.myAvatar != null) {
+                var av:Dynamic = Api.game.world.myAvatar;
                 if (av.objData != null && av.objData.strClassName != null) {
                     var c:String = Std.string(av.objData.strClassName);
                     if (c != "" && c != "null") return c;

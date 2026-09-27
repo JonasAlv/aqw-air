@@ -1,7 +1,7 @@
 package ui;
 
 #if flash
-import com.aqwapi.AqwApi;
+import com.aqwapi.Api;
 import com.aqwapi.modules.CombatEngine;
 import com.aqwapi.modules.ScriptManager;
 import com.aqwapi.utils.ApiLogger;
@@ -55,12 +55,12 @@ class ApiMenus {
         CombatEngine.dodgeClass = HelperSetting.getString("api_dodge_class", "Current");
         CombatEngine.dodgeMode = HelperSetting.getString("api_dodge_mode", "Base");
 
-        if (AqwApi.combat != null) {
-            AqwApi.combat.infiniteRange = HelperSetting.getBool("api_infinite_range", false);
+        if (Api.combat != null) {
+            Api.combat.infiniteRange = HelperSetting.getBool("api_infinite_range", false);
         }
-        if (AqwApi.map != null) {
-            AqwApi.map.autoDeathSpawn = HelperSetting.getBool("api_death_spawn", false);
-            AqwApi.map.usePrivateRoom = HelperSetting.getBool("api_private_rooms", true);
+        if (Api.map != null) {
+            Api.map.autoDeathSpawn = HelperSetting.getBool("api_death_spawn", false);
+            Api.map.usePrivateRoom = HelperSetting.getBool("api_private_rooms", true);
         }
 
         // 3. Build Menu Tabs
@@ -96,9 +96,9 @@ class ApiMenus {
 
         // 5. Restore loot and AC settings
         var initialLootState = HelperSetting.getBool("api_accept_loot", false);
-        if (AqwApi.drop != null) AqwApi.drop.acceptAll = initialLootState;
+        if (Api.drop != null) Api.drop.acceptAll = initialLootState;
         var initialACState = HelperSetting.getBool("api_accept_ac_drops", false);
-        if (AqwApi.drop != null) AqwApi.drop.acceptACs = initialACState;
+        if (Api.drop != null) Api.drop.acceptACs = initialACState;
 
         // 6. Floating menu button
         setupFloatingMenuButton(pocket, overlay);
@@ -195,22 +195,22 @@ class ApiMenus {
                 if (c.state) {
                     var confClass = HelperSetting.getString("api_smart_class", "Current");
                     var confMode = HelperSetting.getString("api_smart_mode", "Base");
-                    if (confClass != "" && confClass != "Current" && AqwApi.inventory != null) {
-                        AqwApi.inventory.equip(confClass);
+                    if (confClass != "" && confClass != "Current" && Api.inventory != null) {
+                        Api.inventory.equip(confClass);
                     }
                     CombatEngine.smartClass = confClass;
-                    if (AqwApi.combat != null) {
-                        AqwApi.combat.mode = confMode;
-                        AqwApi.combat.startSmart();
+                    if (Api.combat != null) {
+                        Api.combat.mode = confMode;
+                        Api.combat.startSmart();
                     }
                 } else {
-                    if (AqwApi.combat != null) AqwApi.combat.stopAuto();
+                    if (Api.combat != null) Api.combat.stopAuto();
                 }
             });
         });
         smartCombatCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (AqwApi.combat != null && smartCombatCheck.state != AqwApi.combat.isSmartRunning) {
-                smartCombatCheck.state = AqwApi.combat.isSmartRunning;
+            if (Api.combat != null && smartCombatCheck.state != Api.combat.isSmartRunning) {
+                smartCombatCheck.state = Api.combat.isSmartRunning;
                 smartCombatCheck.syncState();
             }
         });
@@ -223,13 +223,13 @@ class ApiMenus {
                     overlay.gotoAndStop("Init");
                     ApiPrompts.showCombatPrompt(overlay);
                 } else {
-                    if (AqwApi.combat != null) AqwApi.combat.stopAuto();
+                    if (Api.combat != null) Api.combat.stopAuto();
                 }
             });
         });
         customCombatCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (AqwApi.combat != null && customCombatCheck.state != AqwApi.combat.isCustomRunning) {
-                customCombatCheck.state = AqwApi.combat.isCustomRunning;
+            if (Api.combat != null && customCombatCheck.state != Api.combat.isCustomRunning) {
+                customCombatCheck.state = Api.combat.isCustomRunning;
                 customCombatCheck.syncState();
             }
         });
@@ -242,13 +242,13 @@ class ApiMenus {
                     overlay.gotoAndStop("Init");
                     ApiPrompts.showQuestPrompt(overlay);
                 } else {
-                    if (AqwApi.quest != null) AqwApi.quest.stopAuto();
+                    if (Api.quest != null) Api.quest.stopAuto();
                 }
             });
         });
         autoQuestCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (AqwApi.quest != null && autoQuestCheck.state != AqwApi.quest.isAutoRunning) {
-                autoQuestCheck.state = AqwApi.quest.isAutoRunning;
+            if (Api.quest != null && autoQuestCheck.state != Api.quest.isAutoRunning) {
+                autoQuestCheck.state = Api.quest.isAutoRunning;
                 autoQuestCheck.syncState();
             }
         });
@@ -411,35 +411,35 @@ function onStop() {
         }));
 
         opts.push(new Button(null, "Toggle Bank", "Open or close your bank.", "Toggle", function(o:Dynamic):Void {
-            if (AqwApi.inventory != null) AqwApi.inventory.toggleBank();
+            if (Api.inventory != null) Api.inventory.toggleBank();
         }));
 
         opts.push(new Check("api_infinite_range", false, "Infinite Range", "Attack and use skills across the entire screen without range limits.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (AqwApi.combat != null) {
-                AqwApi.combat.infiniteRange = c.state;
-                if (c.state) AqwApi.combat.applyInfiniteRange();
+            if (Api.combat != null) {
+                Api.combat.infiniteRange = c.state;
+                if (c.state) Api.combat.applyInfiniteRange();
             }
         }));
 
         opts.push(new Check("api_death_spawn", false, "Death Spawn (Same Room)", "Automatically sets your respawn point to your current room so you never walk back on death.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (AqwApi.map != null) AqwApi.map.autoDeathSpawn = c.state;
+            if (Api.map != null) Api.map.autoDeathSpawn = c.state;
         }));
 
         opts.push(new Check("api_private_rooms", true, "Private Rooms", "Automatically join private rooms (e.g. map-100000). Uncheck to join public rooms.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (AqwApi.map != null) AqwApi.map.usePrivateRoom = c.state;
+            if (Api.map != null) Api.map.usePrivateRoom = c.state;
         }));
 
         opts.push(new Check("api_accept_loot", false, "Accept All Loot", "Automatically accept all dropped items.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (AqwApi.drop != null) AqwApi.drop.acceptAll = c.state;
+            if (Api.drop != null) Api.drop.acceptAll = c.state;
         }));
 
         opts.push(new Check("api_accept_ac_drops", false, "Accept AC Drops", "Automatically accept all AC-tagged (coin) drops.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (AqwApi.drop != null) AqwApi.drop.acceptACs = c.state;
+            if (Api.drop != null) Api.drop.acceptACs = c.state;
         }));
 
         opts.push(new Check(HelperSetting.OPTION_SWF_CACHE, false, "SWF RAM Cache", "Caches loaded maps and classes to RAM to eliminate reloading. (Requires more RAM)", true, function(o:Dynamic):Void {
@@ -569,16 +569,16 @@ function onStop() {
             var infiniteRangeActive = isScriptRunning || HelperSetting.getBool("api_infinite_range", false);
             var deathSpawnActive = isScriptRunning || HelperSetting.getBool("api_death_spawn", false);
 
-            if (AqwApi.map != null) {
-                AqwApi.map.autoDeathSpawn = deathSpawnActive;
+            if (Api.map != null) {
+                Api.map.autoDeathSpawn = deathSpawnActive;
                 if (deathSpawnActive) {
-                    AqwApi.map.checkAutoDeathSpawn();
+                    Api.map.checkAutoDeathSpawn();
                 }
             }
-            if (AqwApi.combat != null) {
-                AqwApi.combat.infiniteRange = infiniteRangeActive;
+            if (Api.combat != null) {
+                Api.combat.infiniteRange = infiniteRangeActive;
                 if (infiniteRangeActive) {
-                    AqwApi.combat.applyInfiniteRange();
+                    Api.combat.applyInfiniteRange();
                 }
             }
 
@@ -606,7 +606,7 @@ function onStop() {
             fn();
         } catch (err:Dynamic) {
             ApiLogger.error("UI", action + " error: " + Std.string(err));
-            AqwApi.notify(action + " error: " + Std.string(err));
+            Api.notify(action + " error: " + Std.string(err));
         }
     }
 }
