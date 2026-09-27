@@ -254,7 +254,7 @@ class ApiMenus {
                     var script = 
 '//hscript
 function onStart() {
-    bot.log("Auto Leveling (ShadowBattleon) started");
+    bot.log("[Auto Leveling] Starting ShadowBattleon Doomed Troll farm...");
     bot.drop.acceptAll = true;
     bot.quest.loadMultiple([9421, 9422, 9423]);
     bot.combat.equipLoadout("farm");
@@ -281,21 +281,17 @@ function onTick() {
         return;
     }
 
-    // Always keep smart combat running
+    // Keep smart combat running
     if (!bot.combat.isRunning()) {
         bot.combat.start(true);
     }
 
-    // 1. Accept missing quests (handled cleanly via core coolDown)
-    if (!bot.quest.isAccepted(9421)) {
-        bot.quest.accept(9421);
-    } else if (!bot.quest.isAccepted(9422)) {
-        bot.quest.accept(9422);
-    } else if (!bot.quest.isAccepted(9423)) {
-        bot.quest.accept(9423);
+    // Ensure quests are loaded
+    if (!bot.quest.isLoaded(9421) || !bot.quest.isLoaded(9422) || !bot.quest.isLoaded(9423)) {
+        bot.quest.loadMultiple([9421, 9422, 9423]);
     }
 
-    // 2. Turn in completed quests
+    // 1. Turn in completed quests first (one per tick)
     if (bot.quest.isAccepted(9421) && (bot.quest.canComplete(9421) || bot.inventory.getItemCount("Shadow Hunt Medal") >= 5)) {
         bot.quest.turnIn(9421);
     } else if (bot.quest.isAccepted(9422) && (bot.quest.canComplete(9422) || bot.inventory.getItemCount("Mega Shadow Hunt Medal") >= 3)) {
@@ -303,12 +299,20 @@ function onTick() {
     } else if (bot.quest.isAccepted(9423) && (bot.quest.canComplete(9423) || bot.inventory.getItemCount("Infested Flesh") >= 6)) {
         bot.quest.turnIn(9423);
     }
+    // 2. Re-accept any missing or turned-in quests (one per tick)
+    else if (!bot.quest.isAccepted(9421)) {
+        bot.quest.accept(9421);
+    } else if (!bot.quest.isAccepted(9422)) {
+        bot.quest.accept(9422);
+    } else if (!bot.quest.isAccepted(9423)) {
+        bot.quest.accept(9423);
+    }
 
     bot.sleep(500);
 }
 
 function onStop() {
-    bot.log("Auto Leveling stopped");
+    bot.log("[Auto Leveling] Stopped.");
     bot.combat.stop();
 }
 ';
