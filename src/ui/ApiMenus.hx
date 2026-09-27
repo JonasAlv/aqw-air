@@ -338,6 +338,27 @@ function onStop() {
     private static function buildEnhancementMenu(pocket:Dynamic, overlay:Overlay):Menu {
         var opts = new Vector<Option>();
 
+        // 1. One-Click Smart Enhance (Equipped)
+        opts.push(new Button(null, "Smart Enhance (Equipped)", "Auto-detects class & unlocks, then enhances equipped weapon, class, helm, and cape to the optimal build.", "Enhance", function(o:Dynamic):Void {
+            if (Api.enhancement != null) {
+                if (Api.enhancement.isBusy) {
+                    ApiNotificationManager.notify("Enhancement queue is currently busy!");
+                    return;
+                }
+                var curClass = (Api.player != null && Api.player.className != null && Api.player.className != "") ? Api.player.className : "Equipped Class";
+                ApiNotificationManager.notify("SmartEnhancing " + curClass + "...");
+                Api.enhancement.smartEnhance(null, function():Void {
+                    ApiNotificationManager.notify("SmartEnhance finished!");
+                });
+            }
+        }));
+
+        // 2. Custom Enhance Gear (Modal Dialog)
+        opts.push(new Button(null, "Custom Enhance Gear...", "Choose custom base enhancement types and Awe/Forge special traits for equipped gear.", "Configure", function(o:Dynamic):Void {
+            overlay.gotoAndStop("Init");
+            ApiPrompts.showCustomEnhancePrompt(overlay);
+        }));
+
         var lvl50Shops = [
             { name: "Healer Enh", id: 762 },
             { name: "Lucky Enh", id: 763 },

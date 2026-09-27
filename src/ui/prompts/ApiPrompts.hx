@@ -226,6 +226,175 @@ class ApiPrompts {
         ApiPromptModal.show(overlay, dlg);
     }
 
+    public static function showCustomEnhancePrompt(overlay:Dynamic):Void {
+        try {
+            var dlg = ApiPromptModal.createDialog(460, 320, "Custom Enhancement Setup");
+
+            var curClass:String = (Api.player != null && Api.player.className != null && Api.player.className != "") ? Api.player.className : "Equipped Class";
+            var rec = (Api.enhancement != null) ? Api.enhancement.getRecommendation(curClass) : null;
+
+            var recSummary:String = "Equipped: " + curClass;
+            if (rec != null) {
+                recSummary += "  (Optimal: " + rec.type;
+                if (rec.weapon != null && rec.weapon != "" && rec.weapon != "None") recSummary += " + " + rec.weapon;
+                if (rec.helm != null && rec.helm != "" && rec.helm != "None") recSummary += " | " + rec.helm;
+                if (rec.cape != null && rec.cape != "" && rec.cape != "None") recSummary += " | " + rec.cape;
+                recSummary += ")";
+            }
+
+            var lblSummary = ApiPromptModal.createLabel(recSummary, 420, 11, false);
+            lblSummary.x = 20;
+            lblSummary.y = 38;
+            dlg.addChild(lblSummary);
+
+            // Row 1: Base Type & Weapon Trait
+            var lblBase = ApiPromptModal.createLabel("Base Type (All Gear):", 190, 12, true);
+            lblBase.x = 25;
+            lblBase.y = 65;
+            dlg.addChild(lblBase);
+
+            var lblWeapon = ApiPromptModal.createLabel("Weapon Special Trait:", 190, 12, true);
+            lblWeapon.x = 245;
+            lblWeapon.y = 65;
+            dlg.addChild(lblWeapon);
+
+            var baseOptions = ["Lucky", "Wizard", "Fighter", "Thief", "Healer", "Hybrid", "Spellbreaker"];
+            var weaponOptions = ["None", "Spiral Carve", "Awe Blast", "Health Vamp", "Mana Vamp", "Powerword Die", "Smite", "Valiance", "Arcana's Concerto", "Elysium", "Acheron", "Dauntless", "Praxis"];
+            var helmOptions = ["None", "Forge", "Vim", "Examen", "Anima", "Pneuma"];
+            var capeOptions = ["None", "Forge", "Absolution", "Vainglory", "Avarice", "Penitence", "Lament"];
+
+            var selectedBase:String = (rec != null && rec.type != null) ? rec.type : "Lucky";
+            var selectedWeapon:String = (rec != null && rec.weapon != null) ? rec.weapon : "None";
+            var selectedHelm:String = (rec != null && rec.helm != null) ? rec.helm : "None";
+            var selectedCape:String = (rec != null && rec.cape != null) ? rec.cape : "None";
+
+            var ddBase = new Dropdown(190, 26, baseOptions, function(sel:String):Void {
+                selectedBase = sel;
+            });
+            ddBase.x = 25;
+            ddBase.y = 85;
+            ddBase.setSelectedItem(selectedBase);
+
+            var ddWeapon = new Dropdown(190, 26, weaponOptions, function(sel:String):Void {
+                selectedWeapon = sel;
+            });
+            ddWeapon.x = 245;
+            ddWeapon.y = 85;
+            ddWeapon.setSelectedItem(selectedWeapon);
+
+            // Row 2: Helm Trait & Cape Trait
+            var lblHelm = ApiPromptModal.createLabel("Helm Special Trait:", 190, 12, true);
+            lblHelm.x = 25;
+            lblHelm.y = 125;
+            dlg.addChild(lblHelm);
+
+            var lblCape = ApiPromptModal.createLabel("Cape Special Trait:", 190, 12, true);
+            lblCape.x = 245;
+            lblCape.y = 125;
+            dlg.addChild(lblCape);
+
+            var ddHelm = new Dropdown(190, 26, helmOptions, function(sel:String):Void {
+                selectedHelm = sel;
+            });
+            ddHelm.x = 25;
+            ddHelm.y = 145;
+            ddHelm.setSelectedItem(selectedHelm);
+
+            var ddCape = new Dropdown(190, 26, capeOptions, function(sel:String):Void {
+                selectedCape = sel;
+            });
+            ddCape.x = 245;
+            ddCape.y = 145;
+            ddCape.setSelectedItem(selectedCape);
+
+            dlg.addChild(ddBase);
+            dlg.addChild(ddWeapon);
+            dlg.addChild(ddHelm);
+            dlg.addChild(ddCape);
+
+            // Quick Shortcut: Apply Recommended
+            var bestBtn = ApiPromptModal.createButton("Apply Recommended", 140, 26, function():Void {
+                var c = (Api.player != null && Api.player.className != null && Api.player.className != "") ? Api.player.className : "";
+                var r = (Api.enhancement != null) ? Api.enhancement.getRecommendation(c) : null;
+                if (r != null) {
+                    selectedBase = r.type;
+                    selectedWeapon = r.weapon;
+                    selectedHelm = r.helm;
+                    selectedCape = r.cape;
+                    ddBase.setSelectedItem(selectedBase);
+                    ddWeapon.setSelectedItem(selectedWeapon);
+                    ddHelm.setSelectedItem(selectedHelm);
+                    ddCape.setSelectedItem(selectedCape);
+                    ApiNotificationManager.notify("Applied recommendation: " + r.type);
+                }
+            }, false);
+            bestBtn.x = 25;
+            bestBtn.y = 195;
+            dlg.addChild(bestBtn);
+
+            var resetBtn = ApiPromptModal.createButton("Base Only (No Forge)", 140, 26, function():Void {
+                selectedWeapon = "None";
+                selectedHelm = "None";
+                selectedCape = "None";
+                ddWeapon.setSelectedItem("None");
+                ddHelm.setSelectedItem("None");
+                ddCape.setSelectedItem("None");
+                ApiNotificationManager.notify("Cleared special traits (Base only)");
+            }, false);
+            resetBtn.x = 180;
+            resetBtn.y = 195;
+            dlg.addChild(resetBtn);
+
+            // Bottom Action Buttons
+            var enhanceBtn = ApiPromptModal.createButton("Enhance Equipped", 150, 36, function():Void {
+                ApiPromptModal.close();
+                if (Api.enhancement != null) {
+                    if (Api.enhancement.isBusy) {
+                        ApiNotificationManager.notify("Enhancement queue is currently busy!");
+                        return;
+                    }
+                    ApiNotificationManager.notify("Enhancing: " + selectedBase + " (W:" + selectedWeapon + ", H:" + selectedHelm + ", C:" + selectedCape + ")");
+                    Api.enhancement.enhanceEquipped(selectedBase, selectedCape, selectedHelm, selectedWeapon, function():Void {
+                        ApiNotificationManager.notify("Custom enhancement complete!");
+                    });
+                }
+            }, true);
+            enhanceBtn.x = 25;
+            enhanceBtn.y = 255;
+            dlg.addChild(enhanceBtn);
+
+            var smartBtn = ApiPromptModal.createButton("Smart Auto", 120, 36, function():Void {
+                ApiPromptModal.close();
+                if (Api.enhancement != null) {
+                    if (Api.enhancement.isBusy) {
+                        ApiNotificationManager.notify("Enhancement queue is currently busy!");
+                        return;
+                    }
+                    var c = (Api.player != null) ? Api.player.className : "Equipped";
+                    ApiNotificationManager.notify("SmartEnhancing " + c + "...");
+                    Api.enhancement.smartEnhance(null, function():Void {
+                        ApiNotificationManager.notify("SmartEnhance finished!");
+                    });
+                }
+            }, false);
+            smartBtn.x = 190;
+            smartBtn.y = 255;
+            dlg.addChild(smartBtn);
+
+            var cancelBtn = ApiPromptModal.createButton("Cancel", 100, 36, function():Void {
+                ApiPromptModal.close();
+            }, false);
+            cancelBtn.x = 325;
+            cancelBtn.y = 255;
+            dlg.addChild(cancelBtn);
+
+            ApiPromptModal.show(overlay, dlg);
+        } catch (e:Dynamic) {
+            ApiLogger.error("Prompt", "Error showing custom enhance prompt: " + e);
+            ApiNotificationManager.notify("Error: " + e);
+        }
+    }
+
     public static function showSmartCombatPrompt(overlay:Dynamic):Void {
         try {
             var dlg = ApiPromptModal.createDialog(420, 250, "AutoCombat Setup");
