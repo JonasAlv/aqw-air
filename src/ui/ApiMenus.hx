@@ -96,9 +96,21 @@ class ApiMenus {
 
         // 5. Restore loot and AC settings
         var initialLootState = HelperSetting.getBool("api_accept_loot", false);
-        if (Api.drop != null) Api.drop.acceptAll = initialLootState;
+        if (Api.drop != null) {
+            Api.drop.acceptAll = initialLootState;
+            if (initialLootState) {
+                Api.drop.scanScreenDrops();
+                Api.drop.acceptAllDrops();
+            }
+        }
         var initialACState = HelperSetting.getBool("api_accept_ac_drops", false);
-        if (Api.drop != null) Api.drop.acceptACs = initialACState;
+        if (Api.drop != null) {
+            Api.drop.acceptACs = initialACState;
+            if (initialACState && !initialLootState) {
+                Api.drop.scanScreenDrops();
+                Api.drop.acceptACDrops();
+            }
+        }
 
         // 6. Floating menu button
         setupFloatingMenuButton(pocket, overlay);
@@ -129,7 +141,7 @@ class ApiMenus {
                     stream.open(file, fmCls.READ);
                     var txt:String = stream.readUTFBytes(stream.bytesAvailable);
                     stream.close();
-                    ScriptManager.SINGLETON.loadScript(txt);
+                    ScriptManager.SINGLETON.loadScript(txt, "Custom");
                     ApiNotificationManager.notify("Script loaded successfully!");
                 });
                 var filters = [Type.createInstance(ffCls, ["Script Files (*.txt, *.hscript, *.hx)", "*.txt;*.hscript;*.hx"])];
@@ -148,8 +160,9 @@ class ApiMenus {
             }
         });
         startScriptCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (startScriptCheck.state != ScriptManager.SINGLETON.isRunning) {
-                startScriptCheck.state = ScriptManager.SINGLETON.isRunning;
+            var isRunningCustom = ScriptManager.SINGLETON.isRunning && (ScriptManager.SINGLETON.scriptName == "" || ScriptManager.SINGLETON.scriptName == "Custom");
+            if (startScriptCheck.state != isRunningCustom) {
+                startScriptCheck.state = isRunningCustom;
                 startScriptCheck.syncState();
             }
         });
@@ -301,7 +314,7 @@ function onStop() {
 }
 ';
                     ScriptManager.SINGLETON.reset();
-                    ScriptManager.SINGLETON.loadScript(script);
+                    ScriptManager.SINGLETON.loadScript(script, "Auto Leveling");
                     ScriptManager.SINGLETON.start();
                 } else {
                     ScriptManager.SINGLETON.stop();
@@ -309,12 +322,194 @@ function onStop() {
             });
         });
         autoLevelingCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (autoLevelingCheck.state != ScriptManager.SINGLETON.isRunning) {
-                autoLevelingCheck.state = ScriptManager.SINGLETON.isRunning;
+            var isRunningAutoLevel = ScriptManager.SINGLETON.isRunning && ScriptManager.SINGLETON.scriptName == "Auto Leveling";
+            if (autoLevelingCheck.state != isRunningAutoLevel) {
+                autoLevelingCheck.state = isRunningAutoLevel;
                 autoLevelingCheck.syncState();
             }
         });
         opts.push(autoLevelingCheck);
+
+        var autoGoldFarmCheck = new Check(null, false, "Auto Gold Farm", "Adaptive gold farm: HonorHall (Mem) / BattleGroundE (F2P) / Berserker Bunny.", true, function(o:Dynamic):Void {
+            tryAction("Auto Gold Farm", function() {
+                var c:Check = cast o;
+                if (c.state) {
+                    var script = 
+'//hscript
+var targetGold = 100000000;
+var currentTier = "";
+
+function getOptimalTier() {
+    var lvl = (bot.player != null) ? bot.player.level : 1;
+    var mem = (bot.player != null) ? bot.player.isMember : false;
+
+    if (mem && lvl >= 61) {
+        return "HonorHall";
+    } else if (lvl >= 61) {
+        return "BattleGroundE";
+    } else {
+        return "BerserkerBunny";
+    }
+}
+
+function onStart() {
+    bot.log("[Gold Farm] Initializing Adaptive Gold Farm...");
+    bot.drop.acceptAll = true;
+
+    var goldBoosts = ["1 hr Gold Boost", "Gold Boost", "10 Minute Gold Boost", "20 Minute Gold Boost"];
+    for (b in goldBoosts) {
+        if (bot.inventory.hasItem(b)) {
+            bot.log("[Gold Farm] Boost item found: " + b + ". Active boosts give 2x Gold!");
+            break;
+        }
+    }
+
+    currentTier = "";
+}
+
+function onTick() {
+    if (bot.player != null && bot.player.gold >= targetGold) {
+        bot.log("[Gold Farm] Maximum Gold Cap reached (" + bot.player.gold + " / " + targetGold + ")! Stopping.");
+        bot.notify("Gold Farm Complete: Max Gold reached!");
+        bot.combat.stop();
+        stop();
+        return;
+    }
+
+    if (!bot.player.isAlive) {
+        bot.sleep(1500);
+        return;
+    }
+
+    var optimal = getOptimalTier();
+    if (currentTier != optimal) {
+        currentTier = optimal;
+        bot.log("[Gold Farm] Active Tier set to: " + currentTier + " (Level: " + bot.player.level + ", Member: " + bot.player.isMember + ")");
+        bot.combat.stop();
+
+        if (currentTier == "HonorHall") {
+            bot.quest.loadMultiple([3992, 3993]);
+            bot.combat.equipLoadout("farm");
+            bot.map.join("honorhall", "r1", "Center");
+        } else if (currentTier == "BattleGroundE") {
+            bot.quest.loadMultiple([3991, 3992]);
+            bot.combat.equipLoadout("farm");
+            bot.map.join("battlegrounde", "r2", "Center");
+        } else {
+            bot.quest.load(236);
+            bot.combat.equipLoadout("solo");
+            bot.map.join("greenguardwest", "West12", "Up");
+        }
+
+        bot.sleep(2500);
+        return;
+    }
+
+    if (currentTier == "HonorHall") {
+        if (bot.map.name.toLowerCase() != "honorhall") {
+            bot.map.join("honorhall", "r1", "Center");
+            bot.sleep(2500);
+            return;
+        }
+        if (bot.player.cell != "r1") {
+            bot.map.jump("r1", "Center");
+            bot.sleep(800);
+            return;
+        }
+    } else if (currentTier == "BattleGroundE") {
+        if (bot.map.name.toLowerCase() != "battlegrounde") {
+            bot.map.join("battlegrounde", "r2", "Center");
+            bot.sleep(2500);
+            return;
+        }
+        if (bot.player.cell != "r2") {
+            bot.map.jump("r2", "Center");
+            bot.sleep(800);
+            return;
+        }
+    } else if (currentTier == "BerserkerBunny") {
+        if (bot.map.name.toLowerCase() != "greenguardwest") {
+            bot.map.join("greenguardwest", "West12", "Up");
+            bot.sleep(2500);
+            return;
+        }
+        if (bot.player.cell != "West12") {
+            bot.map.jump("West12", "Up");
+            bot.sleep(800);
+            return;
+        }
+    }
+
+    if (!bot.combat.isRunning()) {
+        bot.combat.start(true);
+    }
+
+    if (currentTier == "HonorHall") {
+        if (!bot.quest.isAccepted(3992)) {
+            bot.quest.accept(3992);
+        } else if (!bot.quest.isAccepted(3993)) {
+            bot.quest.accept(3993);
+        }
+
+        if (bot.quest.isAccepted(3992) && (bot.quest.canComplete(3992) || bot.inventory.getItemCount("Battleground E Opponent Defeated") >= 10)) {
+            bot.quest.turnIn(3992);
+        } else if (bot.quest.isAccepted(3993) && (bot.quest.canComplete(3993) || bot.inventory.getItemCount("HonorHall Opponent Defeated") >= 10)) {
+            bot.quest.turnIn(3993);
+        }
+    } else if (currentTier == "BattleGroundE") {
+        if (!bot.quest.isAccepted(3991)) {
+            bot.quest.accept(3991);
+        } else if (!bot.quest.isAccepted(3992)) {
+            bot.quest.accept(3992);
+        }
+
+        if (bot.quest.isAccepted(3991) && (bot.quest.canComplete(3991) || bot.inventory.getItemCount("Battleground D Opponent Defeated") >= 10)) {
+            bot.quest.turnIn(3991);
+        } else if (bot.quest.isAccepted(3992) && (bot.quest.canComplete(3992) || bot.inventory.getItemCount("Battleground E Opponent Defeated") >= 10)) {
+            bot.quest.turnIn(3992);
+        }
+    } else if (currentTier == "BerserkerBunny") {
+        bot.drop.getDrop("Berserker Bunny");
+
+        if (bot.inventory.hasItem("Berserker Bunny")) {
+            bot.shop.sellItem("Berserker Bunny", 1);
+            bot.sleep(400);
+            return;
+        }
+
+        if (!bot.quest.isAccepted(236)) {
+            bot.quest.accept(236);
+        }
+
+        if (bot.quest.isAccepted(236) && (bot.quest.canComplete(236) || bot.inventory.getItemCount("Were Egg") >= 1)) {
+            bot.quest.turnIn(236);
+        }
+    }
+
+    bot.sleep(500);
+}
+
+function onStop() {
+    bot.log("[Gold Farm] Script stopped.");
+    bot.combat.stop();
+}
+';
+                    ScriptManager.SINGLETON.reset();
+                    ScriptManager.SINGLETON.loadScript(script, "Auto Gold Farm");
+                    ScriptManager.SINGLETON.start();
+                } else {
+                    ScriptManager.SINGLETON.stop();
+                }
+            });
+        });
+        autoGoldFarmCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
+            var isRunningGold = ScriptManager.SINGLETON.isRunning && ScriptManager.SINGLETON.scriptName == "Auto Gold Farm";
+            if (autoGoldFarmCheck.state != isRunningGold) {
+                autoGoldFarmCheck.state = isRunningGold;
+                autoGoldFarmCheck.syncState();
+            }
+        });
+        opts.push(autoGoldFarmCheck);
 
         return new Menu("Automation", opts);
     }
@@ -395,12 +590,24 @@ function onStop() {
 
         opts.push(new Check("api_accept_loot", false, "Accept All Loot", "Automatically accept all dropped items.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (Api.drop != null) Api.drop.acceptAll = c.state;
+            if (Api.drop != null) {
+                Api.drop.acceptAll = c.state;
+                if (c.state) {
+                    Api.drop.scanScreenDrops();
+                    Api.drop.acceptAllDrops();
+                }
+            }
         }));
 
         opts.push(new Check("api_accept_ac_drops", false, "Accept AC Drops", "Automatically accept all AC-tagged (coin) drops.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
-            if (Api.drop != null) Api.drop.acceptACs = c.state;
+            if (Api.drop != null) {
+                Api.drop.acceptACs = c.state;
+                if (c.state) {
+                    Api.drop.scanScreenDrops();
+                    Api.drop.acceptACDrops();
+                }
+            }
         }));
 
         opts.push(new Check(HelperSetting.OPTION_SWF_CACHE, false, "SWF RAM Cache", "Caches loaded maps and classes to RAM to eliminate reloading. (Requires more RAM)", true, function(o:Dynamic):Void {
