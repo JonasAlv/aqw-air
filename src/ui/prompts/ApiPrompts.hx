@@ -467,10 +467,8 @@ class ApiPrompts {
                 selectedClassStr = sel;
                 var modes = getModesForClass(selectedClassStr);
                 ddMode.setOptions(modes);
-                if (selectedClassStr == "Current") {
-                    selectedModeStr = "Auto (First Available)";
-                } else if (modes.indexOf(selectedModeStr) == -1) {
-                    selectedModeStr = modes[0];
+                if (modes.indexOf(selectedModeStr) == -1) {
+                    selectedModeStr = (selectedClassStr == "Current") ? "Auto (First Available)" : (modes.length > 0 ? modes[0] : "Base");
                 }
                 ddMode.setSelectedItem(selectedModeStr);
             });
@@ -583,7 +581,7 @@ class ApiPrompts {
             lblExecMode.y = 144;
             dlg.addChild(lblExecMode);
 
-            var lblTimeout = ApiPromptModal.createLabel("Timeout (s):", 90);
+            var lblTimeout = ApiPromptModal.createLabel("Timeout (ms):", 90);
             lblTimeout.x = 240;
             lblTimeout.y = 144;
             dlg.addChild(lblTimeout);
