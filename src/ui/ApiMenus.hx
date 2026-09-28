@@ -127,6 +127,11 @@ class ApiMenus {
     private static function buildScriptsMenu(pocket:Dynamic, overlay:Overlay):Menu {
         var opts = new Vector<Option>();
 
+        opts.push(new Button(null, "Script Manager", "Manage, create, edit, save, and run scripts.", "Open", function(o:Dynamic):Void {
+            overlay.gotoAndStop("Init");
+            ApiPrompts.showScriptManager(overlay);
+        }));
+
         opts.push(new Button(null, "Paste Script", "Paste a raw text script.", "Paste", function(o:Dynamic):Void {
             overlay.gotoAndStop("Init");
             ApiPrompts.showPastePrompt(overlay);
@@ -251,100 +256,6 @@ class ApiMenus {
             }
         });
         opts.push(customCombatCheck);
-
-        var autoLevelingCheck = new Check(null, false, "Auto Leveling", "Auto grind XP in shadowbattleon.", true, function(o:Dynamic):Void {
-            tryAction("Auto Leveling", function() {
-                var c:Check = cast o;
-                if (c.state) {
-                    var script = 
-'//hscript
-function onStart() {
-    bot.log("[Auto Leveling] Starting ShadowBattleon Doomed Troll farm...");
-    bot.drop.acceptAll = true;
-    bot.quest.loadMultiple([9421, 9422, 9423]);
-    bot.combat.equipLoadout("farm");
-    bot.map.join("shadowbattleon", "r11", "Spawn");
-    bot.sleep(2000);
-    bot.quest.accept(9421);
-    bot.quest.accept(9422);
-    bot.quest.accept(9423);
-    bot.combat.start(true);
-}
-
-function onTick() {
-    if (!bot.player.isAlive) {
-        bot.sleep(1500);
-        return;
-    }
-
-    if (bot.map.name.toLowerCase() != "shadowbattleon") {
-        bot.map.join("shadowbattleon", "r11", "Spawn");
-        bot.sleep(2500);
-        return;
-    }
-
-    if (bot.player.cell != "r11") {
-        bot.map.jump("r11", "Spawn");
-        bot.sleep(800);
-        return;
-    }
-
-    // Keep smart combat running
-    if (!bot.combat.isRunning()) {
-        bot.combat.start(true);
-    }
-
-    // Ensure quests are loaded
-    if (!bot.quest.isLoaded(9421) || !bot.quest.isLoaded(9422) || !bot.quest.isLoaded(9423)) {
-        bot.quest.loadMultiple([9421, 9422, 9423]);
-    }
-
-    // 1. Turn in completed quests first
-    if (bot.quest.canComplete(9421) || bot.inventory.getItemCount("Shadow Hunt Medal") >= 5) {
-        bot.quest.turnIn(9421);
-        bot.sleep(600);
-    } else if (bot.quest.canComplete(9422) || bot.inventory.getItemCount("Mega Shadow Hunt Medal") >= 3) {
-        bot.quest.turnIn(9422);
-        bot.sleep(600);
-    } else if (bot.quest.canComplete(9423) || bot.inventory.getItemCount("Infested Flesh") >= 6) {
-        bot.quest.turnIn(9423);
-        bot.sleep(600);
-    }
-
-    // 2. Re-accept any missing quests
-    if (!bot.quest.isAccepted(9421)) {
-        bot.quest.accept(9421);
-    }
-    if (!bot.quest.isAccepted(9422)) {
-        bot.quest.accept(9422);
-    }
-    if (!bot.quest.isAccepted(9423)) {
-        bot.quest.accept(9423);
-    }
-
-    bot.sleep(500);
-}
-
-function onStop() {
-    bot.log("[Auto Leveling] Stopped.");
-    bot.combat.stop();
-}
-';
-                    ScriptManager.SINGLETON.reset();
-                    ScriptManager.SINGLETON.loadScript(script);
-                    ScriptManager.SINGLETON.start();
-                } else {
-                    ScriptManager.SINGLETON.stop();
-                }
-            });
-        });
-        autoLevelingCheck.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            if (autoLevelingCheck.state != ScriptManager.SINGLETON.isRunning) {
-                autoLevelingCheck.state = ScriptManager.SINGLETON.isRunning;
-                autoLevelingCheck.syncState();
-            }
-        });
-        opts.push(autoLevelingCheck);
 
         return new Menu("Automation", opts);
     }

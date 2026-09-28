@@ -7,7 +7,9 @@ import com.aqwapi.modules.ScriptManager;
 import com.aqwapi.managers.SkillManager;
 import com.aqwapi.utils.ApiLogger;
 import flash.display.Sprite;
+import flash.events.Event;
 import flash.text.TextField;
+import flash.text.TextFieldType;
 import ui.ApiNotificationManager;
 import ui.Dropdown;
 import util.HelperSetting;
@@ -1357,10 +1359,246 @@ class ApiPrompts {
         } catch (e:Dynamic) {}
         return "";
     }
+
+    public static function showScriptManager(overlay:Dynamic):Void {
+        try {
+            var dlg = ApiPromptModal.createDialog(620, 500, "Script Manager & Editor");
+
+            var currentScriptName:String = "";
+            var isUser:Bool = false;
+            var isBundled:Bool = false;
+
+            // Script Selection Dropdown
+            var lblSelect = ApiPromptModal.createLabel("Select Script:", 140);
+            lblSelect.x = 20;
+            lblSelect.y = 36;
+            dlg.addChild(lblSelect);
+
+            // Script Name Input
+            var lblName = ApiPromptModal.createLabel("Script Name (.hxs):", 140);
+            lblName.x = 300;
+            lblName.y = 36;
+            dlg.addChild(lblName);
+
+            var inputName = ApiPromptModal.createInput(300, 26, "");
+            inputName.x = 300;
+            inputName.y = 56;
+            dlg.addChild(inputName);
+
+            // Live Status Label
+            var lblStatus = ApiPromptModal.createLabel("Status: STOPPED", 580, 13, true);
+            lblStatus.x = 20;
+            lblStatus.y = 90;
+            lblStatus.textColor = 0x888888;
+            dlg.addChild(lblStatus);
+
+            // Code Editor
+            var lblCode = ApiPromptModal.createLabel("Script Code (HScript / .hxs):", 300);
+            lblCode.x = 20;
+            lblCode.y = 114;
+            dlg.addChild(lblCode);
+
+            var inputCode = ApiPromptModal.createInput(580, 290, "", true);
+            inputCode.x = 20;
+            inputCode.y = 136;
+            dlg.addChild(inputCode);
+
+            // Buttons
+            var runBtn:Sprite = null;
+            var runBtnTxt:TextField = null;
+            var saveBtn:Sprite = null;
+            var deleteBtn:Sprite = null;
+
+            var formatScriptOption = function(rawName:String):String {
+                if (rawName == "[+ New Script]") return rawName;
+                if (ScriptManager.SINGLETON.isBundledScript(rawName)) {
+                    return "[Bundled] " + rawName;
+                } else {
+                    return "[User] " + rawName;
+                }
+            };
+
+            var getRawScriptName = function(optLabel:String):String {
+                if (optLabel == null) return "";
+                if (optLabel == "[+ New Script]") return "";
+                if (StringTools.startsWith(optLabel, "[User] ")) return optLabel.substring(7);
+                if (StringTools.startsWith(optLabel, "[Bundled] ")) return optLabel.substring(10);
+                return optLabel;
+            };
+
+            var buildOptionsList = function():Array<String> {
+                var rawScripts = ScriptManager.SINGLETON.listScripts();
+                var opts:Array<String> = [];
+                for (s in rawScripts) {
+                    opts.push(formatScriptOption(s));
+                }
+                opts.push("[+ New Script]");
+                return opts;
+            };
+
+            var updateStatusDisplay = function():Void {
+                var running = ScriptManager.SINGLETON.isRunning;
+                if (running) {
+                    var actName = ScriptManager.SINGLETON.activeScriptName;
+                    lblStatus.text = "● RUNNING: " + (actName != null ? actName : "Custom Script");
+                    lblStatus.textColor = 0x55FF55;
+                    if (runBtnTxt != null) runBtnTxt.text = "Stop Script";
+                } else {
+                    lblStatus.text = "○ STOPPED";
+                    lblStatus.textColor = 0x888888;
+                    if (runBtnTxt != null) runBtnTxt.text = "Start Script";
+                }
+            };
+
+            var ddScript:Dropdown = null;
+
+            var loadSelectedScript = function(optLabel:String):Void {
+                if (optLabel == "[+ New Script]") {
+                    currentScriptName = "MyScript";
+                    isUser = true;
+                    isBundled = false;
+                    inputName.type = TextFieldType.INPUT;
+                    inputName.text = "MyScript";
+                    inputName.selectable = true;
+                    inputCode.text = "// New HScript\nfunction onStart() {\n    bot.log(\"Started script!\");\n}\n\nfunction onTick() {\n    // Bot logic here\n}\n\nfunction onStop() {\n    bot.log(\"Stopped script!\");\n}\n";
+                } else {
+                    var raw = getRawScriptName(optLabel);
+                    currentScriptName = raw;
+                    isBundled = ScriptManager.SINGLETON.isBundledScript(raw);
+                    isUser = !isBundled;
+                    inputName.text = raw;
+                    inputName.type = isUser ? TextFieldType.INPUT : TextFieldType.DYNAMIC;
+                    inputName.selectable = isUser;
+                    inputCode.text = ScriptManager.SINGLETON.getScriptContent(raw);
+                }
+                updateStatusDisplay();
+            };
+
+            var scriptOptions = buildOptionsList();
+            ddScript = new Dropdown(260, 26, scriptOptions, function(sel:String):Void {
+                loadSelectedScript(sel);
+            });
+            ddScript.x = 20;
+            ddScript.y = 56;
+            dlg.addChild(ddScript);
+
+            var initialLabel = scriptOptions.length > 0 ? scriptOptions[0] : "[+ New Script]";
+            if (ScriptManager.SINGLETON.activeScriptName != null) {
+                var candidate = formatScriptOption(ScriptManager.SINGLETON.activeScriptName);
+                if (scriptOptions.indexOf(candidate) != -1) {
+                    initialLabel = candidate;
+                }
+            }
+            ddScript.setSelectedItem(initialLabel);
+            loadSelectedScript(initialLabel);
+
+            // Bottom action buttons (y = 445)
+            runBtn = ApiPromptModal.createButton(ScriptManager.SINGLETON.isRunning ? "Stop Script" : "Start Script", 130, 32, function():Void {
+                if (ScriptManager.SINGLETON.isRunning) {
+                    ScriptManager.SINGLETON.stop();
+                    ApiNotificationManager.notify("Script stopped.");
+                } else {
+                    var code = inputCode.text;
+                    if (code == null || StringTools.trim(code) == "") {
+                        ApiNotificationManager.notify("Cannot run empty script!");
+                        return;
+                    }
+                    var sName = StringTools.trim(inputName.text);
+                    if (sName == "") sName = "CustomScript";
+                    ScriptManager.SINGLETON.loadScript(code);
+                    ScriptManager.SINGLETON.start();
+                    ScriptManager.SINGLETON.activeScriptName = sName;
+                    ApiNotificationManager.notify("Started script: " + sName);
+                }
+                updateStatusDisplay();
+            }, false);
+            runBtn.x = 20;
+            runBtn.y = 445;
+            for (i in 0...runBtn.numChildren) {
+                if (Std.isOfType(runBtn.getChildAt(i), TextField)) {
+                    runBtnTxt = cast runBtn.getChildAt(i);
+                    break;
+                }
+            }
+            dlg.addChild(runBtn);
+
+            saveBtn = ApiPromptModal.createButton("Save Script", 120, 32, function():Void {
+                var sName = StringTools.trim(inputName.text);
+                if (StringTools.endsWith(sName.toLowerCase(), ".hxs")) {
+                    sName = sName.substring(0, sName.length - 4);
+                }
+                if (sName == "") {
+                    ApiNotificationManager.notify("Please enter a valid script name.");
+                    return;
+                }
+                var code = inputCode.text;
+                var saved = ScriptManager.SINGLETON.saveScript(sName, code);
+                if (saved) {
+                    ApiNotificationManager.notify("Saved script: " + sName);
+                    var refreshed = buildOptionsList();
+                    ddScript.setOptions(refreshed);
+                    var newSel = formatScriptOption(sName);
+                    ddScript.setSelectedItem(newSel);
+                    loadSelectedScript(newSel);
+                } else {
+                    ApiNotificationManager.notify("Failed to save script.");
+                }
+            }, false);
+            saveBtn.x = 165;
+            saveBtn.y = 445;
+            dlg.addChild(saveBtn);
+
+            deleteBtn = ApiPromptModal.createButton("Delete Script", 120, 32, function():Void {
+                if (isBundled) {
+                    ApiNotificationManager.notify("Cannot delete bundled scripts!");
+                    return;
+                }
+                var toDelete = currentScriptName;
+                if (toDelete == "" || toDelete == "MyScript") return;
+                var deleted = ScriptManager.SINGLETON.deleteScript(toDelete);
+                if (deleted) {
+                    ApiNotificationManager.notify("Deleted script: " + toDelete);
+                    var refreshed = buildOptionsList();
+                    ddScript.setOptions(refreshed);
+                    var nextSel = refreshed.length > 0 ? refreshed[0] : "[+ New Script]";
+                    ddScript.setSelectedItem(nextSel);
+                    loadSelectedScript(nextSel);
+                } else {
+                    ApiNotificationManager.notify("Failed to delete script.");
+                }
+            }, false);
+            deleteBtn.x = 300;
+            deleteBtn.y = 445;
+            dlg.addChild(deleteBtn);
+
+            var closeBtn = ApiPromptModal.createButton("Close", 100, 32, function():Void {
+                ApiPromptModal.close();
+            }, false);
+            closeBtn.x = 500;
+            closeBtn.y = 445;
+            dlg.addChild(closeBtn);
+
+            // Real-time synchronization
+            var onFrame:Event->Void = null;
+            onFrame = function(e:Event):Void {
+                if (dlg.parent == null) {
+                    dlg.removeEventListener(Event.ENTER_FRAME, onFrame);
+                    return;
+                }
+                updateStatusDisplay();
+            };
+            dlg.addEventListener(Event.ENTER_FRAME, onFrame);
+
+            ApiPromptModal.show(overlay, dlg);
+        } catch (e:Dynamic) {
+            ApiNotificationManager.notify("Script Manager error: " + e);
+        }
+    }
 }
 #else
 class ApiPrompts {
     public static function showCombatModeEditorPrompt(overlay:Dynamic, initialClass:String = null, initialMode:String = null):Void {}
+    public static function showScriptManager(overlay:Dynamic):Void {}
 }
 #end
 

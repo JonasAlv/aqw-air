@@ -111,28 +111,6 @@ class ApiHudManager {
                 }
             },
             {
-                id: "auto_leveling",
-                label: "Auto Leveling",
-                defaultX: 544,
-                defaultY: 10,
-                activeText: "Level: ON",
-                inactiveText: "Level: OFF",
-                getState: function():Bool {
-                    return ScriptManager.SINGLETON.isRunning;
-                },
-                onToggle: function():Void {
-                    if (ScriptManager.SINGLETON.isRunning) {
-                        ScriptManager.SINGLETON.stop();
-                        ApiNotificationManager.notify("Auto Leveling stopped.");
-                    } else {
-                        ApiNotificationManager.notify("Auto Leveling started!");
-                        var script = ApiDashboardModal.getAutoLevelingScript();
-                        ScriptManager.SINGLETON.loadScript(script);
-                        ScriptManager.SINGLETON.start();
-                    }
-                }
-            },
-            {
                 id: "infinite_range",
                 label: "Infinite Range",
                 defaultX: 657,
