@@ -19,37 +19,96 @@ class ApiPrompts {
     private static var _lastCombat:String = "";
 
     public static function showQuestPrompt(overlay:Dynamic):Void {
-        var dlg = ApiPromptModal.createDialog(300, 160, "Enter Quest IDs (comma separated):");
+        var isRunning:Bool = (Api.quest != null && Api.quest.isAutoRunning);
+        var dlg = ApiPromptModal.createDialog(340, 200, "Auto-Quest (Safe Loop)");
 
-        var input = ApiPromptModal.createInput(260, 25, _lastQuests);
+        var lblInstruction = ApiPromptModal.createLabel("Enter Quest IDs (comma separated):", 300, 12, true);
+        lblInstruction.x = 20;
+        lblInstruction.y = 38;
+        dlg.addChild(lblInstruction);
+
+        var savedQuests = HelperSetting.getString("api_auto_quest_ids", "");
+        if (savedQuests == "" && _lastQuests != "") savedQuests = _lastQuests;
+        if (isRunning && Api.quest != null && Api.quest.autoQuestString != "") {
+            savedQuests = Api.quest.autoQuestString;
+        }
+
+        var input = ApiPromptModal.createInput(300, 26, savedQuests);
         input.x = 20;
-        input.y = 40;
+        input.y = 62;
         dlg.addChild(input);
 
-        var startBtn = ApiPromptModal.createButton("Start", 120, 30, function():Void {
-            _lastQuests = input.text;
-            var ids = _lastQuests.split(",");
-            var validIds:Array<Int> = [];
-            for (idStr in ids) {
-                var pQid:Null<Int> = Std.parseInt(StringTools.trim(idStr));
-                var qid = (pQid != null) ? pQid : 0;
-                if (qid > 0) validIds.push(qid);
-            }
-            if (validIds.length > 0 && Api.quest != null) {
-                Api.quest.startAuto(validIds.join(","));
-            }
-            ApiPromptModal.close();
-        }, false);
-        startBtn.x = 20;
-        startBtn.y = 80;
-        dlg.addChild(startBtn);
+        var statusColor = isRunning ? 0x00FF88 : 0x888888;
+        var statusMsg = isRunning ? "Status: Active (Safe looping accept & turn-in)" : "Status: Inactive (Stopped)";
+        var lblStatus = ApiPromptModal.createLabel(statusMsg, 300, 11, false);
+        lblStatus.x = 20;
+        lblStatus.y = 96;
+        lblStatus.textColor = statusColor;
+        dlg.addChild(lblStatus);
 
-        var cancelBtn = ApiPromptModal.createButton("Cancel", 120, 30, function():Void {
-            ApiPromptModal.close();
-        }, false);
-        cancelBtn.x = 160;
-        cancelBtn.y = 80;
-        dlg.addChild(cancelBtn);
+        var btnY = 145;
+
+        if (isRunning) {
+            var stopBtn = ApiPromptModal.createButton("Stop Auto-Quest", 140, 32, function():Void {
+                if (Api.quest != null) Api.quest.stopAuto();
+                ApiNotificationManager.notify("Auto-Quest stopped.");
+                ApiPromptModal.close();
+            }, true);
+            stopBtn.x = 20;
+            stopBtn.y = btnY;
+            dlg.addChild(stopBtn);
+
+            var updateBtn = ApiPromptModal.createButton("Update IDs", 140, 32, function():Void {
+                var txt = StringTools.trim(input.text);
+                HelperSetting.setString("api_auto_quest_ids", txt);
+                _lastQuests = txt;
+                var ids = txt.split(",");
+                var validIds:Array<Int> = [];
+                for (idStr in ids) {
+                    var pQid:Null<Int> = Std.parseInt(StringTools.trim(idStr));
+                    var qid = (pQid != null) ? pQid : 0;
+                    if (qid > 0) validIds.push(qid);
+                }
+                if (validIds.length > 0 && Api.quest != null) {
+                    Api.quest.startAuto(validIds.join(","));
+                    ApiNotificationManager.notify("Auto-Quest updated: " + validIds.join(", "));
+                }
+                ApiPromptModal.close();
+            }, false);
+            updateBtn.x = 180;
+            updateBtn.y = btnY;
+            dlg.addChild(updateBtn);
+        } else {
+            var startBtn = ApiPromptModal.createButton("Start Loop", 140, 32, function():Void {
+                var txt = StringTools.trim(input.text);
+                HelperSetting.setString("api_auto_quest_ids", txt);
+                _lastQuests = txt;
+                var ids = txt.split(",");
+                var validIds:Array<Int> = [];
+                for (idStr in ids) {
+                    var pQid:Null<Int> = Std.parseInt(StringTools.trim(idStr));
+                    var qid = (pQid != null) ? pQid : 0;
+                    if (qid > 0) validIds.push(qid);
+                }
+                if (validIds.length > 0 && Api.quest != null) {
+                    Api.quest.startAuto(validIds.join(","));
+                    ApiNotificationManager.notify("Auto-Quest started: " + validIds.join(", "));
+                } else {
+                    ApiNotificationManager.notify("Please enter at least one valid Quest ID.");
+                }
+                ApiPromptModal.close();
+            }, true);
+            startBtn.x = 20;
+            startBtn.y = btnY;
+            dlg.addChild(startBtn);
+
+            var cancelBtn = ApiPromptModal.createButton("Cancel", 140, 32, function():Void {
+                ApiPromptModal.close();
+            }, false);
+            cancelBtn.x = 180;
+            cancelBtn.y = btnY;
+            dlg.addChild(cancelBtn);
+        }
 
         ApiPromptModal.show(overlay, dlg);
     }
