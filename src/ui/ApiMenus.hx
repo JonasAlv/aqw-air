@@ -47,13 +47,15 @@ class ApiMenus {
 
         // 2. Restore Combat Manager state from persistent settings
         CombatEngine.farmClass = HelperSetting.getString("api_farm_class", "Current");
-        CombatEngine.farmMode = HelperSetting.getString("api_farm_mode", "Base");
+        CombatEngine.farmMode = HelperSetting.getString("api_farm_mode", "Auto");
         CombatEngine.soloClass = HelperSetting.getString("api_solo_class", "Current");
-        CombatEngine.soloMode = HelperSetting.getString("api_solo_mode", "Base");
+        CombatEngine.soloMode = HelperSetting.getString("api_solo_mode", "Auto");
         CombatEngine.bossClass = HelperSetting.getString("api_boss_class", "Current");
-        CombatEngine.bossMode = HelperSetting.getString("api_boss_mode", "Base");
+        CombatEngine.bossMode = HelperSetting.getString("api_boss_mode", "Auto");
         CombatEngine.dodgeClass = HelperSetting.getString("api_dodge_class", "Current");
-        CombatEngine.dodgeMode = HelperSetting.getString("api_dodge_mode", "Base");
+        CombatEngine.dodgeMode = HelperSetting.getString("api_dodge_mode", "Auto");
+        CombatEngine.smartClass = HelperSetting.getString("api_smart_class", "Current");
+        CombatEngine.skillMode = HelperSetting.getString("api_smart_mode", "Auto");
 
         if (Api.combat != null) {
             Api.combat.infiniteRange = HelperSetting.getBool("api_infinite_range", false);

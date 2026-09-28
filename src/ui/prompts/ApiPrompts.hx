@@ -533,83 +533,8 @@ class ApiPrompts {
             try { UserSkillsManager.ensureStorageInitialized(); } catch (_:Dynamic) {}
             var dlg = ApiPromptModal.createDialog(560, 475, "Combat Mode Editor");
 
-            // Gather class options (Current + Inventory + Bank + Custom)
-            // Gather class options (Strictly classes currently in inventory)
-            var getAllClassOptions = function():Array<String> {
-                var classMap:Map<String, String> = new Map<String, String>();
-                var opts:Array<String> = [];
-
-                var addOption = function(c:Dynamic):Void {
-                    if (c == null) return;
-                    var str = StringTools.trim(Std.string(c));
-                    if (str == "" || str == "null" || str == "No Classes Found" || str.toLowerCase() == "current") return;
-                    var key = str.toLowerCase();
-                    if (!classMap.exists(key)) {
-                        classMap.set(key, str);
-                        opts.push(str);
-                    }
-                };
-
-                // ONLY classes currently in player's inventory
-                if (Api.game != null && Api.game.world != null && Api.game.world.myAvatar != null) {
-                    var av:Dynamic = Api.game.world.myAvatar;
-                    if (av.items != null && Std.isOfType(av.items, Array)) {
-                        var items:Array<Dynamic> = cast av.items;
-                        for (it in items) {
-                            if (it == null || it.sName == null) continue;
-                            var sTypeStr = (it.sType != null) ? Std.string(it.sType).toLowerCase() : "";
-                            var isClass = (sTypeStr == "class" || it.bClass == 1 || it.bClass == true || it.bClass == "1");
-                            if (isClass) {
-                                addOption(it.sName);
-                            }
-                        }
-                    }
-                }
-
-                // If equipped class is not yet in list (fallback)
-                var cur = CombatEngine.getCurrentClassName();
-                if (cur != null && cur != "" && cur.toLowerCase() != "current") {
-                    addOption(cur);
-                }
-
-                // Add classes saved by the user in userSkills.json
-                try {
-                    var userClasses = UserSkillsManager.getAllUserClasses();
-                    if (userClasses != null) {
-                        for (uc in userClasses) addOption(uc);
-                    }
-                } catch (_:Dynamic) {}
-
-                // Fallback: If no classes found in inventory, load known classes
-                if (opts.length == 0) {
-                    try {
-                        var known = CombatEngine.getKnownClasses();
-                        if (known != null) {
-                            for (kc in known) addOption(kc);
-                        }
-                    } catch (_:Dynamic) {}
-                }
-
-                opts.sort(function(a, b) {
-                    var la = a.toLowerCase();
-                    var lb = b.toLowerCase();
-                    if (la < lb) return -1;
-                    if (la > lb) return 1;
-                    return 0;
-                });
-
-                if (opts.length == 0) {
-                    opts.push("No Classes Found");
-                }
-
-                var result:Array<String> = ["Current"];
-                for (o in opts) {
-                    result.push(o);
-                }
-                return result;
-            };
-
-            var classOptions:Array<String> = getAllClassOptions();
+            // Gather class options (Strictly classes currently in inventory + Current)
+            var classOptions:Array<String> = getAvailableClasses();
             var curEquipped = CombatEngine.getCurrentClassName();
             var selectedClass = (initialClass != null && initialClass != "" && classOptions.indexOf(initialClass) != -1)
                 ? initialClass
@@ -961,7 +886,7 @@ class ApiPrompts {
                         ApiNotificationManager.notify("Saved & Activated [" + cName + " : " + mName + "]!");
 
                         try {
-                            var freshClassOpts = getAllClassOptions();
+                            var freshClassOpts = getAvailableClasses();
                             if (ddClass != null) {
                                 ddClass.setOptions(freshClassOpts);
                                 ddClass.setSelectedItem(cName);
@@ -1094,7 +1019,7 @@ class ApiPrompts {
                                 try { if (Api.combat != null) Api.combat.mode = fallbackMode; } catch (_:Dynamic) {}
                             }
 
-                            var freshClassOpts = getAllClassOptions();
+                            var freshClassOpts = getAvailableClasses();
                             var classToSelect = (freshClassOpts.indexOf(cName) != -1) ? cName : (freshClassOpts.length > 0 ? freshClassOpts[0] : "");
                             if (ddClass != null) {
                                 ddClass.setOptions(freshClassOpts);
@@ -1225,21 +1150,46 @@ class ApiPrompts {
         lbl.y = lblY;
         dlg.addChild(lbl);
 
+        var getModesForClass = function(cName:String):Array<String> {
+            var modes:Array<String> = [];
+            var isCurrent = (cName == null || cName == "" || cName.toLowerCase() == "current");
+            if (isCurrent) {
+                modes.push("Auto (First Available)");
+                var curName = CombatEngine.getCurrentClassName();
+                if (curName != "") {
+                    try {
+                        var detectedModes = CombatEngine.getAvailableModes(curName);
+                        if (detectedModes != null) {
+                            for (m in detectedModes) if (modes.indexOf(m) == -1) modes.push(m);
+                        }
+                    } catch (_:Dynamic) {}
+                }
+            } else {
+                try {
+                    modes = CombatEngine.getAvailableModes(cName);
+                } catch (_:Dynamic) {}
+            }
+            if (modes == null || modes.length == 0) modes = ["Base"];
+            return modes;
+        };
+
         var curClass = HelperSetting.getString(classKey, "Current");
         if (classes.indexOf(curClass) == -1) curClass = classes[0];
-        var modes:Array<String> = [];
-        try {
-            modes = CombatEngine.getAvailableModes(curClass);
-        } catch (_:Dynamic) {}
-        if (modes == null || modes.length == 0) modes = ["Base"];
-        var curMode = HelperSetting.getString(modeKey, modes[0]);
-        if (modes.indexOf(curMode) == -1) curMode = modes[0];
+
+        var modes:Array<String> = getModesForClass(curClass);
+        var curMode = HelperSetting.getString(modeKey, "Auto");
+        if (curClass == "Current" && (curMode == "" || curMode == "Auto")) {
+            curMode = "Auto (First Available)";
+        } else if (curMode == null || curMode == "" || modes.indexOf(curMode) == -1) {
+            curMode = modes.length > 0 ? modes[0] : "Base";
+        }
 
         var ddMode:Dropdown = null;
         ddMode = new Dropdown(120, 25, modes, function(sel:String):Void {
             curMode = sel;
-            HelperSetting.setString(modeKey, sel);
-            if (onUpdate != null) onUpdate(curClass, curMode);
+            var saveMode = (sel == "Auto (First Available)") ? "Auto" : sel;
+            HelperSetting.setString(modeKey, saveMode);
+            if (onUpdate != null) onUpdate(curClass, saveMode);
         });
         ddMode.x = 280;
         ddMode.y = ddY;
@@ -1248,18 +1198,17 @@ class ApiPrompts {
         ddClass = new Dropdown(240, 25, classes, function(sel:String):Void {
             curClass = sel;
             HelperSetting.setString(classKey, sel);
-            var nm:Array<String> = [];
-            try {
-                nm = CombatEngine.getAvailableModes(curClass);
-            } catch (_:Dynamic) {}
-            if (nm == null || nm.length == 0) nm = ["Base"];
+            var nm:Array<String> = getModesForClass(curClass);
             ddMode.setOptions(nm);
-            if (nm.indexOf(curMode) == -1) {
-                curMode = nm[0];
+            if (curClass == "Current") {
+                curMode = "Auto (First Available)";
+            } else if (nm.indexOf(curMode) == -1) {
+                curMode = nm.length > 0 ? nm[0] : "Base";
             }
             ddMode.setSelectedItem(curMode);
-            HelperSetting.setString(modeKey, curMode);
-            if (onUpdate != null) onUpdate(curClass, curMode);
+            var saveMode = (curMode == "Auto (First Available)") ? "Auto" : curMode;
+            HelperSetting.setString(modeKey, saveMode);
+            if (onUpdate != null) onUpdate(curClass, saveMode);
         });
         ddClass.x = 20;
         ddClass.y = ddY;
@@ -1286,7 +1235,7 @@ class ApiPrompts {
             }
         };
 
-        // Inventory armors/classes
+        // Inventory classes
         if (Api.game != null && Api.game.world != null && Api.game.world.myAvatar != null && Api.game.world.myAvatar.items != null) {
             try {
                 var items:Dynamic = Api.game.world.myAvatar.items;
@@ -1295,7 +1244,7 @@ class ApiPrompts {
                         if (item == null || item.sName == null) continue;
                         var isClass:Bool = false;
                         var sTypeStr:String = (item.sType != null) ? Std.string(item.sType).toLowerCase() : "";
-                        if (sTypeStr == "class" || item.bClass == 1 || item.bClass == true) {
+                        if (sTypeStr == "class" || item.bClass == 1 || item.bClass == true || item.bClass == "1") {
                             isClass = true;
                         } else if (item.sES != null && Std.string(item.sES).toLowerCase() == "ar" && sTypeStr != "armor") {
                             if (CombatEngine.findClassConfig(item.sName) != null) isClass = true;
@@ -1314,24 +1263,6 @@ class ApiPrompts {
             }
         } catch (e:Dynamic) {}
 
-        // User custom classes from userSkills.json
-        try {
-            var userClasses = UserSkillsManager.getAllUserClasses();
-            if (userClasses != null) {
-                for (uc in userClasses) addClass(uc);
-            }
-        } catch (_:Dynamic) {}
-
-        // Fallback: If no classes found in inventory, load known classes
-        if (invClasses.length == 0) {
-            try {
-                var known = CombatEngine.getKnownClasses();
-                if (known != null) {
-                    for (kc in known) addClass(kc);
-                }
-            } catch (_:Dynamic) {}
-        }
-
         try {
             invClasses.sort(function(a, b) {
                 var la:String = a.toLowerCase();
@@ -1341,10 +1272,6 @@ class ApiPrompts {
                 return 0;
             });
         } catch (e:Dynamic) {}
-
-        if (invClasses.length == 0) {
-            invClasses.push("No Classes Found");
-        }
 
         var result:Array<String> = ["Current"];
         for (c in invClasses) {
