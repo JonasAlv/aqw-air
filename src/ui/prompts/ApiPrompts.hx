@@ -7,6 +7,7 @@ import com.aqwapi.modules.ScriptManager;
 import com.aqwapi.managers.SkillManager;
 import com.aqwapi.utils.ApiLogger;
 import flash.display.Sprite;
+import flash.text.TextField;
 import ui.ApiNotificationManager;
 import ui.Dropdown;
 import util.HelperSetting;
@@ -619,6 +620,55 @@ class ApiPrompts {
             var ddExecMode:Dropdown = null;
             var ddMode:Dropdown = null;
             var ddClass:Dropdown = null;
+            var helperButtons:Array<flash.display.Sprite> = [];
+            var saveBtn:flash.display.Sprite = null;
+            var applyBtn:flash.display.Sprite = null;
+            var delBtn:flash.display.Sprite = null;
+
+            var setInputEnabled = function(tf:TextField, enabled:Bool):Void {
+                if (tf == null) return;
+                #if flash
+                tf.type = enabled ? flash.text.TextFieldType.INPUT : flash.text.TextFieldType.DYNAMIC;
+                #end
+                tf.selectable = enabled;
+                tf.mouseEnabled = enabled;
+                tf.backgroundColor = enabled ? 0x222222 : 0x141414;
+                tf.borderColor = enabled ? 0x555555 : 0x333333;
+                tf.textColor = enabled ? 0xFFFFFF : 0x777777;
+                tf.alpha = enabled ? 1.0 : 0.6;
+            };
+
+            var setButtonEnabled = function(btn:flash.display.Sprite, enabled:Bool):Void {
+                if (btn == null) return;
+                btn.mouseEnabled = enabled;
+                btn.mouseChildren = false;
+                btn.buttonMode = enabled;
+                btn.alpha = enabled ? 1.0 : 0.35;
+            };
+
+            var setFormEditable = function(isEditable:Bool, isNewMode:Bool):Void {
+                setInputEnabled(inputClass, isEditable);
+                setInputEnabled(inputMode, isEditable);
+                setInputEnabled(inputTimeout, isEditable);
+                setInputEnabled(inputStopAuras, isEditable);
+                setInputEnabled(inputCombo, isEditable);
+
+                if (ddExecMode != null) {
+                    ddExecMode.mouseEnabled = isEditable;
+                    ddExecMode.mouseChildren = isEditable;
+                    ddExecMode.alpha = isEditable ? 1.0 : 0.4;
+                }
+
+                if (helperButtons != null) {
+                    for (b in helperButtons) {
+                        setButtonEnabled(b, isEditable);
+                    }
+                }
+
+                setButtonEnabled(saveBtn, isEditable);
+                setButtonEnabled(delBtn, isEditable && !isNewMode);
+                setButtonEnabled(applyBtn, !isNewMode);
+            };
 
             var loadModeDetails = function(cName:String, mName:String):Void {
                 if (mName == null || mName == "" || mName == "[+ New Mode]") {
@@ -631,6 +681,7 @@ class ApiPrompts {
                         lblBadge.text = "[New Mode]";
                         lblBadge.textColor = 0x55FF55;
                     }
+                    setFormEditable(true, true);
                     return;
                 }
 
@@ -658,15 +709,18 @@ class ApiPrompts {
                     }
                     if (inputStopAuras != null) inputStopAuras.text = (details.stopOnTargetAuras != null) ? details.stopOnTargetAuras : "";
                     if (inputCombo != null) inputCombo.text = (details.combo != null) ? details.combo : "";
+
+                    var isUser:Bool = (details.isUser == true) || SkillManager.isUserMode(effectiveClass, mName) || SkillManager.isUserMode(cName, mName);
                     if (lblBadge != null) {
-                        if (details.isUser == true) {
-                            lblBadge.text = "[Custom Mode]";
+                        if (isUser) {
+                            lblBadge.text = "[User Mode]";
                             lblBadge.textColor = 0x00D9FF;
                         } else {
                             lblBadge.text = "[Bundled Mode]";
-                            lblBadge.textColor = 0xAAAAAA;
+                            lblBadge.textColor = 0x888888;
                         }
                     }
+                    setFormEditable(isUser, false);
                 } else {
                     if (ddExecMode != null) ddExecMode.setSelectedItem("WaitForCooldown");
                     if (inputTimeout != null) inputTimeout.text = "0";
@@ -676,6 +730,7 @@ class ApiPrompts {
                         lblBadge.text = "[New Mode]";
                         lblBadge.textColor = 0x55FF55;
                     }
+                    setFormEditable(true, true);
                 }
             };
 
@@ -734,8 +789,6 @@ class ApiPrompts {
             ddClass.y = 60;
             ddClass.setSelectedItem(classOptions.indexOf(selectedClass) != -1 ? selectedClass : (classOptions.length > 0 ? classOptions[0] : ""));
 
-            loadModeDetails(selectedClass, initialSelMode);
-
             dlg.addChild(ddExecMode);
             dlg.addChild(ddMode);
             dlg.addChild(ddClass);
@@ -769,19 +822,19 @@ class ApiPrompts {
 
             // Quick helper row 1: skills and basic operators
             var b1 = ApiPromptModal.createButton("+1", 28, 24, function() appendSkill("1"), false);
-            b1.x = 25; b1.y = 318; dlg.addChild(b1);
+            b1.x = 25; b1.y = 318; dlg.addChild(b1); helperButtons.push(b1);
 
             var b2 = ApiPromptModal.createButton("+2", 28, 24, function() appendSkill("2"), false);
-            b2.x = 57; b2.y = 318; dlg.addChild(b2);
+            b2.x = 57; b2.y = 318; dlg.addChild(b2); helperButtons.push(b2);
 
             var b3 = ApiPromptModal.createButton("+3", 28, 24, function() appendSkill("3"), false);
-            b3.x = 89; b3.y = 318; dlg.addChild(b3);
+            b3.x = 89; b3.y = 318; dlg.addChild(b3); helperButtons.push(b3);
 
             var b4 = ApiPromptModal.createButton("+4", 28, 24, function() appendSkill("4"), false);
-            b4.x = 121; b4.y = 318; dlg.addChild(b4);
+            b4.x = 121; b4.y = 318; dlg.addChild(b4); helperButtons.push(b4);
 
             var b5 = ApiPromptModal.createButton("+5", 28, 24, function() appendSkill("5"), false);
-            b5.x = 153; b5.y = 318; dlg.addChild(b5);
+            b5.x = 153; b5.y = 318; dlg.addChild(b5); helperButtons.push(b5);
 
             var bArrow = ApiPromptModal.createButton("+ >", 32, 24, function():Void {
                 var cur = StringTools.trim(inputCombo.text);
@@ -789,7 +842,7 @@ class ApiPrompts {
                     inputCombo.text = cur + " >";
                 }
             }, false);
-            bArrow.x = 185; bArrow.y = 318; dlg.addChild(bArrow);
+            bArrow.x = 185; bArrow.y = 318; dlg.addChild(bArrow); helperButtons.push(bArrow);
 
             var b14 = ApiPromptModal.createButton("+ 1-4", 42, 24, function():Void {
                 var cur = StringTools.trim(inputCombo.text);
@@ -801,37 +854,37 @@ class ApiPrompts {
                     inputCombo.text = cur + " > 1 > 2 > 3 > 4";
                 }
             }, false);
-            b14.x = 221; b14.y = 318; dlg.addChild(b14);
+            b14.x = 221; b14.y = 318; dlg.addChild(b14); helperButtons.push(b14);
 
             var bClear = ApiPromptModal.createButton("Clear", 40, 24, function():Void {
                 inputCombo.text = "";
             }, false);
-            bClear.x = 267; bClear.y = 318; dlg.addChild(bClear);
+            bClear.x = 267; bClear.y = 318; dlg.addChild(bClear); helperButtons.push(bClear);
 
             var bHp = ApiPromptModal.createButton("+[hp < 50%]", 74, 24, function() appendRule("[hp < 50%]"), false);
-            bHp.x = 311; bHp.y = 318; dlg.addChild(bHp);
+            bHp.x = 311; bHp.y = 318; dlg.addChild(bHp); helperButtons.push(bHp);
 
             var bTgtHp = ApiPromptModal.createButton("+[tgt:hp < 50%]", 88, 24, function() appendRule("[tgt:hp < 50%]"), false);
-            bTgtHp.x = 389; bTgtHp.y = 318; dlg.addChild(bTgtHp);
+            bTgtHp.x = 389; bTgtHp.y = 318; dlg.addChild(bTgtHp); helperButtons.push(bTgtHp);
 
             var bMp = ApiPromptModal.createButton("+[mp < 20%]", 54, 24, function() appendRule("[mp < 20%]"), false);
-            bMp.x = 481; bMp.y = 318; dlg.addChild(bMp);
+            bMp.x = 481; bMp.y = 318; dlg.addChild(bMp); helperButtons.push(bMp);
 
             // Quick helper row 2: auras and conditions
             var bAuraSelf = ApiPromptModal.createButton("+[!aura(self:Name)]", 108, 24, function() appendRule("[!aura(self:Name)]"), false);
-            bAuraSelf.x = 25; bAuraSelf.y = 348; dlg.addChild(bAuraSelf);
+            bAuraSelf.x = 25; bAuraSelf.y = 348; dlg.addChild(bAuraSelf); helperButtons.push(bAuraSelf);
 
             var bAuraTgt = ApiPromptModal.createButton("+[aura(target:Name)]", 112, 24, function() appendRule("[aura(target:Name)]"), false);
-            bAuraTgt.x = 137; bAuraTgt.y = 348; dlg.addChild(bAuraTgt);
+            bAuraTgt.x = 137; bAuraTgt.y = 348; dlg.addChild(bAuraTgt); helperButtons.push(bAuraTgt);
 
             var bAuraTime = ApiPromptModal.createButton("+[auraTime(self:Name) <= 1.5s]", 152, 24, function() appendRule("[auraTime(self:Name) <= 1.5s]"), false);
-            bAuraTime.x = 253; bAuraTime.y = 348; dlg.addChild(bAuraTime);
+            bAuraTime.x = 253; bAuraTime.y = 348; dlg.addChild(bAuraTime); helperButtons.push(bAuraTime);
 
             var bParty = ApiPromptModal.createButton("+[party:hp < 50%]", 78, 24, function() appendRule("[party:hp < 50%]"), false);
-            bParty.x = 409; bParty.y = 348; dlg.addChild(bParty);
+            bParty.x = 409; bParty.y = 348; dlg.addChild(bParty); helperButtons.push(bParty);
 
             var bWait = ApiPromptModal.createButton("+wait", 44, 24, function() appendRule("[wait(500ms)]"), false);
-            bWait.x = 491; bWait.y = 348; dlg.addChild(bWait);
+            bWait.x = 491; bWait.y = 348; dlg.addChild(bWait); helperButtons.push(bWait);
 
             var lblHint = ApiPromptModal.createLabel("Syntax: 3[auraTime(target:Seal) <= 1.5s] > 4 | 2[tgt:hp < 50%] | 1[hp < 50%]", 510, 11);
             lblHint.x = 25;
@@ -839,8 +892,13 @@ class ApiPrompts {
             lblHint.textColor = 0x888888;
             dlg.addChild(lblHint);
 
-            var saveBtn = ApiPromptModal.createButton("Save Mode", 100, 36, function():Void {
+            saveBtn = ApiPromptModal.createButton("Save Mode", 100, 36, function():Void {
                 try {
+                    if (lblBadge != null && lblBadge.text == "[Bundled Mode]") {
+                        ApiNotificationManager.notify("Cannot overwrite default bundled mode!");
+                        return;
+                    }
+
                     var cName = (inputClass != null && inputClass.text != null) ? StringTools.trim(inputClass.text) : "";
                     var mName = (inputMode != null && inputMode.text != null) ? StringTools.trim(inputMode.text) : "";
                     var execMode = (ddExecMode != null && ddExecMode.selectedItem != null && ddExecMode.selectedItem != "") ? ddExecMode.selectedItem : "WaitForCooldown";
@@ -927,7 +985,7 @@ class ApiPrompts {
             saveBtn.y = 412;
             dlg.addChild(saveBtn);
 
-            var applyBtn = ApiPromptModal.createButton("Apply Mode", 100, 36, function():Void {
+            applyBtn = ApiPromptModal.createButton("Apply Mode", 100, 36, function():Void {
                 try {
                     var cName = (inputClass != null && inputClass.text != null) ? StringTools.trim(inputClass.text) : "";
                     var mName = (inputMode != null && inputMode.text != null) ? StringTools.trim(inputMode.text) : "";
@@ -976,7 +1034,7 @@ class ApiPrompts {
             applyBtn.y = 412;
             dlg.addChild(applyBtn);
 
-            var delBtn = ApiPromptModal.createButton("Delete Mode", 95, 36, function():Void {
+            delBtn = ApiPromptModal.createButton("Delete Mode", 95, 36, function():Void {
                 try {
                     var cName = (inputClass != null && inputClass.text != null) ? StringTools.trim(inputClass.text) : "";
                     var mName = (inputMode != null && inputMode.text != null) ? StringTools.trim(inputMode.text) : "";
@@ -1075,6 +1133,9 @@ class ApiPrompts {
             closeBtn.x = 460;
             closeBtn.y = 412;
             dlg.addChild(closeBtn);
+
+            // Initial load of selected mode details now that all UI elements and buttons exist
+            loadModeDetails(selectedClass, initialSelMode);
 
             ApiPromptModal.show(overlay, dlg);
         } catch (e:Dynamic) {
