@@ -1115,31 +1115,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 8. SWF RAM Cache
-        addItemRow(
-            "SWF RAM Cache",
-            "Caches loaded maps and classes to RAM to eliminate reloading. (Requires more RAM).",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, false);
-                var next = !cur;
-                HelperSetting.setBool(HelperSetting.OPTION_SWF_CACHE, next);
-                if (_pocket != null && _pocket.config != null) {
-                    try { _pocket.config.option_swf_cache = next; } catch (_:Dynamic) {}
-                }
-                ApiNotificationManager.notify("SWF Cache: " + (next ? "Enabled" : "Disabled"));
-            },
-            function():Bool {
-                if (_pocket != null && _pocket.config != null) {
-                    try { return _pocket.config.option_swf_cache == true; } catch (_:Dynamic) {}
-                }
-                return HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, false);
-            }
-        );
-
-        // 9. HUD: Smart Combat Button
+        // 8. HUD: Smart Combat Button
         addItemRow(
             "HUD: Smart Combat Button",
             "Places an on-screen toggle button with live ON/OFF indicator to enable/disable Smart Combat directly.",

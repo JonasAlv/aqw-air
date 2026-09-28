@@ -466,12 +466,6 @@ function onStop() {
             }
         }));
 
-        opts.push(new Check(HelperSetting.OPTION_SWF_CACHE, false, "SWF RAM Cache", "Caches loaded maps and classes to RAM to eliminate reloading. (Requires more RAM)", true, function(o:Dynamic):Void {
-            try {
-                pocket.config.option_swf_cache = (cast(o, Check)).state;
-            } catch (e:Dynamic) {}
-        }));
-
         return new Menu("Settings", opts);
     }
 
