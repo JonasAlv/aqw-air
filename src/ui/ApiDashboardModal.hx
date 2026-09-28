@@ -683,7 +683,20 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function renderScriptsTab():Void {
-        // 1. Script Engine State (Run/Stop toggle)
+        // 1. Script Manager
+        addItemRow(
+            "Script Manager",
+            "Manage, edit, create, save, and run automation scripts.",
+            "button",
+            "Open",
+            true, // Primary red button!
+            function():Void {
+                close();
+                ApiPrompts.showScriptManager(_overlay);
+            }
+        );
+
+        // 2. Script Engine State (Run/Stop toggle)
         addItemRow(
             "Script Runner",
             "Controls active script execution. Turn off to immediately abort any running script.",
@@ -851,19 +864,6 @@ class ApiDashboardModal extends Sprite {
             function():Void {
                 close();
                 ApiPrompts.showQuestPrompt(_overlay);
-            }
-        );
-
-        // 6. Script Manager
-        addItemRow(
-            "Script Manager",
-            "Manage, edit, create, and run automation scripts.",
-            "button",
-            "Open",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showScriptManager(_overlay);
             }
         );
     }
