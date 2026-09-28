@@ -652,7 +652,10 @@ class ApiPrompts {
                         var eMode:String = (details.skillUseMode != null && details.skillUseMode != "") ? details.skillUseMode : "WaitForCooldown";
                         ddExecMode.setSelectedItem(eMode);
                     }
-                    if (inputTimeout != null) inputTimeout.text = (details.timeout != null && details.timeout > 1500) ? Std.string(details.timeout) : "0";
+                    if (inputTimeout != null) {
+                        var toVal:Int = (details.timeout != null) ? details.timeout : 0;
+                        inputTimeout.text = (toVal > 1500) ? Std.string(toVal) : "0";
+                    }
                     if (inputStopAuras != null) inputStopAuras.text = (details.stopOnTargetAuras != null) ? details.stopOnTargetAuras : "";
                     if (inputCombo != null) inputCombo.text = (details.combo != null) ? details.combo : "";
                     if (lblBadge != null) {
@@ -843,7 +846,8 @@ class ApiPrompts {
                     var execMode = (ddExecMode != null && ddExecMode.selectedItem != null && ddExecMode.selectedItem != "") ? ddExecMode.selectedItem : "WaitForCooldown";
                     var timeoutStr = (inputTimeout != null && inputTimeout.text != null) ? StringTools.trim(inputTimeout.text) : "0";
                     var pTimeout:Null<Int> = Std.parseInt(timeoutStr);
-                    var timeout = (pTimeout != null && pTimeout > 1500) ? pTimeout : 0;
+                    var rawTimeout = (pTimeout != null) ? pTimeout : 0;
+                    var timeout = (rawTimeout > 1500) ? rawTimeout : 0;
                     var stopAuras = (inputStopAuras != null && inputStopAuras.text != null) ? StringTools.trim(inputStopAuras.text) : "";
                     var combo = (inputCombo != null && inputCombo.text != null) ? StringTools.trim(inputCombo.text) : "";
 
