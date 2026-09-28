@@ -583,7 +583,7 @@ class ApiPrompts {
             lblExecMode.y = 144;
             dlg.addChild(lblExecMode);
 
-            var lblTimeout = ApiPromptModal.createLabel("Timeout (ms):", 90);
+            var lblTimeout = ApiPromptModal.createLabel("Timeout (s):", 90);
             lblTimeout.x = 240;
             lblTimeout.y = 144;
             dlg.addChild(lblTimeout);
