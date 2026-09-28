@@ -162,10 +162,10 @@ class ApiDashboardModal extends Sprite {
         var titleTxt = new TextField();
         var titleFmt = new TextFormat("_sans", 16, 0xEEEEEE, true);
         titleTxt.defaultTextFormat = titleFmt;
-        titleTxt.text = "API Dashboard";
+        titleTxt.text = "Menu";
         titleTxt.x = 22;
         titleTxt.y = 13;
-        titleTxt.width = 180;
+        titleTxt.width = 100;
         titleTxt.height = 28;
         titleTxt.selectable = false;
         titleTxt.mouseEnabled = false;
@@ -176,7 +176,7 @@ class ApiDashboardModal extends Sprite {
         var badgeFmt = new TextFormat("_sans", 11, 0x666666, false);
         badgeTxt.defaultTextFormat = badgeFmt;
         badgeTxt.text = "Control Center";
-        badgeTxt.x = 175;
+        badgeTxt.x = 85;
         badgeTxt.y = 17;
         badgeTxt.width = 120;
         badgeTxt.height = 20;
@@ -639,14 +639,14 @@ class ApiDashboardModal extends Sprite {
                 btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
                 btn.graphics.endFill();
                 txt.textColor = 0x44DD66;
-                txt.text = "● Enabled";
+                txt.text = "Enabled";
             } else {
                 btn.graphics.beginFill(0x1E1E1E, 1);
                 btn.graphics.lineStyle(1, 0x333333);
                 btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
                 btn.graphics.endFill();
                 txt.textColor = 0x777777;
-                txt.text = "○ Disabled";
+                txt.text = "Disabled";
             }
         };
 
@@ -683,16 +683,24 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function renderScriptsTab():Void {
-        // 1. Paste Script
+        // 1. Script Engine State (Run/Stop toggle)
         addItemRow(
-            "Paste Script",
-            "Paste raw HScript code and execute it immediately in the runtime engine.",
-            "button",
-            "Paste",
+            "Script Runner",
+            "Controls active script execution. Turn off to immediately abort any running script.",
+            "toggle",
+            "",
             false,
             function():Void {
-                close();
-                ApiPrompts.showPastePrompt(_overlay);
+                if (ScriptManager.SINGLETON.isRunning) {
+                    ScriptManager.SINGLETON.stop();
+                    ApiNotificationManager.notify("Script stopped.");
+                } else {
+                    ScriptManager.SINGLETON.start();
+                    ApiNotificationManager.notify("Script started.");
+                }
+            },
+            function():Bool {
+                return ScriptManager.SINGLETON.isRunning;
             }
         );
 
@@ -731,28 +739,33 @@ class ApiDashboardModal extends Sprite {
         );
         #end
 
-        // 3. Script Engine State (Run/Stop toggle)
+        // 3. Paste Script
         addItemRow(
-            "Script Runner",
-            "Controls active script execution. Turn off to immediately abort any running script.",
-            "toggle",
-            "",
+            "Paste Script",
+            "Paste raw HScript code and execute it immediately in the runtime engine.",
+            "button",
+            "Paste",
             false,
             function():Void {
-                if (ScriptManager.SINGLETON.isRunning) {
-                    ScriptManager.SINGLETON.stop();
-                    ApiNotificationManager.notify("Script stopped.");
-                } else {
-                    ScriptManager.SINGLETON.start();
-                    ApiNotificationManager.notify("Script started.");
-                }
-            },
-            function():Bool {
-                return ScriptManager.SINGLETON.isRunning;
+                close();
+                ApiPrompts.showPastePrompt(_overlay);
             }
         );
 
-        // 4. Clear Log
+        // 4. Class Loadouts (For Scripts)
+        addItemRow(
+            "Class Loadouts (Scripting)",
+            "Configure default Farm, Solo, Boss, and Dodge classes for script auto-swapping.",
+            "button",
+            "Setup",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showLoadoutsPrompt(_overlay);
+            }
+        );
+
+        // 5. Clear Log
         addItemRow(
             "Clear Bot Log",
             "Truncates bot.log to start fresh for monitoring and debugging sessions.",
@@ -767,62 +780,10 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function renderAutomationTab():Void {
-        // 1. Auto-Quest
+        // 1. Smart Combat Toggle
         addItemRow(
-            "Auto-Quest",
-            "Automatically accept and turn in quests by IDs in the background.",
-            "button",
-            "Configure",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showQuestPrompt(_overlay);
-            }
-        );
-
-        // 2. Custom Auto-Combat
-        addItemRow(
-            "Custom Auto-Combat",
-            "Setup custom skill combo sequences and targeting rules.",
-            "button",
-            "Configure",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showCombatPrompt(_overlay);
-            }
-        );
-
-        // 3. Smart Combat
-        addItemRow(
-            "Smart Combat (Class-Aware)",
+            "Smart Combat",
             "Auto-detects equipped class and executes optimal skill combos and priority rotations.",
-            "button",
-            "Configure",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showSmartCombatPrompt(_overlay);
-            }
-        );
-
-        // 4. Combat Mode Editor
-        addItemRow(
-            "Combat Mode Editor",
-            "Create, customize, and save skill combo rotations directly to userSkills.json.",
-            "button",
-            "Open Editor",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showCombatModeEditorPrompt(_overlay);
-            }
-        );
-
-        // 5. Smart Combat Toggle
-        addItemRow(
-            "Toggle Smart Combat",
-            "Enable or disable automatic skill casting during combat.",
             "toggle",
             "",
             false,
@@ -841,7 +802,59 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 5. Auto Leveling (ShadowBattleon)
+        // 2. Smart Combat Setup (Standalone)
+        addItemRow(
+            "Smart Combat Setup",
+            "Standalone Smart Combat setup. Choose target class and mode (or set to 'Current').",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showSmartCombatPrompt(_overlay);
+            }
+        );
+
+        // 3. Combat Modes Editor
+        addItemRow(
+            "Combat Modes",
+            "Create, edit, and save skill rotations directly to userSkills.json.",
+            "button",
+            "Editor",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showCombatModeEditorPrompt(_overlay);
+            }
+        );
+
+        // 4. Custom Auto-Combat
+        addItemRow(
+            "Custom Combat",
+            "Setup custom skill combo sequences and targeting rules.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showCombatPrompt(_overlay);
+            }
+        );
+
+        // 5. Auto-Quest
+        addItemRow(
+            "Auto-Quest",
+            "Automatically accept and turn in quests by IDs in the background.",
+            "button",
+            "Configure",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showQuestPrompt(_overlay);
+            }
+        );
+
+        // 6. Auto Leveling (ShadowBattleon)
         addItemRow(
             "Auto Leveling (ShadowBattleon)",
             "Level 1 to 100 fast automated leveling farm in /shadowbattleon.",

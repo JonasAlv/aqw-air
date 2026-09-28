@@ -190,26 +190,12 @@ class ApiMenus {
     private static function buildAutomationMenu(pocket:Dynamic, overlay:Overlay):Menu {
         var opts = new Vector<Option>();
 
-        opts.push(new Button(null, "AutoCombat (Setup)", "Configure class and mode for smart combat.", "Setup", function(o:Dynamic):Void {
-            tryAction("AutoCombat (Setup)", function() {
-                overlay.gotoAndStop("Init");
-                ApiPrompts.showSmartCombatPrompt(overlay);
-            });
-        }));
-
-        opts.push(new Button(null, "Combat Modes (Editor)", "Create, edit, or delete class skill modes.", "Edit", function(o:Dynamic):Void {
-            tryAction("Combat Modes (Editor)", function() {
-                overlay.gotoAndStop("Init");
-                ApiPrompts.showCombatModeEditorPrompt(overlay);
-            });
-        }));
-
-        var smartCombatCheck = new Check(null, false, "AutoCombat (Smart)", "Start smart auto combat.", true, function(o:Dynamic):Void {
-            tryAction("AutoCombat (Smart)", function() {
+        var smartCombatCheck = new Check(null, false, "Smart Combat", "Start smart auto combat.", true, function(o:Dynamic):Void {
+            tryAction("Smart Combat", function() {
                 var c:Check = cast o;
                 if (c.state) {
                     var confClass = HelperSetting.getString("api_smart_class", "Current");
-                    var confMode = HelperSetting.getString("api_smart_mode", "Base");
+                    var confMode = HelperSetting.getString("api_smart_mode", "Auto");
                     if (confClass != "" && confClass != "Current" && Api.inventory != null) {
                         Api.inventory.equip(confClass);
                     }
@@ -231,8 +217,22 @@ class ApiMenus {
         });
         opts.push(smartCombatCheck);
 
-        var customCombatCheck = new Check(null, false, "AutoCombat (Custom)", "Start custom combat sequence.", true, function(o:Dynamic):Void {
-            tryAction("AutoCombat (Custom)", function() {
+        opts.push(new Button(null, "Smart Combat (Setup)", "Configure class and mode for standalone smart combat.", "Setup", function(o:Dynamic):Void {
+            tryAction("Smart Combat (Setup)", function() {
+                overlay.gotoAndStop("Init");
+                ApiPrompts.showSmartCombatPrompt(overlay);
+            });
+        }));
+
+        opts.push(new Button(null, "Combat Modes", "Create, edit, or delete class skill modes.", "Edit", function(o:Dynamic):Void {
+            tryAction("Combat Modes", function() {
+                overlay.gotoAndStop("Init");
+                ApiPrompts.showCombatModeEditorPrompt(overlay);
+            });
+        }));
+
+        var customCombatCheck = new Check(null, false, "Custom Combat", "Start custom combat sequence.", true, function(o:Dynamic):Void {
+            tryAction("Custom Combat", function() {
                 var c:Check = cast o;
                 if (c.state) {
                     overlay.gotoAndStop("Init");
@@ -465,7 +465,7 @@ function onStop() {
     }
 
     private static function setupFloatingMenuButton(pocket:Dynamic, overlay:Overlay):Void {
-        var btnW:Float = 115;
+        var btnW:Float = 70;
         var btnH:Float = 32;
 
         var icon = new Sprite();
@@ -478,7 +478,7 @@ function onStop() {
         var fmt = new TextFormat("_sans", 12, 0xEEEEEE, true);
         fmt.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = fmt;
-        txt.text = "API Dashboard";
+        txt.text = "Menu";
         txt.width = btnW;
         txt.y = 6;
         txt.selectable = false;

@@ -397,16 +397,22 @@ class ApiPrompts {
 
     public static function showSmartCombatPrompt(overlay:Dynamic):Void {
         try {
-            var dlg = ApiPromptModal.createDialog(420, 250, "AutoCombat Setup");
+            var dlg = ApiPromptModal.createDialog(420, 260, "Smart Combat Setup (Standalone)");
+
+            var lblSub = ApiPromptModal.createLabel("Standalone Smart Combat setup. For scripts, use Loadouts in Scripts tab.", 380, 11);
+            lblSub.x = 20;
+            lblSub.y = 38;
+            lblSub.textColor = 0x888888;
+            dlg.addChild(lblSub);
 
             var lblClass = ApiPromptModal.createLabel("Class:", 60);
             lblClass.x = 20;
-            lblClass.y = 50;
+            lblClass.y = 65;
             dlg.addChild(lblClass);
 
             var lblMode = ApiPromptModal.createLabel("Mode:", 60);
             lblMode.x = 220;
-            lblMode.y = 50;
+            lblMode.y = 65;
             dlg.addChild(lblMode);
 
             var availableClasses = getAvailableClasses();
@@ -417,14 +423,34 @@ class ApiPrompts {
                 selectedClassStr = "Current";
             }
 
-            var availableModes:Array<String> = [];
-            try {
-                availableModes = CombatEngine.getAvailableModes(selectedClassStr);
-            } catch (_:Dynamic) {}
-            if (availableModes == null || availableModes.length == 0) availableModes = ["Base"];
+            var getModesForClass = function(cName:String):Array<String> {
+                var modes:Array<String> = [];
+                var isCurrent = (cName == null || cName == "" || cName.toLowerCase() == "current");
+                if (isCurrent) {
+                    modes.push("Auto (First Available)");
+                    var curName = CombatEngine.getCurrentClassName();
+                    if (curName != "") {
+                        try {
+                            var detectedModes = CombatEngine.getAvailableModes(curName);
+                            if (detectedModes != null) {
+                                for (m in detectedModes) if (modes.indexOf(m) == -1) modes.push(m);
+                            }
+                        } catch (_:Dynamic) {}
+                    }
+                } else {
+                    try {
+                        modes = CombatEngine.getAvailableModes(cName);
+                    } catch (_:Dynamic) {}
+                }
+                if (modes == null || modes.length == 0) modes = ["Base"];
+                return modes;
+            };
 
-            var selectedModeStr = HelperSetting.getString("api_smart_mode", "Base");
-            if (selectedModeStr == null || selectedModeStr == "" || availableModes.indexOf(selectedModeStr) == -1) {
+            var availableModes:Array<String> = getModesForClass(selectedClassStr);
+            var selectedModeStr = HelperSetting.getString("api_smart_mode", "Auto");
+            if (selectedClassStr == "Current" && (selectedModeStr == "" || selectedModeStr == "Auto")) {
+                selectedModeStr = "Auto (First Available)";
+            } else if (selectedModeStr == null || selectedModeStr == "" || availableModes.indexOf(selectedModeStr) == -1) {
                 selectedModeStr = availableModes.length > 0 ? availableModes[0] : "Base";
             }
 
@@ -433,46 +459,45 @@ class ApiPrompts {
                 selectedModeStr = sel;
             });
             ddMode.x = 220;
-            ddMode.y = 80;
+            ddMode.y = 95;
             ddMode.setSelectedItem(selectedModeStr);
 
             var ddClass:Dropdown = null;
             ddClass = new Dropdown(180, 25, availableClasses, function(sel:String):Void {
                 selectedClassStr = sel;
-                var modes:Array<String> = [];
-                try {
-                    modes = CombatEngine.getAvailableModes(selectedClassStr);
-                } catch (_:Dynamic) {}
-                if (modes == null || modes.length == 0) modes = ["Base"];
+                var modes = getModesForClass(selectedClassStr);
                 ddMode.setOptions(modes);
-                if (modes.indexOf(selectedModeStr) == -1) {
+                if (selectedClassStr == "Current") {
+                    selectedModeStr = "Auto (First Available)";
+                } else if (modes.indexOf(selectedModeStr) == -1) {
                     selectedModeStr = modes[0];
                 }
                 ddMode.setSelectedItem(selectedModeStr);
             });
             ddClass.x = 20;
-            ddClass.y = 80;
+            ddClass.y = 95;
             ddClass.setSelectedItem(selectedClassStr);
 
             dlg.addChild(ddMode);
             dlg.addChild(ddClass);
 
             var saveBtn = ApiPromptModal.createButton("Save & Apply", 130, 35, function():Void {
+                var saveModeVal = (selectedModeStr == "Auto (First Available)") ? "Auto" : selectedModeStr;
                 HelperSetting.setString("api_smart_class", selectedClassStr);
-                HelperSetting.setString("api_smart_mode", selectedModeStr);
+                HelperSetting.setString("api_smart_mode", saveModeVal);
                 CombatEngine.smartClass = selectedClassStr;
-                CombatEngine.skillMode = selectedModeStr;
+                CombatEngine.skillMode = saveModeVal;
                 if (selectedClassStr != "" && selectedClassStr != "Current" && Api.inventory != null) {
                     Api.inventory.equip(selectedClassStr);
                 }
                 if (Api.combat != null) {
-                    Api.combat.mode = selectedModeStr;
+                    Api.combat.mode = saveModeVal;
                 }
-                ApiNotificationManager.notify("Smart Combat Config: " + selectedClassStr + " [" + selectedModeStr + "]");
+                ApiNotificationManager.notify("Smart Combat: " + selectedClassStr + " [" + saveModeVal + "]");
                 ApiPromptModal.close();
             }, true);
             saveBtn.x = 20;
-            saveBtn.y = 190;
+            saveBtn.y = 200;
             dlg.addChild(saveBtn);
 
             var editModesBtn = ApiPromptModal.createButton("Edit Modes", 120, 35, function():Void {
@@ -480,14 +505,14 @@ class ApiPrompts {
                 showCombatModeEditorPrompt(overlay, selectedClassStr, selectedModeStr);
             }, false);
             editModesBtn.x = 160;
-            editModesBtn.y = 190;
+            editModesBtn.y = 200;
             dlg.addChild(editModesBtn);
 
             var cancelBtn = ApiPromptModal.createButton("Cancel", 100, 35, function():Void {
                 ApiPromptModal.close();
             }, false);
             cancelBtn.x = 295;
-            cancelBtn.y = 190;
+            cancelBtn.y = 200;
             dlg.addChild(cancelBtn);
 
             ApiPromptModal.show(overlay, dlg);

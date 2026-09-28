@@ -23,7 +23,7 @@ class Dropdown extends Sprite {
     private var _scrollbarThumb:Shape;
     private var _btn:Sprite;
     private var _btnText:TextField;
-    private var _arrowText:TextField;
+    private var _arrowIcon:Sprite;
     private var _isOpen:Bool = false;
     private var _onSelect:String->Void;
     private var _width:Float;
@@ -67,15 +67,12 @@ class Dropdown extends Sprite {
         }
         _btn.addChild(_btnText);
 
-        _arrowText = new TextField();
-        _arrowText.defaultTextFormat = new TextFormat("_sans", 10, 0xAAAAAA);
-        _arrowText.text = "▼";
-        _arrowText.width = 16;
-        _arrowText.height = 20;
-        _arrowText.x = width - 18;
-        _arrowText.y = (height - 18) / 2;
-        _arrowText.mouseEnabled = false;
-        _btn.addChild(_arrowText);
+        _arrowIcon = new Sprite();
+        _arrowIcon.mouseEnabled = false;
+        _arrowIcon.x = width - 15;
+        _arrowIcon.y = (height - 5) / 2;
+        drawArrow(false);
+        _btn.addChild(_arrowIcon);
 
         _listContainer = new Sprite();
         _listContainer.visible = false;
@@ -392,10 +389,10 @@ class Dropdown extends Sprite {
 
         if (opensUp) {
             _listContainer.y = -curListHeight - 2;
-            _arrowText.text = "▲";
+            drawArrow(true);
         } else {
             _listContainer.y = _height + 2;
-            _arrowText.text = "▼";
+            drawArrow(false);
         }
 
         updateScrollbar();
@@ -408,13 +405,31 @@ class Dropdown extends Sprite {
     public function close():Void {
         _isOpen = false;
         _listContainer.visible = false;
-        _arrowText.text = "▼";
+        drawArrow(false);
         if (_activeDropdown == this) {
             _activeDropdown = null;
         }
         if (stage != null) {
             stage.removeEventListener(MouseEvent.MOUSE_DOWN, onStageClickOutside, true);
         }
+    }
+
+    private function drawArrow(up:Bool):Void {
+        if (_arrowIcon == null) return;
+        _arrowIcon.graphics.clear();
+        _arrowIcon.graphics.beginFill(0xAAAAAA, 1);
+        if (up) {
+            _arrowIcon.graphics.moveTo(0, 5);
+            _arrowIcon.graphics.lineTo(8, 5);
+            _arrowIcon.graphics.lineTo(4, 0);
+            _arrowIcon.graphics.lineTo(0, 5);
+        } else {
+            _arrowIcon.graphics.moveTo(0, 0);
+            _arrowIcon.graphics.lineTo(8, 0);
+            _arrowIcon.graphics.lineTo(4, 5);
+            _arrowIcon.graphics.lineTo(0, 0);
+        }
+        _arrowIcon.graphics.endFill();
     }
 
     private function onStageClickOutside(e:MouseEvent):Void {

@@ -50,8 +50,8 @@ class ApiHudManager {
                 label: "Smart Combat",
                 defaultX: 205,
                 defaultY: 10,
-                activeText: "● Combat: ON",
-                inactiveText: "○ Combat: OFF",
+                activeText: "Combat: ON",
+                inactiveText: "Combat: OFF",
                 getState: function():Bool {
                     return (Api.combat != null && Api.combat.isRunning());
                 },
@@ -71,8 +71,8 @@ class ApiHudManager {
                 label: "Script Runner",
                 defaultX: 318,
                 defaultY: 10,
-                activeText: "● Script: RUN",
-                inactiveText: "○ Script: STOP",
+                activeText: "Script: RUN",
+                inactiveText: "Script: STOP",
                 getState: function():Bool {
                     return ScriptManager.SINGLETON.isRunning;
                 },
@@ -91,8 +91,8 @@ class ApiHudManager {
                 label: "Smart Enhance",
                 defaultX: 431,
                 defaultY: 10,
-                activeText: "⚙ Enhancing...",
-                inactiveText: "⚔ Enhance",
+                activeText: "Enhancing...",
+                inactiveText: "Smart Enhance",
                 getState: function():Bool {
                     return (Api.enhancement != null && Api.enhancement.isBusy);
                 },
@@ -115,8 +115,8 @@ class ApiHudManager {
                 label: "Auto Leveling",
                 defaultX: 544,
                 defaultY: 10,
-                activeText: "● Level: ON",
-                inactiveText: "○ Level: OFF",
+                activeText: "Level: ON",
+                inactiveText: "Level: OFF",
                 getState: function():Bool {
                     return ScriptManager.SINGLETON.isRunning;
                 },
@@ -137,8 +137,8 @@ class ApiHudManager {
                 label: "Infinite Range",
                 defaultX: 657,
                 defaultY: 10,
-                activeText: "● Range: ON",
-                inactiveText: "○ Range: OFF",
+                activeText: "Range: ON",
+                inactiveText: "Range: OFF",
                 getState: function():Bool {
                     return (Api.combat != null && Api.combat.infiniteRange);
                 },
@@ -158,8 +158,8 @@ class ApiHudManager {
                 label: "Accept Loot",
                 defaultX: 770,
                 defaultY: 10,
-                activeText: "● Loot: ON",
-                inactiveText: "○ Loot: OFF",
+                activeText: "Loot: ON",
+                inactiveText: "Loot: OFF",
                 getState: function():Bool {
                     return (Api.drop != null && Api.drop.acceptAll);
                 },
