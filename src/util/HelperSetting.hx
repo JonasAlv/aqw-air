@@ -1,6 +1,7 @@
 package util;
 
 extern class HelperSetting {
+    public static inline var OPTION_SWF_CACHE:String = "option_swf_cache";
 
     public static function getBool(key:String, defaultValue:Bool = false):Bool;
     public static function setBool(key:String, value:Bool):Void;
