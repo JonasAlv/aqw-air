@@ -1268,46 +1268,67 @@ function onStart() {
     bot.drop.acceptAll = true;
     bot.quest.loadMultiple([9421, 9422, 9423]);
     bot.combat.equipLoadout("farm");
-    bot.map.join("shadowbattleon", "Enter", "Spawn");
+    bot.map.join("shadowbattleon", "r11", "Spawn");
     bot.sleep(2000);
+    bot.quest.accept(9421);
+    bot.quest.accept(9422);
+    bot.quest.accept(9423);
     bot.combat.start(true);
 }
 
 function onTick() {
-    if (bot.map.name != "shadowbattleon") {
-        bot.map.join("shadowbattleon", "Enter", "Spawn");
-        bot.sleep(2000);
+    if (!bot.player.isAlive) {
+        bot.sleep(1500);
         return;
     }
-    if (bot.cell != "r11") {
-        bot.jump("r11", "Spawn");
-        bot.sleep(1000);
+
+    if (bot.map.name.toLowerCase() != "shadowbattleon") {
+        bot.map.join("shadowbattleon", "r11", "Spawn");
+        bot.sleep(2500);
         return;
     }
-    if (!bot.quest.hasActive(9421)) {
-        bot.quest.accept(9421);
+
+    if (bot.player.cell != "r11") {
+        bot.map.jump("r11", "Spawn");
+        bot.sleep(800);
+        return;
     }
-    if (bot.quest.canComplete(9421)) {
-        bot.quest.complete(9421);
-        bot.sleep(1000);
-    }
-    if (!bot.quest.hasActive(9422)) {
-        bot.quest.accept(9422);
-    }
-    if (bot.quest.canComplete(9422)) {
-        bot.quest.complete(9422);
-        bot.sleep(1000);
-    }
-    if (!bot.quest.hasActive(9423)) {
-        bot.quest.accept(9423);
-    }
-    if (bot.quest.canComplete(9423)) {
-        bot.quest.complete(9423);
-        bot.sleep(1000);
-    }
-    if (!bot.combat.isInCombat && !bot.combat.auto) {
+
+    if (!bot.combat.isRunning()) {
         bot.combat.start(true);
     }
+
+    if (!bot.quest.isLoaded(9421) || !bot.quest.isLoaded(9422) || !bot.quest.isLoaded(9423)) {
+        bot.quest.loadMultiple([9421, 9422, 9423]);
+    }
+
+    if (bot.quest.canComplete(9421) || bot.inventory.getItemCount("Shadow Hunt Medal") >= 5) {
+        bot.quest.turnIn(9421);
+        bot.sleep(600);
+    } else if (bot.quest.canComplete(9422) || bot.inventory.getItemCount("Mega Shadow Hunt Medal") >= 3) {
+        bot.quest.turnIn(9422);
+        bot.sleep(600);
+    } else if (bot.quest.canComplete(9423) || bot.inventory.getItemCount("Infested Flesh") >= 6) {
+        bot.quest.turnIn(9423);
+        bot.sleep(600);
+    }
+
+    if (!bot.quest.isAccepted(9421)) {
+        bot.quest.accept(9421);
+    }
+    if (!bot.quest.isAccepted(9422)) {
+        bot.quest.accept(9422);
+    }
+    if (!bot.quest.isAccepted(9423)) {
+        bot.quest.accept(9423);
+    }
+
+    bot.sleep(500);
+}
+
+function onStop() {
+    bot.log("[Auto Leveling] Stopped.");
+    bot.combat.stop();
 }
 ';
     }

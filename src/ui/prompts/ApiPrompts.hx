@@ -4,7 +4,7 @@ package ui.prompts;
 import com.aqwapi.Api;
 import com.aqwapi.modules.CombatEngine;
 import com.aqwapi.modules.ScriptManager;
-import com.aqwapi.modules.UserSkillsManager;
+import com.aqwapi.managers.SkillManager;
 import com.aqwapi.utils.ApiLogger;
 import flash.display.Sprite;
 import ui.ApiNotificationManager;
@@ -530,7 +530,7 @@ class ApiPrompts {
 
     public static function showCombatModeEditorPrompt(overlay:Dynamic, initialClass:String = null, initialMode:String = null):Void {
         try {
-            try { UserSkillsManager.ensureStorageInitialized(); } catch (_:Dynamic) {}
+            try { SkillManager.ensureStorageInitialized(); } catch (_:Dynamic) {}
             var dlg = ApiPromptModal.createDialog(560, 475, "Combat Mode Editor");
 
             // Gather class options (Strictly classes currently in inventory + Current)
@@ -645,9 +645,9 @@ class ApiPrompts {
                 }
 
                 if (inputMode != null) inputMode.text = (mName != null) ? mName : "";
-                var details = UserSkillsManager.getModeDetails(effectiveClass, mName);
+                var details = SkillManager.getModeDetails(effectiveClass, mName);
                 if (details == null && effectiveClass != cName) {
-                    details = UserSkillsManager.getModeDetails(cName, mName);
+                    details = SkillManager.getModeDetails(cName, mName);
                 }
                 if (details != null) {
                     if (ddExecMode != null) {
@@ -868,7 +868,7 @@ class ApiPrompts {
                         return;
                     }
 
-                    var ok = UserSkillsManager.saveMode(cName, mName, execMode, timeout, combo, stopAuras);
+                    var ok = SkillManager.saveMode(cName, mName, execMode, timeout, combo, stopAuras);
                     if (ok) {
                         // Automatically activate for Smart Combat
                         try {
@@ -1001,12 +1001,12 @@ class ApiPrompts {
                         return;
                     }
 
-                    if (!UserSkillsManager.isUserMode(cName, mName)) {
+                    if (!SkillManager.isUserMode(cName, mName)) {
                         ApiNotificationManager.notify("Cannot delete default bundled mode from skills.json!");
                         return;
                     }
 
-                    var deleted = UserSkillsManager.deleteMode(cName, mName);
+                    var deleted = SkillManager.deleteMode(cName, mName);
                     if (deleted) {
                         ApiNotificationManager.notify("Deleted [" + cName + " : " + mName + "] from userSkills.json!");
                         try {
