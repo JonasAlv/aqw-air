@@ -1452,23 +1452,40 @@ class ApiPrompts {
 
             var ddScript:Dropdown = null;
 
+            var setDeleteEnabled = function(enabled:Bool):Void {
+                if (deleteBtn != null) {
+                    deleteBtn.mouseEnabled = enabled;
+                    deleteBtn.alpha = enabled ? 1.0 : 0.35;
+                }
+            };
+
             var loadSelectedScript = function(optLabel:String):Void {
                 if (optLabel == "[+ New Script]") {
                     currentScriptName = "MyScript";
                     isUser = true;
                     isBundled = false;
+                    lblName.text = "New Script Name (.hxs):";
                     inputName.type = TextFieldType.INPUT;
                     inputName.text = "MyScript";
                     inputName.selectable = true;
                     inputCode.text = "// New HScript\nfunction onStart() {\n    bot.log(\"Started script!\");\n}\n\nfunction onTick() {\n    // Bot logic here\n}\n\nfunction onStop() {\n    bot.log(\"Stopped script!\");\n}\n";
+                    setDeleteEnabled(false);
                 } else {
                     var raw = getRawScriptName(optLabel);
                     currentScriptName = raw;
                     isBundled = ScriptManager.SINGLETON.isBundledScript(raw);
                     isUser = !isBundled;
-                    inputName.text = raw;
-                    inputName.type = isUser ? TextFieldType.INPUT : TextFieldType.DYNAMIC;
-                    inputName.selectable = isUser;
+                    if (isBundled) {
+                        lblName.text = "Save As User Script (.hxs):";
+                        inputName.text = raw + "_Edited";
+                        setDeleteEnabled(false);
+                    } else {
+                        lblName.text = "Script Name (.hxs):";
+                        inputName.text = raw;
+                        setDeleteEnabled(true);
+                    }
+                    inputName.type = TextFieldType.INPUT;
+                    inputName.selectable = true;
                     inputCode.text = ScriptManager.SINGLETON.getScriptContent(raw);
                 }
                 updateStatusDisplay();
@@ -1504,7 +1521,11 @@ class ApiPrompts {
                         return;
                     }
                     var sName = StringTools.trim(inputName.text);
-                    if (sName == "") sName = "CustomScript";
+                    if (isBundled && sName == currentScriptName + "_Edited") {
+                        sName = currentScriptName;
+                    } else if (sName == "") {
+                        sName = currentScriptName != "" ? currentScriptName : "CustomScript";
+                    }
                     ScriptManager.SINGLETON.loadScript(code);
                     ScriptManager.SINGLETON.start();
                     ScriptManager.SINGLETON.activeScriptName = sName;
@@ -1531,6 +1552,9 @@ class ApiPrompts {
                     ApiNotificationManager.notify("Please enter a valid script name.");
                     return;
                 }
+                if (ScriptManager.SINGLETON.isBundledScript(sName)) {
+                    sName = sName + "_Edited";
+                }
                 var code = inputCode.text;
                 var saved = ScriptManager.SINGLETON.saveScript(sName, code);
                 if (saved) {
@@ -1549,7 +1573,7 @@ class ApiPrompts {
             dlg.addChild(saveBtn);
 
             deleteBtn = ApiPromptModal.createButton("Delete Script", 120, 32, function():Void {
-                if (isBundled) {
+                if (isBundled || ScriptManager.SINGLETON.isBundledScript(currentScriptName)) {
                     ApiNotificationManager.notify("Cannot delete bundled scripts!");
                     return;
                 }
@@ -1570,6 +1594,7 @@ class ApiPrompts {
             deleteBtn.x = 300;
             deleteBtn.y = 445;
             dlg.addChild(deleteBtn);
+            setDeleteEnabled(!isBundled && currentScriptName != "MyScript" && currentScriptName != "");
 
             var closeBtn = ApiPromptModal.createButton("Close", 100, 32, function():Void {
                 ApiPromptModal.close();
