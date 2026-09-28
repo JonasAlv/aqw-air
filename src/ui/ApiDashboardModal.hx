@@ -634,19 +634,19 @@ class ApiDashboardModal extends Sprite {
             var active = (getState != null) ? getState() : false;
             btn.graphics.clear();
             if (active) {
-                btn.graphics.beginFill(0x102818, 1);
-                btn.graphics.lineStyle(1, 0x246638);
+                btn.graphics.beginFill(0x103318, 1);
+                btn.graphics.lineStyle(1, 0x2D7A3E);
                 btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
                 btn.graphics.endFill();
-                txt.textColor = 0x44DD66;
-                txt.text = "Enabled";
+                txt.textColor = 0x44EE77;
+                txt.text = "ON";
             } else {
-                btn.graphics.beginFill(0x1E1E1E, 1);
-                btn.graphics.lineStyle(1, 0x333333);
+                btn.graphics.beginFill(0x1A1A1A, 1);
+                btn.graphics.lineStyle(1, 0x383838);
                 btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
                 btn.graphics.endFill();
                 txt.textColor = 0x777777;
-                txt.text = "Disabled";
+                txt.text = "OFF";
             }
         };
 
