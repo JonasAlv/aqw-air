@@ -204,13 +204,8 @@ class ApiMenus {
                 if (c.state) {
                     var confClass = HelperSetting.getString("api_smart_class", "Current");
                     var confMode = HelperSetting.getString("api_smart_mode", "Auto");
-                    if (confClass != "" && confClass != "Current" && Api.inventory != null) {
-                        Api.inventory.equip(confClass);
-                    }
-                    CombatEngine.smartClass = confClass;
                     if (Api.combat != null) {
-                        Api.combat.mode = confMode;
-                        Api.combat.startSmart();
+                        Api.combat.startSmartStandalone(confClass, confMode);
                     }
                 } else {
                     if (Api.combat != null) Api.combat.stopAuto();

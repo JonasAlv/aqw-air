@@ -655,19 +655,16 @@ class ApiPrompts {
             dlg.addChild(ddMode);
             dlg.addChild(ddClass);
 
-            var saveBtn = ApiPromptModal.createButton("Save & Apply", 130, 35, function():Void {
+            var saveBtn = ApiPromptModal.createButton("Save Config", 130, 35, function():Void {
                 var saveModeVal = (selectedModeStr == "Auto (First Available)") ? "Auto" : selectedModeStr;
                 HelperSetting.setString("api_smart_class", selectedClassStr);
                 HelperSetting.setString("api_smart_mode", saveModeVal);
                 CombatEngine.smartClass = selectedClassStr;
                 CombatEngine.skillMode = saveModeVal;
-                if (selectedClassStr != "" && selectedClassStr != "Current" && Api.inventory != null) {
-                    Api.inventory.equip(selectedClassStr);
-                }
                 if (Api.combat != null) {
                     Api.combat.mode = saveModeVal;
                 }
-                ApiNotificationManager.notify("Smart Combat: " + selectedClassStr + " [" + saveModeVal + "]");
+                ApiNotificationManager.notify("Smart Combat Config: " + selectedClassStr + " [" + saveModeVal + "]");
                 ApiPromptModal.close();
             }, true);
             saveBtn.x = 20;
