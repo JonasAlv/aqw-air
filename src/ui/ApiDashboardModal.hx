@@ -805,8 +805,18 @@ class ApiDashboardModal extends Sprite {
                 var next = !current;
                 HelperSetting.setBool("api_smart_combat_active", next);
                 if (Api.combat != null) {
-                    if (next) Api.combat.startSmart();
-                    else Api.combat.stop();
+                    if (next) {
+                        var confClass = HelperSetting.getString("api_smart_class", "Current");
+                        var confMode = HelperSetting.getString("api_smart_mode", "Auto");
+                        if (confClass != "" && confClass.toLowerCase() != "current" && Api.inventory != null) {
+                            Api.inventory.equip(confClass);
+                        }
+                        CombatEngine.smartClass = confClass;
+                        Api.combat.mode = confMode;
+                        Api.combat.startSmart();
+                    } else {
+                        Api.combat.stop();
+                    }
                 }
                 ApiNotificationManager.notify("Smart Combat: " + (next ? "Enabled" : "Disabled"));
             },
