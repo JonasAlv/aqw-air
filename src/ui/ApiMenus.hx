@@ -63,6 +63,7 @@ class ApiMenus {
         if (Api.map != null) {
             Api.map.autoDeathSpawn = HelperSetting.getBool("api_death_spawn", false);
             Api.map.usePrivateRoom = HelperSetting.getBool("api_private_rooms", true);
+            Api.map.skipCutscenes  = HelperSetting.getBool("api_skip_cutscenes", false);
         }
 
         // 3. Build Menu Tabs
@@ -348,6 +349,11 @@ class ApiMenus {
         opts.push(new Check("api_death_spawn", false, "Death Spawn (Same Room)", "Automatically sets your respawn point to your current room so you never walk back on death.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
             if (Api.map != null) Api.map.autoDeathSpawn = c.state;
+        }));
+
+        opts.push(new Check("api_skip_cutscenes", false, "Skip Cutscenes", "Automatically cancel cutscene animations whenever they appear.", true, function(o:Dynamic):Void {
+            var c:Check = cast o;
+            if (Api.map != null) Api.map.skipCutscenes = c.state;
         }));
 
         opts.push(new Check("api_private_rooms", true, "Private Rooms", "Automatically join private rooms (e.g. map-100000). Uncheck to join public rooms.", true, function(o:Dynamic):Void {
