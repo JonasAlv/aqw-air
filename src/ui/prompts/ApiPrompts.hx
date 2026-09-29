@@ -172,6 +172,88 @@ class ApiPrompts {
         ApiPromptModal.show(overlay, dlg);
     }
 
+    public static function showBlacklistPrompt(overlay:Dynamic):Void {
+        _renderBlacklistPrompt(overlay);
+    }
+
+    private static function _renderBlacklistPrompt(overlay:Dynamic):Void {
+        var dlgH:Int = 420;
+        var dlg = ApiPromptModal.createDialog(340, dlgH, "Item Blacklist");
+
+        // Description
+        var desc = ApiPromptModal.createLabel("Blacklisted items are never looted and can be sold\nall at once with 'Sell Blacklisted Items'.", 300, 30);
+        desc.x = 20; desc.y = 28;
+        dlg.addChild(desc);
+
+        // List area
+        var listY:Int = 65;
+        var listH:Int = 220;
+        var listContainer = new Sprite();
+        listContainer.x = 20;
+        listContainer.y = listY;
+        listContainer.graphics.beginFill(0x111111, 0.6);
+        listContainer.graphics.drawRoundRect(0, 0, 300, listH, 4, 4);
+        listContainer.graphics.endFill();
+        dlg.addChild(listContainer);
+
+        var items = (Api.blacklist != null) ? Api.blacklist.getList() : [];
+        var rowH:Int = 26;
+        var scrollY:Int = 0;
+        for (i in 0...items.length) {
+            var itemName:String = items[i];
+            var row = new Sprite();
+            row.y = i * rowH + 4;
+
+            var lbl = ApiPromptModal.createLabel(itemName, 210, rowH - 4);
+            lbl.x = 6; lbl.y = 4;
+            row.addChild(lbl);
+
+            var removeBtn = ApiPromptModal.createButton("X", 36, 18, function():Void {
+                if (Api.blacklist != null) Api.blacklist.remove(itemName);
+                _renderBlacklistPrompt(overlay);
+            }, false);
+            removeBtn.x = 258; removeBtn.y = 4;
+            row.addChild(removeBtn);
+
+            listContainer.addChild(row);
+        }
+
+        if (items.length == 0) {
+            var emptyLbl = ApiPromptModal.createLabel("No items blacklisted.", 280, 20);
+            emptyLbl.x = 10; emptyLbl.y = 10;
+            listContainer.addChild(emptyLbl);
+        }
+
+        // Add input
+        var addY:Int = listY + listH + 10;
+        var addLabel = ApiPromptModal.createLabel("Add item name:", 200, 18);
+        addLabel.x = 20; addLabel.y = addY;
+        dlg.addChild(addLabel);
+
+        var input = ApiPromptModal.createInput(220, 24, "");
+        input.x = 20; input.y = addY + 20;
+        dlg.addChild(input);
+
+        var addBtn = ApiPromptModal.createButton("Add", 64, 24, function():Void {
+            var name = StringTools.trim(input.text);
+            if (name != "" && Api.blacklist != null) {
+                Api.blacklist.add(name);
+                _renderBlacklistPrompt(overlay);
+            }
+        }, false);
+        addBtn.x = 250; addBtn.y = addY + 20;
+        dlg.addChild(addBtn);
+
+        // Close
+        var closeBtn = ApiPromptModal.createButton("Close", 120, 30, function():Void {
+            ApiPromptModal.close();
+        }, false);
+        closeBtn.x = 110; closeBtn.y = dlgH - 48;
+        dlg.addChild(closeBtn);
+
+        ApiPromptModal.show(overlay, dlg);
+    }
+
     public static function showShopPrompt(overlay:Dynamic):Void {
         var dlg = ApiPromptModal.createDialog(300, 160, "Enter Shop ID:");
 

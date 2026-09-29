@@ -383,6 +383,15 @@ class ApiMenus {
             }
         }));
 
+        opts.push(new Button(null, "Manage Blacklist", "Add or remove items from the blacklist. Blacklisted items are never looted and can be mass-sold.", "Manage", function(o:Dynamic):Void {
+            overlay.gotoAndStop("Init");
+            ApiPrompts.showBlacklistPrompt(overlay);
+        }));
+
+        opts.push(new Button(null, "Sell Blacklisted Items", "Sell all unequipped inventory items that are on your blacklist.", "Sell", function(o:Dynamic):Void {
+            if (Api.blacklist != null) Api.blacklist.sellBlacklist();
+        }));
+
         return new Menu("Settings", opts);
     }
 
