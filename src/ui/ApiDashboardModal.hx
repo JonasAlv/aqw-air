@@ -1039,6 +1039,26 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
+        // 4b. Skip Cutscenes
+        addItemRow(
+            "Skip Cutscenes",
+            "Automatically cancel cutscene animations whenever they appear.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false);
+                var next = !cur;
+                HelperSetting.setBool("api_skip_cutscenes", next);
+                HelperSetting.setBool("option_disable_cutscenes", next);
+                if (Api.map != null) Api.map.skipCutscenes = next;
+                ApiNotificationManager.notify("Skip Cutscenes: " + (next ? "Enabled" : "Disabled"));
+            },
+            function():Bool {
+                return (Api.map != null && Api.map.skipCutscenes);
+            }
+        );
+
         // 5. Private Rooms
         addItemRow(
             "Private Rooms",
@@ -1105,6 +1125,31 @@ class ApiDashboardModal extends Sprite {
             },
             function():Bool {
                 return (Api.drop != null && Api.drop.acceptACs);
+            }
+        );
+
+        // 7b. Manage Blacklist
+        addItemRow(
+            "Manage Blacklist",
+            "Add or remove items from the blacklist. Blacklisted items are never looted and can be mass-sold.",
+            "button",
+            "Manage",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showBlacklistPrompt(_overlay);
+            }
+        );
+
+        // 7c. Sell Blacklisted Items
+        addItemRow(
+            "Sell Blacklisted Items",
+            "Sell all unequipped inventory items that are on your blacklist.",
+            "button",
+            "Sell",
+            false,
+            function():Void {
+                if (Api.blacklist != null) Api.blacklist.sellBlacklist();
             }
         );
 

@@ -63,7 +63,7 @@ class ApiMenus {
         if (Api.map != null) {
             Api.map.autoDeathSpawn = HelperSetting.getBool("api_death_spawn", false);
             Api.map.usePrivateRoom = HelperSetting.getBool("api_private_rooms", true);
-            Api.map.skipCutscenes  = HelperSetting.getBool("api_skip_cutscenes", false);
+            Api.map.skipCutscenes  = HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false);
         }
 
         // 3. Build Menu Tabs
@@ -353,6 +353,7 @@ class ApiMenus {
 
         opts.push(new Check("api_skip_cutscenes", false, "Skip Cutscenes", "Automatically cancel cutscene animations whenever they appear.", true, function(o:Dynamic):Void {
             var c:Check = cast o;
+            HelperSetting.setBool("option_disable_cutscenes", c.state);
             if (Api.map != null) Api.map.skipCutscenes = c.state;
         }));
 
