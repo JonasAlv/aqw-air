@@ -170,11 +170,9 @@ class ApiHudManager {
                 label: "Bank",
                 defaultX: 544,
                 defaultY: 10,
-                activeText: "Bank: OPEN",
+                activeText: "Bank",
                 inactiveText: "Bank",
-                getState: function():Bool {
-                    return (Api.inventory != null && Api.inventory.isBankLoaded);
-                },
+                getState: null,
                 onToggle: function():Void {
                     if (Api.inventory != null) {
                         Api.inventory.toggleBank();
