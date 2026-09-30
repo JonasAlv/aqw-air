@@ -754,18 +754,39 @@ class ApiPrompts {
             lblExecMode.y = 144;
             dlg.addChild(lblExecMode);
 
-            var lblTimeout = ApiPromptModal.createLabel("Timeout (ms):", 90);
-            lblTimeout.x = 240;
+            var lblTimeout = ApiPromptModal.createLabel("Timeout (ms):", 80);
+            lblTimeout.x = 215;
             lblTimeout.y = 144;
             dlg.addChild(lblTimeout);
 
-            var inputTimeout = ApiPromptModal.createInput(80, 24, "0");
-            inputTimeout.x = 240;
+            var inputTimeout = ApiPromptModal.createInput(65, 24, "0");
+            inputTimeout.x = 215;
             inputTimeout.y = 164;
             dlg.addChild(inputTimeout);
 
-            var lblBadge = ApiPromptModal.createLabel("[Bundled Mode]", 200, 13, true);
-            lblBadge.x = 340;
+            var currentResetOnTarget:Bool = false;
+            var btnResetTarget:flash.display.Sprite = null;
+            var updateResetTargetBtn = function():Void {
+                if (btnResetTarget == null) return;
+                var txt = (btnResetTarget.numChildren > 0 && Std.isOfType(btnResetTarget.getChildAt(0), flash.text.TextField))
+                    ? cast(btnResetTarget.getChildAt(0), flash.text.TextField)
+                    : null;
+                if (txt != null) {
+                    txt.text = currentResetOnTarget ? "Reset: ON" : "Reset: OFF";
+                    txt.textColor = currentResetOnTarget ? 0x55FF55 : 0xAAAAAA;
+                }
+            };
+
+            btnResetTarget = ApiPromptModal.createButton("Reset: OFF", 115, 24, function():Void {
+                currentResetOnTarget = !currentResetOnTarget;
+                updateResetTargetBtn();
+            }, false);
+            btnResetTarget.x = 295;
+            btnResetTarget.y = 164;
+            dlg.addChild(btnResetTarget);
+
+            var lblBadge = ApiPromptModal.createLabel("[Bundled Mode]", 130, 13, true);
+            lblBadge.x = 425;
             lblBadge.y = 166;
             dlg.addChild(lblBadge);
 
@@ -793,21 +814,23 @@ class ApiPrompts {
             var ddMode:Dropdown = null;
             var ddClass:Dropdown = null;
             var helperButtons:Array<flash.display.Sprite> = [];
+            helperButtons.push(btnResetTarget);
             var saveBtn:flash.display.Sprite = null;
             var applyBtn:flash.display.Sprite = null;
             var delBtn:flash.display.Sprite = null;
+            var cloneBtn:flash.display.Sprite = null;
 
             var setInputEnabled = function(tf:TextField, enabled:Bool):Void {
                 if (tf == null) return;
                 #if flash
                 tf.type = enabled ? flash.text.TextFieldType.INPUT : flash.text.TextFieldType.DYNAMIC;
                 #end
-                tf.selectable = enabled;
-                tf.mouseEnabled = enabled;
+                tf.selectable = true;
+                tf.mouseEnabled = true;
                 tf.backgroundColor = enabled ? 0x222222 : 0x141414;
                 tf.borderColor = enabled ? 0x555555 : 0x333333;
-                tf.textColor = enabled ? 0xFFFFFF : 0x777777;
-                tf.alpha = enabled ? 1.0 : 0.6;
+                tf.textColor = enabled ? 0xFFFFFF : 0xAAAAAA;
+                tf.alpha = enabled ? 1.0 : 0.8;
             };
 
             var setButtonEnabled = function(btn:flash.display.Sprite, enabled:Bool):Void {
@@ -840,6 +863,13 @@ class ApiPrompts {
                 setButtonEnabled(saveBtn, isEditable);
                 setButtonEnabled(delBtn, isEditable && !isNewMode);
                 setButtonEnabled(applyBtn, !isNewMode);
+
+                if (cloneBtn != null) {
+                    cloneBtn.visible = (!isEditable && !isNewMode);
+                }
+                if (delBtn != null) {
+                    delBtn.visible = (isEditable && !isNewMode);
+                }
             };
 
             var loadModeDetails = function(cName:String, mName:String):Void {
@@ -847,6 +877,8 @@ class ApiPrompts {
                     if (inputMode != null) inputMode.text = "CustomMode";
                     if (ddExecMode != null) ddExecMode.setSelectedItem("WaitForCooldown");
                     if (inputTimeout != null) inputTimeout.text = "0";
+                    currentResetOnTarget = false;
+                    updateResetTargetBtn();
                     if (inputStopAuras != null) inputStopAuras.text = "";
                     if (inputCombo != null) inputCombo.text = "";
                     if (lblBadge != null) {
@@ -882,6 +914,9 @@ class ApiPrompts {
                     if (inputStopAuras != null) inputStopAuras.text = (details.stopOnTargetAuras != null) ? details.stopOnTargetAuras : "";
                     if (inputCombo != null) inputCombo.text = (details.combo != null) ? details.combo : "";
 
+                    currentResetOnTarget = (details.resetComboOnTargetChange == true);
+                    updateResetTargetBtn();
+
                     var isUser:Bool = (details.isUser == true) || SkillManager.isUserMode(effectiveClass, mName) || SkillManager.isUserMode(cName, mName);
                     if (lblBadge != null) {
                         if (isUser) {
@@ -896,6 +931,8 @@ class ApiPrompts {
                 } else {
                     if (ddExecMode != null) ddExecMode.setSelectedItem("WaitForCooldown");
                     if (inputTimeout != null) inputTimeout.text = "0";
+                    currentResetOnTarget = false;
+                    updateResetTargetBtn();
                     if (inputStopAuras != null) inputStopAuras.text = "";
                     if (inputCombo != null) inputCombo.text = "";
                     if (lblBadge != null) {
@@ -923,7 +960,7 @@ class ApiPrompts {
                 return list;
             };
 
-            ddExecMode = new Dropdown(200, 24, ["WaitForCooldown", "UseIfAvailable"], function(sel:String):Void {});
+            ddExecMode = new Dropdown(175, 24, ["WaitForCooldown", "UseIfAvailable"], function(sel:String):Void {});
             ddExecMode.x = 25;
             ddExecMode.y = 164;
             ddExecMode.setSelectedItem("WaitForCooldown");
@@ -1100,22 +1137,9 @@ class ApiPrompts {
                         return;
                     }
 
-                    var ok = SkillManager.saveMode(cName, mName, execMode, timeout, combo, stopAuras);
+                    var ok = SkillManager.saveMode(cName, mName, execMode, timeout, combo, stopAuras, currentResetOnTarget);
                     if (ok) {
-                        // Automatically activate for Smart Combat
-                        try {
-                            HelperSetting.setString("api_smart_class", cName);
-                            HelperSetting.setString("api_smart_mode", mName);
-                        } catch (se:Dynamic) {}
-                        CombatEngine.smartClass = cName;
-                        CombatEngine.skillMode = mName;
-                        try {
-                            if (Api.combat != null) {
-                                Api.combat.mode = mName;
-                            }
-                        } catch (_:Dynamic) {}
-
-                        ApiNotificationManager.notify("Saved & Activated [" + cName + " : " + mName + "]!");
+                        ApiNotificationManager.notify("Saved [" + cName + " : " + mName + "] to userSkills.json!");
 
                         try {
                             var freshClassOpts = getAvailableClasses();
@@ -1205,6 +1229,28 @@ class ApiPrompts {
             applyBtn.x = 125;
             applyBtn.y = 412;
             dlg.addChild(applyBtn);
+
+            cloneBtn = ApiPromptModal.createButton("Clone Mode", 95, 36, function():Void {
+                try {
+                    var baseName = (inputMode != null && inputMode.text != null) ? StringTools.trim(inputMode.text) : "Mode";
+                    if (baseName == "" || baseName == "[+ New Mode]") baseName = "CustomMode";
+                    if (inputMode != null) inputMode.text = baseName + " Custom";
+                    if (lblBadge != null) {
+                        lblBadge.text = "[New Mode]";
+                        lblBadge.textColor = 0x55FF55;
+                    }
+                    setFormEditable(true, true);
+                    cloneBtn.visible = false;
+                    delBtn.visible = false;
+                    ApiNotificationManager.notify("Cloned [" + baseName + "] into editable New Mode!");
+                } catch (ce:Dynamic) {
+                    ApiNotificationManager.notify("Clone error: " + ce);
+                }
+            }, false);
+            cloneBtn.x = 230;
+            cloneBtn.y = 412;
+            cloneBtn.visible = false;
+            dlg.addChild(cloneBtn);
 
             delBtn = ApiPromptModal.createButton("Delete Mode", 95, 36, function():Void {
                 try {
