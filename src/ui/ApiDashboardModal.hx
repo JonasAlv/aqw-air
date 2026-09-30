@@ -75,6 +75,7 @@ class ApiDashboardModal extends Sprite {
     private var _scrollbarTrack:Shape;
     private var _scrollbarThumb:Shape;
     private var _isDraggingScroll:Bool = false;
+    private var _hasDraggedScroll:Bool = false;
     private var _dragStartY:Float = 0;
     private var _dragStartContentY:Float = 0;
 
@@ -389,6 +390,7 @@ class ApiDashboardModal extends Sprite {
         var totalH = getTotalContentHeight();
         if (stage == null || totalH <= CONTENT_HEIGHT) return;
         _isDraggingScroll = false;
+        _hasDraggedScroll = false;
         _dragStartY = stage.mouseY;
         _dragStartContentY = _contentContainer.y;
 
@@ -402,6 +404,7 @@ class ApiDashboardModal extends Sprite {
         var dy = stage.mouseY - _dragStartY;
         if (!_isDraggingScroll && Math.abs(dy) > 4) {
             _isDraggingScroll = true;
+            _hasDraggedScroll = true;
         }
         if (_isDraggingScroll) {
             var newY = _dragStartContentY + dy;
@@ -418,7 +421,10 @@ class ApiDashboardModal extends Sprite {
             stage.removeEventListener(MouseEvent.MOUSE_MOVE, onStageMouseMove);
             stage.removeEventListener(MouseEvent.MOUSE_UP, onStageMouseUp);
         }
-        _isDraggingScroll = false;
+        haxe.Timer.delay(function() {
+            _isDraggingScroll = false;
+            _hasDraggedScroll = false;
+        }, 80);
     }
 
     private function updateScrollbar():Void {
@@ -609,6 +615,7 @@ class ApiDashboardModal extends Sprite {
         });
 
         btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onClick != null) onClick();
         });
 
@@ -651,6 +658,7 @@ class ApiDashboardModal extends Sprite {
         };
 
         btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onToggle != null) onToggle();
             updateVisual();
         });
@@ -709,7 +717,11 @@ class ApiDashboardModal extends Sprite {
                     ApiNotificationManager.notify("Script stopped.");
                 } else {
                     ScriptManager.SINGLETON.start();
-                    ApiNotificationManager.notify("Script started.");
+                    if (ScriptManager.SINGLETON.isRunning) {
+                        ApiNotificationManager.notify("Script started.");
+                    } else {
+                        ApiNotificationManager.notify("No script loaded! Open Script Manager to select one.");
+                    }
                 }
             },
             function():Bool {
@@ -1021,7 +1033,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Infinite Range: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.combat != null && Api.combat.infiniteRange);
+                return (Api.combat != null) ? Api.combat.infiniteRange : HelperSetting.getBool("api_infinite_range", false);
             }
         );
 
@@ -1040,7 +1052,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Death Spawn: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.map != null && Api.map.autoDeathSpawn);
+                return (Api.map != null) ? Api.map.autoDeathSpawn : HelperSetting.getBool("api_death_spawn", false);
             }
         );
 
@@ -1060,7 +1072,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Skip Cutscenes: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.map != null && Api.map.skipCutscenes);
+                return (Api.map != null) ? Api.map.skipCutscenes : (HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false));
             }
         );
 
@@ -1079,7 +1091,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Private Rooms: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.map != null && Api.map.usePrivateRoom);
+                return (Api.map != null) ? Api.map.usePrivateRoom : HelperSetting.getBool("api_private_rooms", true);
             }
         );
 
@@ -1104,7 +1116,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Accept All Loot: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.drop != null && Api.drop.acceptAll);
+                return (Api.drop != null) ? Api.drop.acceptAll : HelperSetting.getBool("api_accept_loot", false);
             }
         );
 
@@ -1129,7 +1141,7 @@ class ApiDashboardModal extends Sprite {
                 ApiNotificationManager.notify("Accept AC Drops: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.drop != null && Api.drop.acceptACs);
+                return (Api.drop != null) ? Api.drop.acceptACs : HelperSetting.getBool("api_accept_ac_drops", false);
             }
         );
 
@@ -1154,7 +1166,10 @@ class ApiDashboardModal extends Sprite {
             "Sell",
             false,
             function():Void {
-                if (Api.blacklist != null) Api.blacklist.sellBlacklist();
+                if (Api.blacklist != null) {
+                    Api.blacklist.sellBlacklist();
+                    ApiNotificationManager.notify("Selling blacklisted items...");
+                }
             }
         );
 

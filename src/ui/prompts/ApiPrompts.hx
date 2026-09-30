@@ -8,6 +8,7 @@ import com.aqwapi.managers.SkillManager;
 import com.aqwapi.utils.ApiLogger;
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
 import ui.ApiNotificationManager;
@@ -202,18 +203,62 @@ class ApiPrompts {
         listContainer.graphics.endFill();
         dlg.addChild(listContainer);
 
+        var listMask = new flash.display.Shape();
+        listMask.graphics.beginFill(0xFF0000);
+        listMask.graphics.drawRoundRect(0, 0, listW, listH, 6, 6);
+        listMask.graphics.endFill();
+        listContainer.addChild(listMask);
+
+        var listContent = new Sprite();
+        listContent.mask = listMask;
+        listContainer.addChild(listContent);
+
+        var scrollbarTrack = new flash.display.Shape();
+        var scrollbarThumb = new flash.display.Shape();
+        listContainer.addChild(scrollbarTrack);
+        listContainer.addChild(scrollbarThumb);
+
         var items = (Api.blacklist != null) ? Api.blacklist.getList() : [];
         var rowH:Int = 28;
-        var maxRows:Int = Std.int((listH - 8) / rowH);
+        var totalRowsH:Float = items.length * rowH + 8;
+        var hasScroll:Bool = (totalRowsH > listH);
+        var innerRowW:Float = hasScroll ? (listW - 22) : (listW - 16);
+
+        var updateScrollbar = function():Void {
+            scrollbarTrack.graphics.clear();
+            scrollbarThumb.graphics.clear();
+            if (totalRowsH <= listH) {
+                scrollbarTrack.visible = false;
+                scrollbarThumb.visible = false;
+                return;
+            }
+            scrollbarTrack.visible = true;
+            scrollbarThumb.visible = true;
+
+            var sbW:Float = 4;
+            var sbX:Float = listW - sbW - 3;
+            scrollbarTrack.graphics.beginFill(0x222222, 0.7);
+            scrollbarTrack.graphics.drawRoundRect(sbX, 4, sbW, listH - 8, 2, 2);
+            scrollbarTrack.graphics.endFill();
+
+            var viewRatio:Float = listH / totalRowsH;
+            var thumbH:Float = Math.max(16, (listH - 8) * viewRatio);
+            var scrollRatio:Float = -listContent.y / (totalRowsH - listH);
+            var thumbY:Float = 4 + scrollRatio * (listH - 8 - thumbH);
+
+            scrollbarThumb.graphics.beginFill(0x666666, 0.9);
+            scrollbarThumb.graphics.drawRoundRect(sbX, thumbY, sbW, thumbH, 2, 2);
+            scrollbarThumb.graphics.endFill();
+        };
 
         if (items.length == 0) {
             var emptyLbl = ApiPromptModal.createLabel("No items blacklisted yet.", listW - 20, 12, false);
             emptyLbl.x = 14;
             emptyLbl.y = 14;
-            listContainer.addChild(emptyLbl);
+            listContent.addChild(emptyLbl);
+            updateScrollbar();
         } else {
-            var displayCount = items.length < maxRows ? items.length : maxRows;
-            for (i in 0...displayCount) {
+            for (i in 0...items.length) {
                 var itemName:String = items[i];
                 var row = new Sprite();
                 row.x = 8;
@@ -221,33 +266,74 @@ class ApiPrompts {
 
                 if (i % 2 == 1) {
                     row.graphics.beginFill(0x222222, 0.4);
-                    row.graphics.drawRoundRect(0, 0, listW - 16, rowH - 4, 4, 4);
+                    row.graphics.drawRoundRect(0, 0, innerRowW, rowH - 4, 4, 4);
                     row.graphics.endFill();
                 }
 
-                var lbl = ApiPromptModal.createLabel(itemName, listW - 70, 12, false);
+                var lbl = ApiPromptModal.createLabel(itemName, innerRowW - 40, 12, false);
                 lbl.x = 8;
                 lbl.y = 3;
                 lbl.height = 20;
                 row.addChild(lbl);
 
-                var removeBtn = ApiPromptModal.createButton("X", 28, 20, function():Void {
+                var removeBtn = ApiPromptModal.createButton("X", 26, 20, function():Void {
                     if (Api.blacklist != null) Api.blacklist.remove(itemName);
                     _renderBlacklistPrompt(overlay);
                 }, false);
-                removeBtn.x = listW - 54;
+                removeBtn.x = innerRowW - 30;
                 removeBtn.y = 1;
                 row.addChild(removeBtn);
 
-                listContainer.addChild(row);
+                listContent.addChild(row);
             }
+            updateScrollbar();
 
-            if (items.length > maxRows) {
-                var moreLbl = ApiPromptModal.createLabel("+ " + (items.length - maxRows) + " more items", listW - 20, 10, false);
-                moreLbl.x = 14;
-                moreLbl.y = listH - 20;
-                listContainer.addChild(moreLbl);
-            }
+            listContainer.addEventListener(MouseEvent.MOUSE_WHEEL, function(e:MouseEvent):Void {
+                if (totalRowsH <= listH) return;
+                var maxScroll:Float = listH - totalRowsH;
+                listContent.y += e.delta * 20;
+                if (listContent.y > 0) listContent.y = 0;
+                if (listContent.y < maxScroll) listContent.y = maxScroll;
+                updateScrollbar();
+            });
+
+            var isDragging:Bool = false;
+            var dragStartY:Float = 0;
+            var dragStartContentY:Float = 0;
+
+            listContainer.addEventListener(MouseEvent.MOUSE_DOWN, function(e:MouseEvent):Void {
+                if (dlg.stage == null || totalRowsH <= listH) return;
+                isDragging = false;
+                dragStartY = dlg.stage.mouseY;
+                dragStartContentY = listContent.y;
+
+                var onMove:MouseEvent->Void = null;
+                var onUp:MouseEvent->Void = null;
+
+                onMove = function(me:MouseEvent):Void {
+                    if (dlg.stage == null) return;
+                    var dy = dlg.stage.mouseY - dragStartY;
+                    if (!isDragging && Math.abs(dy) > 4) isDragging = true;
+                    if (isDragging) {
+                        var newY:Float = dragStartContentY + dy;
+                        var maxScroll:Float = listH - totalRowsH;
+                        if (newY > 0) newY = 0;
+                        if (newY < maxScroll) newY = maxScroll;
+                        listContent.y = newY;
+                        updateScrollbar();
+                    }
+                };
+
+                onUp = function(ue:MouseEvent):Void {
+                    if (dlg.stage != null) {
+                        dlg.stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+                        dlg.stage.removeEventListener(MouseEvent.MOUSE_UP, onUp);
+                    }
+                };
+
+                dlg.stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);
+                dlg.stage.addEventListener(MouseEvent.MOUSE_UP, onUp);
+            });
         }
 
         // Add section
@@ -1615,6 +1701,8 @@ class ApiPrompts {
             dlg.addChild(lblCode);
 
             var inputCode = ApiPromptModal.createInput(580, 290, "", true);
+            var codeFmt = new flash.text.TextFormat("_typewriter", 12, 0xFFFFFF);
+            inputCode.defaultTextFormat = codeFmt;
             inputCode.x = 20;
             inputCode.y = 136;
             dlg.addChild(inputCode);
@@ -1685,6 +1773,7 @@ class ApiPrompts {
                     inputName.text = "MyScript";
                     inputName.selectable = true;
                     inputCode.text = "// New HScript\nfunction onStart() {\n    bot.log(\"Started script!\");\n}\n\nfunction onTick() {\n    // Bot logic here\n}\n\nfunction onStop() {\n    bot.log(\"Stopped script!\");\n}\n";
+                    try { inputCode.setTextFormat(codeFmt); } catch (_:Dynamic) {}
                     setDeleteEnabled(false);
                 } else {
                     var raw = getRawScriptName(optLabel);
@@ -1703,6 +1792,7 @@ class ApiPrompts {
                     inputName.type = TextFieldType.INPUT;
                     inputName.selectable = true;
                     inputCode.text = ScriptManager.SINGLETON.getScriptContent(raw);
+                    try { inputCode.setTextFormat(codeFmt); } catch (_:Dynamic) {}
                 }
                 updateStatusDisplay();
             };

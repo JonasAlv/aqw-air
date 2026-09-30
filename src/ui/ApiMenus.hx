@@ -208,7 +208,7 @@ class ApiMenus {
                         Api.combat.startSmartStandalone(confClass, confMode);
                     }
                 } else {
-                    if (Api.combat != null) Api.combat.stopAuto();
+                    if (Api.combat != null) Api.combat.stop();
                 }
             });
         });
@@ -241,7 +241,7 @@ class ApiMenus {
                     overlay.gotoAndStop("Init");
                     ApiPrompts.showCombatPrompt(overlay);
                 } else {
-                    if (Api.combat != null) Api.combat.stopAuto();
+                    if (Api.combat != null) Api.combat.stop();
                 }
             });
         });
@@ -385,7 +385,10 @@ class ApiMenus {
         }));
 
         opts.push(new Button(null, "Sell Blacklisted Items", "Sell all unequipped inventory items that are on your blacklist.", "Sell", function(o:Dynamic):Void {
-            if (Api.blacklist != null) Api.blacklist.sellBlacklist();
+            if (Api.blacklist != null) {
+                Api.blacklist.sellBlacklist();
+                ApiNotificationManager.notify("Selling blacklisted items...");
+            }
         }));
 
         return new Menu("Settings", opts);

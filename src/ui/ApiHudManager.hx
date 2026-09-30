@@ -88,7 +88,11 @@ class ApiHudManager {
                         ApiNotificationManager.notify("Script stopped.");
                     } else {
                         ScriptManager.SINGLETON.start();
-                        ApiNotificationManager.notify("Script started.");
+                        if (ScriptManager.SINGLETON.isRunning) {
+                            ApiNotificationManager.notify("Script started.");
+                        } else {
+                            ApiNotificationManager.notify("No script loaded! Open Script Manager to select one.");
+                        }
                     }
                 }
             },

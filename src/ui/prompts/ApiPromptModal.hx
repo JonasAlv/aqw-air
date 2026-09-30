@@ -2,6 +2,8 @@ package ui.prompts;
 
 #if flash
 import flash.display.Sprite;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
@@ -195,15 +197,44 @@ class ApiPromptModal {
     }
 
     public static function close():Void {
-        if (_currentContainer != null && _currentContainer.parent != null) {
-            _currentContainer.parent.removeChild(_currentContainer);
+        if (_currentContainer != null) {
+            if (_currentContainer.stage != null) {
+                _currentContainer.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onStageKeyDown);
+            }
+            if (_currentContainer.parent != null) {
+                _currentContainer.parent.removeChild(_currentContainer);
+            }
         }
         _currentContainer = null;
     }
 
     public static function show(overlay:Dynamic, container:Sprite):Void {
         if (overlay != null) {
+            if (overlay.stage != null && container != null) {
+                var sw:Float = overlay.stage.stageWidth > 0 ? overlay.stage.stageWidth : 960;
+                var sh:Float = overlay.stage.stageHeight > 0 ? overlay.stage.stageHeight : 500;
+                if (sw > 0 && sh > 0 && container.width > 0 && container.height > 0) {
+                    container.x = (sw - container.width) / 2;
+                    container.y = (sh - container.height) / 2;
+                }
+            }
             overlay.addChild(container);
+
+            if (overlay.stage != null) {
+                overlay.stage.addEventListener(KeyboardEvent.KEY_DOWN, onStageKeyDown);
+            } else if (container != null) {
+                container.addEventListener(Event.ADDED_TO_STAGE, function(e:Event):Void {
+                    if (container.stage != null) {
+                        container.stage.addEventListener(KeyboardEvent.KEY_DOWN, onStageKeyDown);
+                    }
+                });
+            }
+        }
+    }
+
+    private static function onStageKeyDown(e:KeyboardEvent):Void {
+        if (e.keyCode == 27) { // ESC key
+            close();
         }
     }
 }

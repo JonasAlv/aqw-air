@@ -44,9 +44,9 @@ class ApiNotification extends Sprite {
         _messageTxt.defaultTextFormat = fmt;
         _messageTxt.text = message != null ? message : "";
         _messageTxt.width = NOTIF_WIDTH - (sticky ? 16 : 36);
-        _messageTxt.height = NOTIF_HEIGHT;
+        _messageTxt.height = 20;
         _messageTxt.x = 10;
-        _messageTxt.y = 0;
+        _messageTxt.y = (NOTIF_HEIGHT - 20) / 2;
         _messageTxt.selectable = false;
         _messageTxt.mouseEnabled = false;
         this.addChild(_messageTxt);
