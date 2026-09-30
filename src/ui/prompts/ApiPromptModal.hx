@@ -13,11 +13,17 @@ import flash.text.TextFormatAlign;
 class ApiPromptModal {
     private static var _currentContainer:Sprite;
     private static var _backdrop:Sprite;
+    private static var _dialogWidth:Float = 0;
+    private static var _dialogHeight:Float = 0;
 
     public static function createDialog(w:Float, h:Float, titleText:String):Sprite {
         close();
+        _dialogWidth = w;
+        _dialogHeight = h;
 
         var container = new Sprite();
+        untyped container.__dialogWidth = w;
+        untyped container.__dialogHeight = h;
         container.graphics.beginFill(0x121212, 0.95);
         container.graphics.lineStyle(1, 0x2A2A2A);
         container.graphics.drawRoundRect(0, 0, w, h, 8, 8);
@@ -25,6 +31,8 @@ class ApiPromptModal {
 
         container.x = (960 - w) / 2;
         container.y = (500 - h) / 2;
+        if (container.x < 0) container.x = 0;
+        if (container.y < 0) container.y = 0;
 
         var title = new TextField();
         var fmt = new TextFormat("_sans", 16, 0xE0E0E0, true);
@@ -198,6 +206,8 @@ class ApiPromptModal {
     }
 
     public static function close():Void {
+        _dialogWidth = 0;
+        _dialogHeight = 0;
         if (_backdrop != null && _backdrop.parent != null) {
             _backdrop.parent.removeChild(_backdrop);
         }
@@ -230,8 +240,10 @@ class ApiPromptModal {
             _backdrop.graphics.endFill();
 
             if (container != null) {
-                container.x = (sw - container.width) / 2;
-                container.y = (sh - container.height) / 2;
+                var dw:Float = _dialogWidth > 0 ? _dialogWidth : (untyped container.__dialogWidth != null ? untyped container.__dialogWidth : container.width);
+                var dh:Float = _dialogHeight > 0 ? _dialogHeight : (untyped container.__dialogHeight != null ? untyped container.__dialogHeight : container.height);
+                container.x = Math.max(0, (sw - dw) / 2);
+                container.y = Math.max(0, (sh - dh) / 2);
             }
 
             overlay.addChild(_backdrop);

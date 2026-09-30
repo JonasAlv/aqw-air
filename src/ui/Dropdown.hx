@@ -76,7 +76,7 @@ class Dropdown extends Sprite {
 
         _listContainer = new Sprite();
         _listContainer.visible = false;
-        addChild(_listContainer);
+        // Do not addChild(_listContainer) here - only attach when opened so it doesn't inflate parent height
 
         var listHeight:Float = getVisibleListHeight();
 
@@ -372,6 +372,10 @@ class Dropdown extends Sprite {
         _isOpen = true;
         _listContainer.visible = true;
 
+        if (_listContainer.parent == null) {
+            addChild(_listContainer);
+        }
+
         if (parent != null) {
             parent.setChildIndex(this, parent.numChildren - 1);
         }
@@ -408,6 +412,9 @@ class Dropdown extends Sprite {
         drawArrow(false);
         if (_activeDropdown == this) {
             _activeDropdown = null;
+        }
+        if (_listContainer.parent != null) {
+            removeChild(_listContainer);
         }
         if (stage != null) {
             stage.removeEventListener(MouseEvent.MOUSE_DOWN, onStageClickOutside, true);

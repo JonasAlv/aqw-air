@@ -1684,21 +1684,28 @@ class ApiPrompts {
             var currentScriptName:String = "";
             var isUser:Bool = false;
             var isBundled:Bool = false;
+            var currentCategory:String = "All Scripts";
+
+            // Category Selection Dropdown
+            var lblCategory = ApiPromptModal.createLabel("Category:", 130);
+            lblCategory.x = 20;
+            lblCategory.y = 36;
+            dlg.addChild(lblCategory);
 
             // Script Selection Dropdown
-            var lblSelect = ApiPromptModal.createLabel("Select Script:", 140);
-            lblSelect.x = 20;
+            var lblSelect = ApiPromptModal.createLabel("Select Script:", 205);
+            lblSelect.x = 160;
             lblSelect.y = 36;
             dlg.addChild(lblSelect);
 
             // Script Name Input
-            var lblName = ApiPromptModal.createLabel("Script Name (.hxs):", 140);
-            lblName.x = 300;
+            var lblName = ApiPromptModal.createLabel("Script Name (.hxs):", 225);
+            lblName.x = 375;
             lblName.y = 36;
             dlg.addChild(lblName);
 
-            var inputName = ApiPromptModal.createInput(300, 26, "");
-            inputName.x = 300;
+            var inputName = ApiPromptModal.createInput(225, 26, "");
+            inputName.x = 375;
             inputName.y = 56;
             dlg.addChild(inputName);
 
@@ -1728,30 +1735,67 @@ class ApiPrompts {
             var saveBtn:Sprite = null;
             var deleteBtn:Sprite = null;
 
-            var formatScriptOption = function(rawName:String):String {
+            var ddScript:Dropdown = null;
+            var ddCategory:Dropdown = null;
+
+            // Map option labels to raw script paths
+            var optToRaw:Map<String, String> = new Map<String, String>();
+
+            var getCategoryForScript = function(rawName:String):String {
+                if (StringTools.startsWith(rawName, "saga/")) return "Lord of Chaos";
+                if (StringTools.startsWith(rawName, "rep/")) return "Reputation";
+                if (ScriptManager.SINGLETON.isBundledScript(rawName)) return "General";
+                return "User Scripts";
+            };
+
+            var formatScriptLabel = function(rawName:String, category:String):String {
                 if (rawName == "[+ New Script]") return rawName;
-                if (ScriptManager.SINGLETON.isBundledScript(rawName)) {
-                    return "[Bundled] " + rawName;
+                if (category == "Lord of Chaos") {
+                    var s = rawName;
+                    if (StringTools.startsWith(s, "saga/LordofChaos/")) s = s.substring(17);
+                    else if (StringTools.startsWith(s, "saga/")) s = s.substring(5);
+                    return s;
+                } else if (category == "Reputation") {
+                    var s = rawName;
+                    if (StringTools.startsWith(s, "rep/")) s = s.substring(4);
+                    return s;
+                } else if (category == "General") {
+                    return rawName;
+                } else if (category == "User Scripts") {
+                    return rawName;
                 } else {
-                    return "[User] " + rawName;
+                    // All Scripts: prefix category tag
+                    var cat = getCategoryForScript(rawName);
+                    var shortTag = (cat == "Lord of Chaos") ? "[Chaos] " : (cat == "Reputation") ? "[Rep] " : (cat == "General") ? "[Gen] " : "[User] ";
+                    var clean = rawName;
+                    if (StringTools.startsWith(clean, "saga/LordofChaos/")) clean = clean.substring(17);
+                    else if (StringTools.startsWith(clean, "rep/")) clean = clean.substring(4);
+                    return shortTag + clean;
                 }
             };
 
-            var getRawScriptName = function(optLabel:String):String {
-                if (optLabel == null) return "";
-                if (optLabel == "[+ New Script]") return "";
-                if (StringTools.startsWith(optLabel, "[User] ")) return optLabel.substring(7);
-                if (StringTools.startsWith(optLabel, "[Bundled] ")) return optLabel.substring(10);
-                return optLabel;
-            };
-
-            var buildOptionsList = function():Array<String> {
+            var buildFilteredOptions = function(category:String):Array<String> {
+                optToRaw = new Map<String, String>();
                 var rawScripts = ScriptManager.SINGLETON.listScripts();
                 var opts:Array<String> = [];
+
                 for (s in rawScripts) {
-                    opts.push(formatScriptOption(s));
+                    var scriptCat = getCategoryForScript(s);
+                    if (category == "All Scripts" || category == scriptCat) {
+                        var lbl = formatScriptLabel(s, category);
+                        if (optToRaw.exists(lbl)) {
+                            lbl = "[" + s + "]";
+                        }
+                        optToRaw.set(lbl, s);
+                        opts.push(lbl);
+                    }
                 }
-                opts.push("[+ New Script]");
+
+                if (category == "All Scripts" || category == "User Scripts") {
+                    opts.push("[+ New Script]");
+                    optToRaw.set("[+ New Script]", "[+ New Script]");
+                }
+
                 return opts;
             };
 
@@ -1769,8 +1813,6 @@ class ApiPrompts {
                 }
             };
 
-            var ddScript:Dropdown = null;
-
             var setDeleteEnabled = function(enabled:Bool):Void {
                 if (deleteBtn != null) {
                     deleteBtn.mouseEnabled = enabled;
@@ -1779,7 +1821,8 @@ class ApiPrompts {
             };
 
             var loadSelectedScript = function(optLabel:String):Void {
-                if (optLabel == "[+ New Script]") {
+                var raw = optToRaw.exists(optLabel) ? optToRaw.get(optLabel) : optLabel;
+                if (raw == "[+ New Script]" || optLabel == "[+ New Script]") {
                     currentScriptName = "MyScript";
                     isUser = true;
                     isBundled = false;
@@ -1791,13 +1834,14 @@ class ApiPrompts {
                     try { inputCode.setTextFormat(codeFmt); } catch (_:Dynamic) {}
                     setDeleteEnabled(false);
                 } else {
-                    var raw = getRawScriptName(optLabel);
                     currentScriptName = raw;
                     isBundled = ScriptManager.SINGLETON.isBundledScript(raw);
                     isUser = !isBundled;
                     if (isBundled) {
                         lblName.text = "Save As User Script (.hxs):";
-                        inputName.text = raw + "_Edited";
+                        var leafName = raw;
+                        if (leafName.indexOf("/") != -1) leafName = leafName.substring(leafName.lastIndexOf("/") + 1);
+                        inputName.text = leafName + "_Edited";
                         setDeleteEnabled(false);
                     } else {
                         lblName.text = "Script Name (.hxs):";
@@ -1812,19 +1856,37 @@ class ApiPrompts {
                 updateStatusDisplay();
             };
 
-            var scriptOptions = buildOptionsList();
-            ddScript = new Dropdown(260, 26, scriptOptions, function(sel:String):Void {
+            var categories = ["All Scripts", "Lord of Chaos", "Reputation", "General", "User Scripts"];
+            var scriptOptions = buildFilteredOptions(currentCategory);
+
+            ddScript = new Dropdown(205, 26, scriptOptions, function(sel:String):Void {
                 loadSelectedScript(sel);
             });
-            ddScript.x = 20;
+            ddScript.x = 160;
             ddScript.y = 56;
+
+            ddCategory = new Dropdown(130, 26, categories, function(cat:String):Void {
+                currentCategory = cat;
+                var filtered = buildFilteredOptions(cat);
+                ddScript.setOptions(filtered);
+                var sel = filtered.length > 0 ? filtered[0] : "[+ New Script]";
+                ddScript.setSelectedItem(sel);
+                loadSelectedScript(sel);
+            });
+            ddCategory.x = 20;
+            ddCategory.y = 56;
+
+            dlg.addChild(ddCategory);
             dlg.addChild(ddScript);
 
             var initialLabel = scriptOptions.length > 0 ? scriptOptions[0] : "[+ New Script]";
             if (ScriptManager.SINGLETON.activeScriptName != null) {
-                var candidate = formatScriptOption(ScriptManager.SINGLETON.activeScriptName);
-                if (scriptOptions.indexOf(candidate) != -1) {
-                    initialLabel = candidate;
+                var act = ScriptManager.SINGLETON.activeScriptName;
+                for (k in optToRaw.keys()) {
+                    if (optToRaw.get(k) == act) {
+                        initialLabel = k;
+                        break;
+                    }
                 }
             }
             ddScript.setSelectedItem(initialLabel);
@@ -1842,7 +1904,7 @@ class ApiPrompts {
                         return;
                     }
                     var sName = StringTools.trim(inputName.text);
-                    if (isBundled && sName == currentScriptName + "_Edited") {
+                    if (isBundled && sName.indexOf("_Edited") != -1) {
                         sName = currentScriptName;
                     } else if (sName == "") {
                         sName = currentScriptName != "" ? currentScriptName : "CustomScript";
@@ -1880,9 +1942,9 @@ class ApiPrompts {
                 var saved = ScriptManager.SINGLETON.saveScript(sName, code);
                 if (saved) {
                     ApiNotificationManager.notify("Saved script: " + sName);
-                    var refreshed = buildOptionsList();
+                    var refreshed = buildFilteredOptions(currentCategory);
                     ddScript.setOptions(refreshed);
-                    var newSel = formatScriptOption(sName);
+                    var newSel = optToRaw.exists(sName) ? sName : (refreshed.length > 0 ? refreshed[0] : "[+ New Script]");
                     ddScript.setSelectedItem(newSel);
                     loadSelectedScript(newSel);
                 } else {
@@ -1903,7 +1965,7 @@ class ApiPrompts {
                 var deleted = ScriptManager.SINGLETON.deleteScript(toDelete);
                 if (deleted) {
                     ApiNotificationManager.notify("Deleted script: " + toDelete);
-                    var refreshed = buildOptionsList();
+                    var refreshed = buildFilteredOptions(currentCategory);
                     ddScript.setOptions(refreshed);
                     var nextSel = refreshed.length > 0 ? refreshed[0] : "[+ New Script]";
                     ddScript.setSelectedItem(nextSel);
@@ -1937,6 +1999,7 @@ class ApiPrompts {
 
             ApiPromptModal.show(overlay, dlg);
         } catch (e:Dynamic) {
+            com.aqwapi.utils.ApiLogger.error("UI", "Script Manager error: " + e);
             ApiNotificationManager.notify("Script Manager error: " + e);
         }
     }
