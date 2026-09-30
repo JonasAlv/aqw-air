@@ -23,6 +23,16 @@ import util.HelperSetting;
 class ApiMenus {
     private static var _injected:Bool = false;
     private static var _overlay:Overlay;
+    private static var _floatingMenuBtn:Sprite = null;
+
+    public static function resetMenuButtonPosition():Void {
+        HelperSetting.setInt("api_floating_menu_x", 80);
+        HelperSetting.setInt("api_floating_menu_y", 10);
+        if (_floatingMenuBtn != null) {
+            _floatingMenuBtn.x = 80;
+            _floatingMenuBtn.y = 10;
+        }
+    }
 
     public static var anthonyMenus:Dynamic;
     public static var apiMenus:Vector<Menu>;
@@ -432,8 +442,11 @@ class ApiMenus {
             txt.textColor = 0xEEEEEE;
         });
 
-        icon.x = 80;
-        icon.y = 10;
+        _floatingMenuBtn = icon;
+        var savedMenuX = HelperSetting.getInt("api_floating_menu_x", -1);
+        var savedMenuY = HelperSetting.getInt("api_floating_menu_y", -1);
+        icon.x = (savedMenuX >= 0) ? savedMenuX : 80;
+        icon.y = (savedMenuY >= 0) ? savedMenuY : 10;
         icon.buttonMode = true;
 
         var theStage:Dynamic = (pocket != null && pocket.stage != null) ? pocket.stage : overlay.stage;
@@ -476,6 +489,10 @@ class ApiMenus {
                 }
             });
             theStage.addEventListener(MouseEvent.MOUSE_UP, function(e:MouseEvent):Void {
+                if (isDragging && hasDragged) {
+                    HelperSetting.setInt("api_floating_menu_x", Math.round(icon.x));
+                    HelperSetting.setInt("api_floating_menu_y", Math.round(icon.y));
+                }
                 isDragging = false;
             });
         }

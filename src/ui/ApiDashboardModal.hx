@@ -25,6 +25,7 @@ enum DashboardTab {
     TabScripts;
     TabAutomation;
     TabEnhancements;
+    TabHud;
     TabSettings;
 }
 
@@ -243,12 +244,13 @@ class ApiDashboardModal extends Sprite {
             { id: TabScripts, label: "Scripts" },
             { id: TabAutomation, label: "Automation" },
             { id: TabEnhancements, label: "Enhancements" },
+            { id: TabHud, label: "On-Screen HUD" },
             { id: TabSettings, label: "Settings" }
         ];
 
         var tabY:Float = 60;
         var tabW:Float = SIDEBAR_WIDTH - 12;
-        var tabH:Float = 38;
+        var tabH:Float = 36;
 
         for (t in tabs) {
             var btn = createTabButton(t.label, tabW, tabH, t.id);
@@ -328,7 +330,7 @@ class ApiDashboardModal extends Sprite {
         _currentTab = tabId;
 
         var tabW:Float = SIDEBAR_WIDTH - 12;
-        var tabH:Float = 38;
+        var tabH:Float = 36;
 
         for (t in _tabButtons.keys()) {
             var btn = _tabButtons.get(t);
@@ -470,6 +472,68 @@ class ApiDashboardModal extends Sprite {
 
     private function getTotalContentHeight():Float {
         return _totalContentHeight > 6 ? (_totalContentHeight - 6) : _totalContentHeight;
+    }
+
+    private function addSectionHeader(title:String):Void {
+        var rowW:Float = CONTENT_WIDTH - 20;
+        var header = new Sprite();
+
+        var lbl = new TextField();
+        var fmt = new TextFormat("_sans", 11, 0xCC4444, true);
+        lbl.defaultTextFormat = fmt;
+        lbl.text = title.toUpperCase();
+        lbl.x = 2;
+        lbl.y = 0;
+        lbl.autoSize = TextFieldAutoSize.LEFT;
+        lbl.selectable = false;
+        lbl.mouseEnabled = false;
+        header.addChild(lbl);
+
+        var lineX:Float = lbl.x + lbl.width + 8;
+        if (lineX < rowW) {
+            header.graphics.lineStyle(1, 0x2A2A2A);
+            header.graphics.moveTo(lineX, 7);
+            header.graphics.lineTo(rowW, 7);
+        }
+
+        header.x = 0;
+        header.y = _totalContentHeight + 4;
+        _contentContainer.addChild(header);
+
+        _totalContentHeight += 22;
+        updateScrollbar();
+    }
+
+    private function addInfoBanner(text:String):Void {
+        var rowW:Float = CONTENT_WIDTH - 20;
+        var banner = new Sprite();
+
+        var descTxt = new TextField();
+        var fmt = new TextFormat("_sans", 11, 0x999999, false);
+        descTxt.defaultTextFormat = fmt;
+        descTxt.text = text;
+        descTxt.x = 10;
+        descTxt.y = 8;
+        descTxt.width = rowW - 20;
+        descTxt.wordWrap = true;
+        descTxt.multiline = true;
+        descTxt.autoSize = TextFieldAutoSize.LEFT;
+        descTxt.selectable = false;
+        descTxt.mouseEnabled = false;
+        banner.addChild(descTxt);
+
+        var bannerH:Float = descTxt.height + 16;
+        banner.graphics.beginFill(0x161616, 0.85);
+        banner.graphics.lineStyle(1, 0x282828);
+        banner.graphics.drawRoundRect(0, 0, rowW, bannerH, 6, 6);
+        banner.graphics.endFill();
+
+        banner.x = 0;
+        banner.y = _totalContentHeight;
+        _contentContainer.addChild(banner);
+
+        _totalContentHeight += bannerH + 8;
+        updateScrollbar();
     }
 
     private function addItemRow(
@@ -685,12 +749,16 @@ class ApiDashboardModal extends Sprite {
                 renderAutomationTab();
             case TabEnhancements:
                 renderEnhancementsTab();
+            case TabHud:
+                renderHudTab();
             case TabSettings:
                 renderSettingsTab();
         }
     }
 
     private function renderScriptsTab():Void {
+        addSectionHeader("Script Execution");
+
         // 1. Script Manager
         addItemRow(
             "Script Manager",
@@ -729,7 +797,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 2. Load Script from file
+        // 3. Load Script from file
         #if air
         addItemRow(
             "Load Script File",
@@ -764,7 +832,7 @@ class ApiDashboardModal extends Sprite {
         );
         #end
 
-        // 3. Paste Script
+        // 4. Paste Script
         addItemRow(
             "Paste Script",
             "Paste raw HScript code and execute it immediately in the runtime engine.",
@@ -777,7 +845,9 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 4. Class Loadouts (For Scripts)
+        addSectionHeader("Automation & Logging");
+
+        // 5. Class Loadouts (For Scripts)
         addItemRow(
             "Class Loadouts (Scripting)",
             "Configure default Farm, Solo, Boss, and Dodge classes for script auto-swapping.",
@@ -790,7 +860,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 5. Clear Log
+        // 6. Clear Log
         addItemRow(
             "Clear Bot Log",
             "Truncates bot.log to start fresh for monitoring and debugging sessions.",
@@ -805,6 +875,8 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function renderAutomationTab():Void {
+        addSectionHeader("Smart Combat");
+
         // 1. Smart Combat Toggle
         addItemRow(
             "Smart Combat",
@@ -858,6 +930,8 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
+        addSectionHeader("Custom Combos & Quests");
+
         // 4. Custom Auto-Combat
         addItemRow(
             "Custom Combat",
@@ -893,6 +967,8 @@ class ApiDashboardModal extends Sprite {
     private function renderEnhancementsTab():Void {
         var curClass = (Api.player != null && Api.player.className != null && Api.player.className != "") ? Api.player.className : "Equipped Class";
 
+        addSectionHeader("Auto-Enhance");
+
         // 1. One-Click Smart Enhance (Equipped)
         addItemRow(
             "Smart Enhance (Equipped)",
@@ -926,6 +1002,8 @@ class ApiDashboardModal extends Sprite {
                 ApiPrompts.showCustomEnhancePrompt(_overlay);
             }
         );
+
+        addSectionHeader("Enhancement Shops");
 
         // 3. Lvl 50+ Enhancements
         var lvl50Shops = [
@@ -989,33 +1067,141 @@ class ApiDashboardModal extends Sprite {
         );
     }
 
+    private function renderHudTab():Void {
+        addInfoBanner("Configure floating on-screen HUD buttons. Each button can be toggled on or off and freely dragged anywhere on your screen. Positions are saved automatically.");
+
+        addSectionHeader("Combat & Scripts");
+
+        // 1. HUD: Smart Combat Button
+        addItemRow(
+            "HUD: Smart Combat Button",
+            "Places an on-screen toggle button with live ON/OFF indicator to enable/disable Smart Combat directly.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("smart_combat");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("smart_combat", next);
+                ApiNotificationManager.notify("HUD Smart Combat: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("smart_combat");
+            }
+        );
+
+        // 2. HUD: Script Runner Button
+        addItemRow(
+            "HUD: Script Runner Button",
+            "Places an on-screen Start/Stop button to quickly control running scripts without opening the menu.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("script_runner");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("script_runner", next);
+                ApiNotificationManager.notify("HUD Script Runner: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("script_runner");
+            }
+        );
+
+        addSectionHeader("Gear & Loot");
+
+        // 3. HUD: Smart Enhance Button
+        addItemRow(
+            "HUD: Smart Enhance Button",
+            "Places a 1-tap quick enhancement button on screen to enhance equipped gear for your active class.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("smart_enhance");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("smart_enhance", next);
+                ApiNotificationManager.notify("HUD Smart Enhance: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("smart_enhance");
+            }
+        );
+
+        // 4. HUD: Infinite Range Button
+        addItemRow(
+            "HUD: Infinite Range Button",
+            "Places an on-screen toggle button to toggle Infinite Range attack capabilities on the fly.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("infinite_range");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("infinite_range", next);
+                ApiNotificationManager.notify("HUD Infinite Range: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("infinite_range");
+            }
+        );
+
+        // 5. HUD: Bank Button
+        addItemRow(
+            "HUD: Bank Button",
+            "Places an on-screen button to open or close your bank storage at any time with a single tap.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("toggle_bank");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("toggle_bank", next);
+                ApiNotificationManager.notify("HUD Bank: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("toggle_bank");
+            }
+        );
+
+        // 6. HUD: Accept Loot Button
+        addItemRow(
+            "HUD: Accept Loot Button",
+            "Places an on-screen toggle button to toggle automatic loot drop pickup.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = ApiHudManager.isButtonEnabled("accept_loot");
+                var next = !cur;
+                ApiHudManager.setButtonEnabled("accept_loot", next);
+                ApiNotificationManager.notify("HUD Accept Loot: " + (next ? "Visible" : "Hidden"));
+            },
+            function():Bool {
+                return ApiHudManager.isButtonEnabled("accept_loot");
+            }
+        );
+
+        addSectionHeader("Layout Controls");
+
+        // 7. Reset HUD Button Positions
+        addItemRow(
+            "Reset HUD Button Positions",
+            "Resets all on-screen draggable HUD buttons and the floating Menu button to default layout.",
+            "button",
+            "Reset",
+            false,
+            function():Void {
+                ApiHudManager.resetAllPositions();
+                ApiNotificationManager.notify("HUD button positions reset to defaults!");
+            }
+        );
+    }
+
     private function renderSettingsTab():Void {
-        // 1. Load Shop by ID
-        addItemRow(
-            "Load Shop by ID",
-            "Load any game shop directly by entering its numeric Shop ID.",
-            "button",
-            "Load Shop",
-            false,
-            function():Void {
-                close();
-                ApiPrompts.showShopPrompt(_overlay);
-            }
-        );
+        addSectionHeader("Combat & Movement");
 
-        // 2. Toggle Bank
-        addItemRow(
-            "Open / Close Bank",
-            "Open or close your bank storage from anywhere without needing a bank pet.",
-            "button",
-            "Toggle Bank",
-            false,
-            function():Void {
-                if (Api.inventory != null) Api.inventory.toggleBank();
-            }
-        );
-
-        // 3. Infinite Range
+        // 1. Infinite Range
         addItemRow(
             "Infinite Range",
             "Attack and use skills across the entire screen without range limits.",
@@ -1037,7 +1223,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 4. Death Spawn
+        // 2. Death Spawn
         addItemRow(
             "Death Spawn (Same Room)",
             "Automatically sets your respawn point to your current room so you never walk back on death.",
@@ -1056,7 +1242,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 4b. Skip Cutscenes
+        // 3. Skip Cutscenes
         addItemRow(
             "Skip Cutscenes",
             "Automatically cancel cutscene animations whenever they appear.",
@@ -1076,7 +1262,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 5. Private Rooms
+        // 4. Private Rooms
         addItemRow(
             "Private Rooms",
             "Automatically join private rooms (e.g. map-100000). Turn off to join public rooms.",
@@ -1095,7 +1281,9 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 6. Accept All Loot
+        addSectionHeader("Loot & Inventory");
+
+        // 5. Accept All Loot
         addItemRow(
             "Accept All Loot",
             "Automatically accept and pick up all dropped items.",
@@ -1120,7 +1308,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 7. Accept AC Drops
+        // 6. Accept AC Drops
         addItemRow(
             "Accept AC Drops",
             "Automatically accept all AC-tagged (free storage) items.",
@@ -1145,7 +1333,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 7b. Manage Blacklist
+        // 7. Manage Blacklist
         addItemRow(
             "Manage Blacklist",
             "Add or remove items from the blacklist. Blacklisted items are never looted and can be mass-sold.",
@@ -1158,7 +1346,7 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 7c. Sell Blacklisted Items
+        // 8. Sell Blacklisted Items
         addItemRow(
             "Sell Blacklisted Items",
             "Sell all unequipped inventory items that are on your blacklist.",
@@ -1173,106 +1361,30 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 8. HUD: Smart Combat Button
-        addItemRow(
-            "HUD: Smart Combat Button",
-            "Places an on-screen toggle button with live ON/OFF indicator to enable/disable Smart Combat directly.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = ApiHudManager.isButtonEnabled("smart_combat");
-                var next = !cur;
-                ApiHudManager.setButtonEnabled("smart_combat", next);
-                ApiNotificationManager.notify("HUD Smart Combat: " + (next ? "Visible" : "Hidden"));
-            },
-            function():Bool {
-                return ApiHudManager.isButtonEnabled("smart_combat");
-            }
-        );
+        addSectionHeader("Game Utilities");
 
-        // 10. HUD: Script Runner Button
+        // 9. Toggle Bank
         addItemRow(
-            "HUD: Script Runner Button",
-            "Places an on-screen Start/Stop button to quickly control running scripts without opening the menu.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = ApiHudManager.isButtonEnabled("script_runner");
-                var next = !cur;
-                ApiHudManager.setButtonEnabled("script_runner", next);
-                ApiNotificationManager.notify("HUD Script Runner: " + (next ? "Visible" : "Hidden"));
-            },
-            function():Bool {
-                return ApiHudManager.isButtonEnabled("script_runner");
-            }
-        );
-
-        // 11. HUD: Smart Enhance Button
-        addItemRow(
-            "HUD: Smart Enhance Button",
-            "Places a 1-tap quick enhancement button on screen to enhance equipped gear for your active class.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = ApiHudManager.isButtonEnabled("smart_enhance");
-                var next = !cur;
-                ApiHudManager.setButtonEnabled("smart_enhance", next);
-                ApiNotificationManager.notify("HUD Smart Enhance: " + (next ? "Visible" : "Hidden"));
-            },
-            function():Bool {
-                return ApiHudManager.isButtonEnabled("smart_enhance");
-            }
-        );
-
-        // 12. HUD: Infinite Range Button
-        addItemRow(
-            "HUD: Infinite Range Button",
-            "Places an on-screen toggle button to toggle Infinite Range attack capabilities on the fly.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = ApiHudManager.isButtonEnabled("infinite_range");
-                var next = !cur;
-                ApiHudManager.setButtonEnabled("infinite_range", next);
-                ApiNotificationManager.notify("HUD Infinite Range: " + (next ? "Visible" : "Hidden"));
-            },
-            function():Bool {
-                return ApiHudManager.isButtonEnabled("infinite_range");
-            }
-        );
-
-        // 14. HUD: Accept Loot Button
-        addItemRow(
-            "HUD: Accept Loot Button",
-            "Places an on-screen toggle button to toggle automatic loot drop pickup.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = ApiHudManager.isButtonEnabled("accept_loot");
-                var next = !cur;
-                ApiHudManager.setButtonEnabled("accept_loot", next);
-                ApiNotificationManager.notify("HUD Accept Loot: " + (next ? "Visible" : "Hidden"));
-            },
-            function():Bool {
-                return ApiHudManager.isButtonEnabled("accept_loot");
-            }
-        );
-
-        // 15. Reset HUD Button Positions
-        addItemRow(
-            "Reset HUD Button Positions",
-            "Resets all on-screen draggable HUD buttons back to their default positions along the top bar.",
+            "Open / Close Bank",
+            "Open or close your bank storage from anywhere without needing a bank pet.",
             "button",
-            "Reset",
+            "Toggle Bank",
             false,
             function():Void {
-                ApiHudManager.resetAllPositions();
-                ApiNotificationManager.notify("HUD button positions reset to defaults!");
+                if (Api.inventory != null) Api.inventory.toggleBank();
+            }
+        );
+
+        // 10. Load Shop by ID
+        addItemRow(
+            "Load Shop by ID",
+            "Load any game shop directly by entering its numeric Shop ID.",
+            "button",
+            "Load Shop",
+            false,
+            function():Void {
+                close();
+                ApiPrompts.showShopPrompt(_overlay);
             }
         );
     }

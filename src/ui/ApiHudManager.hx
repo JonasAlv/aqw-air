@@ -164,6 +164,22 @@ class ApiHudManager {
                     }
                     ApiNotificationManager.notify("Accept Loot: " + (next ? "Enabled" : "Disabled"));
                 }
+            },
+            {
+                id: "toggle_bank",
+                label: "Bank",
+                defaultX: 544,
+                defaultY: 10,
+                activeText: "Bank: OPEN",
+                inactiveText: "Bank",
+                getState: function():Bool {
+                    return (Api.inventory != null && Api.inventory.isBankLoaded);
+                },
+                onToggle: function():Void {
+                    if (Api.inventory != null) {
+                        Api.inventory.toggleBank();
+                    }
+                }
             }
         ];
     }
@@ -354,6 +370,9 @@ class ApiHudManager {
                 btn.y = def.defaultY;
             }
         }
+        try {
+            ApiMenus.resetMenuButtonPosition();
+        } catch (_:Dynamic) {}
     }
 }
 #else

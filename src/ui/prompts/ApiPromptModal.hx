@@ -12,6 +12,7 @@ import flash.text.TextFormatAlign;
 
 class ApiPromptModal {
     private static var _currentContainer:Sprite;
+    private static var _backdrop:Sprite;
 
     public static function createDialog(w:Float, h:Float, titleText:String):Sprite {
         close();
@@ -197,6 +198,9 @@ class ApiPromptModal {
     }
 
     public static function close():Void {
+        if (_backdrop != null && _backdrop.parent != null) {
+            _backdrop.parent.removeChild(_backdrop);
+        }
         if (_currentContainer != null) {
             if (_currentContainer.stage != null) {
                 _currentContainer.stage.removeEventListener(KeyboardEvent.KEY_DOWN, onStageKeyDown);
@@ -210,14 +214,27 @@ class ApiPromptModal {
 
     public static function show(overlay:Dynamic, container:Sprite):Void {
         if (overlay != null) {
-            if (overlay.stage != null && container != null) {
-                var sw:Float = overlay.stage.stageWidth > 0 ? overlay.stage.stageWidth : 960;
-                var sh:Float = overlay.stage.stageHeight > 0 ? overlay.stage.stageHeight : 500;
-                if (sw > 0 && sh > 0 && container.width > 0 && container.height > 0) {
-                    container.x = (sw - container.width) / 2;
-                    container.y = (sh - container.height) / 2;
-                }
+            var sw:Float = 960;
+            var sh:Float = 500;
+            if (overlay.stage != null) {
+                sw = overlay.stage.stageWidth > 0 ? overlay.stage.stageWidth : 960;
+                sh = overlay.stage.stageHeight > 0 ? overlay.stage.stageHeight : 500;
             }
+
+            if (_backdrop == null) {
+                _backdrop = new Sprite();
+            }
+            _backdrop.graphics.clear();
+            _backdrop.graphics.beginFill(0x000000, 0.65);
+            _backdrop.graphics.drawRect(0, 0, sw, sh);
+            _backdrop.graphics.endFill();
+
+            if (container != null) {
+                container.x = (sw - container.width) / 2;
+                container.y = (sh - container.height) / 2;
+            }
+
+            overlay.addChild(_backdrop);
             overlay.addChild(container);
 
             if (overlay.stage != null) {

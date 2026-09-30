@@ -660,8 +660,11 @@ class ApiPrompts {
     public static function showSmartCombatPrompt(overlay:Dynamic):Void {
         try {
             var dlg = ApiPromptModal.createDialog(420, 260, "Smart Combat Setup (Standalone)");
-
-            var lblSub = ApiPromptModal.createLabel("Standalone Smart Combat setup. For scripts, use Loadouts in Scripts tab.", 380, 11);
+            var curEquipped = CombatEngine.getCurrentClassName();
+            var subText = (curEquipped != "")
+                ? "Active class: " + curEquipped + " (For scripts, use Loadouts in Scripts tab)"
+                : "Standalone setup. For scripts, use Loadouts in Scripts tab.";
+            var lblSub = ApiPromptModal.createLabel(subText, 380, 11);
             lblSub.x = 20;
             lblSub.y = 38;
             lblSub.textColor = 0x888888;
@@ -1461,22 +1464,34 @@ class ApiPrompts {
             var availableClasses = getAvailableClasses();
             if (availableClasses == null || availableClasses.length == 0) availableClasses = ["Current"];
 
-            setupLoadoutRow(dlg, "FARM Loadout:", 45, 70, availableClasses, "api_farm_class", "api_farm_mode", function(c:String, m:String):Void {
+            var lblClassHdr = ApiPromptModal.createLabel("Class:", 150, 11, true);
+            lblClassHdr.x = 20;
+            lblClassHdr.y = 34;
+            lblClassHdr.textColor = 0x888888;
+            dlg.addChild(lblClassHdr);
+
+            var lblModeHdr = ApiPromptModal.createLabel("Combat Mode:", 120, 11, true);
+            lblModeHdr.x = 280;
+            lblModeHdr.y = 34;
+            lblModeHdr.textColor = 0x888888;
+            dlg.addChild(lblModeHdr);
+
+            setupLoadoutRow(dlg, "FARM Loadout:", 52, 74, availableClasses, "api_farm_class", "api_farm_mode", function(c:String, m:String):Void {
                 CombatEngine.farmClass = c;
                 CombatEngine.farmMode = m;
             });
 
-            setupLoadoutRow(dlg, "SOLO Loadout:", 110, 135, availableClasses, "api_solo_class", "api_solo_mode", function(c:String, m:String):Void {
+            setupLoadoutRow(dlg, "SOLO Loadout:", 116, 138, availableClasses, "api_solo_class", "api_solo_mode", function(c:String, m:String):Void {
                 CombatEngine.soloClass = c;
                 CombatEngine.soloMode = m;
             });
 
-            setupLoadoutRow(dlg, "BOSS Loadout:", 175, 200, availableClasses, "api_boss_class", "api_boss_mode", function(c:String, m:String):Void {
+            setupLoadoutRow(dlg, "BOSS Loadout:", 180, 202, availableClasses, "api_boss_class", "api_boss_mode", function(c:String, m:String):Void {
                 CombatEngine.bossClass = c;
                 CombatEngine.bossMode = m;
             });
 
-            setupLoadoutRow(dlg, "DODGE Loadout:", 240, 265, availableClasses, "api_dodge_class", "api_dodge_mode", function(c:String, m:String):Void {
+            setupLoadoutRow(dlg, "DODGE Loadout:", 244, 266, availableClasses, "api_dodge_class", "api_dodge_mode", function(c:String, m:String):Void {
                 CombatEngine.dodgeClass = c;
                 CombatEngine.dodgeMode = m;
             });
@@ -1486,7 +1501,7 @@ class ApiPrompts {
                 ApiNotificationManager.notify("Class Loadouts Saved!");
             }, true);
             doneBtn.x = 140;
-            doneBtn.y = 330;
+            doneBtn.y = 335;
             dlg.addChild(doneBtn);
 
             ApiPromptModal.show(overlay, dlg);
