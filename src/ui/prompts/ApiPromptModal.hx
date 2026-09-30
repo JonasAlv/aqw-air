@@ -22,8 +22,6 @@ class ApiPromptModal {
         _dialogHeight = h;
 
         var container = new Sprite();
-        untyped container.__dialogWidth = w;
-        untyped container.__dialogHeight = h;
         container.graphics.beginFill(0x121212, 0.95);
         container.graphics.lineStyle(1, 0x2A2A2A);
         container.graphics.drawRoundRect(0, 0, w, h, 8, 8);
@@ -240,8 +238,8 @@ class ApiPromptModal {
             _backdrop.graphics.endFill();
 
             if (container != null) {
-                var dw:Float = _dialogWidth > 0 ? _dialogWidth : (untyped container.__dialogWidth != null ? untyped container.__dialogWidth : container.width);
-                var dh:Float = _dialogHeight > 0 ? _dialogHeight : (untyped container.__dialogHeight != null ? untyped container.__dialogHeight : container.height);
+                var dw:Float = _dialogWidth > 0 ? _dialogWidth : container.width;
+                var dh:Float = _dialogHeight > 0 ? _dialogHeight : container.height;
                 container.x = Math.max(0, (sw - dw) / 2);
                 container.y = Math.max(0, (sh - dh) / 2);
             }
