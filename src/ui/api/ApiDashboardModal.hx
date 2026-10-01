@@ -617,11 +617,11 @@ class ApiDashboardModal extends Sprite {
         getCycleLabel:Void->String = null
     ):Void {
         var rowW:Float = CONTENT_WIDTH - 20;
-        var btnW:Float = 116;
+        var btnW:Float = (actionType == "cycle") ? 144.0 : 116.0;
         var btnH:Float = 32;
         var padX:Float = 14;
-        var gapBtn:Float = 14;
-        var textW:Float = rowW - padX - btnW - gapBtn - 8;
+        var gapBtn:Float = 12;
+        var textW:Float = rowW - padX - btnW - gapBtn - 6;
 
         var card = new Sprite();
 
@@ -1695,8 +1695,8 @@ class ApiDashboardModal extends Sprite {
         );
 
         // 3. Render Resolution Lock
-        var resModes = ["native", "720p", "900p", "550p"];
-        var resLabels = ["Native Window", "Fixed 720p (1280x720)", "Fixed 900p (1600x900)", "Fixed Classic (960x550)"];
+        var resModes = ["native", "550p"];
+        var resLabels = ["Native Window", "Classic (960x550)"];
         addItemRow(
             "Render Resolution Lock",
             "Caps vector rasterization to a fixed resolution and scales via GPU. Prevents FPS drops on large windows and 4K displays.",
@@ -1722,8 +1722,8 @@ class ApiDashboardModal extends Sprite {
 
         // 4. Maintain Aspect Ratio
         addItemRow(
-            "Maintain 16:9 Aspect Ratio",
-            "Keep true 16:9 proportions with letterboxing when using fixed resolution lock instead of stretching.",
+            "Maintain Aspect Ratio",
+            "Keep classic 96:55 proportions with letterboxing when resizing window instead of stretching.",
             "toggle",
             "",
             false,
@@ -1734,6 +1734,32 @@ class ApiDashboardModal extends Sprite {
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
+            }
+        );
+
+        // 5. Vector Graphic Quality (Flash performance scaler)
+        var qualityModes = ["HIGH", "MEDIUM", "LOW"];
+        var qualityLabels = ["High Quality", "Medium Quality", "Low (Fast FPS)"];
+        addItemRow(
+            "Vector Graphic Quality",
+            "Controls Flash vector curve smoothing and anti-aliasing. Set to Low for a massive FPS boost on low-spec hardware.",
+            "cycle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getString("api_graphic_quality", "HIGH");
+                var idx = qualityModes.indexOf(cur);
+                if (idx == -1) idx = 0;
+                var nextIdx = (idx + 1) % qualityModes.length;
+                HelperSetting.setString("api_graphic_quality", qualityModes[nextIdx]);
+                ViewportController.instance.apply();
+            },
+            null,
+            function():String {
+                var cur = HelperSetting.getString("api_graphic_quality", "HIGH");
+                var idx = qualityModes.indexOf(cur);
+                if (idx == -1) idx = 0;
+                return qualityLabels[idx];
             }
         );
 

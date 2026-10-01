@@ -59,19 +59,23 @@ class ViewportController {
         var targetH:Float = 0;
 
         switch (mode) {
-            case "720p":
-                targetW = 1280;
-                targetH = 720;
-            case "900p":
-                targetW = 1600;
-                targetH = 900;
-            case "550p":
+            case "550p", "classic":
                 targetW = 960;
                 targetH = 550;
             default: // "native"
                 targetW = 0;
                 targetH = 0;
         }
+
+        // Apply Graphic Quality (Flash vector rasterization detail)
+        var quality:String = HelperSetting.getString("api_graphic_quality", "HIGH");
+        try {
+            stg.quality = switch (quality) {
+                case "LOW": flash.display.StageQuality.LOW;
+                case "MEDIUM": flash.display.StageQuality.MEDIUM;
+                default: flash.display.StageQuality.HIGH;
+            };
+        } catch (_:Dynamic) {}
 
         var winW:Float = (stg.stageWidth > 0) ? stg.stageWidth : 960;
         var winH:Float = (stg.stageHeight > 0) ? stg.stageHeight : 550;
