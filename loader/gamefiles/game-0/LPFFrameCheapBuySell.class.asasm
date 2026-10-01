@@ -1,0 +1,608 @@
+class
+ refid "LPFFrameCheapBuySell"
+ instance QName(PackageNamespace(""), "LPFFrameCheapBuySell")
+  extends QName(PackageNamespace(""), "LPFFrame")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("LPFFrameCheapBuySell")
+  iinit
+   refid "LPFFrameCheapBuySell/instance/init"
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 6
+    localcount 2
+    initscopedepth 11
+    maxscopedepth 12
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onBtnBuyClick", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("MOUSE_OVER", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onMouseOver", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("MOUSE_OUT", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onMouseOut", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onBtnSellClick", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("MOUSE_OVER", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onMouseOver", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("MOUSE_OUT", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onMouseOut", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushtrue
+     setproperty         Multiname("buttonMode", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushtrue
+     setproperty         Multiname("buttonMode", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("bg3", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     dup
+     setlocal1
+
+     setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal1
+     kill                1
+     dup
+     setlocal1
+
+     setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal1
+     kill                1
+     setproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("bg3", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     dup
+     setlocal1
+
+     setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal1
+     kill                1
+     dup
+     setlocal1
+
+     setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal1
+     kill                1
+     setproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "btnBuy") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "btnSell") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "rootClass") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(ProtectedNamespace("LPFFrameCheapBuySell"), "eventType") type QName(PackageNamespace(""), "String") value Utf8("") end
+  trait method QName(PackageNamespace(""), "fOpen") flag OVERRIDE
+   method
+    refid "LPFFrameCheapBuySell/instance/fOpen"
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      findpropstrict      Multiname("MovieClip", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      getlex              Multiname("stage", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      callproperty        Multiname("getChildAt", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("MovieClip", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")]), 1
+      initproperty        Multiname("rootClass", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("positionBy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      getproperty         Multiname("r", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("positionBy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      pushstring          "eventType"
+      getlocal1
+      in
+      iffalse             L21
+
+      getlocal0
+      getlocal1
+      getproperty         Multiname("eventType", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      initproperty        Multiname("eventType", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+L21:
+      pushstring          "openOn"
+      getlocal1
+      in
+      iffalse             L41
+
+      getlocal1
+      getproperty         Multiname("openOn", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "shopBuy"
+      ifne                L33
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("select", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L33:
+      getlocal1
+      getproperty         Multiname("openOn", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "shopSell"
+      ifne                L41
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("select", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L41:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "fClose") flag OVERRIDE
+   method
+    refid "LPFFrameCheapBuySell/instance/fClose"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onBtnBuyClick", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("MOUSE_OVER", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onMouseOver", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("MOUSE_OUT", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onMouseOut", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onBtnSellClick", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("MOUSE_OVER", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onMouseOver", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("MOUSE_OUT", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onMouseOut", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      findpropstrict      Multiname("getLayout", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("getLayout", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      getlocal0
+      callpropvoid        Multiname("unregisterFrame", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getlex              Multiname("parent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      ifeq                L54
+
+      getlex              Multiname("parent", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      callpropvoid        Multiname("removeChild", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L54:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("LPFFrameCheapBuySell"), "fDraw")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell:fDraw"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "notify") flag OVERRIDE
+   method
+    refid "LPFFrameCheapBuySell/instance/notify"
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 1
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "onBtnSellClick")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/onBtnSellClick"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iftrue              L27
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("mixer", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "Click"
+      callpropvoid        Multiname("playSound", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("unselect", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("select", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      findpropstrict      Multiname("update", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "eventType"
+      getlocal0
+      getproperty         Multiname("eventType", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "sModeBroadcast"
+      pushstring          "shopSell"
+      newobject           2
+      callpropvoid        Multiname("update", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L27:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "onBtnBuyClick")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/onBtnBuyClick"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iftrue              L27
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("mixer", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "Click"
+      callpropvoid        Multiname("playSound", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnSell", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("unselect", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("btnBuy", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("select", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      findpropstrict      Multiname("update", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "eventType"
+      getlocal0
+      getproperty         Multiname("eventType", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "sModeBroadcast"
+      pushstring          "shopBuy"
+      newobject           2
+      callpropvoid        Multiname("update", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L27:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "onMouseOver")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/onMouseOver"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 3
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      getproperty         Multiname("currentTarget", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MovieClip", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      astypelate
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      setlocal2
+
+      getlocal2
+      getproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iftrue              L15
+
+      getlocal2
+      getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushtrue
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+L15:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "onMouseOut")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/onMouseOut"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 3
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      getproperty         Multiname("currentTarget", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MovieClip", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      astypelate
+      coerce              QName(PackageNamespace("flash.display"), "MovieClip")
+      setlocal2
+
+      getlocal2
+      getproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iftrue              L15
+
+      getlocal2
+      getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+L15:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "select")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/select"
+    param QName(PackageNamespace("flash.display"), "MovieClip")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      pushtrue
+      setproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal1
+      getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal1
+      getproperty         Multiname("bg3", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushtrue
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("setChildIndex", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      pushbyte            1
+      callpropvoid        Multiname("setChildIndex", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), "unselect")
+   method
+    refid "LPFFrameCheapBuySell/instance/LPFFrameCheapBuySell/instance/unselect"
+    param QName(PackageNamespace("flash.display"), "MovieClip")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 11
+     maxscopedepth 12
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      pushfalse
+      setproperty         Multiname("sel", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal1
+      getproperty         Multiname("bg2", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal1
+      getproperty         Multiname("bg3", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("setChildIndex", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      pushbyte            0
+      callpropvoid        Multiname("setChildIndex", [PrivateNamespace(null, "LPFFrameCheapBuySell/instance"), PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), ProtectedNamespace("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrameCheapBuySell"), StaticProtectedNs("LPFFrame"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "LPFFrameCheapBuySell/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 10
+   maxscopedepth 11
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

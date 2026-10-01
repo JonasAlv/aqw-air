@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Embersea Reputation Farm (.hxs)
+// Farms Embersea Reputation to Rank 10
+// Quest: 4228 (Slay the Blazebinders in /fireforge)
+// Prerequisite: Fireforge questline unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Embersea") >= 10) {
+        msg("Embersea Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(4228) && !isQuestUnlocked(4080)) {
+        msg("Prerequisite missing: Quest 4228 or 4080 is locked. Complete Embersea storyline up to Fireforge or Pyrewatch first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("fireforge");
+    autoQuest([4228]);
+}
+
+function onTick() {
+    if (factionRank("Embersea") >= 10) {
+        msg("Embersea Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("fireforge");
+    if (!hunt("Blazebinder", 5)) return;
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

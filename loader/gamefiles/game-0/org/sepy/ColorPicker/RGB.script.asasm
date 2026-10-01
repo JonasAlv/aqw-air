@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "org.sepy.ColorPicker:RGB/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("RGB", [PackageNamespace("org.sepy.ColorPicker")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "org.sepy.ColorPicker:RGB"
+    popscope
+    initproperty        QName(PackageNamespace("org.sepy.ColorPicker"), "RGB")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("org.sepy.ColorPicker"), "RGB")
+  #include "RGB.class.asasm"
+ end ; trait
+end ; script

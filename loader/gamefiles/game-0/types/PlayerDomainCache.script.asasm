@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "types:PlayerDomainCache/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("PlayerDomainCache", [PackageNamespace("types")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "types:PlayerDomainCache"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "types:PlayerDomainCache"
+    popscope
+    initproperty        QName(PackageNamespace("types"), "PlayerDomainCache")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("types"), "PlayerDomainCache")
+  #include "PlayerDomainCache.class.asasm"
+ end ; trait
+end ; script

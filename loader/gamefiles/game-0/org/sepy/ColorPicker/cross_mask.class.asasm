@@ -1,0 +1,41 @@
+class
+ refid "org.sepy.ColorPicker:cross_mask"
+ instance QName(PackageNamespace("org.sepy.ColorPicker"), "cross_mask")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("org.sepy.ColorPicker:cross_mask")
+  iinit
+   refid "org.sepy.ColorPicker:cross_mask/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; instance
+ cinit
+  refid "org.sepy.ColorPicker:cross_mask/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

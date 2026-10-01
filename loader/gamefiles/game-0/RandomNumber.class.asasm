@@ -1,0 +1,200 @@
+class
+ refid "RandomNumber"
+ instance QName(PackageNamespace(""), "RandomNumber")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("RandomNumber")
+  iinit
+   refid "RandomNumber/instance/init"
+   body
+    maxstack 3
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     getlocal0
+     getproperty         Multiname("MAX_RATIO", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+     negate
+     initproperty        QName(PackageInternalNs(""), "NEGA_MAX_RATIO")
+
+     getlocal0
+     getlex              Multiname("Math", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+     callproperty        Multiname("random", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")]), 0
+     getlex              Multiname("int", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+     getproperty         Multiname("MAX_VALUE", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+     multiply
+     initproperty        QName(PrivateNamespace(null, "RandomNumber/instance"), "r")
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait const QName(PackageInternalNs(""), "MAX_RATIO") type QName(PackageNamespace(""), "Number") value Double(4.65661287524579692e-10) end
+  trait const QName(PackageInternalNs(""), "NEGA_MAX_RATIO") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PrivateNamespace(null, "RandomNumber/instance"), "r") type QName(PackageNamespace(""), "int") end
+  trait slot QName(PrivateNamespace(null, "RandomNumber/instance"), "randNum") type QName(PackageNamespace(""), "Number") end
+  trait method QName(PackageNamespace(""), "rand")
+   method
+    refid "RandomNumber/instance/rand"
+    param QName(PackageNamespace(""), "Number")
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "Number")
+    flag HAS_OPTIONAL
+    optional Integer(0)
+    optional Integer(1)
+    body
+     maxstack 4
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      callproperty        Multiname("XORandom", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")]), 0
+      getlocal2
+      getlocal1
+      subtract
+      multiply
+      getlocal1
+      add
+      initproperty        Multiname("randNum", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+
+      getlocal0
+      getproperty         Multiname("randNum", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal2
+      ifnlt               L20
+
+      getlocal0
+      getproperty         Multiname("randNum", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      convert_d
+      jump                L22
+
+L20:
+      getlocal2
+      convert_d
+L22:
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "RandomNumber/instance"), "XORandom")
+   method
+    refid "RandomNumber/instance/RandomNumber/instance/XORandom"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 4
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      pushbyte            21
+      lshift
+      bitxor
+      initproperty        Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      pushbyte            35
+      urshift
+      bitxor
+      initproperty        Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      pushbyte            4
+      lshift
+      bitxor
+      initproperty        Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      pushbyte            0
+      ifngt               L39
+
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal0
+      getproperty         Multiname("MAX_RATIO", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      multiply
+      returnvalue
+
+L39:
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getlocal0
+      getproperty         Multiname("NEGA_MAX_RATIO", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      multiply
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "newSeed")
+   method
+    refid "RandomNumber/instance/newSeed"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      callproperty        Multiname("random", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")]), 0
+      getlex              Multiname("int", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      getproperty         Multiname("MAX_VALUE", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+      multiply
+      initproperty        Multiname("r", [PrivateNamespace(null, "RandomNumber/instance"), PrivateNamespace(null, "RandomNumber"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("RandomNumber"), StaticProtectedNs("RandomNumber")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "RandomNumber/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

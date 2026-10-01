@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Chaos Militia Reputation Farm (.hxs)
+// Farms Chaos Militia Reputation to Rank 10
+// Quest: 5775 (Expect the Inquisitors)
+// Prerequisite: Chaos Militia quests in /citadel unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Chaos Militia") >= 10) {
+        msg("Chaos Militia Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(5775)) {
+        msg("Prerequisite missing: Quest 5775 is locked. Unlock Chaos Militia quests in /citadel first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("citadel");
+    autoQuest([5775]);
+}
+
+function onTick() {
+    if (factionRank("Chaos Militia") >= 10) {
+        msg("Chaos Militia Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("citadel");
+    if (!hunt("Inquisitor Guard", 5)) return;
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

@@ -1,0 +1,57 @@
+class
+ refid "types:ZSortItem"
+ instance QName(PackageNamespace("types"), "ZSortItem")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("types:ZSortItem")
+  iinit
+   refid "types:ZSortItem/instance/init"
+   param QName(PackageNamespace("flash.display"), "MovieClip")
+   param QName(PackageNamespace(""), "Number")
+   flag HAS_OPTIONAL
+   optional Null()
+   optional Integer(0)
+   body
+    maxstack 2
+    localcount 3
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal1
+     initproperty        Multiname("mc", [PrivateNamespace(null, "types:ZSortItem/instance/init"), PrivateNamespace(null, "types:ZSortItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:ZSortItem"), StaticProtectedNs("types:ZSortItem")])
+
+     getlocal0
+     getlocal2
+     initproperty        Multiname("oy", [PrivateNamespace(null, "types:ZSortItem/instance/init"), PrivateNamespace(null, "types:ZSortItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:ZSortItem"), StaticProtectedNs("types:ZSortItem")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "mc") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "oy") type QName(PackageNamespace(""), "Number") end
+ end ; instance
+ cinit
+  refid "types:ZSortItem/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

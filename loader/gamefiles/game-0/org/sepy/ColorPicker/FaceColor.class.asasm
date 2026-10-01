@@ -1,0 +1,109 @@
+class
+ refid "org.sepy.ColorPicker:FaceColor"
+ instance QName(PackageNamespace("org.sepy.ColorPicker"), "FaceColor")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("org.sepy.ColorPicker:FaceColor")
+  iinit
+   refid "org.sepy.ColorPicker:FaceColor/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor/instance"), "_color") type QName(PackageNamespace(""), "Number") end
+  trait setter QName(PackageNamespace(""), "color")
+   method
+    refid "org.sepy.ColorPicker:FaceColor/instance/color/setter"
+    param QName(PackageNamespace(""), "Number")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      initproperty        Multiname("_color", [PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "color")
+   method
+    refid "org.sepy.ColorPicker:FaceColor/instance/color/getter"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_color", [PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "getRGB")
+   method
+    refid "org.sepy.ColorPicker:FaceColor/instance/getRGB"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      pushstring          "0x"
+      getlocal0
+      getproperty         Multiname("_color", [PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            16
+      callproperty        Multiname("toString", [PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:FaceColor"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("org.sepy.ColorPicker:FaceColor"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "org.sepy.ColorPicker:FaceColor/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

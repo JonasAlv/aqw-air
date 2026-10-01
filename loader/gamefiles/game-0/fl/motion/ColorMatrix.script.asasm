@@ -1,0 +1,45 @@
+script
+ sinit
+  refid "fl.motion:ColorMatrix/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ColorMatrix", [PackageNamespace("fl.motion")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+    pushscope
+
+    getlex              QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+    newclass            "fl.motion:ColorMatrix"
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("fl.motion"), "ColorMatrix")
+
+    findpropstrict      Multiname("XFormData", [PrivateNamespace(null, "fl.motion:ColorMatrix")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace(""), "Object")
+    newclass            "fl.motion:ColorMatrix/XFormData"
+    popscope
+    initproperty        QName(PrivateNamespace(null, "fl.motion:ColorMatrix"), "XFormData")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("fl.motion"), "ColorMatrix")
+  #include "ColorMatrix.class.asasm"
+ end ; trait
+ trait class QName(PrivateNamespace(null, "fl.motion:ColorMatrix"), "XFormData")
+  #include "ColorMatrix/XFormData.class.asasm"
+ end ; trait
+end ; script

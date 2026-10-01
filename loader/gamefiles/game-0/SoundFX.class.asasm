@@ -1,0 +1,428 @@
+class
+ refid "SoundFX"
+ instance QName(PackageNamespace(""), "SoundFX")
+  extends QName(PackageNamespace("flash.events"), "EventDispatcher")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("SoundFX")
+  iinit
+   refid "SoundFX/instance/init"
+   param QName(PackageNamespace("flash.system"), "ApplicationDomain")
+   body
+    maxstack 18
+    localcount 3
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     newobject           0
+     initproperty        QName(PrivateNamespace(null, "SoundFX/instance"), "sfx")
+
+     getlocal0
+     getlex              Multiname("Vector", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("__AS3__.vec")])
+     getlex              Multiname("SoundChannel", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.media")])
+     applytype           1
+     construct           0
+     initproperty        QName(PrivateNamespace(null, "SoundFX/instance"), "activeChannels")
+
+     getlocal0
+     findpropstrict      Multiname("SoundTransform", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.media")])
+     pushdouble          0.7
+     pushbyte            0
+     constructprop       Multiname("SoundTransform", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.media")]), 2
+     initproperty        QName(PackageNamespace(""), "stf")
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal1
+     initproperty        Multiname("assetsDomain", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     pushstring          "Achievement"
+     pushstring          "Bad"
+     pushstring          "Click"
+     pushstring          "ClickBig"
+     pushstring          "ClickMagic"
+     pushstring          "Coins"
+     pushstring          "Energy"
+     pushstring          "Evil"
+     pushstring          "Fire"
+     pushstring          "Good"
+     pushstring          "Heal"
+     pushstring          "Hit1"
+     pushstring          "Hit2"
+     pushstring          "Hit3"
+     pushstring          "Miss"
+     pushstring          "VeryGood"
+     pushstring          "Water"
+     pushstring          "Wind"
+     newarray            18
+     coerce              QName(PackageNamespace(""), "Array")
+     setlocal2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "SoundFX/instance"), "sfx") type QName(PackageNamespace(""), "Object") end
+  trait slot QName(PrivateNamespace(null, "SoundFX/instance"), "assetsDomain") type QName(PackageNamespace("flash.system"), "ApplicationDomain") end
+  trait slot QName(PrivateNamespace(null, "SoundFX/instance"), "activeChannels") type TypeName(QName(PackageNamespace("__AS3__.vec"), "Vector")<QName(PackageNamespace("flash.media"), "SoundChannel")>) end
+  trait slot QName(PackageNamespace(""), "stf") type QName(PackageNamespace("flash.media"), "SoundTransform") end
+  trait slot QName(PackageNamespace(""), "bSoundOn") type QName(PackageNamespace(""), "Boolean") value True() end
+  trait method QName(PackageNamespace(""), "playSound")
+   method
+    refid "SoundFX/instance/playSound"
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "void")
+    flag NEED_ACTIVATION
+    body
+     maxstack 6
+     localcount 4
+     initscopedepth 6
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      newactivation
+      dup
+      setlocal2
+
+      pushscope
+
+      getscopeobject      1
+      pushnull
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setslot             2
+
+      getscopeobject      1
+      pushnull
+      coerce              QName(PackageNamespace(""), "Class")
+      setslot             3
+
+      getscopeobject      1
+      getlocal1
+      setslot             1
+
+      getlocal0
+      getproperty         Multiname("bSoundOn", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iffalse             L127
+
+      getlocal0
+      getproperty         Multiname("sfx", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      getproperty         MultinameL([PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      ifeq                L41
+
+      getscopeobject      1
+      getlocal0
+      getproperty         Multiname("sfx", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      getproperty         MultinameL([PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      dup
+      getlocal0
+      getproperty         Multiname("stf", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("play", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 3
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setslot             2
+
+      jump                L108
+
+L41:
+      getlocal0
+      getproperty         Multiname("assetsDomain", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      callproperty        Multiname("hasDefinition", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      iffalse             L79
+
+      getscopeobject      1
+      getlocal0
+      getproperty         Multiname("assetsDomain", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      callproperty        Multiname("getDefinition", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      getlex              Multiname("Class", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      astypelate
+      coerce              QName(PackageNamespace(""), "Class")
+      setslot             3
+
+      getlocal0
+      getproperty         Multiname("sfx", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      getscopeobject      1
+      getslot             3
+      construct           0
+      setproperty         MultinameL([PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getlocal0
+      getproperty         Multiname("sfx", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             1
+      getproperty         MultinameL([PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      dup
+      getlocal0
+      getproperty         Multiname("stf", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("play", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 3
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setslot             2
+
+      jump                L87
+
+L79:
+      findpropstrict      Multiname("trace", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "[Load] ERR SoundFX: definition '"
+      getscopeobject      1
+      getslot             1
+      add
+      pushstring          "' not found in assetsDomain"
+      add
+      callpropvoid        Multiname("trace", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L87:
+      jump                L108
+
+L88:
+      getlocal0
+      pushscope
+
+      getlocal2
+      pushscope
+
+      newcatch            0
+      dup
+      setlocal3
+
+      dup
+      pushscope
+
+      swap
+      setslot             1
+
+      findpropstrict      Multiname("trace", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "[Load] ERR SoundFX: "
+      getscopeobject      2
+      getslot             1
+      getproperty         Multiname("message", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      add
+      callpropvoid        Multiname("trace", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      popscope
+      kill                3
+L108:
+      getscopeobject      1
+      getslot             2
+      pushnull
+      ifeq                L127
+
+      getlocal0
+      getproperty         Multiname("activeChannels", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             2
+      callpropvoid        Multiname("push", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getscopeobject      1
+      getslot             2
+      getlex              Multiname("Event", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("SOUND_COMPLETE", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onSoundComplete", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      pushbyte            0
+      pushtrue
+      callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+L127:
+      returnvoid
+     end ; code
+     try from L41 to L87 target L88 type QName(PackageNamespace(""), "Error") name QName(PackageNamespace(""), "e") end
+     trait slot QName(PackageInternalNs(""), "strSound") slotid 1 type QName(PackageNamespace(""), "String") end
+     trait slot QName(PackageInternalNs(""), "channel") slotid 2 type QName(PackageNamespace("flash.media"), "SoundChannel") end
+     trait slot QName(PackageInternalNs(""), "AssetClass") slotid 3 type QName(PackageNamespace(""), "Class") end
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "SoundFX/instance"), "onSoundComplete")
+   method
+    refid "SoundFX/instance/SoundFX/instance/onSoundComplete"
+    param QName(PackageNamespace("flash.events"), "Event")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      getproperty         Multiname("target", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("SoundChannel", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.media")])
+      astypelate
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setlocal2
+
+      getlocal2
+      getlex              Multiname("Event", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("SOUND_COMPLETE", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onSoundComplete", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("activeChannels", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal2
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      convert_i
+      setlocal3
+
+      getlocal3
+      pushbyte            0
+      ifnge               L28
+
+      getlocal0
+      getproperty         Multiname("activeChannels", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal3
+      pushbyte            1
+      callpropvoid        Multiname("splice", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+L28:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "stopAll")
+   method
+    refid "SoundFX/instance/stopAll"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setlocal1
+
+      pushbyte            0
+      setlocal2
+
+      getlocal0
+      getproperty         Multiname("activeChannels", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      coerce_a
+      setlocal3
+
+      jump                L26
+
+L12:
+      label
+      getlocal3
+      getlocal2
+      nextvalue
+      coerce              QName(PackageNamespace("flash.media"), "SoundChannel")
+      setlocal1
+
+      getlocal1
+      getlex              Multiname("Event", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("SOUND_COMPLETE", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onSoundComplete", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal1
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+L26:
+      hasnext2            3, 2
+      iftrue              L12
+
+      kill                3
+      kill                2
+      getlocal0
+      getproperty         Multiname("activeChannels", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      setproperty         Multiname("length", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "soundOn")
+   method
+    refid "SoundFX/instance/soundOn"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushtrue
+      initproperty        Multiname("bSoundOn", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "soundOff")
+   method
+    refid "SoundFX/instance/soundOff"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushfalse
+      initproperty        Multiname("bSoundOn", [PrivateNamespace(null, "SoundFX/instance"), PrivateNamespace(null, "SoundFX"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("SoundFX"), StaticProtectedNs("SoundFX"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "SoundFX/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

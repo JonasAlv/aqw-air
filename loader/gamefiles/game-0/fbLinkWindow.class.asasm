@@ -1,0 +1,452 @@
+class
+ refid "fbLinkWindow"
+ instance QName(PackageNamespace(""), "fbLinkWindow")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("fbLinkWindow")
+  iinit
+   refid "fbLinkWindow/instance/init"
+   param QName(PackageNamespace("flash.display"), "MovieClip")
+   param QName(PackageNamespace("flash.display"), "MovieClip")
+   body
+    maxstack 6
+    localcount 4
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal1
+     initproperty        Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getlocal2
+     initproperty        Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("strPassword", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            1
+     setproperty         Multiname("tabIndex", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("btnFBLink", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onLinkClick", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("btnFBCreate", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onCreateClick", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("btnClose", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("destroy", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushtrue
+     dup
+     setlocal3
+
+     setproperty         Multiname("showFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal3
+     kill                3
+     setproperty         Multiname("visible", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "fbLinkWindow/instance"), "mcFB") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PrivateNamespace(null, "fbLinkWindow/instance"), "rootClass") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait method QName(PrivateNamespace(null, "fbLinkWindow/instance"), "onLinkClick")
+   method
+    refid "fbLinkWindow/instance/fbLinkWindow/instance/onLinkClick"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    flag NEED_ACTIVATION
+    body
+     maxstack 6
+     localcount 4
+     initscopedepth 11
+     maxscopedepth 16
+     code
+      getlocal0
+      pushscope
+
+      newactivation
+      dup
+      setlocal2
+
+      pushscope
+
+      getscopeobject      1
+      getlocal1
+      setslot             1
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("mcConnDetail", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "Authenticating Account Info..."
+      callpropvoid        Multiname("showConn", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      getscopeobject      1
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("rand", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      convert_d
+      setslot             2
+
+      getscopeobject      1
+      pushstring          "cf-userlogin.asp?ran="
+      getscopeobject      1
+      getslot             2
+      add
+      coerce_s
+      setslot             3
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loaderInfo", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("url", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("toLowerCase", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      pushstring          "file://"
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushbyte            0
+      greaterequals
+      dup
+      iftrue              L48
+
+      pop
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loaderInfo", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("url", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("toLowerCase", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      pushstring          "cdn.aq.com"
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushbyte            0
+      greaterequals
+L48:
+      dup
+      iftrue              L60
+
+      pop
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loaderInfo", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("url", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("toLowerCase", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      pushstring          "aqworldscdn.aq.com"
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushbyte            0
+      greaterequals
+L60:
+      iffalse             L69
+
+      getscopeobject      1
+      pushstring          "https://www.aq.com/game/"
+      getscopeobject      1
+      getslot             3
+      add
+      coerce_s
+      setslot             3
+
+      jump                L81
+
+L69:
+      getscopeobject      1
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("params", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loginURL", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "?ran="
+      add
+      getscopeobject      1
+      getslot             2
+      add
+      coerce_s
+      setslot             3
+
+L81:
+      getscopeobject      1
+      findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             3
+      constructprop       Multiname("URLRequest", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+      setslot             4
+
+      getscopeobject      1
+      findpropstrict      Multiname("URLVariables", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      constructprop       Multiname("URLVariables", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+      setslot             5
+
+      getscopeobject      1
+      getslot             5
+      getlex              Multiname("FacebookConnect", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("Me", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("id", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("fbid", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             5
+      getlex              Multiname("FacebookConnect", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("AccessToken", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("fbtoken", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             5
+      pushstring          "true"
+      setproperty         Multiname("doLink", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             5
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("strUsername", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("text", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("user", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             5
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("strPassword", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("text", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("pass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             4
+      getscopeobject      1
+      getslot             5
+      setproperty         Multiname("data", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getscopeobject      1
+      getslot             4
+      getlex              Multiname("URLRequestMethod", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("POST", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("method", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loginLoader", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("Event", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("COMPLETE", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onLoginComplete", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loginLoader", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("Event", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("COMPLETE", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onLoginComplete", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loginLoader", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("IOErrorEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("IO_ERROR", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onLoginError", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      pushbyte            0
+      pushtrue
+      callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+L162:
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("loginLoader", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getscopeobject      1
+      getslot             4
+      callpropvoid        Multiname("load", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L168:
+      jump                L185
+
+L169:
+      getlocal0
+      pushscope
+
+      getlocal2
+      pushscope
+
+      newcatch            0
+      dup
+      setlocal3
+
+      dup
+      pushscope
+
+      swap
+      setslot             1
+
+      findpropstrict      Multiname("trace", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "Unable to load URL"
+      callpropvoid        Multiname("trace", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      popscope
+      kill                3
+L185:
+      returnvoid
+     end ; code
+     try from L162 to L168 target L169 type QName(PackageNamespace(""), "Error") name QName(PackageNamespace(""), "error") end
+     trait slot QName(PackageInternalNs(""), "e") slotid 1 type QName(PackageNamespace("flash.events"), "MouseEvent") end
+     trait slot QName(PackageInternalNs(""), "rand") slotid 2 type QName(PackageNamespace(""), "Number") end
+     trait slot QName(PackageInternalNs(""), "url") slotid 3 type QName(PackageNamespace(""), "String") end
+     trait slot QName(PackageInternalNs(""), "request") slotid 4 type QName(PackageNamespace("flash.net"), "URLRequest") end
+     trait slot QName(PackageInternalNs(""), "variables") slotid 5 type QName(PackageNamespace("flash.net"), "URLVariables") end
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "fbLinkWindow/instance"), "onCreateClick")
+   method
+    refid "fbLinkWindow/instance/fbLinkWindow/instance/onCreateClick"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("navigateToURL", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "https://www.aq.com/landing/"
+      constructprop       Multiname("URLRequest", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushstring          "_blank"
+      callpropvoid        Multiname("navigateToURL", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "destroy")
+   method
+    refid "fbLinkWindow/instance/destroy"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Null()
+    body
+     maxstack 4
+     localcount 3
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("btnFBLink", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onLinkClick", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("btnFBCreate", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onCreateClick", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("btnClose", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("destroy", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      getproperty         Multiname("mcFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      dup
+      setlocal2
+
+      setproperty         Multiname("showFB", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal2
+      kill                2
+      setproperty         Multiname("visible", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("rootClass", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      setproperty         Multiname("fbL", [PrivateNamespace(null, "fbLinkWindow/instance"), PrivateNamespace(null, "fbLinkWindow"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.net"), ProtectedNamespace("fbLinkWindow"), StaticProtectedNs("fbLinkWindow"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "fbLinkWindow/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

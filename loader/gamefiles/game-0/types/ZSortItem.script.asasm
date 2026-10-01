@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "types:ZSortItem/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ZSortItem", [PackageNamespace("types")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "types:ZSortItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "types:ZSortItem"
+    popscope
+    initproperty        QName(PackageNamespace("types"), "ZSortItem")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("types"), "ZSortItem")
+  #include "ZSortItem.class.asasm"
+ end ; trait
+end ; script

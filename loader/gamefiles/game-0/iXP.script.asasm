@@ -1,0 +1,49 @@
+script
+ sinit
+  refid "iXP/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 8
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("iXP", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObjectContainer")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    newclass            "iXP"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace(""), "iXP")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "iXP")
+  #include "iXP.class.asasm"
+ end ; trait
+end ; script

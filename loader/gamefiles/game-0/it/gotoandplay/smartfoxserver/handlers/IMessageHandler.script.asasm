@@ -1,0 +1,25 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.handlers:IMessageHandler/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 2
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("IMessageHandler", [PackageNamespace("it.gotoandplay.smartfoxserver.handlers")])
+    pushnull
+    newclass            "it.gotoandplay.smartfoxserver.handlers:IMessageHandler"
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "IMessageHandler")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "IMessageHandler")
+  #include "IMessageHandler.class.asasm"
+ end ; trait
+end ; script

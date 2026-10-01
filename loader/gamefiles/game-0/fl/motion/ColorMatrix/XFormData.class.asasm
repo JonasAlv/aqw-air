@@ -1,0 +1,45 @@
+class
+ refid "fl.motion:ColorMatrix/XFormData"
+ instance QName(PrivateNamespace(null, "fl.motion:ColorMatrix"), "XFormData")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("ColorMatrix.as$94:XFormData")
+  iinit
+   refid "fl.motion:ColorMatrix/XFormData/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "ox") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PackageNamespace(""), "oy") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PackageNamespace(""), "oz") type QName(PackageNamespace(""), "Number") end
+ end ; instance
+ cinit
+  refid "fl.motion:ColorMatrix/XFormData/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

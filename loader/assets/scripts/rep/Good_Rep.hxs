@@ -1,0 +1,52 @@
+// ========================================================
+// Script: Good Reputation Farm (.hxs)
+// Farms Good Reputation to Rank 10
+// Quests: 1952 (PoisonForest) or 369 / 372 (CastleUndead)
+// ========================================================
+
+function onStart() {
+    if (factionRank("Good") >= 10) {
+        msg("Good Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+}
+
+function onTick() {
+    var curRank = factionRank("Good");
+    if (curRank >= 10) {
+        msg("Good Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    if (isQuestUnlocked(1952)) {
+        ensureMap("poisonforest");
+        ensureQuest(1952);
+        if (!hunt("Burning Loyalist", 5)) return;
+        if (isQuestComplete(1952)) {
+            ensureComplete(1952);
+        }
+    } else if (curRank < 4) {
+        ensureMap("swordhavenbridge", "Bridge", "Left");
+        ensureQuest(369);
+        ensureCombat();
+        if (isQuestComplete(369)) {
+            ensureComplete(369);
+        }
+    } else {
+        ensureMap("castleundead", "Enter", "Spawn");
+        ensureQuest(372);
+        ensureCombat();
+        if (isQuestComplete(372)) {
+            ensureComplete(372);
+        }
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

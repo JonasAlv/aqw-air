@@ -1,0 +1,25 @@
+method
+ refid "World/instance/World/monLoadCB/inline_method"
+ param null
+ returns QName(PackageNamespace(""), "void")
+ body
+  maxstack 2
+  localcount 2
+  initscopedepth 11
+  maxscopedepth 11
+  code
+   getlex              QName(PackageInternalNs(""), "gen")
+   getlex              QName(PrivateNamespace(null, "World"), "monLoadGen")
+   ifeq                L4
+
+   returnvoid
+
+L4:
+   findpropstrict      QName(PackageInternalNs(""), "fn")
+   getlocal1
+   callproplex         QName(PackageInternalNs(""), "fn"), 1
+   pop
+   returnvoid
+  end ; code
+ end ; body
+end ; method

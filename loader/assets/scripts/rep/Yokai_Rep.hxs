@@ -1,0 +1,45 @@
+// ========================================================
+// Script: Yokai Reputation Farm (.hxs)
+// Farms Yokai Reputation to Rank 10
+// Quest: 383
+// Prerequisite: Dragon Koi Tournament unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Yokai") >= 10) {
+        msg("Yokai Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(383)) {
+        msg("Prerequisite missing: Quest 383 is locked. Complete Yokai storyline up to Dragon Koi Tournament first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("dragonkoiz");
+}
+
+function onTick() {
+    if (factionRank("Yokai") >= 10) {
+        msg("Yokai Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("dragonkoiz");
+    ensureQuest(383);
+
+    if (!hunt("Pockey Chew", "Piece of Pockey", 3)) return;
+
+    if (isQuestComplete(383)) {
+        ensureComplete(383);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

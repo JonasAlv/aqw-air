@@ -1,0 +1,165 @@
+class
+ refid "pvpProto"
+ instance QName(PackageNamespace(""), "pvpProto")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("pvpProto")
+  iinit
+   refid "pvpProto/instance/init"
+   body
+    maxstack 11
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     findpropstrict      Multiname("addFrameScript", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            0
+     getlocal0
+     getproperty         Multiname("frame1", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            9
+     getlocal0
+     getproperty         Multiname("frame10", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            19
+     getlocal0
+     getproperty         Multiname("frame20", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            32
+     getlocal0
+     getproperty         Multiname("frame33", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            46
+     getlocal0
+     getproperty         Multiname("frame47", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     callpropvoid        Multiname("addFrameScript", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 10
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "a1") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "hit") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "icon") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "t1") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "t2") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait method QName(PackageInternalNs(""), "frame1")
+   method
+    refid "pvpProto/instance/frame1"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs(""), "frame10")
+   method
+    refid "pvpProto/instance/frame10"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs(""), "frame20")
+   method
+    refid "pvpProto/instance/frame20"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs(""), "frame33")
+   method
+    refid "pvpProto/instance/frame33"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs(""), "frame47")
+   method
+    refid "pvpProto/instance/frame47"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("gotoAndStop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            1
+      callpropvoid        Multiname("gotoAndStop", [PrivateNamespace(null, "pvpProto/instance#0"), PrivateNamespace(null, "pvpProto/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("pvpProto"), StaticProtectedNs("pvpProto"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "pvpProto/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

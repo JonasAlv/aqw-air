@@ -1,0 +1,77 @@
+// ========================================================
+// Script: 01_Prologue.hxs
+// 13 Lords of Chaos Saga: Prologue
+// Final Quest: 6219 (Forest of Chaos)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(6219)) {
+        log("Prologue is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(6219)) {
+        log("Prologue completed!");
+        stop();
+        return;
+    }
+
+    // 183: Enter the gates
+    if (!storyKillQuest(183, "battleundera", "Skeletal Fire Mage")) return;
+
+    // 176: Undead Assault
+    if (!storyKillQuest(176, "swordhavenundead", "Skeletal Soldier")) return;
+
+    // 177: Skull Crusher Mountain
+    if (!storyKillQuest(177, "swordhavenundead", "Skeletal Ice Mage")) return;
+
+    // 178: The Undead Giant
+    if (!storyKillQuest(178, "swordhavenundead", "Undead Giant")) return;
+
+    // 179: Talk to the Knights
+    if (!storyMapItemQuest(179, "castleundead", 38, 5)) return;
+
+    // 180: Defend the Throne
+    if (!storyKillQuest(180, "castleundead", "Skeletal Viking")) return;
+
+    // The Arrival of Drakath cutscene & 195: Shadowfall Quest1
+    if (!isUnlocked(196) && !isCompletedBefore(196)) {
+        if (!ensureMap("castleundead", "King2", "Center")) return;
+        ensureMap("Shadowfall");
+        sendPacket("%xt%zm%updateQuest%73922%43%1%");
+        sendPacket("%xt%zm%updateQuest%188220%41%1%");
+        ensureMap("shadowfall");
+        storyChainQuest(195);
+        return;
+    }
+
+    // 196: Recover Sepulchure's Cursed Armor!
+    if (!storyKillQuest(196, "chaoscrypt", "Chaorrupted Armor")) return;
+
+    // 6216: Unlife Insurance
+    if (!isCompletedBefore(6216)) {
+        if (!ensureMap("prison")) return;
+        ensureQuest(6216);
+        getMapItem(39);
+        if (!hasItem("42993") && !hasItem("Key to the Crypt")) {
+            buyItem(1559, "42993");
+        }
+        if (canComplete(6216)) ensureComplete(6216);
+        return;
+    }
+
+    // 6217: Enter the Crypt
+    if (!storyMapItemQuest(6217, "chaoscrypt", 5662)) return;
+
+    // 6218: Rescue the Knights
+    if (!storyKillQuest(6218, "chaoscrypt", "Chaorrupted Knight")) return;
+
+    // 6219: Forest of Chaos
+    if (!storyKillQuest(6219, "forestchaos", ["Chaorrupted Bear", "Chaorrupted Wolf"])) return;
+}

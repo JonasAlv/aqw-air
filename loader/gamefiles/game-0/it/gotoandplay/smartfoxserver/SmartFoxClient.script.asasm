@@ -1,0 +1,33 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver:SmartFoxClient/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("SmartFoxClient", [PackageNamespace("it.gotoandplay.smartfoxserver")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              Multiname("EventDispatcher", [PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver:SmartFoxClient#1"), PackageNamespace("it.gotoandplay.smartfoxserver"), PackageInternalNs("it.gotoandplay.smartfoxserver"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events")])
+    newclass            "it.gotoandplay.smartfoxserver:SmartFoxClient"
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver"), "SmartFoxClient")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver"), "SmartFoxClient")
+  #include "SmartFoxClient.class.asasm"
+ end ; trait
+end ; script

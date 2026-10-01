@@ -1,0 +1,255 @@
+class
+ refid "Killvis"
+ instance QName(PackageNamespace(""), "Killvis")
+  extends QName(PackageNamespace("flash.events"), "EventDispatcher")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("Killvis")
+  iinit
+   refid "Killvis/instance/init"
+   body
+    maxstack 6
+    localcount 1
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     findpropstrict      Multiname("Timer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.utils")])
+     pushshort           1000
+     pushbyte            1
+     constructprop       Multiname("Timer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.utils")]), 2
+     initproperty        QName(PackageInternalNs(""), "vTimer")
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("TimerEvent", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+     getproperty         Multiname("TIMER", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("noVis", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageInternalNs(""), "vobj") end
+  trait slot QName(PackageInternalNs(""), "vTimer") type QName(PackageNamespace("flash.utils"), "Timer") end
+  trait method QName(PackageNamespace(""), "kill")
+   method
+    refid "Killvis/instance/kill"
+    param QName(PackageNamespace(""), "Object")
+    param QName(PackageNamespace(""), "int")
+    body
+     maxstack 2
+     localcount 3
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      setproperty         Multiname("vobj", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal2
+      setproperty         Multiname("delay", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("reset", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("start", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "stopkill")
+   method
+    refid "Killvis/instance/stopkill"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      equals
+      not
+      dup
+      iffalse             L14
+
+      pop
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("running", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      convert_b
+L14:
+      iffalse             L18
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+L18:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "resetkill")
+   method
+    refid "Killvis/instance/resetkill"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      equals
+      not
+      dup
+      iffalse             L14
+
+      pop
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("running", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      convert_b
+L14:
+      iffalse             L21
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("reset", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("start", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+L21:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "noVis")
+   method
+    refid "Killvis/instance/noVis"
+    param QName(PackageNamespace("flash.events"), "TimerEvent")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("vobj", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("MovieClip", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      findpropstrict      Multiname("MovieClip", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      getlocal0
+      getproperty         Multiname("vobj", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("MovieClip", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")]), 1
+      getproperty         Multiname("parent", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("MovieClip", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")]), 1
+      pushnull
+      setproperty         Multiname("kv", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "dispose")
+   method
+    refid "Killvis/instance/dispose"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      ifeq                L19
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      getlocal0
+      getproperty         Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("TimerEvent", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.events")])
+      getproperty         Multiname("TIMER", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("noVis", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      getlocal0
+      pushnull
+      initproperty        Multiname("vTimer", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+L19:
+      getlocal0
+      pushnull
+      initproperty        Multiname("vobj", [PrivateNamespace(null, "Killvis/instance"), PrivateNamespace(null, "Killvis"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("Killvis"), StaticProtectedNs("Killvis"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "Killvis/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

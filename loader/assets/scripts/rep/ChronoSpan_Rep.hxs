@@ -1,0 +1,48 @@
+// ========================================================
+// Script: ChronoSpan Reputation Farm (.hxs)
+// Farms ChronoSpan Reputation to Rank 10
+// Quest: 2204 (Do the 'do)
+// Prerequisite: ChronoSpan intro completed up to quest 2204
+// ========================================================
+
+function onStart() {
+    if (factionRank("ChronoSpan") >= 10) {
+        msg("ChronoSpan Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(2204)) {
+        msg("Prerequisite missing: Quest 2204 is locked. Complete ChronoSpan storyline in /thespan first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("thespan", "r4", "Left");
+}
+
+function onTick() {
+    if (factionRank("ChronoSpan") >= 10) {
+        msg("ChronoSpan Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("thespan");
+    ensureQuest(2204);
+
+    ensureCell("r6", "Left");
+    if (!hunt("Moglin Ghost", "Tin of Ghost Dust", 2)) return;
+
+    ensureCell("r4", "Left");
+    if (!hunt("Minx Fairy", "8 oz Fairy Glitter", 3)) return;
+    if (!hunt("Tog", "Tog Fang", 4)) return;
+
+    ensureComplete(2204);
+}
+
+function onStop() {
+    stopCombat();
+}

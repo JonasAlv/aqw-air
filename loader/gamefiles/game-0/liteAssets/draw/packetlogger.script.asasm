@@ -1,0 +1,53 @@
+script
+ sinit
+  refid "liteAssets.draw:packetlogger/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 9
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("packetlogger", [PackageNamespace("liteAssets.draw")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObjectContainer")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "MovieClip")
+    pushscope
+
+    getlex              Multiname("MovieClip", [PrivateNamespace(null, "liteAssets.draw:packetlogger"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.display")])
+    newclass            "liteAssets.draw:packetlogger"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("liteAssets.draw"), "packetlogger")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("liteAssets.draw"), "packetlogger")
+  #include "packetlogger.class.asasm"
+ end ; trait
+end ; script

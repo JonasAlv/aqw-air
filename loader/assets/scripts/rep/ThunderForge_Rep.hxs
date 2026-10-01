@@ -1,0 +1,41 @@
+// ========================================================
+// Script: ThunderForge Reputation Farm (.hxs)
+// Farms ThunderForge Reputation to Rank 10
+// Quests: 2733 (The Chaos Eye of Vestis), 2734
+// Prerequisite: ThunderForge saga completed up to Deathpits
+// ========================================================
+
+function onStart() {
+    if (factionRank("ThunderForge") >= 10) {
+        msg("ThunderForge Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(2733)) {
+        msg("Prerequisite missing: Quest 2733 [The Chaos Eye of Vestis] is locked. Complete the ThunderForge saga up to Deathpits first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("solo");
+    ensureMap("deathpits");
+    autoQuest([2733, 2734]);
+}
+
+function onTick() {
+    if (factionRank("ThunderForge") >= 10) {
+        msg("ThunderForge Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("deathpits");
+    if (!hunt("Wrathful Vestis", "Vestis's Chaos Eye", 1)) return;
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

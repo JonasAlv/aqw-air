@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "FacebookWeb/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("FacebookWeb", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "FacebookWeb"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("com.facebook.graph")])
+    newclass            "FacebookWeb"
+    popscope
+    initproperty        QName(PackageNamespace(""), "FacebookWeb")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "FacebookWeb")
+  #include "FacebookWeb.class.asasm"
+ end ; trait
+end ; script

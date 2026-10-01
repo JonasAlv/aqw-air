@@ -1,0 +1,253 @@
+class
+ refid "org.sepy.ColorPicker:RGB"
+ instance QName(PackageNamespace("org.sepy.ColorPicker"), "RGB")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("org.sepy.ColorPicker:RGB")
+  iinit
+   refid "org.sepy.ColorPicker:RGB/instance/init"
+   param QName(PackageNamespace(""), "Number")
+   param QName(PackageNamespace(""), "Number")
+   param QName(PackageNamespace(""), "Number")
+   body
+    maxstack 2
+    localcount 4
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal1
+     initproperty        Multiname("_r", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+     getlocal0
+     getlocal2
+     initproperty        Multiname("_g", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+     getlocal0
+     getlocal3
+     initproperty        Multiname("_b", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), "_r") type QName(PackageNamespace(""), "Number") end
+  trait setter QName(PackageNamespace(""), "r")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/r/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      initproperty        Multiname("_r", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "r")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/r/getter"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_r", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), "_g") type QName(PackageNamespace(""), "Number") end
+  trait setter QName(PackageNamespace(""), "g")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/g/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      initproperty        Multiname("_g", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "g")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/g/getter"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_g", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), "_b") type QName(PackageNamespace(""), "Number") end
+  trait setter QName(PackageNamespace(""), "b")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/b/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      initproperty        Multiname("_b", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "b")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/b/getter"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_b", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "getRGB")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/getRGB"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      pushbyte            16
+      lshift
+      getlocal0
+      getproperty         Multiname("g", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      pushbyte            8
+      lshift
+      bitor
+      getlocal0
+      getproperty         Multiname("b", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      bitor
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "toString")
+   method
+    refid "org.sepy.ColorPicker:RGB/instance/toString"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushstring          "[R:"
+      getlocal0
+      getproperty         Multiname("r", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      add
+      pushstring          ", G:"
+      add
+      getlocal0
+      getproperty         Multiname("g", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      add
+      pushstring          ", B:"
+      add
+      getlocal0
+      getproperty         Multiname("b", [PrivateNamespace(null, "org.sepy.ColorPicker:RGB/instance"), PrivateNamespace(null, "org.sepy.ColorPicker:RGB"), PackageNamespace(""), PackageNamespace("org.sepy.ColorPicker"), PackageInternalNs("org.sepy.ColorPicker"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("org.sepy.ColorPicker:RGB"), StaticProtectedNs("org.sepy.ColorPicker:RGB")])
+      add
+      pushstring          "]"
+      add
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "org.sepy.ColorPicker:RGB/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

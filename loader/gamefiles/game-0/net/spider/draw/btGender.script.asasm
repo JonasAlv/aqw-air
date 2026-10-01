@@ -1,0 +1,45 @@
+script
+ sinit
+  refid "net.spider.draw:btGender/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 7
+   code
+    getlocal0
+    pushscope
+
+    getscopeobject      0
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "SimpleButton")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "SimpleButton")
+    newclass            "net.spider.draw:btGender"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("net.spider.draw"), "btGender")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("net.spider.draw"), "btGender") slotid 1
+  #include "btGender.class.asasm"
+ end ; trait
+end ; script

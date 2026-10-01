@@ -1,0 +1,55 @@
+class
+ refid "com.wildtangent:StatsEvent"
+ instance QName(PackageNamespace("com.wildtangent"), "StatsEvent")
+  extends QName(PackageNamespace("flash.events"), "Event")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("com.wildtangent:StatsEvent")
+  iinit
+   refid "com.wildtangent:StatsEvent/instance/init"
+   param QName(PackageNamespace(""), "String")
+   param QName(PackageNamespace(""), "Object")
+   body
+    maxstack 2
+    localcount 3
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     getlocal1
+     constructsuper      1
+
+     findproperty        QName(PackageNamespace(""), "StatsData")
+     getlocal2
+     initproperty        QName(PackageNamespace(""), "StatsData")
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "StatsData") type QName(PackageNamespace(""), "Object") end
+ end ; instance
+ cinit
+  refid "com.wildtangent:StatsEvent/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "STATS_COMPLETE")
+    pushstring          "statsLoaded"
+    initproperty        QName(PackageNamespace(""), "STATS_COMPLETE")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PackageNamespace(""), "STATS_COMPLETE") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("statsLoaded") end
+end ; class

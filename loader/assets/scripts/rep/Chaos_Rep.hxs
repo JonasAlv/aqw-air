@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Chaos Reputation Farm (.hxs)
+// Farms Chaos Reputation to Rank 10
+// Quest: 3594 (Embrace Your Chaos)
+// Prerequisite: Mount Doomskull story completed up to quest 3594
+// ========================================================
+
+function onStart() {
+    if (factionRank("Chaos") >= 10) {
+        msg("Chaos Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(3594)) {
+        msg("Prerequisite missing: Quest 3594 is locked. Complete Mount Doomskull storyline first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("mountdoomskull", "b1", "Left");
+    autoQuest([3594]);
+}
+
+function onTick() {
+    if (factionRank("Chaos") >= 10) {
+        msg("Chaos Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("mountdoomskull", "b1", "Left");
+    ensureCombat();
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

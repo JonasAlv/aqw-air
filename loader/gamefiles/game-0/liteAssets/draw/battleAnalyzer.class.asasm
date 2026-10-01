@@ -1,0 +1,906 @@
+class
+ refid "liteAssets.draw:battleAnalyzer"
+ instance QName(PackageNamespace("liteAssets.draw"), "battleAnalyzer")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("liteAssets.draw:battleAnalyzer")
+  iinit
+   refid "liteAssets.draw:battleAnalyzer/instance/init"
+   body
+    maxstack 6
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getproperty         Multiname("bgStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("bgStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushtrue
+     setproperty         Multiname("buttonMode", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getproperty         Multiname("txtStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     setproperty         Multiname("mouseEnabled", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("MOUSE_DOWN", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onDrag", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("MOUSE_UP", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onStopDrag", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     getlocal0
+     getproperty         Multiname("btnClose", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlex              Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getproperty         Multiname("CLICK", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("onBtnClose", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushfalse
+     pushbyte            0
+     pushtrue
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "bgStart") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "btnClose") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "txtStart") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "txtValues") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "startTime") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "seconds") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "onBattleTimer")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/onBattleTimer"
+    param QName(PackageNamespace("flash.events"), "Event")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("startTime", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      findpropstrict      Multiname("Date", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      constructprop       Multiname("Date", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      callproperty        Multiname("getTime", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      subtract
+      callproperty        Multiname("abs", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushshort           1000
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      initproperty        Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      callpropvoid        Multiname("updateDisplay", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "updateDisplay")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/updateDisplay"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 7
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("txtValues", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      callproperty        Multiname("formatSeconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("dmg", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("dmg", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          "/sec)"
+      add
+      add
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("heal", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("heal", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          "/sec)"
+      add
+      add
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("dmgRecv", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("dmgRecv", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          "/sec)"
+      add
+      add
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("gold", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("gold", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          "/sec)"
+      add
+      add
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("xp", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("xp", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      divide
+      callproperty        Multiname("round", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          "/sec)"
+      add
+      add
+      pushstring          "\n"
+      add
+      getlocal0
+      getlocal0
+      getproperty         Multiname("kills", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("addCommas", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      add
+      pushstring          " ("
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      equals
+      iffalse             L127
+
+      pushstring          "0"
+      coerce_a
+      jump                L139
+
+L127:
+      findpropstrict      Multiname("Number", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("kills", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            60
+      divide
+      divide
+      callproperty        Multiname("Number", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushbyte            2
+      callproperty        Multiname("toFixed", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      coerce_a
+L139:
+      add
+      pushstring          "/min)"
+      add
+      add
+      setproperty         Multiname("text", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "addCommas")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addCommas"
+    param QName(PackageNamespace(""), "uint")
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 3
+     localcount 5
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      convert_u
+      setlocal            4
+
+      getlocal1
+      pushbyte            0
+      ifne                L10
+
+      pushstring          "0"
+      returnvalue
+
+L10:
+      pushstring          ""
+      setlocal2
+
+      getlocal1
+      convert_u
+      setlocal3
+
+      jump                L59
+
+L16:
+      label
+      getlocal3
+      pushshort           1000
+      modulo
+      convert_u
+      setlocal            4
+
+      getlocal3
+      pushshort           999
+      greaterthan
+      iffalse             L46
+
+      pushstring          ","
+      getlocal            4
+      pushbyte            100
+      lessthan
+      iffalse             L41
+
+      getlocal            4
+      pushbyte            10
+      lessthan
+      iffalse             L38
+
+      pushstring          "00"
+      coerce_a
+      jump                L40
+
+L38:
+      pushstring          "0"
+      coerce_a
+L40:
+      jump                L43
+
+L41:
+      pushstring          ""
+      coerce_a
+L43:
+      add
+      coerce_a
+      jump                L48
+
+L46:
+      pushstring          ""
+      coerce_a
+L48:
+      getlocal            4
+      add
+      getlocal2
+      add
+      coerce_s
+      setlocal2
+
+      getlocal3
+      pushshort           1000
+      divide
+      convert_u
+      setlocal3
+
+L59:
+      getlocal3
+      pushbyte            0
+      ifgt                L16
+
+      getlocal2
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), "_running") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait method QName(PackageNamespace(""), "isRunning")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/isRunning"
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_running", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "formatSeconds")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/formatSeconds"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushshort           3600
+      divide
+      callproperty        Multiname("floor", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      coerce_a
+      setlocal1
+
+      getlex              Multiname("Math", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushshort           3600
+      modulo
+      pushbyte            60
+      divide
+      callproperty        Multiname("floor", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      coerce_a
+      setlocal2
+
+      getlocal0
+      getproperty         Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            60
+      modulo
+      coerce_a
+      setlocal3
+
+      getlocal1
+      pushbyte            10
+      ifnlt               L34
+
+      pushstring          "0"
+      getlocal1
+      add
+      coerce_a
+      setlocal1
+
+L34:
+      getlocal2
+      pushbyte            10
+      ifnlt               L42
+
+      pushstring          "0"
+      getlocal2
+      add
+      coerce_a
+      setlocal2
+
+L42:
+      getlocal3
+      pushbyte            10
+      ifnlt               L50
+
+      pushstring          "0"
+      getlocal3
+      add
+      coerce_a
+      setlocal3
+
+L50:
+      getlocal1
+      pushstring          ":"
+      add
+      getlocal2
+      add
+      pushstring          ":"
+      add
+      getlocal3
+      add
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "dmg") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addDamage")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addDamage"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("dmg", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      add
+      setproperty         Multiname("dmg", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "heal") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addHeal")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addHeal"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("heal", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      add
+      setproperty         Multiname("heal", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "dmgRecv") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addReceived")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addReceived"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("dmgRecv", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      add
+      setproperty         Multiname("dmgRecv", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "gold") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addGold")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addGold"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("gold", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      add
+      setproperty         Multiname("gold", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "xp") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addExp")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addExp"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("xp", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      add
+      setproperty         Multiname("xp", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait slot QName(PackageInternalNs("liteAssets.draw"), "kills") type QName(PackageNamespace(""), "Number") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addKill")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/addKill"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("kills", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            1
+      add
+      setproperty         Multiname("kills", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "reset")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/reset"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      findpropstrict      Multiname("Date", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      constructprop       Multiname("Date", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      callproperty        Multiname("getTime", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      initproperty        Multiname("startTime", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("seconds", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("dmg", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("heal", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("dmgRecv", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("gold", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("xp", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushbyte            0
+      initproperty        Multiname("kills", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      callpropvoid        Multiname("updateDisplay", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "toggle")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/toggle"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("bgStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      findpropstrict      Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("CLICK", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      constructprop       Multiname("MouseEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callpropvoid        Multiname("dispatchEvent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "onStart")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/onStart"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 6
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("_running", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iffalse             L12
+
+      getlocal0
+      getlex              Multiname("Event", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("ENTER_FRAME", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onBattleTimer", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      jump                L23
+
+L12:
+      getlocal0
+      callpropvoid        Multiname("reset", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      getlocal0
+      getlex              Multiname("Event", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("ENTER_FRAME", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onBattleTimer", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushfalse
+      pushbyte            0
+      pushtrue
+      callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 5
+
+L23:
+      getlocal0
+      getlocal0
+      getproperty         Multiname("_running", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      not
+      initproperty        Multiname("_running", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("txtStart", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("_running", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      iffalse             L35
+
+      pushstring          "Stop"
+      jump                L36
+
+L35:
+      pushstring          "Start"
+L36:
+      setproperty         Multiname("text", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "onBtnClose")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/onBtnClose"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlex              Multiname("Event", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("ENTER_FRAME", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("onBattleTimer", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+      findpropstrict      Multiname("MovieClip", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")])
+      findpropstrict      Multiname("getChildAt", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushbyte            0
+      callproperty        Multiname("getChildAt", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      callproperty        Multiname("MovieClip", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.display")]), 1
+      pushnull
+      setproperty         Multiname("bAnalyzer", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlex              Multiname("parent", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      callpropvoid        Multiname("removeChild", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "onDrag")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/onDrag"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 1
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      callpropvoid        Multiname("startDrag", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "onStopDrag")
+   method
+    refid "liteAssets.draw:battleAnalyzer/instance/onStopDrag"
+    param QName(PackageNamespace("flash.events"), "MouseEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 1
+     localcount 2
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      callpropvoid        Multiname("stopDrag", [PrivateNamespace(null, "liteAssets.draw:battleAnalyzer/instance"), PrivateNamespace(null, "liteAssets.draw:battleAnalyzer"), PackageNamespace(""), PackageNamespace("liteAssets.draw"), PackageInternalNs("liteAssets.draw"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events"), PackageNamespace("flash.utils"), ProtectedNamespace("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("liteAssets.draw:battleAnalyzer"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "liteAssets.draw:battleAnalyzer/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

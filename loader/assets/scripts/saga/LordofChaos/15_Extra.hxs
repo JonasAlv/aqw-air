@@ -1,0 +1,66 @@
+// ========================================================
+// Script: 15_Extra.hxs
+// 13 Lords of Chaos Saga: Extra (Dreadhaven & Falconreach Tower)
+// Final Quest: 3824 (Defeat Alteon)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(3824)) {
+        log("Extra Chaos chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(3824)) {
+        log("Extra Chaos chapter completed!");
+        stop();
+        return;
+    }
+
+    // 3812: Arrive in DreadHaven
+    if (!storyChainQuest(3812)) return;
+
+    // 3813: Kill SlugWrath in Dreadhaven
+    if (!storyChainQuest(3813)) return;
+
+    // 3814: Kill Bandit Drakath in Dreadhaven
+    if (!storyChainQuest(3814)) return;
+
+    // 3815: Up the Mountain
+    if (!storyKillQuest(3815, "falcontower", "Sir Knight")) return;
+
+    // 3816: Higher Up
+    if (!storyKillQuest(3816, "falcontower", "Sir Knight")) return;
+
+    // 3817: Even Higher
+    if (!storyKillQuest(3817, "falcontower", "Sir Knight")) return;
+
+    // 3818: Falconreach Tower
+    if (!storyKillQuest(3818, "falcontower", "Sir Knight")) return;
+
+    // 3819: Climb the Tower
+    if (!storyKillQuest(3819, "falcontower", "Sir Knight")) return;
+
+    // 3820: To the Dragonlord
+    if (!storyKillQuest(3820, "falcontower", "Sir Knight")) return;
+
+    // 3821: Defeat the Dragonlord
+    if (!storyKillQuest(3821, "falcontower", "DragonLord")) return;
+
+    // 3822: Defeat Dragon Drakath
+    if (!storyKillQuest(3822, "falcontower", "Dragon Drakath")) return;
+
+    // 3823: Defeat Sepulchure
+    if (!storyKillQuest(3823, "falcontower", "Sepulchure")) return;
+
+    // 3824: Defeat Alteon
+    if (!isCompletedBefore(3824)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(3824, "falcontower", "Alteon")) return;
+    }
+}

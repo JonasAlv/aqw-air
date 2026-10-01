@@ -1,0 +1,45 @@
+// ========================================================
+// Script: Mythsong Reputation Farm (.hxs)
+// Farms Mythsong Reputation to Rank 10
+// Quest: 4829 (Sugar, Sugar)
+// Prerequisite: Mythsong storyline completed (Chaos Lord Kimberly)
+// ========================================================
+
+function onStart() {
+    if (factionRank("Mythsong") >= 10) {
+        msg("Mythsong Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(4829)) {
+        msg("Prerequisite missing: Quest 4829 is locked. Complete the Mythsong storyline (Chaos Lord Kimberly) first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("beehive");
+}
+
+function onTick() {
+    if (factionRank("Mythsong") >= 10) {
+        msg("Mythsong Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("beehive");
+    ensureQuest(4829);
+
+    if (!hunt("Stinger", "Honey Gathered", 10)) return;
+
+    if (isQuestComplete(4829)) {
+        ensureComplete(4829);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

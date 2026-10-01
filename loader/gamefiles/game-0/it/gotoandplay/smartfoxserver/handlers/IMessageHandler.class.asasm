@@ -1,0 +1,30 @@
+class
+ refid "it.gotoandplay.smartfoxserver.handlers:IMessageHandler"
+ instance QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "IMessageHandler")
+  flag SEALED
+  flag INTERFACE
+  iinit
+   refid "it.gotoandplay.smartfoxserver.handlers:IMessageHandler/instance/init"
+  end ; method
+  trait method QName(Namespace("it.gotoandplay.smartfoxserver.handlers:IMessageHandler"), "handleMessage")
+   method
+    refid "it.gotoandplay.smartfoxserver.handlers:IMessageHandler/instance/it.gotoandplay.smartfoxserver.handlers:IMessageHandler:handleMessage"
+    param QName(PackageNamespace(""), "Object")
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "void")
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "it.gotoandplay.smartfoxserver.handlers:IMessageHandler/class/init"
+  body
+   maxstack 0
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 3
+   code
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

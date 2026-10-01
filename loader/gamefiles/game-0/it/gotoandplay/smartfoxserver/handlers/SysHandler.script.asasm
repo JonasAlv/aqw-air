@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.handlers:SysHandler/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("SysHandler", [PackageNamespace("it.gotoandplay.smartfoxserver.handlers")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.handlers:SysHandler"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), PackageInternalNs("it.gotoandplay.smartfoxserver.handlers"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "it.gotoandplay.smartfoxserver.handlers:SysHandler"
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "SysHandler")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "SysHandler")
+  #include "SysHandler.class.asasm"
+ end ; trait
+end ; script

@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Dreadfire Reputation Farm (.hxs)
+// Farms Dreadfire Reputation to Rank 10
+// Quest: 5697 (Gather Crystals)
+// Prerequisite: Dreadfire quests unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Dreadfire") >= 10) {
+        msg("Dreadfire Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(5697)) {
+        msg("Prerequisite missing: Quest 5697 is locked. Complete Dreadfire intro first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("dreadfire", "r13", "Bottom");
+    autoQuest([5697]);
+}
+
+function onTick() {
+    if (factionRank("Dreadfire") >= 10) {
+        msg("Dreadfire Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("dreadfire", "r13", "Bottom");
+    if (!hunt("Arcane Crystal", 5)) return;
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

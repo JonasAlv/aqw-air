@@ -1,0 +1,57 @@
+script
+ sinit
+  refid "LPFFrameCheapBuySell/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("LPFFrameCheapBuySell", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObjectContainer")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "MovieClip")
+    pushscope
+
+    getlex              QName(PackageNamespace(""), "LPFFrame")
+    pushscope
+
+    getlex              Multiname("LPFFrame", [PrivateNamespace(null, "LPFFrameCheapBuySell"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text")])
+    newclass            "LPFFrameCheapBuySell"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace(""), "LPFFrameCheapBuySell")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "LPFFrameCheapBuySell")
+  #include "LPFFrameCheapBuySell.class.asasm"
+ end ; trait
+end ; script

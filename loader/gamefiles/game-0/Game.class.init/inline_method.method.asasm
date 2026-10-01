@@ -1,0 +1,37 @@
+method
+ refid "Game/class/init/inline_method"
+ returns QName(PackageNamespace(""), "void")
+ body
+  maxstack 2
+  localcount 2
+  initscopedepth 9
+  maxscopedepth 9
+  code
+   getlocal0
+   getproperty         Multiname("numChildren", [PrivateNamespace(null, "Game#0"), PackageNamespace(""), PrivateNamespace(null, "Game#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), PackageNamespace("flash.external"), PackageNamespace("it.gotoandplay.smartfoxserver"), PackageNamespace("liteAssets.draw"), ProtectedNamespace("Game"), StaticProtectedNs("Game"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+   decrement
+   coerce_a
+   setlocal1
+
+   jump                L14
+
+L6:
+   label
+   getlocal0
+   getlocal1
+   callpropvoid        Multiname("removeChildAt", [PrivateNamespace(null, "Game#0"), PackageNamespace(""), PrivateNamespace(null, "Game#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), PackageNamespace("flash.external"), PackageNamespace("it.gotoandplay.smartfoxserver"), PackageNamespace("liteAssets.draw"), ProtectedNamespace("Game"), StaticProtectedNs("Game"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+   getlocal1
+   decrement
+   coerce_a
+   setlocal1
+
+L14:
+   getlocal1
+   pushbyte            0
+   ifge                L6
+
+   returnvoid
+  end ; code
+ end ; body
+end ; method

@@ -1,0 +1,43 @@
+// ========================================================
+// Script: Evil Reputation Farm (.hxs)
+// Farms Evil Reputation to Rank 10
+// Quests: 364 (Youthanize) -> 367 (Bone-afide)
+// ========================================================
+
+function onStart() {
+    if (factionRank("Evil") >= 10) {
+        msg("Evil Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+}
+
+function onTick() {
+    var curRank = factionRank("Evil");
+    if (curRank >= 10) {
+        msg("Evil Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    if (curRank < 4) {
+        ensureMap("swordhavenbridge");
+        ensureQuest(364);
+        if (!hunt("Slime", "Youthanize", 1)) return;
+        ensureComplete(364);
+    } else {
+        ensureMap("castleundead", "Enter", "Left");
+        ensureQuest(367);
+        ensureCombat();
+        if (isQuestComplete(367)) {
+            ensureComplete(367);
+        }
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

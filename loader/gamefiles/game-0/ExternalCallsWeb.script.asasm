@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "ExternalCallsWeb/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ExternalCallsWeb", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "ExternalCallsWeb#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "ExternalCallsWeb"
+    popscope
+    initproperty        QName(PackageNamespace(""), "ExternalCallsWeb")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "ExternalCallsWeb")
+  #include "ExternalCallsWeb.class.asasm"
+ end ; trait
+end ; script

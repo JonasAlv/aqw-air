@@ -1,0 +1,739 @@
+class
+ refid "BankController"
+ instance QName(PackageNamespace(""), "BankController")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("BankController")
+  iinit
+   refid "BankController/instance/init"
+   body
+    maxstack 2
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     newarray            0
+     initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankArr")
+
+     getlocal0
+     newarray            0
+     initproperty        QName(PackageNamespace(""), "searchArr")
+
+     getlocal0
+     findpropstrict      QName(PackageNamespace(""), "Object")
+     constructprop       QName(PackageNamespace(""), "Object"), 0
+     initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "requestedTypes")
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlex              QName(PackageNamespace(""), "World")
+     getproperty         QName(PackageNamespace(""), "GameRoot")
+     initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass")
+
+     getlocal0
+     findpropstrict      QName(PackageNamespace(""), "Object")
+     constructprop       QName(PackageNamespace(""), "Object"), 0
+     initproperty        QName(PackageNamespace(""), "bankItems")
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified") type QName(PackageNamespace(""), "Boolean") value True() end
+  trait slot QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "bankItems") type QName(PackageNamespace(""), "Object") end
+  trait slot QName(PrivateNamespace(null, "BankController/instance#0"), "bankArr") type QName(PackageNamespace(""), "Array") end
+  trait slot QName(PackageNamespace(""), "searchArr") type QName(PackageNamespace(""), "Array") end
+  trait slot QName(PackageNamespace(""), "lastSearch") type QName(PackageNamespace(""), "String") value Utf8("") end
+  trait slot QName(PrivateNamespace(null, "BankController/instance#0"), "requestedTypes") type QName(PackageNamespace(""), "Object") end
+  trait slot QName(PackageNamespace(""), "Count") type QName(PackageNamespace(""), "int") value Integer(0) end
+  trait method QName(PackageNamespace(""), "addItemsToBank")
+   method
+    refid "BankController/instance/addItemsToBank"
+    param QName(PackageNamespace(""), "Array")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 5
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      pushbyte            0
+      setlocal3
+
+      getlocal1
+      coerce_a
+      setlocal            4
+
+      jump                L25
+
+L11:
+      label
+      getlocal            4
+      getlocal3
+      nextvalue
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      findpropstrict      QName(PackageNamespace(""), "int")
+      getlocal2
+      getproperty         Multiname("ItemID", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      callproperty        QName(PackageNamespace(""), "int"), 1
+      getlocal2
+      setproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+
+L25:
+      hasnext2            4, 3
+      iftrue              L11
+
+      kill                4
+      kill                3
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "addItem")
+   method
+    refid "BankController/instance/addItem"
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      getproperty         Multiname("ItemID", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getlocal1
+      setproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "isItemInBank")
+   method
+    refid "BankController/instance/isItemInBank"
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushnull
+      equals
+      not
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "items")
+   method
+    refid "BankController/instance/items/getter"
+    returns QName(PackageNamespace(""), "Array")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "searchArr")
+      getproperty         QName(PackageNamespace(""), "length")
+      pushbyte            0
+      ifne                L11
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "BankArray")
+      coerce              QName(PackageNamespace(""), "Array")
+      jump                L14
+
+L11:
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "SearchArray")
+      coerce              QName(PackageNamespace(""), "Array")
+L14:
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "BankArray")
+   method
+    refid "BankController/instance/BankArray/getter"
+    returns QName(PackageNamespace(""), "Array")
+    body
+     maxstack 4
+     localcount 5
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal1
+
+      pushundefined
+      coerce_a
+      setlocal2
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified")
+      iffalse             L59
+
+      getlocal0
+      newarray            0
+      initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankArr")
+
+      pushbyte            0
+      setlocal3
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      coerce_a
+      setlocal            4
+
+      jump                L52
+
+L21:
+      label
+      getlocal            4
+      getlocal3
+      nextvalue
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal1
+
+      findpropstrict      QName(PackageNamespace(""), "Date")
+      constructprop       QName(PackageNamespace(""), "Date"), 0
+      callproperty        QName(Namespace("http://adobe.com/AS3/2006/builtin"), "getTime"), 0
+      coerce_a
+      setlocal2
+
+      getlocal1
+      getproperty         Multiname("tPurchase", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushnull
+      ifeq                L48
+
+      getlocal1
+      getlocal2
+      getlocal1
+      getproperty         Multiname("tPurchase", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      subtract
+      pushshort           1000
+      pushbyte            60
+      multiply
+      pushbyte            60
+      multiply
+      divide
+      setproperty         Multiname("iHrs", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+
+L48:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "bankArr")
+      getlocal1
+      callpropvoid        QName(Namespace("http://adobe.com/AS3/2006/builtin"), "push"), 1
+
+L52:
+      hasnext2            4, 3
+      iftrue              L21
+
+      kill                4
+      kill                3
+      getlocal0
+      pushfalse
+      initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified")
+
+L59:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "bankArr")
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "addRequestedTypes")
+   method
+    refid "BankController/instance/addRequestedTypes"
+    param QName(PackageNamespace(""), "Array")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      convert_u
+      setlocal2
+
+      jump                L20
+
+L6:
+      label
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "requestedTypes")
+      findpropstrict      QName(PackageNamespace(""), "String")
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      callproperty        QName(PackageNamespace(""), "String"), 1
+      pushtrue
+      setproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+
+      getlocal2
+      increment
+      convert_u
+      setlocal2
+
+L20:
+      getlocal2
+      getlocal1
+      getproperty         QName(PackageNamespace(""), "length")
+      iflt                L6
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "hasRequested")
+   method
+    refid "BankController/instance/hasRequested"
+    param QName(PackageNamespace(""), "Array")
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      convert_u
+      setlocal2
+
+      jump                L21
+
+L6:
+      label
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "requestedTypes")
+      getlocal1
+      getlocal2
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushnull
+      ifne                L17
+
+      pushfalse
+      returnvalue
+
+L17:
+      getlocal2
+      increment
+      convert_u
+      setlocal2
+
+L21:
+      getlocal2
+      getlocal1
+      getproperty         QName(PackageNamespace(""), "length")
+      iflt                L6
+
+      pushtrue
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "bankToInv")
+   method
+    refid "BankController/instance/bankToInv"
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "Object")
+    body
+     maxstack 2
+     localcount 6
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushnull
+      ifne                L10
+
+      pushnull
+      returnvalue
+
+L10:
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      deleteproperty      MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pop
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified")
+
+      getlocal2
+      getproperty         Multiname("bCoins", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushbyte            0
+      ifne                L39
+
+      getlocal0
+      dup
+      setlocal            4
+
+      getproperty         QName(PackageNamespace(""), "Count")
+      decrement_i
+      setlocal            5
+
+      getlocal            4
+      getlocal            5
+      setproperty         QName(PackageNamespace(""), "Count")
+
+      kill                5
+      kill                4
+L39:
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "lastSearch")
+      coerce_s
+      setlocal3
+
+      getlocal0
+      callpropvoid        QName(PackageNamespace(""), "resetSearch"), 0
+
+      getlocal0
+      getlocal3
+      callpropvoid        QName(PackageNamespace(""), "search"), 1
+
+      getlocal2
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "bankFromInv")
+   method
+    refid "BankController/instance/bankFromInv"
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Integer(-1)
+    body
+     maxstack 2
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "BankController/instance#0"), "bankModified")
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "lastSearch")
+      coerce_s
+      setlocal2
+
+      getlocal0
+      callpropvoid        QName(PackageNamespace(""), "resetSearch"), 0
+
+      getlocal0
+      getlocal2
+      callpropvoid        QName(PackageNamespace(""), "search"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "getBankItem")
+   method
+    refid "BankController/instance/getBankItem"
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "Object")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "resetSearch")
+   method
+    refid "BankController/instance/resetSearch"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushstring          ""
+      initproperty        QName(PackageNamespace(""), "lastSearch")
+
+      getlocal0
+      newarray            0
+      initproperty        QName(PackageNamespace(""), "searchArr")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait getter QName(PackageNamespace(""), "SearchArray")
+   method
+    refid "BankController/instance/SearchArray/getter"
+    returns QName(PackageNamespace(""), "Array")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "searchArr")
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "search")
+   method
+    refid "BankController/instance/search"
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 5
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass")
+      getproperty         Multiname("ui", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getproperty         Multiname("mcPopup", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getproperty         Multiname("currentLabel", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushstring          "Bank"
+      equals
+      not
+      dup
+      iffalse             L24
+
+      pop
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass")
+      getproperty         Multiname("ui", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getproperty         Multiname("mcPopup", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getproperty         Multiname("currentLabel", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      pushstring          "HouseBank"
+      equals
+      not
+L24:
+      iffalse             L26
+
+      returnvoid
+
+L26:
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "lastSearch")
+      getlocal1
+      equals
+      not
+      dup
+      iffalse             L38
+
+      pop
+      getlocal1
+      pushstring          ""
+      equals
+      not
+L38:
+      iffalse             L83
+
+      getlocal0
+      newarray            0
+      initproperty        QName(PackageNamespace(""), "searchArr")
+
+      getlocal0
+      getlocal1
+      initproperty        QName(PackageNamespace(""), "lastSearch")
+
+      pushbyte            0
+      setlocal3
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "bankItems")
+      coerce_a
+      setlocal            4
+
+      jump                L79
+
+L52:
+      label
+      getlocal            4
+      getlocal3
+      nextvalue
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal2
+      getproperty         Multiname("sName", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      callproperty        Multiname("toLowerCase", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")]), 0
+      getlocal1
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")]), 1
+      pushbyte            -1
+      greaterthan
+      dup
+      iffalse             L74
+
+      pop
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass")
+      getproperty         Multiname("bankFiltersMC", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      getlocal2
+      callproperty        Multiname("onFilter", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")]), 1
+      convert_b
+L74:
+      iffalse             L79
+
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "searchArr")
+      getlocal2
+      callpropvoid        QName(Namespace("http://adobe.com/AS3/2006/builtin"), "push"), 1
+
+L79:
+      hasnext2            4, 3
+      iftrue              L52
+
+      kill                4
+      kill                3
+L83:
+      getlocal1
+      pushstring          ""
+      ifne                L92
+
+      getlocal0
+      newarray            0
+      initproperty        QName(PackageNamespace(""), "searchArr")
+
+      getlocal0
+      pushstring          ""
+      initproperty        QName(PackageNamespace(""), "lastSearch")
+
+L92:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "BankController/instance#0"), "rootClass")
+      getproperty         Multiname("bankFiltersMC", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")])
+      callpropvoid        Multiname("dispatch", [PrivateNamespace(null, "BankController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "BankController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("BankController"), StaticProtectedNs("BankController")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "BankController/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

@@ -1,0 +1,111 @@
+// ========================================================
+// Script: 08_Tibicenas_Sandsea.hxs
+// 13 Lords of Chaos Saga: 7th Lord - Tibicenas (Sandsea)
+// Final Quest: 1005 (Chaos Lord Tibicenas)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(1005)) {
+        log("Tibicenas chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(1005)) {
+        log("Tibicenas chapter completed!");
+        stop();
+        return;
+    }
+
+    // 930: Sandport and Starboard
+    if (!storyMapItemQuest(930, "sandport", 251)) return;
+
+    // 931: Shark Diving
+    if (!storyKillQuest(931, "sandport", "Sandshark")) return;
+
+    // 932: Thieving Cut Throats
+    if (!storyKillQuest(932, "sandport", "Tomb Robber")) return;
+
+    // 933: Lost and Found
+    if (!storyKillQuest(933, "sandport", "Tomb Robber")) return;
+
+    // 934: Sell-Sword Sell-Outs
+    if (!storyKillQuest(934, "sandport", ["Sell-Sword Leader", "Horc Sell-Sword"])) return;
+
+    // 967: Sacred Scarabs
+    if (!storyKillQuest(967, "pyramid", "Golden Scarab")) return;
+
+    // 968: A Noob is Guard
+    if (!storyKillQuest(968, "pyramid", "Anubis Deathguard")) return;
+
+    // 969: Bandaged Aids
+    if (!storyKillQuest(969, "pyramid", "Mummy")) return;
+
+    // 970: Keys to the Royal Chamber
+    if (!storyKillQuest(970, "pyramid", "Golden Scarab")) return;
+
+    // 971: Confront Duat
+    if (!storyMapItemQuest(971, "pyramid", 304)) return;
+
+    // 972: They've Gone Dark
+    if (!storyKillQuest(972, "wanders", "Kalestri Worshiper")) return;
+
+    // 973: Bad Doggies
+    if (!storyKillQuest(973, "wanders", "Kalestri Hound")) return;
+
+    // 974: Essentially Evil
+    if (!storyKillQuest(974, "wanders", "Kalestri Hound")) return;
+
+    // 975: Loose Threads
+    if (!storyKillQuest(975, "wanders", "Lotus Spider")) return;
+
+    // 976: Seek The Treasure
+    if (!storyMapItemQuest(976, "wanders", 306)) return;
+
+    // 977: Dreamsand
+    if (!storyKillQuest(977, "wanders", "Lotus Spider")) return;
+
+    // 978: I Dream Of...
+    if (!storyKillQuest(978, "wanders", "Sek-Duat")) return;
+
+    // 995: Sandsational Castle
+    if (!storyMapItemQuest(995, "sandcastle", 361)) return;
+
+    // 996: Furry Fury
+    if (!storyKillQuest(996, "sandcastle", "War Hyena")) return;
+
+    // 997: Keeping Secrets Under Wraps
+    if (!storyKillQuest(997, "sandcastle", "War Mummy")) return;
+
+    // 998: Gem Jam
+    if (!storyKillQuest(998, "sandcastle", "War Hyena")) return;
+
+    // 999: Enter the Sphinx
+    if (!storyKillQuest(999, "sandcastle", "Chaos Sphinx")) return;
+
+    // 1000: Unlamented Lamia
+    if (!storyKillQuest(1000, "djinn", "Lamia")) return;
+
+    // 1001: E-vase-ive Measures
+    if (!storyKillQuest(1001, "sandsea", "Desert Vase")) return;
+
+    // 1002: Tri-hump-hant Camels
+    if (!storyKillQuest(1002, "sandsea", "Bupers Camel")) return;
+
+    // 1003: I Don't Mean to Harp On It...
+    if (!storyKillQuest(1003, "djinn", "Harpy")) return;
+
+    // 1004: In-djinn-ious Solution
+    if (!storyMapItemQuest(1004, "djinn", 370, 5)) return;
+
+    // 1005: Chaos Lord Tibicenas
+    if (!isCompletedBefore(1005)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(1005, "djinn", "Tibicenas")) return;
+    }
+}

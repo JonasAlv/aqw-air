@@ -1,0 +1,45 @@
+// ========================================================
+// Script: Vampire Reputation Farm (.hxs)
+// Farms Vampire Reputation to Rank 10
+// Quest: 522 (Twisted Paw)
+// Prerequisite: Safiria storyline completed up to quest 522
+// ========================================================
+
+function onStart() {
+    if (factionRank("Vampire") >= 10) {
+        msg("Vampire Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(522)) {
+        msg("Prerequisite missing: Quest 522 [Twisted Paw] is locked. Complete the Safiria storyline in /safiria first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("solo");
+    ensureMap("safiria");
+}
+
+function onTick() {
+    if (factionRank("Vampire") >= 10) {
+        msg("Vampire Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("safiria");
+    ensureQuest(522);
+
+    if (!hunt("Twisted Paw", "Twisted Paw's Head", 1)) return;
+
+    if (isQuestComplete(522)) {
+        ensureComplete(522);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

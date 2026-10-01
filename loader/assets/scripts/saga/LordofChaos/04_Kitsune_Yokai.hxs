@@ -1,0 +1,113 @@
+// ========================================================
+// Script: 04_Kitsune_Yokai.hxs
+// 13 Lords of Chaos Saga: 3rd Lord - Kitsune (Yokai)
+// Final Quest: 488 (Defeat Kitsune)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(488)) {
+        log("Kitsune chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(488)) {
+        log("Kitsune chapter completed!");
+        stop();
+        return;
+    }
+
+    // 380: Turtle Power
+    if (!isCompletedBefore(380)) {
+        if (!ensureMap("yokaiboat")) return;
+        ensureQuest(380);
+        getMapItem(64);
+        if (!canComplete(380)) {
+            hunt("Kappa Ninja");
+            return;
+        }
+        ensureComplete(380);
+        return;
+    }
+
+    // 381: Setting Sail to Yokai
+    if (!storyKillQuest(381, "yokaiboat", "Kappa Ninja")) return;
+
+    // 382: Dragon Koi Tournament
+    if (!storyKillQuest(382, "dragonkoi", "Ryoku")) return;
+
+    // 402: Dog Days
+    if (!storyKillQuest(402, "hachiko", ["Samurai Nopperabo", "Ninja Nopperabo"])) return;
+
+    // 403: Faceless Threat
+    if (!storyKillQuest(403, "hachiko", "Samurai Nopperabo")) return;
+
+    // 405: Zodiac Puzzle Key
+    if (!storyKillQuest(405, "hachiko", ["Samurai Nopperabo", "Ninja Nopperabo"])) return;
+
+    // 406: Rescue!
+    if (!storyKillQuest(406, "hachiko", "Dai Tengu")) return;
+
+    // 466: Jinmenju Tree
+    if (!storyMapItemQuest(466, "bamboo", 90)) return;
+
+    // 467: Yokai Bandits
+    if (!storyKillQuest(467, "bamboo", "Tanuki")) return;
+
+    // 468: The Fiery Fiend
+    if (!storyKillQuest(468, "bamboo", "SoulTaker")) return;
+
+    // 469: Dumpster Diving
+    if (!storyMapItemQuest(469, "junkyard", 91)) return;
+
+    // 470: Reduce, Respawn, Recycle
+    if (!storyKillQuest(470, "junkyard", ["Wild Kara-Kasa", "Wild Bura-Bura", "Wild Biwa-Bokuboku", "Wild Koto-Furunushi", "Wild Bakezouri"])) return;
+
+    // 471: The Hunt for the Hag
+    if (!storyKillQuest(471, "junkyard", "Onibaba")) return;
+
+    // 473: Su-she
+    if (!storyKillQuest(473, "yokairiver", "Funa-Yurei")) return;
+
+    // 474: Kappa Cuisine
+    if (!isCompletedBefore(474)) {
+        if (!ensureMap("yokairiver")) return;
+        ensureQuest(474);
+        getMapItem(92);
+        if (!canComplete(474)) {
+            hunt("Kappa Ninja");
+            return;
+        }
+        ensureComplete(474);
+        return;
+    }
+
+    // 476: Hisssssy fit
+    if (!storyKillQuest(476, "yokairiver", "Nure Onna")) return;
+
+    // 477: The Purrrfect Crime
+    if (!storyKillQuest(477, "yokaigrave", "Skello Kitty")) return;
+
+    // 478: The Face Off
+    if (!storyKillQuest(478, "yokaigrave", ["Ninja Nopperabo", "Samurai Nopperabo"])) return;
+
+    // 479: Confront Neko Mata
+    if (!storyKillQuest(479, "yokaigrave", "Neko Mata")) return;
+
+    // 481: Defeat O-dokuro
+    if (!storyKillQuest(481, "odokuro", "O-dokuro")) return;
+
+    // 484: Defeat O-Dokuro's Head
+    if (!storyKillQuest(484, "yokaiwar", "O-Dokuro's Head")) return;
+
+    // 488: Defeat Kitsune
+    if (!isCompletedBefore(488)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(488, "kitsune", "Kitsune")) return;
+    }
+}

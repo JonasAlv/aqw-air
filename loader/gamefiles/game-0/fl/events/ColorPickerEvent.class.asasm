@@ -1,0 +1,137 @@
+class
+ refid "fl.events:ColorPickerEvent"
+ instance QName(PackageNamespace("fl.events"), "ColorPickerEvent")
+  extends QName(PackageNamespace("flash.events"), "Event")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("fl.events:ColorPickerEvent")
+  iinit
+   refid "fl.events:ColorPickerEvent/instance/init"
+   param QName(PackageNamespace(""), "String")
+   param QName(PackageNamespace(""), "uint")
+   body
+    maxstack 3
+    localcount 3
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     getlocal1
+     pushtrue
+     constructsuper      2
+
+     findproperty        QName(ProtectedNamespace("fl.events:ColorPickerEvent"), "_color")
+     getlocal2
+     initproperty        QName(ProtectedNamespace("fl.events:ColorPickerEvent"), "_color")
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(ProtectedNamespace("fl.events:ColorPickerEvent"), "_color") type QName(PackageNamespace(""), "uint") end
+  trait getter QName(PackageNamespace(""), "color")
+   method
+    refid "fl.events:ColorPickerEvent/instance/color/getter"
+    returns QName(PackageNamespace(""), "uint")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlex              QName(ProtectedNamespace("fl.events:ColorPickerEvent"), "_color")
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "toString") flag OVERRIDE
+   method
+    refid "fl.events:ColorPickerEvent/instance/toString"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 6
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "formatToString")
+      pushstring          "ColorPickerEvent"
+      pushstring          "type"
+      pushstring          "bubbles"
+      pushstring          "cancelable"
+      pushstring          "color"
+      callproperty        QName(PackageNamespace(""), "formatToString"), 5
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "clone") flag OVERRIDE
+   method
+    refid "fl.events:ColorPickerEvent/instance/clone"
+    returns QName(PackageNamespace("flash.events"), "Event")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace("fl.events"), "ColorPickerEvent")
+      getlex              QName(PackageNamespace(""), "type")
+      getlex              QName(PackageNamespace(""), "color")
+      constructprop       QName(PackageNamespace("fl.events"), "ColorPickerEvent"), 2
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "fl.events:ColorPickerEvent/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "ITEM_ROLL_OUT")
+    pushstring          "itemRollOut"
+    initproperty        QName(PackageNamespace(""), "ITEM_ROLL_OUT")
+
+    findproperty        QName(PackageNamespace(""), "ITEM_ROLL_OVER")
+    pushstring          "itemRollOver"
+    initproperty        QName(PackageNamespace(""), "ITEM_ROLL_OVER")
+
+    findproperty        QName(PackageNamespace(""), "ENTER")
+    pushstring          "enter"
+    initproperty        QName(PackageNamespace(""), "ENTER")
+
+    findproperty        QName(PackageNamespace(""), "CHANGE")
+    pushstring          "change"
+    initproperty        QName(PackageNamespace(""), "CHANGE")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PackageNamespace(""), "ITEM_ROLL_OUT") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("itemRollOut") end
+ trait const QName(PackageNamespace(""), "ITEM_ROLL_OVER") slotid 2 type QName(PackageNamespace(""), "String") value Utf8("itemRollOver") end
+ trait const QName(PackageNamespace(""), "ENTER") slotid 3 type QName(PackageNamespace(""), "String") value Utf8("enter") end
+ trait const QName(PackageNamespace(""), "CHANGE") slotid 4 type QName(PackageNamespace(""), "String") value Utf8("change") end
+end ; class

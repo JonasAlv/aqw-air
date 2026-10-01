@@ -1,0 +1,125 @@
+class
+ refid "it.gotoandplay.smartfoxserver.http:HttpEvent"
+ instance QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+  extends QName(PackageNamespace("flash.events"), "Event")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent")
+  iinit
+   refid "it.gotoandplay.smartfoxserver.http:HttpEvent/instance/init"
+   param QName(PackageNamespace(""), "String")
+   param QName(PackageNamespace(""), "Object")
+   body
+    maxstack 2
+    localcount 3
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     getlocal1
+     constructsuper      1
+
+     getlocal0
+     getlocal2
+     initproperty        Multiname("params", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+
+     getlocal0
+     getlocal1
+     initproperty        Multiname("evtType", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "params") type QName(PackageNamespace(""), "Object") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), "evtType") type QName(PackageNamespace(""), "String") end
+  trait method QName(PackageNamespace(""), "clone") flag OVERRIDE
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpEvent/instance/clone"
+    returns QName(PackageNamespace("flash.events"), "Event")
+    body
+     maxstack 3
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+      getlocal0
+      getproperty         Multiname("evtType", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+      getlocal0
+      getproperty         Multiname("params", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+      constructprop       Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")]), 2
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "toString") flag OVERRIDE
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpEvent/instance/toString"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 7
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("formatToString", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")])
+      pushstring          "HttpEvent"
+      pushstring          "type"
+      pushstring          "bubbles"
+      pushstring          "cancelable"
+      pushstring          "eventPhase"
+      pushstring          "params"
+      callproperty        Multiname("formatToString", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpEvent"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpEvent"), StaticProtectedNs("flash.events:Event")]), 6
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "it.gotoandplay.smartfoxserver.http:HttpEvent/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "onHttpData")
+    pushstring          "onHttpData"
+    initproperty        QName(PackageNamespace(""), "onHttpData")
+
+    findproperty        QName(PackageNamespace(""), "onHttpError")
+    pushstring          "onHttpError"
+    initproperty        QName(PackageNamespace(""), "onHttpError")
+
+    findproperty        QName(PackageNamespace(""), "onHttpConnect")
+    pushstring          "onHttpConnect"
+    initproperty        QName(PackageNamespace(""), "onHttpConnect")
+
+    findproperty        QName(PackageNamespace(""), "onHttpClose")
+    pushstring          "onHttpClose"
+    initproperty        QName(PackageNamespace(""), "onHttpClose")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PackageNamespace(""), "onHttpData") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("onHttpData") end
+ trait const QName(PackageNamespace(""), "onHttpError") slotid 2 type QName(PackageNamespace(""), "String") value Utf8("onHttpError") end
+ trait const QName(PackageNamespace(""), "onHttpConnect") slotid 3 type QName(PackageNamespace(""), "String") value Utf8("onHttpConnect") end
+ trait const QName(PackageNamespace(""), "onHttpClose") slotid 4 type QName(PackageNamespace(""), "String") value Utf8("onHttpClose") end
+end ; class

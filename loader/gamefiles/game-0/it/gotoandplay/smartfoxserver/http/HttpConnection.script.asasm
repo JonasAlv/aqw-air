@@ -1,0 +1,33 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.http:HttpConnection/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("HttpConnection", [PackageNamespace("it.gotoandplay.smartfoxserver.http")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              Multiname("EventDispatcher", [PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.events")])
+    newclass            "it.gotoandplay.smartfoxserver.http:HttpConnection"
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpConnection")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpConnection")
+  #include "HttpConnection.class.asasm"
+ end ; trait
+end ; script

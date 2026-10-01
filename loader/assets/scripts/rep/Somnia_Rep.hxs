@@ -1,0 +1,49 @@
+// ========================================================
+// Script: Somnia Reputation Farm (.hxs)
+// Farms Somnia Reputation to Rank 10
+// Quests: 7665, 7666, 7669
+// Prerequisite: Somnia quests unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Somnia") >= 10) {
+        msg("Somnia Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(7665)) {
+        msg("Prerequisite missing: Quest 7665 is locked. Complete Somnia intro first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("somnia");
+}
+
+function onTick() {
+    if (factionRank("Somnia") >= 10) {
+        msg("Somnia Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("somnia");
+    ensureQuest(7665);
+    ensureQuest(7666);
+    ensureQuest(7669);
+
+    if (!hunt("Nightspore", "Dream Truffle", 8)) return;
+    if (!hunt("Orpheum Elemental", "Orphium Ore", 8)) return;
+    if (!hunt("Dream Larva", "Dreamsilk", 5)) return;
+
+    if (isQuestComplete(7665)) ensureComplete(7665);
+    if (isQuestComplete(7666)) ensureComplete(7666);
+    if (isQuestComplete(7669)) ensureComplete(7669);
+}
+
+function onStop() {
+    stopCombat();
+}

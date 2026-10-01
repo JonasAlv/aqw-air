@@ -1,0 +1,67 @@
+class
+ refid "types:MapBitmapItem"
+ instance QName(PackageNamespace("types"), "MapBitmapItem")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("types:MapBitmapItem")
+  iinit
+   refid "types:MapBitmapItem/instance/init"
+   body
+    maxstack 2
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     pushnull
+     initproperty        Multiname("child", [PrivateNamespace(null, "types:MapBitmapItem/instance/init"), PrivateNamespace(null, "types:MapBitmapItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:MapBitmapItem"), StaticProtectedNs("types:MapBitmapItem")])
+
+     getlocal0
+     pushbyte            0
+     initproperty        Multiname("x", [PrivateNamespace(null, "types:MapBitmapItem/instance/init"), PrivateNamespace(null, "types:MapBitmapItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:MapBitmapItem"), StaticProtectedNs("types:MapBitmapItem")])
+
+     getlocal0
+     pushnull
+     initproperty        Multiname("bmDO", [PrivateNamespace(null, "types:MapBitmapItem/instance/init"), PrivateNamespace(null, "types:MapBitmapItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:MapBitmapItem"), StaticProtectedNs("types:MapBitmapItem")])
+
+     getlocal0
+     pushnull
+     initproperty        Multiname("bmd", [PrivateNamespace(null, "types:MapBitmapItem/instance/init"), PrivateNamespace(null, "types:MapBitmapItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:MapBitmapItem"), StaticProtectedNs("types:MapBitmapItem")])
+
+     getlocal0
+     pushnull
+     initproperty        Multiname("bm", [PrivateNamespace(null, "types:MapBitmapItem/instance/init"), PrivateNamespace(null, "types:MapBitmapItem"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("types:MapBitmapItem"), StaticProtectedNs("types:MapBitmapItem")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "child") type QName(PackageNamespace("flash.display"), "DisplayObject") end
+  trait slot QName(PackageNamespace(""), "x") type QName(PackageNamespace(""), "Number") end
+  trait slot QName(PackageNamespace(""), "bmDO") type QName(PackageNamespace("flash.display"), "Bitmap") end
+  trait slot QName(PackageNamespace(""), "bmd") type QName(PackageNamespace("flash.display"), "BitmapData") end
+  trait slot QName(PackageNamespace(""), "bm") type QName(PackageNamespace("flash.display"), "Bitmap") end
+ end ; instance
+ cinit
+  refid "types:MapBitmapItem/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

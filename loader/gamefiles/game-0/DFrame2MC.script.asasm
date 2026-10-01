@@ -1,0 +1,53 @@
+script
+ sinit
+  refid "DFrame2MC/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 9
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("DFrame2MC", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObjectContainer")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "MovieClip")
+    pushscope
+
+    getlex              Multiname("MovieClip", [PrivateNamespace(null, "DFrame2MC#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.text"), PackageNamespace("flash.display")])
+    newclass            "DFrame2MC"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace(""), "DFrame2MC")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "DFrame2MC")
+  #include "DFrame2MC.class.asasm"
+ end ; trait
+end ; script

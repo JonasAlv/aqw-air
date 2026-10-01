@@ -1,0 +1,731 @@
+class
+ refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer"
+ instance QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "ObjectSerializer")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer")
+  iinit
+   refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/init"
+   param QName(PackageNamespace(""), "Boolean")
+   flag HAS_OPTIONAL
+   optional False()
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     pushstring          "\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09\x09"
+     initproperty        Multiname("tabs", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+     getlocal0
+     getlocal1
+     callpropvoid        Multiname("setDebug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 1
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "debug") type QName(PackageNamespace(""), "Boolean") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "eof") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "tabs") type QName(PackageNamespace(""), "String") end
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "setDebug")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/it.gotoandplay.smartfoxserver.util:ObjectSerializer/setDebug"
+    param QName(PackageNamespace(""), "Boolean")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      setproperty         Multiname("debug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      getlocal0
+      getproperty         Multiname("debug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      iffalse             L12
+
+      getlocal0
+      pushstring          "\n"
+      setproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L15
+
+L12:
+      getlocal0
+      pushstring          ""
+      setproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L15:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "serialize")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/serialize"
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      newobject           0
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal0
+      getlocal1
+      getlocal2
+      callpropvoid        Multiname("obj2xml", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "deserialize")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/deserialize"
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "Object")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("XML", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal1
+      constructprop       Multiname("XML", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 1
+      coerce              QName(PackageNamespace(""), "XML")
+      setlocal2
+
+      newobject           0
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal3
+
+      getlocal0
+      getlocal2
+      getlocal3
+      callpropvoid        Multiname("xml2obj", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+
+      getlocal3
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "obj2xml")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/it.gotoandplay.smartfoxserver.util:ObjectSerializer/obj2xml"
+    param QName(PackageNamespace(""), "Object")
+    param QName(PackageNamespace(""), "Object")
+    param QName(PackageNamespace(""), "int")
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Integer(0)
+    optional Utf8("")
+    body
+     maxstack 6
+     localcount 11
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce_s
+      setlocal            5
+
+      pushnull
+      coerce_s
+      setlocal            6
+
+      pushnull
+      coerce_s
+      setlocal            7
+
+      pushundefined
+      coerce_a
+      setlocal            8
+
+      getlocal3
+      pushbyte            0
+      ifne                L24
+
+      getlocal2
+      pushstring          "<dataObj>"
+      getlocal0
+      getproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L63
+
+L24:
+      getlocal0
+      getproperty         Multiname("debug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      iffalse             L37
+
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal0
+      getproperty         Multiname("tabs", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushbyte            0
+      getlocal3
+      callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L37:
+      getlocal1
+      getlex              Multiname("Array", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      istypelate
+      iffalse             L43
+
+      pushstring          "a"
+      jump                L44
+
+L43:
+      pushstring          "o"
+L44:
+      coerce_s
+      setlocal            6
+
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushstring          "<obj t='"
+      getlocal            6
+      add
+      pushstring          "' o='"
+      add
+      getlocal            4
+      add
+      pushstring          "'>"
+      add
+      getlocal0
+      getproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      add
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L63:
+      pushbyte            0
+      setlocal            9
+
+      getlocal1
+      coerce_a
+      setlocal            10
+
+      jump                L208
+
+L69:
+      label
+      getlocal            10
+      getlocal            9
+      nextname
+      coerce_s
+      setlocal            5
+
+      getlocal1
+      getlocal            5
+      getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      typeof
+      setlocal            7
+
+      getlocal1
+      getlocal            5
+      getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      coerce_a
+      setlocal            8
+
+      getlocal            7
+      pushstring          "boolean"
+      equals
+      dup
+      iftrue              L94
+
+      pop
+      getlocal            7
+      pushstring          "number"
+      equals
+L94:
+      dup
+      iftrue              L100
+
+      pop
+      getlocal            7
+      pushstring          "string"
+      equals
+L100:
+      dup
+      iftrue              L106
+
+      pop
+      getlocal            7
+      pushstring          "null"
+      equals
+L106:
+      iffalse             L173
+
+      getlocal            7
+      pushstring          "boolean"
+      ifne                L116
+
+      findpropstrict      Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal            8
+      callproperty        Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 1
+      coerce_a
+      setlocal            8
+
+      jump                L133
+
+L116:
+      getlocal            7
+      pushstring          "null"
+      ifne                L125
+
+      pushstring          "x"
+      setlocal            7
+
+      pushstring          ""
+      coerce_a
+      setlocal            8
+
+      jump                L133
+
+L125:
+      getlocal            7
+      pushstring          "string"
+      ifne                L133
+
+      getlex              Multiname("Entities", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal            8
+      callproperty        Multiname("encodeEntities", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 1
+      coerce_a
+      setlocal            8
+
+L133:
+      getlocal0
+      getproperty         Multiname("debug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      iffalse             L148
+
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal0
+      getproperty         Multiname("tabs", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushbyte            0
+      getlocal3
+      pushbyte            1
+      add
+      callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L148:
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushstring          "<var n='"
+      getlocal            5
+      add
+      pushstring          "' t='"
+      add
+      getlocal            7
+      pushbyte            0
+      pushbyte            1
+      callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+      add
+      pushstring          "'>"
+      add
+      getlocal            8
+      add
+      pushstring          "</var>"
+      add
+      getlocal0
+      getproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      add
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L208
+
+L173:
+      getlocal            7
+      pushstring          "object"
+      ifne                L208
+
+      getlocal0
+      getlocal            8
+      getlocal2
+      getlocal3
+      pushbyte            1
+      add
+      getlocal            5
+      callpropvoid        Multiname("obj2xml", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 4
+
+      getlocal0
+      getproperty         Multiname("debug", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      iffalse             L199
+
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal0
+      getproperty         Multiname("tabs", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushbyte            0
+      getlocal3
+      pushbyte            1
+      add
+      callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L199:
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushstring          "</obj>"
+      getlocal0
+      getproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      add
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L208:
+      hasnext2            10, 9
+      iftrue              L69
+
+      kill                10
+      kill                9
+      getlocal3
+      pushbyte            0
+      ifne                L224
+
+      getlocal2
+      getlocal2
+      getproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      pushstring          "</dataObj>"
+      getlocal0
+      getproperty         Multiname("eof", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      add
+      add
+      setproperty         Multiname("xmlStr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L224:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "xml2obj")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/it.gotoandplay.smartfoxserver.util:ObjectSerializer/xml2obj"
+    param QName(PackageNamespace(""), "XML")
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 14
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce_s
+      setlocal            5
+
+      pushnull
+      coerce              QName(PackageNamespace(""), "XML")
+      setlocal            6
+
+      pushnull
+      coerce_s
+      setlocal            7
+
+      pushnull
+      coerce_s
+      setlocal            8
+
+      pushnull
+      coerce_s
+      setlocal            9
+
+      pushnull
+      coerce_s
+      setlocal            10
+
+      pushnull
+      coerce_s
+      setlocal            11
+
+      pushbyte            0
+      setlocal3
+
+      getlocal1
+      callproperty        Multiname("children", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 0
+      coerce              QName(PackageNamespace(""), "XMLList")
+      setlocal            4
+
+      pushbyte            0
+      setlocal            12
+
+      getlocal            4
+      coerce_a
+      setlocal            13
+
+      jump                L135
+
+L35:
+      label
+      getlocal            13
+      getlocal            12
+      nextvalue
+      coerce              QName(PackageNamespace(""), "XML")
+      dup
+      setlocal            6
+
+      callproperty        Multiname("name", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 0
+      callproperty        Multiname("toString", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 0
+      coerce_s
+      dup
+      setlocal            5
+
+      pushstring          "obj"
+      ifne                L79
+
+      getlocal            6
+      getproperty         MultinameA("o", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      coerce_s
+      setlocal            7
+
+      getlocal            6
+      getproperty         MultinameA("t", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      coerce_s
+      dup
+      setlocal            8
+
+      pushstring          "a"
+      ifne                L65
+
+      getlocal2
+      getlocal            7
+      newarray            0
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L72
+
+L65:
+      getlocal            8
+      pushstring          "o"
+      ifne                L72
+
+      getlocal2
+      getlocal            7
+      newobject           0
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L72:
+      getlocal0
+      getlocal            6
+      getlocal2
+      getlocal            7
+      getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      callpropvoid        Multiname("xml2obj", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 2
+
+      jump                L135
+
+L79:
+      getlocal            5
+      pushstring          "var"
+      ifne                L135
+
+      getlocal            6
+      getproperty         MultinameA("n", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      coerce_s
+      setlocal            9
+
+      getlocal            6
+      getproperty         MultinameA("t", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      coerce_s
+      setlocal            10
+
+      getlocal            6
+      callproperty        Multiname("toString", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 0
+      coerce_s
+      setlocal            11
+
+      getlocal            10
+      pushstring          "b"
+      ifne                L110
+
+      getlocal2
+      getlocal            9
+      getlocal            11
+      pushstring          "0"
+      equals
+      iffalse             L106
+
+      pushfalse
+      coerce_a
+      jump                L108
+
+L106:
+      pushtrue
+      coerce_a
+L108:
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L135
+
+L110:
+      getlocal            10
+      pushstring          "n"
+      ifne                L120
+
+      getlocal2
+      getlocal            9
+      findpropstrict      Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+      getlocal            11
+      callproperty        Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")]), 1
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L135
+
+L120:
+      getlocal            10
+      pushstring          "s"
+      ifne                L128
+
+      getlocal2
+      getlocal            9
+      getlocal            11
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+      jump                L135
+
+L128:
+      getlocal            10
+      pushstring          "x"
+      ifne                L135
+
+      getlocal2
+      getlocal            9
+      pushnull
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L135:
+      hasnext2            13, 12
+      iftrue              L35
+
+      kill                13
+      kill                12
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "encodeEntities")
+   method
+    refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/instance/it.gotoandplay.smartfoxserver.util:ObjectSerializer/encodeEntities"
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 1
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), "instance") slotid 1 type QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "ObjectSerializer") end
+ trait method QName(PackageNamespace(""), "getInstance") flag FINAL dispid 3
+  method
+   refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/class/getInstance"
+   param QName(PackageNamespace(""), "Boolean")
+   returns QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "ObjectSerializer")
+   flag HAS_OPTIONAL
+   optional False()
+   body
+    maxstack 3
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlex              Multiname("instance", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+     pushnull
+     ifne                L10
+
+     findproperty        Multiname("instance", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+     getlocal0
+     getlocal1
+     construct           1
+     setproperty         Multiname("instance", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+
+L10:
+     getlex              Multiname("instance", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#0"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:ObjectSerializer"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:ObjectSerializer")])
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+end ; class

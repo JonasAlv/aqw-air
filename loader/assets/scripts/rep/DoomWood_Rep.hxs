@@ -1,0 +1,41 @@
+// ========================================================
+// Script: DoomWood Reputation Farm (.hxs)
+// Farms DoomWood Reputation to Rank 10
+// Quests: 1151, 1152, 1153 (Shadowfall War)
+// Prerequisite: Shadowfall War quests unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("DoomWood") >= 10) {
+        msg("DoomWood Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(1151)) {
+        msg("Prerequisite missing: Quest 1151 is locked. Complete Shadowfall War intro quests first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("shadowfallwar", "Garden1", "Left");
+    autoQuest([1151, 1152, 1153]);
+}
+
+function onTick() {
+    if (factionRank("DoomWood") >= 10) {
+        msg("DoomWood Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("shadowfallwar", "Garden1", "Left");
+    ensureCombat();
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

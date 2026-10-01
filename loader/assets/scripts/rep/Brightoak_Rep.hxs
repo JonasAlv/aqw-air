@@ -1,0 +1,45 @@
+// ========================================================
+// Script: Brightoak Reputation Farm (.hxs)
+// Farms Brightoak Reputation to Rank 10
+// Quest: 4667 (Unlocking the Guardian's Mouth)
+// Prerequisite: Brightoak saga completed up to Elfhame
+// ========================================================
+
+function onStart() {
+    if (factionRank("Brightoak") >= 10) {
+        msg("Brightoak Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(4667)) {
+        msg("Prerequisite missing: Quest 4667 is locked. Complete the Brightoak saga up to Elfhame (Unlocking the Guardian's Mouth) first.");
+        stop();
+        return;
+    }
+
+    setSkipCutscenes(true);
+    acceptAllDrops();
+    ensureMap("elfhame");
+}
+
+function onTick() {
+    if (factionRank("Brightoak") >= 10) {
+        msg("Brightoak Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("elfhame");
+    ensureQuest(4667);
+
+    getMapItem(3984);
+
+    if (isQuestComplete(4667)) {
+        ensureComplete(4667);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

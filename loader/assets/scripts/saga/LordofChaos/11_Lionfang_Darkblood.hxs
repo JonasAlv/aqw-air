@@ -1,0 +1,222 @@
+// ========================================================
+// Script: 11_Lionfang_Darkblood.hxs
+// 13 Lords of Chaos Saga: 10th Lord - Lionfang (Darkblood)
+// Final Quest: 2814 (Face Chaos Lord Lionfang!)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(2814)) {
+        log("Lionfang chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(2814)) {
+        log("Lionfang chapter completed!");
+        stop();
+        return;
+    }
+
+    // 2612: Final Rest
+    if (!storyKillQuest(2612, "blackhorn", "Restless Undead")) return;
+
+    // 2613: Disturbing The Peace
+    if (!storyMapItemQuest(2613, "blackhorn", 1615, 10)) return;
+
+    // 2614: Sampling Silk
+    if (!storyKillQuest(2614, "blackhorn", "Tomb Spider")) return;
+
+    // 2615: Fire Is The Thing
+    if (!storyMapItemQuest(2615, "blackhorn", 1616)) return;
+    if (!storyKillQuest(2615, "blackhorn", ["Tomb Spider", "Restless Undead"])) return;
+
+    // 2616: The Wall Comes Down
+    if (!storyMapItemQuest(2616, "blackhorn", 1617)) return;
+
+    // 2617: The Bonefeeder
+    if (!storyKillQuest(2617, "blackhorn", "Bonefeeder Spider")) return;
+
+    // 2618: What Lies Beyond?
+    if (!storyMapItemQuest(2618, "blackhorn", 1618)) return;
+
+    // 2619: Toxic
+    if (!storyKillQuest(2619, "blackhorn", "Tomb Spider")) return;
+
+    // 2620: Very Toxic
+    if (!storyKillQuest(2620, "blackhorn", "Restless Undead")) return;
+
+    // 2621: Really, VERY VERY TOXIC!
+    if (!storyMapItemQuest(2621, "blackhorn", 1619)) return;
+
+    // 2622: Lion Hunting
+    if (!storyMapItemQuest(2622, "onslaughttower", [1620, 1621, 1622, 1623])) return;
+
+    // 2623: Secret Of The Death Fog
+    if (!storyKillQuest(2623, "onslaughttower", "Golden Caster")) return;
+
+    // 2624: The Key To Survival
+    if (!storyKillQuest(2624, "onslaughttower", "Golden Caster")) return;
+
+    // 2625: The Tools
+    if (!storyMapItemQuest(2625, "onslaughttower", 1624, 8)) return;
+
+    // 2626: The Talent
+    if (!storyMapItemQuest(2626, "onslaughttower", 1625)) return;
+
+    // 2627: The Local Locale
+    if (!storyMapItemQuest(2627, "onslaughttower", 1626, 4)) return;
+
+    // 2628: Who Holds The Key?
+    if (!storyKillQuest(2628, "onslaughttower", "Golden Caster")) return;
+
+    // 2629: Leave No Rug Unturned
+    if (!storyMapItemQuest(2629, "onslaughttower", 1627)) return;
+
+    // 2630: Tame The Lion
+    if (!storyKillQuest(2630, "onslaughttower", "Maximillian Lionfang")) return;
+
+    // 2666: Take Up The Cause
+    if (!storyKillQuest(2666, "falguard", "Chaonslaught Caster")) return;
+
+    // 2667: Well Kept Secrets
+    if (!storyMapItemQuest(2667, "falguard", 1628, 6)) return;
+
+    // 2668: Feeding On The Fallen
+    if (!storyKillQuest(2668, "falguard", ["Chaonslaught Warrior", "Chaonslaught Cavalry"])) return;
+
+    // 2669: Special Delivery
+    if (!storyMapItemQuest(2669, "falguard", 1629)) return;
+
+    // 2670: Precious Scraps
+    if (!storyKillQuest(2670, "falguard", "Chaonslaught Warrior")) return;
+
+    // 2671: Restocking
+    if (!storyMapItemQuest(2671, "falguard", 1630)) return;
+
+    // 2672: An Innside Job
+    if (!storyMapItemQuest(2672, "falguard", 1631)) return;
+
+    // 2673: Streets Run Red
+    if (!storyKillQuest(2673, "falguard", "Chaonslaught Caster")) return;
+
+    // 2674: Open the Temple
+    if (!storyMapItemQuest(2674, "falguard", 1632)) return;
+
+    // 2675: The Open Temple
+    if (!storyKillQuest(2675, "falguard", "Primarch")) return;
+
+    // 2720: Remains
+    if (!storyKillQuest(2720, "deathpits", "Rotting Darkblood")) return;
+
+    // 2721: Thriving In Rot
+    if (!storyMapItemQuest(2721, "deathpits", 1691, 5)) return;
+
+    // 2722: Rotting Ribs
+    if (!storyKillQuest(2722, "deathpits", "Rotting Darkblood")) return;
+
+    // 2723: A Perfect Skull
+    if (!storyKillQuest(2723, "deathpits", "Rotting Darkblood")) return;
+
+    // 2724: Deeper Into Death
+    if (!storyKillQuest(2724, "deathpits", "Ghastly Darkblood")) return;
+
+    // 2725: Precise Placement
+    if (!storyKillQuest(2725, "deathpits", "Ghastly Darkblood")) return;
+
+    // 2726: Painted Protection
+    if (!storyMapItemQuest(2726, "deathpits", 1692, 6)) return;
+
+    // 2727: They Sense You
+    if (!storyKillQuest(2727, "deathpits", "Rotting Darkblood")) return;
+
+    // 2728: They Hate You
+    if (!storyKillQuest(2728, "deathpits", "Ghastly Darkblood")) return;
+
+    // 2729: The Sundered
+    if (!storyKillQuest(2729, "deathpits", "Sundered Darkblood")) return;
+
+    // 2730: Rotstone
+    if (!storyMapItemQuest(2730, "deathpits", 1693, 9)) return;
+
+    // 2731: Honor The Dead
+    if (!storyKillQuest(2731, "deathpits", ["Sundered Darkblood", "Rotting Darkblood", "Ghastly Darkblood"])) return;
+
+    // 2732: Ties to Life
+    if (!storyMapItemQuest(2732, "deathpits", 1694, 12)) return;
+
+    // 2740: Destroy Wrathful Vestis and Secure The Tears
+    if (!storyMapItemQuest(2740, "deathpits", 1695)) return;
+    if (!storyKillQuest(2740, "deathpits", "Wrathful Vestis")) return;
+
+    // 2792: Surveillance for Sir Valence
+    if (!storyMapItemQuest(2792, "venomvaults", 1724)) return;
+
+    // 2793: Well Planned Getaway
+    if (!storyKillQuest(2793, "venomvaults", "Chaonslaught Warrior")) return;
+
+    // 2794: Secrets Of The Mad Prince
+    if (!storyMapItemQuest(2794, "venomvaults", 1725)) return;
+
+    // 2796: Potion of Cleansing
+    if (!storyMapItemQuest(2796, "venomvaults", 1726)) return;
+
+    // 2797 & 2798: You've Been Noticed & Thorny Situations
+    if (!storyKillQuest(2797, "venomvaults", "Chaonslaught Caster")) return;
+    if (!storyMapItemQuest(2798, "venomvaults", 1727, 5)) return;
+
+    // 2799: Other Ingredients
+    if (!storyKillQuest(2799, "venomvaults", "Chaonslaught Caster")) return;
+
+    // 2800: Time For Supplies
+    if (!storyKillQuest(2800, "venomvaults", "Chaonslaught Warrior")) return;
+
+    // 2801: Cooking Without Fire
+    if (!storyKillQuest(2801, "venomvaults", "Chaonslaught Caster")) return;
+
+    // 2802: Introduction
+    if (!storyMapItemQuest(2802, "venomvaults", 1728, 3)) return;
+
+    // 2803: Courtyard Key
+    if (!storyKillQuest(2803, "venomvaults", "Chaonslaught Caster")) return;
+
+    // 2804: Take Out The Chaos Manticore!
+    if (!storyKillQuest(2804, "venomvaults", "Manticore")) return;
+
+    // 2805: Shocking Footwear
+    if (!storyMapItemQuest(2805, "stormtemple", 1729, 4)) return;
+
+    // 2806: New Shoes
+    if (!storyKillQuest(2806, "stormtemple", "*")) return;
+
+    // 2807: Mouth Of The Lion
+    if (!storyKillQuest(2807, "stormtemple", "Chaonslaught Caster")) return;
+
+    // 2808: Storm the Storm Temple
+    if (!storyKillQuest(2808, "stormtemple", "Chaonslaught Caster")) return;
+
+    // 2809: A High Minded Matter
+    if (!storyMapItemQuest(2809, "stormtemple", 1730, 3)) return;
+
+    // 2810: Storm Bottles
+    if (!storyKillQuest(2810, "stormtemple", "Chaonslaught Caster")) return;
+
+    // 2811: Breaching Defenses
+    if (!storyMapItemQuest(2811, "stormtemple", 1731)) return;
+
+    // 2812: Chaos Lightning Rods
+    if (!storyKillQuest(2812, "stormtemple", "Chaonslaught Cavalry")) return;
+
+    // 2813: Barrier Buster
+    if (!storyMapItemQuest(2813, "stormtemple", 1732)) return;
+
+    // 2814: Face Chaos Lord Lionfang!
+    if (!isCompletedBefore(2814)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(2814, "stormtemple", "Chaos Lord Lionfang")) return;
+    }
+}

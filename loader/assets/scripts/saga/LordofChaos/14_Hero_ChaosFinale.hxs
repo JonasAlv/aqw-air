@@ -1,0 +1,158 @@
+// ========================================================
+// Script: 14_Hero_ChaosFinale.hxs
+// 13 Lords of Chaos Saga: 13th Lord - Hero & Chaos Finale
+// Final Quest: 3881 (The Final Showdown!)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(3881)) {
+        log("Hero & Chaos Finale is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(3881)) {
+        log("Hero & Chaos Finale completed! 13 Lords of Chaos defeated!");
+        stop();
+        return;
+    }
+
+    // 12 Lords of Chaos Mount Doom Skull chain
+    if (!storyChainQuest(3578)) return;
+    if (!storyChainQuest(3579)) return;
+    if (!storyChainQuest(3580)) return;
+    if (!storyChainQuest(3581)) return;
+    if (!storyChainQuest(3582)) return;
+    if (!storyChainQuest(3583)) return;
+    if (!storyChainQuest(3584)) return;
+    if (!storyChainQuest(3585)) return;
+    if (!storyChainQuest(3586)) return;
+    if (!storyChainQuest(3587)) return;
+    if (!storyChainQuest(3588)) return;
+    if (!storyChainQuest(3589)) return;
+    if (!storyChainQuest(3590)) return;
+    if (!storyChainQuest(3591)) return;
+
+    // 3764: Mountain Top Reached
+    if (!storyChainQuest(3764)) return;
+
+    // 3765: Drakath Faced
+    if (!storyMapItemQuest(3765, "mountdoomskull", 2726)) return;
+
+    // 3766: Who is the 13th Lord of Chaos?
+    if (!storyChainQuest(3766)) return;
+
+    // 3779: World War Lore!
+    if (!storyChainQuest(3779)) return;
+
+    // 3781: Battle for Chaos in Willowcreek!
+    if (!storyKillQuest(3781, "newfinale", "Alliance Virago")) return;
+
+    // 3788: Defeat the Chaos Challenger
+    if (!storyKillQuest(3788, "newfinale", "Chaos Challenger")) return;
+
+    // 3783: Battle for Chaos in Doomwood!
+    if (!storyKillQuest(3783, "newfinale", "Alliance Virago")) return;
+
+    // 3789: Beat Chaorrupted Lycan Hunter
+    if (!storyKillQuest(3789, "newfinale", "Chaorrupted Lycan Hunter")) return;
+
+    // 3785: Battle for Chaos in Darkovia!
+    if (!storyKillQuest(3785, "newfinale", "Alliance Virago")) return;
+
+    // 3790: Defeat the Memory of Vampires
+    if (!storyKillQuest(3790, "newfinale", "Memory of Vampires")) return;
+
+    // 3787: Battle for Chaos in the Lair!
+    if (!storyKillQuest(3787, "newfinale", "Alliance Virago")) return;
+
+    // 12 Chaos Beasts chain
+    if (!storyChainQuest(3608)) return;
+    if (!storyChainQuest(3618)) return;
+    if (!storyChainQuest(3609)) return;
+    if (!storyChainQuest(3610)) return;
+    if (!storyChainQuest(3611)) return;
+    if (!storyChainQuest(3612)) return;
+    if (!storyChainQuest(3613)) return;
+    if (!storyChainQuest(3614)) return;
+    if (!storyChainQuest(3615)) return;
+    if (!storyChainQuest(3616)) return;
+    if (!storyChainQuest(3617)) return;
+    if (!storyChainQuest(3619)) return;
+
+    // 3791: The Chaos Beast is called forth.
+    if (!storyChainQuest(3791)) return;
+
+    // 3792: Time to save Battleon!
+    if (!storyChainQuest(3792)) return;
+
+    // 3794: Battle for Chaos in Battleon!
+    if (!storyKillQuest(3794, "newfinale", "Alliance Soldier")) return;
+
+    // 3795: Battle the Champion of Chaos!
+    if (!storyMapItemQuest(3795, "drakathfight", 2894)) return;
+
+    // 3620: Arrive in the Underworld
+    if (!storyKillQuest(3620, "shadowrise", "Darkness Elemental")) return;
+
+    // 3796: Search for Death's Lair
+    if (!storyMapItemQuest(3796, "shadowrise", 2895)) return;
+
+    // 3797: Arrive in Shadowattack
+    if (!storyChainQuest(3797)) return;
+
+    // 3798: Find your way to Death's lair
+    if (!storyMapItemQuest(3798, "shadowattack", 2896)) return;
+
+    // 3799: Beat Death!
+    if (!isCompletedBefore(3799)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(3799, "shadowattack", "Death")) return;
+    }
+
+    // 3875: Enter Confrontation
+    if (!storyChainQuest(3875, "confrontation")) return;
+
+    // 3876: Defeat Drakath!
+    if (!storyKillQuest(3876, "finalbattle", "*")) return;
+
+    // 3877: Defeat Drakath.. again!
+    if (!storyKillQuest(3877, "finalbattle", "*")) return;
+
+    // 3878: Defeat Drakath!
+    if (!storyKillQuest(3878, "finalbattle", "*")) return;
+
+    // 3879: Defeat the 12 Lords of Chaos!
+    if (!storyKillQuest(3879, "chaosrealm", "Chaos Lord Alteon")) return;
+
+    // 3880: Defeat the 13th Lord of Chaos
+    if (!isCompletedBefore(3880)) {
+        equipLoadout("solo");
+        if (!ensureMap("chaoslord", "r2", "Left")) return;
+        ensureQuest(3880);
+        if (!canComplete(3880)) {
+            hunt("*");
+            return;
+        }
+        ensureComplete(3880);
+        return;
+    }
+
+    // 3881: The Final Showdown!
+    if (!isCompletedBefore(3881)) {
+        equipLoadout("solo");
+        if (!ensureMap("finalshowdown", "r2", "Left")) return;
+        ensureQuest(3881);
+        if (!canComplete(3881)) {
+            hunt("*");
+            return;
+        }
+        ensureComplete(3881);
+        return;
+    }
+}

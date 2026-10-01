@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "BGLoader/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("BGLoader", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PackageInternalNs(""), PrivateNamespace(null, "BGLoader"), PackageNamespace(""), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "BGLoader"
+    popscope
+    initproperty        QName(PackageNamespace(""), "BGLoader")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "BGLoader")
+  #include "BGLoader.class.asasm"
+ end ; trait
+end ; script

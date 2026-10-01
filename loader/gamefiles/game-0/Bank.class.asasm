@@ -1,0 +1,58 @@
+class
+ refid "Bank"
+ instance QName(PackageNamespace(""), "Bank")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("Bank")
+  iinit
+   refid "Bank/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "bg1") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "btnBank") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "btnBankAC") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "btnFromInventory") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "btnToInventory") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "mcBankList") type QName(PackageNamespace(""), "ItemList") end
+  trait slot QName(PackageNamespace(""), "mcCoin") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "mcCoinBank") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "mcItemList") type QName(PackageNamespace(""), "ItemList") end
+  trait slot QName(PackageNamespace(""), "mcUpgrade") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "mcUpgradeBank") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "strCoins") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "strGold") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "strInfo") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "strNewInfo") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "txtBagSlots") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "txtBankSlots") type QName(PackageNamespace("flash.text"), "TextField") end
+ end ; instance
+ cinit
+  refid "Bank/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

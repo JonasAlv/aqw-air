@@ -1,0 +1,131 @@
+// ========================================================
+// Script: 05_Wolfwing_Darkovia.hxs
+// 13 Lords of Chaos Saga: 4th Lord - Wolfwing (Darkovia)
+// Final Quest: 597 (Wolfwing)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(597) || isCompletedBefore(598)) {
+        log("Wolfwing chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(597) || isCompletedBefore(598)) {
+        log("Wolfwing chapter completed!");
+        stop();
+        return;
+    }
+
+    // 494: Grave Mission
+    if (!storyMapItemQuest(494, "darkoviagrave", 97)) return;
+
+    // 495: Lending a Helping Hand
+    if (!storyKillQuest(495, "darkoviagrave", "Skeletal Fire Mage")) return;
+
+    // 496: Bone Appetit
+    if (!storyKillQuest(496, "darkoviagrave", "Rattlebones")) return;
+
+    // 497: Batting Cage
+    if (!storyKillQuest(497, "darkoviagrave", "Albino Bat")) return;
+
+    // 498: His Bark is worse than his Blight
+    if (!storyKillQuest(498, "darkoviagrave", "Blightfang")) return;
+
+    // 308: Vicious Wolves
+    if (!storyKillQuest(308, "greenguardeast", "Wolf")) return;
+
+    // 309: Slimes to the West, Slimes Everywhere
+    if (!storyKillQuest(309, "greenguardwest", "Slime")) return;
+
+    // 310: Scaly Menace
+    if (!storyKillQuest(310, "greenguardwest", "Frogzard")) return;
+
+    // 311: Overgrown Spiders
+    if (!storyKillQuest(311, "greenguardeast", "Spider")) return;
+
+    // Lil' Red + Can I axe you something? (514 & 515)
+    if (!isCompletedBefore(516)) {
+        if (!isCompletedBefore(515)) {
+            ensureQuest(515);
+            if (!canComplete(515)) {
+                ensureMap("greenguardeast");
+                hunt("Spider");
+                hunt("Wolf");
+                ensureMap("greenguardwest");
+                hunt("Slime");
+                hunt("Frogzard");
+                hunt("Big Bad Boar");
+                return;
+            }
+            ensureComplete(515);
+            return;
+        }
+        if (!isCompletedBefore(514)) {
+            storyChainQuest(514);
+            return;
+        }
+    }
+
+    // 516: A Dire Situation
+    if (!storyKillQuest(516, "darkoviaforest", "Dire Wolf")) return;
+
+    // 517: Blood, Sweat, and Tears
+    if (!storyKillQuest(517, "darkoviaforest", "Blood Maggot")) return;
+
+    // 518: What a Lich!
+    if (!storyKillQuest(518, "darkoviaforest", "Lich of the Stone")) return;
+
+    // 519: Feeding Grounds
+    if (!storyKillQuest(519, "safiria", "Blood Maggot")) return;
+
+    // 520: Going Batty
+    if (!storyKillQuest(520, "safiria", "Albino Bat")) return;
+
+    // 521: Lycan Knights
+    if (!storyKillQuest(521, "safiria", "Chaos Lycan")) return;
+
+    // 522: Twisted Paw
+    if (!storyKillQuest(522, "safiria", "Twisted Paw")) return;
+
+    // 534: A Gift Of Meat
+    if (!storyKillQuest(534, "lycan", "Dire Wolf")) return;
+
+    // 535: No Respect
+    if (!storyKillQuest(535, "lycan", ["Lycan Knight", "Lycan"])) return;
+
+    // 536: Vampire Knights
+    if (!storyKillQuest(536, "lycan", "Chaos Vampire Knight")) return;
+
+    // 537: Sanguine
+    if (!storyKillQuest(537, "lycan", "Sanguine")) return;
+
+    // 552: War Boss Fight
+    if (!isCompletedBefore(552)) {
+        storyChainQuest(552, "lycanwar");
+        return;
+    }
+
+    // 564: Search and Report
+    if (!storyMapItemQuest(564, "chaoscave", 107)) return;
+
+    // 565: The Key is the Key
+    if (!storyKillQuest(565, "chaoscave", "Werepyre")) return;
+
+    // 566: Secret Words
+    if (!storyKillQuest(566, "chaoscave", "Werepyre")) return;
+
+    // 567: DracoWerePyre
+    if (!storyKillQuest(567, "chaoscave", "DracoWerePyre")) return;
+
+    // 597: Wolfwing
+    if (!isCompletedBefore(597) && !isCompletedBefore(598)) {
+        storyChainQuest(597, "wolfwing");
+        return;
+    }
+}

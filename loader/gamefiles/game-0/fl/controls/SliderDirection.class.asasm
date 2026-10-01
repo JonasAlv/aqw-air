@@ -1,0 +1,52 @@
+class
+ refid "fl.controls:SliderDirection"
+ instance QName(PackageNamespace("fl.controls"), "SliderDirection")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("fl.controls:SliderDirection")
+  iinit
+   refid "fl.controls:SliderDirection/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; instance
+ cinit
+  refid "fl.controls:SliderDirection/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "HORIZONTAL")
+    pushstring          "horizontal"
+    setproperty         QName(PackageNamespace(""), "HORIZONTAL")
+
+    findproperty        QName(PackageNamespace(""), "VERTICAL")
+    pushstring          "vertical"
+    setproperty         QName(PackageNamespace(""), "VERTICAL")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PackageNamespace(""), "HORIZONTAL") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("horizontal") end
+ trait slot QName(PackageNamespace(""), "VERTICAL") slotid 2 type QName(PackageNamespace(""), "String") value Utf8("vertical") end
+end ; class

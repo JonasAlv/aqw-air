@@ -1,0 +1,148 @@
+// ========================================================
+// Script: 09_Khasaanda_Troll.hxs
+// 13 Lords of Chaos Saga: 8th Lord - Khasaanda (Troll Storyline)
+// Final Quest: 1468 (Choose: Khasaanda Confrontation? Troll)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(1468)) {
+        log("Khasaanda (Troll) chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(1468)) {
+        log("Khasaanda (Troll) chapter completed!");
+        stop();
+        return;
+    }
+
+    // 1226: Horc Stink!
+    if (!storyMapItemQuest(1226, "bloodtusk", 523)) return;
+    if (!storyKillQuest(1226, "crossroads", ["Chinchilizard", "Trollola Plant"])) return;
+
+    // 1227: The Time Grows Closer
+    if (!storyKillQuest(1227, "crossroads", ["Lemurphant", "Koalion"])) return;
+
+    // 1228: Like Calls to Like
+    if (!storyMapItemQuest(1228, "crossroads", 525)) return;
+    if (!storyKillQuest(1228, "crossroads", ["Chinchilizard", "Lemurphant"])) return;
+
+    // 1229: Incense Makes Sense
+    if (!storyMapItemQuest(1229, "crossroads", 521, 10)) return;
+    if (!storyKillQuest(1229, "crossroads", ["Lemurphant", "Trollola Plant", "Koalion"])) return;
+
+    // 1230: She Who asks 1
+    if (!isCompletedBefore(1230)) {
+        storyChainQuest(1230);
+        return;
+    }
+
+    // 1231: The Troll Inside
+    if (!storyMapItemQuest(1231, "crossroads", 522, 5)) return;
+    if (!storyMapItemQuest(1231, "crossroads", 524, 10)) return;
+    if (!storyKillQuest(1231, "crossroads", ["Lemurphant", "Koalion"])) return;
+
+    // 1240: Eclipse - cutscene
+    if (!isCompletedBefore(1240)) {
+        storyChainQuest(1240, "crossroads");
+        return;
+    }
+
+    // 1272: Chaos scars the Trolls
+    if (!isCompletedBefore(1272)) {
+        storyChainQuest(1272);
+        return;
+    }
+
+    // 1274: Guarded Secrets, Hidden Treasures
+    if (!storyMapItemQuest(1274, "ravinetemple", 553)) return;
+
+    // 1275: Evidence of Chaos
+    if (!storyMapItemQuest(1275, "ravinetemple", 554, 5)) return;
+    if (!storyMapItemQuest(1275, "ravinetemple", [555, 556], 10)) return;
+
+    // 1276: Learn More of the Ore
+    if (!storyKillQuest(1276, "ravinetemple", "Temple Guardian")) return;
+
+    // 1277: Too Little, Too Late. Still Needed
+    if (!storyMapItemQuest(1277, "ravinetemple", 557, 10)) return;
+    if (!storyKillQuest(1277, "ravinetemple", "Temple Guardian")) return;
+
+    // 1278: Alliance Defiance
+    if (!storyKillQuest(1278, "ravinetemple", "Temple Guardian")) return;
+
+    // 1369: The Headquarters of Good and Evil
+    if (!storyMapItemQuest(1369, "alliance", [679, 680])) return;
+
+    // 1370: Treat Nullification, Good and Bad
+    if (!storyKillQuest(1370, "alliance", ["Good Soldier", "Evil Soldier"])) return;
+
+    // 1371: Trap the Keepers
+    if (!storyMapItemQuest(1371, "alliance", 675, 10)) return;
+
+    // 1372: Find What is Hidden Inside
+    if (!storyMapItemQuest(1372, "alliance", 676)) return;
+
+    // 1373: Chaorruption Annihilation
+    if (!storyKillQuest(1373, "alliance", "Chaorrupted Evil Soldier")) return;
+
+    // 1374: Alliance Demotion
+    if (!storyKillQuest(1374, "alliance", ["General Cynari", "General Tibias"])) return;
+
+    // 1419: Contain the Chaorruption
+    if (!storyKillQuest(1419, "ancienttemple", "Chaotic Vulture")) return;
+
+    // 1420: Ancient Ointment
+    if (!storyMapItemQuest(1420, "ancienttemple", 706, 7)) return;
+    if (!storyKillQuest(1420, "ancienttemple", "Chaotic Vulture")) return;
+
+    // 1421: Anoint the Ancients
+    if (!storyKillQuest(1421, "ancienttemple", "Chaos Troll Spirit")) return;
+
+    // 1422: Serpents Do No Harm
+    if (!storyKillQuest(1422, "ancienttemple", "Serpentress")) return;
+
+    // 1423: Though Nature Bars the Way
+    if (!storyMapItemQuest(1423, "ancienttemple", 707)) return;
+
+    // 1451: Descent Into Darkness
+    if (!storyMapItemQuest(1451, "orecavern", 717)) return;
+
+    // 1452: Out of the Darkness
+    if (!storyMapItemQuest(1452, "orecavern", 719, 5)) return;
+    if (!storyKillQuest(1452, "orecavern", "Crashroom")) return;
+
+    // 1453: Shine a Light on Deception
+    if (!storyMapItemQuest(1453, "orecavern", 718, 5)) return;
+
+    // 1454: Save Yourself, Save the Soldiers
+    if (!storyKillQuest(1454, "orecavern", "Chaorrupted Evil Soldier")) return;
+
+    // 1455: Battle the Baas!
+    if (!storyKillQuest(1455, "orecavern", "Naga Baas")) return;
+
+    // 1464: Know the Nexus
+    if (!storyMapItemQuest(1464, "dreamnexus", [734, 735, 736, 737])) return;
+
+    // 1465: Secure a Route Home
+    if (!storyKillQuest(1465, "dreamnexus", ["Dark Wyvern", "Aether Serpent"])) return;
+
+    // 1466: DreamDancers' Orbs
+    if (!storyMapItemQuest(1466, "dreamnexus", 738, 10)) return;
+    if (!storyMapItemQuest(1466, "dreamnexus", 739, 11)) return;
+
+    // 1467: Master the Flames
+    if (!storyKillQuest(1467, "dreamnexus", "Solar Phoenix")) return;
+
+    // 1468: Choose: Khasaanda Confrontation?
+    if (!isCompletedBefore(1468)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(1468, "dreamnexus", "Khasaanda")) return;
+    }
+}

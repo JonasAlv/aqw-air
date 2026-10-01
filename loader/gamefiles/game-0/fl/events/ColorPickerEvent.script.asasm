@@ -1,0 +1,33 @@
+script
+ sinit
+  refid "fl.events:ColorPickerEvent/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ColorPickerEvent", [PackageNamespace("fl.events")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "Event")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "Event")
+    newclass            "fl.events:ColorPickerEvent"
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace("fl.events"), "ColorPickerEvent")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("fl.events"), "ColorPickerEvent")
+  #include "ColorPickerEvent.class.asasm"
+ end ; trait
+end ; script

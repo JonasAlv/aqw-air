@@ -1,0 +1,75 @@
+class
+ refid "mcQuestpopup"
+ instance QName(PackageNamespace(""), "mcQuestpopup")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("mcQuestpopup")
+  iinit
+   refid "mcQuestpopup/instance/init"
+   body
+    maxstack 3
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     findpropstrict      Multiname("addFrameScript", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            124
+     getlocal0
+     getproperty         Multiname("frame125", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     callpropvoid        Multiname("addFrameScript", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "cnt") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "fx2") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait method QName(PackageInternalNs(""), "frame125")
+   method
+    refid "mcQuestpopup/instance/frame125"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("MovieClip", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("parent", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("MovieClip", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      getlocal0
+      callpropvoid        Multiname("removeChild", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      findpropstrict      Multiname("stop", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("stop", [PrivateNamespace(null, "mcQuestpopup/instance#0"), PrivateNamespace(null, "mcQuestpopup/instance#1"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("mcQuestpopup"), StaticProtectedNs("mcQuestpopup"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "mcQuestpopup/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Skye Reputation Farm (.hxs)
+// Farms Skye Reputation to Rank 10
+// Quests: 9709, 9710, 9711, 9717 (Bale Morale)
+// Prerequisite: SeaVoice / Skye story completed
+// ========================================================
+
+function onStart() {
+    if (factionRank("Skye") >= 10) {
+        msg("Skye Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(9709)) {
+        msg("Prerequisite missing: Quest 9709 is locked. Complete the SeaVoice / Skye story quests first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("balemorale", "r10", "Bottom");
+    autoQuest([9709, 9710, 9711, 9717]);
+}
+
+function onTick() {
+    if (factionRank("Skye") >= 10) {
+        msg("Skye Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("balemorale", "r10", "Bottom");
+    ensureCombat();
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

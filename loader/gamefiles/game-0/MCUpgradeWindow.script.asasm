@@ -1,0 +1,53 @@
+script
+ sinit
+  refid "MCUpgradeWindow/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 9
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("MCUpgradeWindow", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.events"), "EventDispatcher")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "InteractiveObject")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "DisplayObjectContainer")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "Sprite")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "MovieClip")
+    pushscope
+
+    getlex              QName(PackageNamespace("flash.display"), "MovieClip")
+    newclass            "MCUpgradeWindow"
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    popscope
+    initproperty        QName(PackageNamespace(""), "MCUpgradeWindow")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "MCUpgradeWindow")
+  #include "MCUpgradeWindow.class.asasm"
+ end ; trait
+end ; script

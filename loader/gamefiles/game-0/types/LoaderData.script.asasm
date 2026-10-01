@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "types:LoaderData/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("LoaderData", [PackageNamespace("types")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PackageNamespace("types"), PrivateNamespace(null, "types:LoaderData#0"), PackageNamespace(""), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "types:LoaderData"
+    popscope
+    initproperty        QName(PackageNamespace("types"), "LoaderData")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("types"), "LoaderData")
+  #include "LoaderData.class.asasm"
+ end ; trait
+end ; script

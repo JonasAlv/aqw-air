@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "FBListener/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("FBListener", [PackageNamespace("")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "FBListener"), PackageNamespace(""), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external")])
+    newclass            "FBListener"
+    popscope
+    initproperty        QName(PackageNamespace(""), "FBListener")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace(""), "FBListener")
+  #include "FBListener.class.asasm"
+ end ; trait
+end ; script

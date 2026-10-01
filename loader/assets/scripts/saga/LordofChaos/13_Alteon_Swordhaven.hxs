@@ -1,0 +1,132 @@
+// ========================================================
+// Script: 13_Alteon_Swordhaven.hxs
+// 13 Lords of Chaos Saga: 12th Lord - Alteon (Swordhaven)
+// Final Quest: 3160 (Chaos Lord Alteon)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(3160)) {
+        log("Alteon chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(3160)) {
+        log("Alteon chapter completed!");
+        stop();
+        return;
+    }
+
+    // 3077: Bandit Bounty
+    if (!storyKillQuest(3077, "archives", "Chaos Bandit")) return;
+
+    // 3078: Thwarting the Spies
+    if (!storyKillQuest(3078, "archives", "Camouflaged Sp-eye")) return;
+
+    // 3079: Fight Chaos With Clerics
+    if (!storyKillQuest(3079, "archives", ["Chaos Bandit", "Camouflaged Sp-eye"])) return;
+
+    // 3080: Locate the Source
+    if (!storyMapItemQuest(3080, "archives", 1937)) return;
+    if (!storyKillQuest(3080, "archives", "Chaos Bandit")) return;
+
+    // 3081: Plagued Rats
+    if (!storyKillQuest(3081, "archives", "Chaos Rat")) return;
+
+    // 3082: Nope, Nope, Nope!
+    if (!storyKillQuest(3082, "archives", "Chaos Spider")) return;
+
+    // 3083: Still More Research To Be Done!
+    if (!storyKillQuest(3083, "archives", ["Chaos Rat", "Chaos Spider"])) return;
+
+    // 3084: That's One Big Sludgebeast.
+    if (!storyKillQuest(3084, "archives", "Sludgelord")) return;
+
+    // 3094: Back to Jail With You!
+    if (!storyKillQuest(3094, "armory", "Chaorrupted Prisoner")) return;
+
+    // 3095: We May Need A Militia
+    if (!storyMapItemQuest(3095, "armory", 1956, 4)) return;
+    if (!storyKillQuest(3095, "armory", "Chaorrupted Prisoner")) return;
+
+    // 3096: An Ounce Of Prevention
+    if (!storyKillQuest(3096, "armory", "Chaos Drifter")) return;
+
+    // 3089: Axe Them To Leave!
+    if (!storyKillQuest(3089, "armory", "Chaorrupted Prisoner")) return;
+
+    // 3090: Freeze 'Em Out!
+    if (!storyKillQuest(3090, "armory", "Chaos Mage")) return;
+
+    // 3091: Burn 'Em Up!
+    if (!storyKillQuest(3091, "armory", "Chaos Mage")) return;
+
+    // 3092: Under Siege
+    if (!storyMapItemQuest(3092, "armory", 1957)) return;
+
+    // 3093: No, NOW We're Under Siege
+    if (!storyKillQuest(3093, "armory", "Chaos General")) return;
+
+    // 3120: Chaos Not Invited
+    if (!storyKillQuest(3120, "ceremony", "Chaos Invader")) return;
+
+    // 3121: Better Letter Go!
+    if (!isCompletedBefore(3121)) {
+        ensureQuest(3121);
+        if (!ensureMap("yulgar")) return;
+        getMapItem(2108);
+        getMapItem(2109);
+        getMapItem(2110);
+        if (!ensureMap("archives")) return;
+        getMapItem(2111);
+        if (!ensureMap("swordhaven")) return;
+        getMapItem(2112);
+        getMapItem(2113);
+        getMapItem(2114);
+        getMapItem(2115);
+        if (canComplete(3121)) ensureComplete(3121);
+        return;
+    }
+
+    // 3122: Decor Rater
+    if (!storyMapItemQuest(3122, "swordhaven", 2116, 8)) return;
+
+    // 3123: Cold Feet, Warm Heart
+    if (!storyKillQuest(3123, "mafic", "Living Fire")) return;
+
+    // 3124: Chaos STILL Not Invited
+    if (!storyKillQuest(3124, "ceremony", "Chaos Invader")) return;
+
+    // 3125: Protect the Princesses
+    if (!storyMapItemQuest(3125, "ceremony", 2118, 6)) return;
+
+    // 3126: Seal the Chapel
+    if (!storyMapItemQuest(3126, "ceremony", 2119)) return;
+    if (!storyKillQuest(3126, "ceremony", "Chaos Invader")) return;
+
+    // 3127: Chaos Kills!
+    if (!storyKillQuest(3127, "ceremony", "Chaos Justicar")) return;
+
+    // 3133: Endless Aisle of Chaos
+    if (!storyMapItemQuest(3133, "chaosaltar", 2127, 12)) return;
+
+    // 3134: Save the Princess... Again!
+    if (!storyKillQuest(3134, "chaosaltar", "Princess Thrall")) return;
+
+    // 3158: Chaos Dragon Confrontation
+    if (!storyKillQuest(3158, "castleroof", "Chaos Dragon")) return;
+
+    // 3159: To Catch a King
+    if (!storyMapItemQuest(3159, "swordhavenfalls", 2158)) return;
+
+    // 3160: Chaos Lord Alteon
+    if (!isCompletedBefore(3160)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(3160, "swordhavenfalls", "Chaos Lord Alteon")) return;
+    }
+}

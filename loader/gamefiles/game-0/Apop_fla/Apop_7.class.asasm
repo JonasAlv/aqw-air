@@ -1,0 +1,230 @@
+class
+ refid "Apop_fla:Apop_7"
+ instance QName(PackageNamespace("Apop_fla"), "Apop_7")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("Apop_fla:Apop_7")
+  iinit
+   refid "Apop_fla:Apop_7/instance/init"
+   body
+    maxstack 17
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     findpropstrict      QName(PackageNamespace(""), "addFrameScript")
+     pushbyte            0
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame1")
+     pushbyte            4
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame5")
+     pushbyte            9
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame10")
+     pushbyte            14
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame15")
+     pushbyte            19
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame20")
+     pushbyte            24
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame25")
+     pushbyte            29
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame30")
+     pushbyte            34
+     getlocal0
+     getproperty         QName(PackageInternalNs("Apop_fla"), "frame35")
+     callpropvoid        QName(PackageNamespace(""), "addFrameScript"), 16
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "placement") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait method QName(PackageInternalNs("Apop_fla"), "frame1")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame1"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame5")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame5"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame10")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame10"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame15")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame15"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame20")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame20"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame25")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame25"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame30")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame30"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace("flash.display"), "MovieClip")
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "parent")
+      getproperty         QName(PackageNamespace(""), "parent")
+      callproperty        QName(PackageNamespace("flash.display"), "MovieClip"), 1
+      callpropvoid        Multiname("exit", [PrivateNamespace(null, "Apop_fla:Apop_7/instance/Apop_fla:frame30#0"), PackageNamespace(""), PackageNamespace("flash.display"), PrivateNamespace(null, "Apop_fla:Apop_7/instance/Apop_fla:frame30#1"), PackageNamespace("Apop_fla"), PackageInternalNs("Apop_fla"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("adobe.utils"), PackageNamespace("flash.accessibility"), PackageNamespace("flash.desktop"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), PackageNamespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), PackageNamespace("flash.printing"), PackageNamespace("flash.profiler"), PackageNamespace("flash.sampler"), PackageNamespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), PackageNamespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), PackageNamespace("flash.xml"), ProtectedNamespace("Apop_fla:Apop_7"), StaticProtectedNs("Apop_fla:Apop_7"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+
+      getlocal0
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("Apop_fla"), "frame35")
+   method
+    refid "Apop_fla:Apop_7/instance/Apop_fla:frame35"
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "Apop_fla:Apop_7/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

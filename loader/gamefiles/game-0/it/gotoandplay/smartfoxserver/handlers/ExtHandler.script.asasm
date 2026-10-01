@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.handlers:ExtHandler/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ExtHandler", [PackageNamespace("it.gotoandplay.smartfoxserver.handlers")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.handlers:ExtHandler"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), PackageInternalNs("it.gotoandplay.smartfoxserver.handlers"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "it.gotoandplay.smartfoxserver.handlers:ExtHandler"
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "ExtHandler")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.handlers"), "ExtHandler")
+  #include "ExtHandler.class.asasm"
+ end ; trait
+end ; script

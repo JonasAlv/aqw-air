@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.data:Room/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("Room", [PackageNamespace("it.gotoandplay.smartfoxserver.data")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.data:Room"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.data"), PackageInternalNs("it.gotoandplay.smartfoxserver.data"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "it.gotoandplay.smartfoxserver.data:Room"
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.data"), "Room")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.data"), "Room")
+  #include "Room.class.asasm"
+ end ; trait
+end ; script

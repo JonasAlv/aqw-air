@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Sandsea Reputation Farm (.hxs)
+// Farms Sandsea Reputation to Rank 10
+// Quests: 916, 917, 919, 921, 922 (Zhoom's Quests)
+// Prerequisite: Sandsea intro completed up to Zhoom's quests
+// ========================================================
+
+function onStart() {
+    if (factionRank("Sandsea") >= 10) {
+        msg("Sandsea Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(916)) {
+        msg("Prerequisite missing: Quest 916 is locked. Complete Sandsea storyline up to Zhoom's quests in /sandsea first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("sandsea", "Enter", "Spawn");
+    autoQuest([916, 917, 919, 921, 922]);
+}
+
+function onTick() {
+    if (factionRank("Sandsea") >= 10) {
+        msg("Sandsea Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("sandsea", "Enter", "Spawn");
+    ensureCombat();
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

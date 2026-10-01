@@ -1,0 +1,132 @@
+// ========================================================
+// Script: 07_Ledgermayne_Arcangrove.hxs
+// 13 Lords of Chaos Saga: 6th Lord - Ledgermayne (Arcangrove)
+// Final Quest: 847 (Chaos Lord Ledgermayne)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(847)) {
+        log("Ledgermayne chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(847)) {
+        log("Ledgermayne chapter completed!");
+        stop();
+        return;
+    }
+
+    // 805: Observing the Observatory
+    if (!storyMapItemQuest(805, "arcangrove", 139)) return;
+
+    // 806: Ewa the Treekeeper
+    if (!storyMapItemQuest(806, "cloister", 142)) return;
+
+    // 807: Bear Necessities of LifeRoot
+    if (!storyMapItemQuest(807, "cloister", 140)) return;
+
+    // 808: Acorny Quest
+    if (!storyKillQuest(808, "cloister", "Acornent")) return;
+
+    // 809: Ravenloss
+    if (!storyKillQuest(809, "cloister", "Karasu")) return;
+
+    // 810: It's A Bough-t Time
+    if (!storyMapItemQuest(810, "cloister", 141, 3)) return;
+
+    // 811: Wendigo Whereabouts
+    if (!storyKillQuest(811, "cloister", "Wendigo")) return;
+
+    // 813: Find Paddy Lump
+    if (!storyMapItemQuest(813, "mudluk", 143)) return;
+
+    // 814: Toothy Smiles
+    if (!storyKillQuest(814, "mudluk", "Swamp Lurker")) return;
+
+    // 815: Slimy Cyrus
+    if (!storyKillQuest(815, "mudluk", "Swamp Lurker")) return;
+
+    // 816: Lord Of The Fleas
+    if (!storyKillQuest(816, "arcangrove", "Gorillaphant")) return;
+
+    // 817: Not The Best Idea
+    if (!storyKillQuest(817, "mudluk", "Swamp Frogdrake")) return;
+
+    // 818: Gates and Guardians
+    if (!storyKillQuest(818, "mudluk", "Tiger Leech")) return;
+
+    // 825: Water You Waiting For--Find Nisse
+    if (!storyMapItemQuest(825, "natatorium", 144)) return;
+
+    // 826: Dive Right In
+    if (!storyMapItemQuest(826, "natatorium", 145, 12)) return;
+
+    // 827: Seafood Diet
+    if (!storyKillQuest(827, "natatorium", "Anglerfish")) return;
+
+    // 828: Mercenaries
+    if (!storyKillQuest(828, "natatorium", "Merdraconian")) return;
+
+    // 829: Synchronized Slaying
+    if (!storyKillQuest(829, "arcangrove", ["Seed Spitter", "Acornent", "Karasu", "Wendigo", "Swamp Frogdrake"])) return;
+
+    // 830: The Deep End
+    if (!storyKillQuest(830, "natatorium", "Nessie")) return;
+
+    // 831: Find Umbra, the Master Shaman
+    if (!storyMapItemQuest(831, "gilead", 146)) return;
+
+    // 832: The Root of Elementals
+    if (!storyKillQuest(832, "gilead", ["Earth Elemental", "Seed Spitter"])) return;
+
+    // 833: Eupotamic Elementals
+    if (!storyKillQuest(833, "gilead", ["Water Elemental", "Merdraconian"])) return;
+
+    // 834: Breaking Wind Elementals
+    if (!storyKillQuest(834, "gilead", ["Wind Elemental", "Karasu"])) return;
+
+    // 835: Fight Fire With Fire Salamanders
+    if (!storyKillQuest(835, "gilead", ["Fire Elemental", "Swamp Frogdrake"])) return;
+
+    // 836: Guardian of the Gilead Wrap
+    if (!storyKillQuest(836, "gilead", "Mana Elemental")) return;
+
+    // 838: Find Felsic the Magma Golem
+    if (!storyMapItemQuest(838, "mafic", 147)) return;
+
+    // 839: Liquid Hot Magma Blood Maggots
+    if (!storyKillQuest(839, "mafic", "Volcanic Maggot")) return;
+
+    // 840: Scorched Serpents
+    if (!storyKillQuest(840, "mafic", "Scoria Serpent")) return;
+
+    // 841: Playing With Living Fire
+    if (!storyKillQuest(841, "mafic", "Living Fire")) return;
+
+    // 842: Kindling Relationship
+    if (!storyKillQuest(842, "mafic", "Mafic Dragon")) return;
+
+    // 843: Obey Your Thirst for Adventure
+    if (!storyKillQuest(843, "elemental", "Mana Imp")) return;
+
+    // 844: Captain Falcons
+    if (!storyKillQuest(844, "elemental", "Mana Falcon")) return;
+
+    // 845: Big, bad, and Baddest Bosses
+    if (!storyKillQuest(845, "mafic", ["Mafic Dragon", "Wendigo", "Tiger Leech", "Nessie", "Mana Elemental"])) return;
+
+    // 846: The Great Mana Golem
+    if (!storyKillQuest(846, "elemental", "Mana Golem")) return;
+
+    // 847: Chaos Lord Ledgermayne
+    if (!isCompletedBefore(847)) {
+        equipLoadout("solo");
+        if (!storyKillQuest(847, "ledgermayne", "Ledgermayne")) return;
+    }
+}

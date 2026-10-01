@@ -1,0 +1,505 @@
+class
+ refid "it.gotoandplay.smartfoxserver.util:Entities"
+ instance QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "Entities")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities")
+  iinit
+   refid "it.gotoandplay.smartfoxserver.util:Entities/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; instance
+ cinit
+  refid "it.gotoandplay.smartfoxserver.util:Entities/class/init"
+  body
+   maxstack 3
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findproperty        Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    newarray            0
+    setproperty         Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          ">"
+    pushstring          "&gt;"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "<"
+    pushstring          "&lt;"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&"
+    pushstring          "&amp;"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "'"
+    pushstring          "&apos;"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "\""
+    pushstring          "&quot;"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    findproperty        Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    newarray            0
+    setproperty         Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&gt;"
+    pushstring          ">"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&lt;"
+    pushstring          "<"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&amp;"
+    pushstring          "&"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&apos;"
+    pushstring          "'"
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "&quot;"
+    pushstring          "\""
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    findproperty        Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    newarray            0
+    setproperty         Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "0"
+    pushbyte            0
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "1"
+    pushbyte            1
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "2"
+    pushbyte            2
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "3"
+    pushbyte            3
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "4"
+    pushbyte            4
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "5"
+    pushbyte            5
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "6"
+    pushbyte            6
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "7"
+    pushbyte            7
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "8"
+    pushbyte            8
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "9"
+    pushbyte            9
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "A"
+    pushbyte            10
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "B"
+    pushbyte            11
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "C"
+    pushbyte            12
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "D"
+    pushbyte            13
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "E"
+    pushbyte            14
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    getlex              Multiname("hexTable", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+    pushstring          "F"
+    pushbyte            15
+    setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), "ascTab") slotid 1 type QName(PackageNamespace(""), "Array") end
+ trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), "ascTabRev") slotid 2 type QName(PackageNamespace(""), "Array") end
+ trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), "hexTable") slotid 3 type QName(PackageNamespace(""), "Array") end
+ trait method QName(PackageNamespace(""), "encodeEntities") flag FINAL dispid 3
+  method
+   refid "it.gotoandplay.smartfoxserver.util:Entities/class/encodeEntities"
+   param QName(PackageNamespace(""), "String")
+   returns QName(PackageNamespace(""), "String")
+   body
+    maxstack 3
+    localcount 6
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     pushnull
+     coerce_s
+     setlocal            4
+
+     pushbyte            0
+     setlocal            5
+
+     pushstring          ""
+     setlocal2
+
+     pushbyte            0
+     setlocal3
+
+     jump                L80
+
+L12:
+     label
+     getlocal1
+     getlocal3
+     callproperty        Multiname("charAt", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     coerce_s
+     setlocal            4
+
+     getlocal1
+     getlocal3
+     callproperty        Multiname("charCodeAt", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     convert_i
+     dup
+     setlocal            5
+
+     pushbyte            9
+     equals
+     dup
+     iftrue              L32
+
+     pop
+     getlocal            5
+     pushbyte            10
+     equals
+L32:
+     dup
+     iftrue              L38
+
+     pop
+     getlocal            5
+     pushbyte            13
+     equals
+L38:
+     iffalse             L45
+
+     getlocal2
+     getlocal            4
+     add
+     coerce_s
+     setlocal2
+
+     jump                L79
+
+L45:
+     getlocal            5
+     pushbyte            32
+     greaterequals
+     dup
+     iffalse             L54
+
+     pop
+     getlocal            5
+     pushbyte            126
+     lessequals
+L54:
+     iffalse             L74
+
+     getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     getlocal            4
+     getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     pushnull
+     ifeq                L68
+
+     getlocal2
+     getlex              Multiname("ascTab", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     getlocal            4
+     getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     add
+     coerce_s
+     setlocal2
+
+     jump                L73
+
+L68:
+     getlocal2
+     getlocal            4
+     add
+     coerce_s
+     setlocal2
+
+L73:
+     jump                L79
+
+L74:
+     getlocal2
+     getlocal            4
+     add
+     coerce_s
+     setlocal2
+
+L79:
+     inclocal_i          3
+L80:
+     getlocal3
+     getlocal1
+     getproperty         Multiname("length", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     iflt                L12
+
+     getlocal2
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "decodeEntities") flag FINAL dispid 4
+  method
+   refid "it.gotoandplay.smartfoxserver.util:Entities/class/decodeEntities"
+   param QName(PackageNamespace(""), "String")
+   returns QName(PackageNamespace(""), "String")
+   body
+    maxstack 4
+    localcount 8
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     pushnull
+     coerce_s
+     setlocal2
+
+     pushnull
+     coerce_s
+     setlocal3
+
+     pushnull
+     coerce_s
+     setlocal            4
+
+     pushnull
+     coerce_s
+     setlocal            5
+
+     pushnull
+     coerce_s
+     setlocal            6
+
+     pushbyte            0
+     setlocal            7
+
+     pushstring          ""
+     setlocal2
+
+     jump                L89
+
+L22:
+     label
+     getlocal1
+     getlocal            7
+     callproperty        Multiname("charAt", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     coerce_s
+     setlocal3
+
+     getlocal3
+     pushstring          "&"
+     ifne                L83
+
+     getlocal3
+     coerce_s
+     setlocal            4
+
+     jump                L36
+
+L35:
+     label
+L36:
+     inclocal_i          7
+     getlocal1
+     getlocal            7
+     callproperty        Multiname("charAt", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     coerce_s
+     setlocal            5
+
+     getlocal            4
+     getlocal            5
+     add
+     coerce_s
+     setlocal            4
+
+     getlocal            5
+     pushstring          ";"
+     equals
+     not
+     dup
+     iffalse             L58
+
+     pop
+     getlocal            7
+     getlocal1
+     getproperty         Multiname("length", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     lessthan
+L58:
+     iftrue              L35
+
+     getlex              Multiname("ascTabRev", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     getlocal            4
+     getproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     coerce_s
+     dup
+     setlocal            6
+
+     pushnull
+     ifeq                L73
+
+     getlocal2
+     getlocal            6
+     add
+     coerce_s
+     setlocal2
+
+     jump                L82
+
+L73:
+     getlocal2
+     getlex              Multiname("String", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     findpropstrict      Multiname("getCharCode", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     getlocal            4
+     callproperty        Multiname("getCharCode", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     callproperty        Multiname("fromCharCode", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     add
+     coerce_s
+     setlocal2
+
+L82:
+     jump                L88
+
+L83:
+     getlocal2
+     getlocal3
+     add
+     coerce_s
+     setlocal2
+
+L88:
+     inclocal_i          7
+L89:
+     getlocal            7
+     getlocal1
+     getproperty         Multiname("length", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     iflt                L22
+
+     getlocal2
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "getCharCode") flag FINAL dispid 5
+  method
+   refid "it.gotoandplay.smartfoxserver.util:Entities/class/getCharCode"
+   param QName(PackageNamespace(""), "String")
+   returns QName(PackageNamespace(""), "Number")
+   body
+    maxstack 4
+    localcount 3
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlocal1
+     pushbyte            3
+     getlocal1
+     getproperty         Multiname("length", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 2
+     coerce_s
+     setlocal2
+
+     getlocal2
+     pushbyte            0
+     getlocal2
+     getproperty         Multiname("length", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     decrement
+     callproperty        Multiname("substr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 2
+     coerce_s
+     setlocal2
+
+     findpropstrict      Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")])
+     pushstring          "0x"
+     getlocal2
+     add
+     callproperty        Multiname("Number", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities/class"), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:Entities"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.util:Entities"), StaticProtectedNs("it.gotoandplay.smartfoxserver.util:Entities")]), 1
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+end ; class

@@ -1,0 +1,46 @@
+// ========================================================
+// Script: Dwarfhold Reputation Farm (.hxs)
+// Farms Dwarfhold Reputation to Rank 10
+// Quests: 320 (Warm and Furry), 321 (Shell Shock)
+// Prerequisite: Quest 319 completed in /tavern
+// ========================================================
+
+function onStart() {
+    if (factionRank("Dwarfhold") >= 10) {
+        msg("Dwarfhold Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(320)) {
+        msg("Prerequisite missing: Quest 320 is locked. Complete quest 319 (Seven Sisters in /tavern) first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("pines", "Enter", "Right");
+}
+
+function onTick() {
+    if (factionRank("Dwarfhold") >= 10) {
+        msg("Dwarfhold Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("pines", "Enter", "Right");
+    ensureQuest(320);
+    ensureQuest(321);
+
+    if (!hunt("Pine Grizzly", "Bear Skin", 5)) return;
+    if (!hunt("Red Shell Turtle", "Red Turtle Shell", 5)) return;
+
+    if (isQuestComplete(320)) ensureComplete(320);
+    if (isQuestComplete(321)) ensureComplete(321);
+}
+
+function onStop() {
+    stopCombat();
+}

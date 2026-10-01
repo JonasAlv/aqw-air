@@ -1,0 +1,117 @@
+class
+ refid "FacebookConnectEvent"
+ instance QName(PackageNamespace(""), "FacebookConnectEvent")
+  extends QName(PackageNamespace("flash.events"), "Event")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("FacebookConnectEvent")
+  iinit
+   refid "FacebookConnectEvent/instance/init"
+   param QName(PackageNamespace(""), "String")
+   param QName(PackageNamespace(""), "Object")
+   param QName(PackageNamespace(""), "Boolean")
+   param QName(PackageNamespace(""), "Boolean")
+   flag HAS_OPTIONAL
+   optional False()
+   optional False()
+   body
+    maxstack 4
+    localcount 5
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     getlocal1
+     getlocal3
+     getlocal            4
+     constructsuper      3
+
+     getlocal0
+     getlocal2
+     initproperty        Multiname("params", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "params") type QName(PackageNamespace(""), "Object") end
+  trait method QName(PackageNamespace(""), "clone") flag OVERRIDE
+   method
+    refid "FacebookConnectEvent/instance/clone"
+    returns QName(PackageNamespace("flash.events"), "Event")
+    body
+     maxstack 5
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("FacebookConnectEvent", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      getlex              Multiname("type", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      getlocal0
+      getproperty         Multiname("params", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      getlex              Multiname("bubbles", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      getlex              Multiname("cancelable", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      constructprop       Multiname("FacebookConnectEvent", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")]), 4
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "toString") flag OVERRIDE
+   method
+    refid "FacebookConnectEvent/instance/toString"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 6
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      Multiname("formatToString", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")])
+      pushstring          "FacebookConnectEvent"
+      pushstring          "params"
+      pushstring          "type"
+      pushstring          "bubbles"
+      pushstring          "cancelable"
+      callproperty        Multiname("formatToString", [PrivateNamespace(null, "FacebookConnectEvent/instance"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnectEvent"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("FacebookConnectEvent"), StaticProtectedNs("FacebookConnectEvent"), StaticProtectedNs("flash.events:Event")]), 5
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "FacebookConnectEvent/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "DEFAULT_NAME")
+    pushstring          "FacebookConnectEvent"
+    initproperty        QName(PackageNamespace(""), "DEFAULT_NAME")
+
+    findproperty        QName(PackageNamespace(""), "ONCONNECT")
+    pushstring          "onConnect"
+    initproperty        QName(PackageNamespace(""), "ONCONNECT")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PackageNamespace(""), "DEFAULT_NAME") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("FacebookConnectEvent") end
+ trait const QName(PackageNamespace(""), "ONCONNECT") slotid 2 type QName(PackageNamespace(""), "String") value Utf8("onConnect") end
+end ; class

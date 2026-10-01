@@ -1,0 +1,495 @@
+class
+ refid "it.gotoandplay.smartfoxserver.http:HttpConnection"
+ instance QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpConnection")
+  extends QName(PackageNamespace("flash.events"), "EventDispatcher")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection")
+  iinit
+   refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/init"
+   body
+    maxstack 4
+    localcount 1
+    initscopedepth 5
+    maxscopedepth 6
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     findpropstrict      Multiname("RawProtocolCodec", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+     constructprop       Multiname("RawProtocolCodec", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+     initproperty        Multiname("codec", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     getlocal0
+     findpropstrict      Multiname("LoaderFactory", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("handleResponse", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+     getlocal0
+     getproperty         Multiname("handleIOError", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+     constructprop       Multiname("LoaderFactory", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+     initproperty        Multiname("urlLoaderFactory", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "sessionId") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "connected") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "ipAddr") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "port") type QName(PackageNamespace(""), "int") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "webUrl") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "urlLoaderFactory") type QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "LoaderFactory") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "urlRequest") type QName(PackageNamespace("flash.net"), "URLRequest") end
+  trait slot QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "codec") type QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "IHttpProtocolCodec") end
+  trait method QName(PackageNamespace(""), "getSessionId")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/getSessionId"
+    returns QName(PackageNamespace(""), "String")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "isConnected")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/isConnected"
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         Multiname("connected", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "connect")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/connect"
+    param QName(PackageNamespace(""), "String")
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Integer(8080)
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlocal1
+      setproperty         Multiname("ipAddr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getlocal2
+      setproperty         Multiname("port", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushstring          "https://"
+      getlocal0
+      getproperty         Multiname("ipAddr", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      add
+      pushstring          ":"
+      add
+      getlocal0
+      getproperty         Multiname("port", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      add
+      pushstring          "/"
+      add
+      getlex              Multiname("servletUrl", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      add
+      setproperty         Multiname("webUrl", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushnull
+      setproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")])
+      getlocal0
+      getproperty         Multiname("webUrl", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      constructprop       Multiname("URLRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")]), 1
+      initproperty        Multiname("urlRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("urlRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("URLRequestMethod", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")])
+      getproperty         Multiname("POST", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("method", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getlex              Multiname("HANDSHAKE", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("send", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "close")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/close"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getlex              Multiname("DISCONNECT", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("send", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "send")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/send"
+    param QName(PackageNamespace(""), "String")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 4
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+      setlocal2
+
+      pushnull
+      coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+      setlocal3
+
+      getlocal0
+      getproperty         Multiname("connected", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      convert_b
+      dup
+      iftrue              L23
+
+      pop
+      getlocal0
+      getproperty         Multiname("connected", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      not
+      dup
+      iffalse             L23
+
+      pop
+      getlocal1
+      getlex              Multiname("HANDSHAKE", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      equals
+L23:
+      dup
+      iftrue              L35
+
+      pop
+      getlocal0
+      getproperty         Multiname("connected", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      not
+      dup
+      iffalse             L35
+
+      pop
+      getlocal1
+      pushstring          "poll"
+      equals
+L35:
+      iffalse             L65
+
+      findpropstrict      Multiname("URLVariables", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")])
+      constructprop       Multiname("URLVariables", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")]), 0
+      coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+      setlocal2
+
+      getlocal2
+      getlex              Multiname("paramName", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("codec", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal0
+      getproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal1
+      callproperty        Multiname("encode", [Namespace("it.gotoandplay.smartfoxserver.http:IHttpProtocolCodec")]), 2
+      setproperty         MultinameL([PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("urlRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal2
+      setproperty         Multiname("data", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      getproperty         Multiname("urlLoaderFactory", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("getLoader", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 0
+      coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+      setlocal3
+
+      getlocal3
+      getlocal2
+      setproperty         Multiname("data", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal3
+      getlocal0
+      getproperty         Multiname("urlRequest", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callpropvoid        Multiname("load", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L65:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "handleResponse")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/it.gotoandplay.smartfoxserver.http:HttpConnection/handleResponse"
+    param QName(PackageNamespace("flash.events"), "Event")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 6
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+      setlocal            4
+
+      getlocal1
+      getproperty         Multiname("target", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("URLLoader", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher"), PackageNamespace("flash.net")])
+      astypelate
+      coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+      setlocal2
+
+      getlocal2
+      getproperty         Multiname("data", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("String", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      astypelate
+      coerce_s
+      setlocal3
+
+      newobject           0
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal            5
+
+      getlocal3
+      pushbyte            0
+      callproperty        Multiname("charAt", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      getlex              Multiname("HANDSHAKE_TOKEN", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      ifne                L60
+
+      getlocal0
+      getproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushnull
+      ifne                L56
+
+      getlocal0
+      getlocal0
+      getproperty         Multiname("codec", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal3
+      callproperty        Multiname("decode", [Namespace("it.gotoandplay.smartfoxserver.http:IHttpProtocolCodec")]), 1
+      initproperty        Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal0
+      pushtrue
+      initproperty        Multiname("connected", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal            5
+      getlocal0
+      getproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("sessionId", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      getlocal            5
+      pushtrue
+      setproperty         Multiname("success", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onHttpConnect", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal            5
+      constructprop       Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+      coerce              QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+      setlocal            4
+
+      findpropstrict      Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal            4
+      callpropvoid        Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      jump                L59
+
+L56:
+      findpropstrict      Multiname("trace", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      pushstring          "[Net] ERR HttpConnection: sessionId is being rewritten"
+      callpropvoid        Multiname("trace", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L59:
+      jump                L89
+
+L60:
+      getlocal3
+      getlex              Multiname("CONN_LOST", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      callproperty        Multiname("indexOf", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+      pushbyte            0
+      ifne                L76
+
+      getlocal            5
+      newobject           0
+      setproperty         Multiname("data", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onHttpClose", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal            5
+      constructprop       Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+      coerce              QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+      setlocal            4
+
+      jump                L86
+
+L76:
+      getlocal            5
+      getlocal3
+      setproperty         Multiname("data", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onHttpData", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal            5
+      constructprop       Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+      coerce              QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+      setlocal            4
+
+L86:
+      findpropstrict      Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal            4
+      callpropvoid        Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+L89:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "handleIOError")
+   method
+    refid "it.gotoandplay.smartfoxserver.http:HttpConnection/instance/it.gotoandplay.smartfoxserver.http:HttpConnection/handleIOError"
+    param QName(PackageNamespace("flash.events"), "IOErrorEvent")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 5
+     maxscopedepth 6
+     code
+      getlocal0
+      pushscope
+
+      newobject           0
+      coerce              QName(PackageNamespace(""), "Object")
+      setlocal2
+
+      getlocal2
+      getlocal1
+      getproperty         Multiname("text", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      setproperty         Multiname("message", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      findpropstrict      Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlex              Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getproperty         Multiname("onHttpError", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal2
+      constructprop       Multiname("HttpEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+      coerce              QName(PackageNamespace("it.gotoandplay.smartfoxserver.http"), "HttpEvent")
+      setlocal3
+
+      findpropstrict      Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")])
+      getlocal3
+      callpropvoid        Multiname("dispatchEvent", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), PackageNamespace(""), PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#1"), PackageNamespace("it.gotoandplay.smartfoxserver.http"), PackageInternalNs("it.gotoandplay.smartfoxserver.http"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("it.gotoandplay.smartfoxserver.http:HttpConnection"), StaticProtectedNs("flash.events:EventDispatcher")]), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "it.gotoandplay.smartfoxserver.http:HttpConnection/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 4
+   maxscopedepth 5
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "HANDSHAKE")
+    pushstring          "connect"
+    initproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "HANDSHAKE")
+
+    findproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "DISCONNECT")
+    pushstring          "disconnect"
+    initproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "DISCONNECT")
+
+    findproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "CONN_LOST")
+    pushstring          "ERR#01"
+    initproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "CONN_LOST")
+
+    findproperty        QName(PackageNamespace(""), "HANDSHAKE_TOKEN")
+    pushstring          "#"
+    initproperty        QName(PackageNamespace(""), "HANDSHAKE_TOKEN")
+
+    findproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "servletUrl")
+    pushstring          "BlueBox/HttpBox.do"
+    initproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "servletUrl")
+
+    findproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "paramName")
+    pushstring          "sfsHttp"
+    initproperty        QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "paramName")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "HANDSHAKE") slotid 1 type QName(PackageNamespace(""), "String") value Utf8("connect") end
+ trait const QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "DISCONNECT") slotid 2 type QName(PackageNamespace(""), "String") value Utf8("disconnect") end
+ trait const QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "CONN_LOST") slotid 3 type QName(PackageNamespace(""), "String") value Utf8("ERR#01") end
+ trait const QName(PackageNamespace(""), "HANDSHAKE_TOKEN") slotid 4 type QName(PackageNamespace(""), "String") value Utf8("#") end
+ trait const QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "servletUrl") slotid 5 type QName(PackageNamespace(""), "String") value Utf8("BlueBox/HttpBox.do") end
+ trait const QName(PrivateNamespace(null, "it.gotoandplay.smartfoxserver.http:HttpConnection#0"), "paramName") slotid 6 type QName(PackageNamespace(""), "String") value Utf8("sfsHttp") end
+end ; class

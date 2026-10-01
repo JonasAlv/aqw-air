@@ -1,0 +1,232 @@
+class
+ refid "com.wildtangent:Core"
+ instance QName(PackageNamespace("com.wildtangent"), "Core")
+  extends QName(PackageNamespace("flash.display"), "Sprite")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("com.wildtangent:Core")
+  iinit
+   refid "com.wildtangent:Core/instance/init"
+   body
+    maxstack 2
+    localcount 1
+    initscopedepth 9
+    maxscopedepth 10
+    code
+     getlocal0
+     pushscope
+
+     findproperty        QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+     newarray            0
+     initproperty        QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "vexReady") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait slot QName(PackageNamespace(""), "myVex") value Null() end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "callbacks") type QName(PackageNamespace(""), "Object") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_dpName") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_gameName") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_partnerName") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_siteName") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_userId") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_cipherKey") type QName(PackageNamespace(""), "String") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_vexUrl") type QName(PackageNamespace(""), "String") value Utf8("http://vex.wildtangent.com") end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_sandbox") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait slot QName(PrivateNamespace(null, "com.wildtangent:Core/instance#0"), "_javascriptReady") type QName(PackageNamespace(""), "Boolean") value False() end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_adComplete") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_closed") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_error") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_handlePromo") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_redeemCode") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "_requireLogin") type QName(PackageNamespace(""), "Function") end
+  trait slot QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage") type QName(PackageNamespace(""), "Array") end
+  trait method QName(ProtectedNamespace("com.wildtangent:Core"), "storeMethod")
+   method
+    refid "com.wildtangent:Core/instance/com.wildtangent:Core:storeMethod"
+    param QName(PackageNamespace(""), "Function")
+    param QName(PackageNamespace(""), "Object")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Null()
+    body
+     maxstack 5
+     localcount 3
+     initscopedepth 9
+     maxscopedepth 10
+     code
+      getlocal0
+      pushscope
+
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      pushstring          "tempMethod"
+      getlocal1
+      pushstring          "obj"
+      getlocal2
+      newobject           2
+      callpropvoid        QName(Namespace("http://adobe.com/AS3/2006/builtin"), "push"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "launchMethods")
+   method
+    refid "com.wildtangent:Core/instance/launchMethods"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 4
+     initscopedepth 9
+     maxscopedepth 10
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce_s
+      setlocal1
+
+      pushbyte            0
+      setlocal2
+
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      coerce_a
+      setlocal3
+
+      jump                L40
+
+L11:
+      label
+      getlocal3
+      getlocal2
+      nextname
+      coerce_s
+      setlocal1
+
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      getproperty         Multiname("obj", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      pushnull
+      ifeq                L34
+
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      getproperty         Multiname("tempMethod", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      pushnull
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      getproperty         Multiname("obj", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      callpropvoid        Multiname("call", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 2
+
+      jump                L40
+
+L34:
+      getlex              QName(ProtectedNamespace("com.wildtangent:Core"), "methodStorage")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      getproperty         Multiname("tempMethod", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      pushnull
+      callpropvoid        Multiname("call", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 1
+
+L40:
+      hasnext2            3, 2
+      iftrue              L11
+
+      kill                3
+      kill                2
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("com.wildtangent:Core"), "checkTop")
+   method
+    refid "com.wildtangent:Core/instance/com.wildtangent:Core:checkTop"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 4
+     initscopedepth 9
+     maxscopedepth 10
+     code
+      getlocal0
+      pushscope
+
+      getlex              QName(PackageNamespace(""), "root")
+      coerce_a
+      setlocal1
+
+      getlex              QName(PackageNamespace(""), "parent")
+      coerce_a
+      setlocal2
+
+      pushbyte            0
+      setlocal3
+
+      jump                L24
+
+L11:
+      label
+      getlocal1
+      getlocal3
+      callproperty        Multiname("getChildAt", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 1
+      getlex              QName(PackageNamespace("com.wildtangent"), "WildTangentAPI")
+      istypelate
+      iffalse             L23
+
+      getlocal1
+      getlocal3
+      callproperty        Multiname("getChildAt", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 1
+      coerce_a
+      setlocal2
+
+L23:
+      inclocal_i          3
+L24:
+      getlocal3
+      getlocal1
+      getproperty         Multiname("numChildren", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      iflt                L11
+
+      getlocal1
+      getlocal1
+      getlocal2
+      getproperty         Multiname("name", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      callproperty        Multiname("getChildByName", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 1
+      getlocal1
+      getproperty         Multiname("numChildren", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")])
+      decrement
+      callpropvoid        Multiname("setChildIndex", [PrivateNamespace(null, "com.wildtangent:Core/instance#0"), ProtectedNamespace("com.wildtangent:Core"), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace(""), PrivateNamespace(null, "com.wildtangent:Core/instance#1"), PackageNamespace("com.wildtangent"), PackageInternalNs("com.wildtangent"), StaticProtectedNs("com.wildtangent:Core"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher"), StaticProtectedNs("Object")]), 2
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "com.wildtangent:Core/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 8
+   maxscopedepth 9
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

@@ -1,0 +1,570 @@
+// ========================================================
+// Script: Master All Reputations Farm (.hxs)
+// Sequentially checks and farms all factions to Rank 10.
+// Checks prerequisites upfront: if locked, notifies and skips
+// cleanly to the next faction without breaking.
+// ========================================================
+
+var step = 0;
+var factionList = [
+    "Arcangrove",
+    "Blade of Awe",
+    "Brightoak",
+    "Chaos",
+    "ChronoSpan",
+    "DoomWood",
+    "Dreadrock",
+    "Embersea",
+    "EtherStorm",
+    "Evil",
+    "Good",
+    "Glacera",
+    "Hollowborn",
+    "Horc",
+    "Troll",
+    "Lycan",
+    "Vampire",
+    "Mythsong",
+    "Sandsea",
+    "Swordhaven",
+    "ThunderForge",
+    "Yokai",
+    "Eternal",
+    "Death Pit Arena",
+    "Diabolical",
+    "CraggleRock",
+    "Northpointe",
+    "Ravenloss",
+    "Dwarfhold",
+    "Druid Grove",
+    "Aegis",
+    "Chaos Militia",
+    "Infernal Army",
+    "Monster Hunter",
+    "Somnia",
+    "TreasureHunter",
+    "Necro Crypt",
+    "Pet Tamer",
+    "Skye",
+    "Dreadfire"
+];
+
+function onStart() {
+    acceptAllDrops();
+    equipLoadout("farm");
+    step = 0;
+    msg("Starting Master All Ranks farm.");
+}
+
+function nextFaction() {
+    stopAutoQuest();
+    stopCombat();
+    step++;
+}
+
+function onTick() {
+    if (step >= factionList.length) {
+        msg("All reputations processed! Farm complete.");
+        stop();
+        return;
+    }
+
+    var current = factionList[step];
+
+    // Check if already Rank 10
+    if (factionRank(current) >= 10) {
+        nextFaction();
+        return;
+    }
+
+    // Process current faction with prerequisite verification
+    switch (current) {
+        case "Arcangrove":
+            ensureMap("arcangrove");
+            ensureQuest(794);
+            ensureQuest(795);
+            if (!hunt("Gorillaphant", 5)) return;
+            if (!hunt("Seed Spitter", 5)) return;
+            if (isQuestComplete(794)) ensureComplete(794);
+            if (isQuestComplete(795)) ensureComplete(795);
+
+        case "Blade of Awe":
+            if (!isQuestUnlocked(2935)) {
+                msg("Skipping Blade of Awe: Quest 2935 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("castleundead", "Enter", "Left");
+            ensureQuest(2935);
+            ensureCombat();
+            if (isQuestComplete(2935)) ensureComplete(2935);
+
+        case "Brightoak":
+            if (!isQuestUnlocked(4667)) {
+                msg("Skipping Brightoak: Quest 4667 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("elfhame");
+            ensureQuest(4667);
+            getMapItem(3984);
+            if (isQuestComplete(4667)) ensureComplete(4667);
+
+        case "Chaos":
+            if (!isQuestUnlocked(3594)) {
+                msg("Skipping Chaos: Quest 3594 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("mountdoomskull", "b1", "Left");
+            ensureQuest(3594);
+            ensureCombat();
+            if (isQuestComplete(3594)) ensureComplete(3594);
+
+        case "ChronoSpan":
+            if (!isQuestUnlocked(2204)) {
+                msg("Skipping ChronoSpan: Quest 2204 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("thespan");
+            ensureQuest(2204);
+            ensureCell("r6", "Left");
+            if (!hunt("Moglin Ghost", "Tin of Ghost Dust", 2)) return;
+            ensureCell("r4", "Left");
+            if (!hunt("Minx Fairy", "8 oz Fairy Glitter", 3)) return;
+            if (!hunt("Tog", "Tog Fang", 4)) return;
+            if (isQuestComplete(2204)) ensureComplete(2204);
+
+        case "DoomWood":
+            if (!isQuestUnlocked(1151)) {
+                msg("Skipping DoomWood: Quest 1151 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("shadowfallwar", "Garden1", "Left");
+            ensureQuest(1151);
+            ensureQuest(1152);
+            ensureCombat();
+            if (isQuestComplete(1151)) ensureComplete(1151);
+            if (isQuestComplete(1152)) ensureComplete(1152);
+
+        case "Dreadrock":
+            if (!isQuestUnlocked(4862)) {
+                msg("Skipping Dreadrock: Quest 4862 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("dreadrock", "r3", "Bottom");
+            ensureQuest(4862);
+            ensureQuest(4863);
+            ensureCombat();
+            if (isQuestComplete(4862)) ensureComplete(4862);
+            if (isQuestComplete(4863)) ensureComplete(4863);
+
+        case "Embersea":
+            if (!isQuestUnlocked(4228) && !isQuestUnlocked(4080)) {
+                msg("Skipping Embersea: Quests locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("fireforge");
+            ensureQuest(4228);
+            if (!hunt("Blazebinder", 5)) return;
+            if (isQuestComplete(4228)) ensureComplete(4228);
+
+        case "EtherStorm":
+            if (!isQuestUnlocked(3494)) {
+                msg("Skipping EtherStorm: Quest 3494 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("waterstorm", "r5", "Left");
+            ensureQuest(3494);
+            ensureCombat();
+            if (isQuestComplete(3494)) ensureComplete(3494);
+
+        case "Evil":
+            if (factionRank("Evil") < 4) {
+                ensureMap("swordhavenbridge");
+                ensureQuest(364);
+                if (!hunt("Slime", "Youthanize", 1)) return;
+                ensureComplete(364);
+            } else {
+                ensureMap("castleundead", "Enter", "Left");
+                ensureQuest(367);
+                ensureCombat();
+                if (isQuestComplete(367)) ensureComplete(367);
+            }
+
+        case "Good":
+            if (isQuestUnlocked(1952)) {
+                ensureMap("poisonforest");
+                ensureQuest(1952);
+                if (!hunt("Burning Loyalist", 5)) return;
+                if (isQuestComplete(1952)) ensureComplete(1952);
+            } else if (factionRank("Good") < 4) {
+                ensureMap("swordhavenbridge", "Bridge", "Left");
+                ensureQuest(369);
+                ensureCombat();
+                if (isQuestComplete(369)) ensureComplete(369);
+            } else {
+                ensureMap("castleundead", "Enter", "Spawn");
+                ensureQuest(372);
+                ensureCombat();
+                if (isQuestComplete(372)) ensureComplete(372);
+            }
+
+        case "Glacera":
+            if (!isQuestUnlocked(5597)) {
+                msg("Skipping Glacera: Quest 5597 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("icewindwar", "r5", "Left");
+            ensureQuest(5597);
+            ensureQuest(5598);
+            ensureCombat();
+            if (isQuestComplete(5597)) ensureComplete(5597);
+            if (isQuestComplete(5598)) ensureComplete(5598);
+
+        case "Hollowborn":
+            if (!isQuestUnlocked(7553)) {
+                msg("Skipping Hollowborn: Quest 7553 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("shadowrealm", "r2", "Left");
+            ensureQuest(7553);
+            ensureQuest(7555);
+            if (!hunt("Gargrowl", "Darkseed", 8)) return;
+            if (!hunt("Shadow Guardian", "Shadow Medallion", 5)) return;
+            if (isQuestComplete(7553)) ensureComplete(7553);
+            if (isQuestComplete(7555)) ensureComplete(7555);
+
+        case "Horc":
+            if (!isQuestUnlocked(1265)) {
+                msg("Skipping Horc: Quest 1265 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("bloodtuskwar");
+            ensureQuest(1265);
+            if (!hunt("Chaotic Lemurphant", "Chaorrupted Eye", 3)) return;
+            if (!hunt("Chaotic Horcboar", "Chaorrupted Tentacle", 5)) return;
+            if (!hunt("Chaotic Chinchilizard", "Chaorrupted Tusk", 5)) return;
+            if (isQuestComplete(1265)) ensureComplete(1265);
+
+        case "Troll":
+            if (!isQuestUnlocked(1263)) {
+                msg("Skipping Troll: Quest 1263 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("bloodtuskwar");
+            ensureQuest(1263);
+            if (!hunt("Chaotic Lemurphant", "Chaorrupted Eye", 3)) return;
+            if (!hunt("Chaotic Horcboar", "Chaorrupted Tentacle", 5)) return;
+            if (!hunt("Chaotic Chinchilizard", "Chaorrupted Tusk", 5)) return;
+            if (isQuestComplete(1263)) ensureComplete(1263);
+
+        case "Lycan":
+            if (!isQuestUnlocked(537)) {
+                msg("Skipping Lycan: Quest 537 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("lycan");
+            ensureQuest(537);
+            if (!hunt("Sanguine", "Sanguine Mask", 1)) return;
+            if (isQuestComplete(537)) ensureComplete(537);
+
+        case "Vampire":
+            if (!isQuestUnlocked(522)) {
+                msg("Skipping Vampire: Quest 522 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("safiria");
+            ensureQuest(522);
+            if (!hunt("Twisted Paw", "Twisted Paw's Head", 1)) return;
+            if (isQuestComplete(522)) ensureComplete(522);
+
+        case "Mythsong":
+            if (!isQuestUnlocked(4829)) {
+                msg("Skipping Mythsong: Quest 4829 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("beehive");
+            ensureQuest(4829);
+            if (!hunt("Stinger", "Honey Gathered", 10)) return;
+            if (isQuestComplete(4829)) ensureComplete(4829);
+
+        case "Sandsea":
+            if (!isQuestUnlocked(916)) {
+                msg("Skipping Sandsea: Quest 916 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("sandsea", "Enter", "Spawn");
+            ensureQuest(916);
+            ensureQuest(917);
+            ensureCombat();
+            if (isQuestComplete(916)) ensureComplete(916);
+            if (isQuestComplete(917)) ensureComplete(917);
+
+        case "Swordhaven":
+            if (!isQuestUnlocked(3065)) {
+                msg("Skipping Swordhaven: Quest 3065 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("castle");
+            ensureQuest(3065);
+            ensureQuest(3066);
+            if (!hunt("Castle Spider", 5)) return;
+            if (!hunt("Castle Wraith", 5)) return;
+            if (isQuestComplete(3065)) ensureComplete(3065);
+            if (isQuestComplete(3066)) ensureComplete(3066);
+
+        case "ThunderForge":
+            if (!isQuestUnlocked(2733)) {
+                msg("Skipping ThunderForge: Quest 2733 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("deathpits");
+            ensureQuest(2733);
+            if (!hunt("Wrathful Vestis", "Vestis's Chaos Eye", 1)) return;
+            if (isQuestComplete(2733)) ensureComplete(2733);
+
+        case "Yokai":
+            if (!isQuestUnlocked(383)) {
+                msg("Skipping Yokai: Quest 383 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("dragonkoiz");
+            ensureQuest(383);
+            if (!hunt("Pockey Chew", "Piece of Pockey", 3)) return;
+            if (isQuestComplete(383)) ensureComplete(383);
+
+        case "Eternal":
+            if (!isQuestUnlocked(5198)) {
+                msg("Skipping Eternal: Quest 5198 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("fourdpyramid");
+            ensureQuest(5198);
+            if (!hunt("White Sphynx", "White Gem", 2)) return;
+            if (!hunt("Black Sphynx", "Black Gem", 2)) return;
+            if (isQuestComplete(5198)) ensureComplete(5198);
+
+        case "Death Pit Arena":
+            if (!isQuestUnlocked(5153)) {
+                msg("Skipping Death Pit Arena: Quest 5153 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("deathpit");
+            ensureQuest(5153);
+            if (!hunt("General Hun'Gar", "General Hun'Gar Defeated", 1)) return;
+            if (isQuestComplete(5153)) ensureComplete(5153);
+
+        case "Diabolical":
+            if (!isQuestUnlocked(7877)) {
+                msg("Skipping Diabolical: Quest 7877 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("mudluk");
+            ensureQuest(7877);
+            if (!hunt("Tiger Leech", "Swamped Leech Tooth", 1)) return;
+            if (isQuestComplete(7877)) ensureComplete(7877);
+
+        case "CraggleRock":
+            if (!isQuestUnlocked(7277)) {
+                msg("Skipping CraggleRock: Quest 7277 locked.");
+                nextFaction();
+                return;
+            }
+            equipLoadout("solo");
+            ensureMap("wanders");
+            ensureQuest(7277);
+            if (!hunt("Kalestev", 1)) return;
+            if (isQuestComplete(7277)) ensureComplete(7277);
+
+        case "Northpointe":
+            if (!isQuestUnlocked(4027)) {
+                msg("Skipping Northpointe: Quest 4027 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("northpointe");
+            ensureQuest(4027);
+            if (!hunt("Grim Stalker", "Bunch of Sage", 10)) return;
+            if (isQuestComplete(4027)) ensureComplete(4027);
+
+        case "Ravenloss":
+            if (!isQuestUnlocked(3445)) {
+                msg("Skipping Ravenloss: Quest 3445 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("twilightedge");
+            ensureQuest(3445);
+            if (!hunt("ChaosWeaver Mage", "ChaosWeaver Slain", 10)) return;
+            if (isQuestComplete(3445)) ensureComplete(3445);
+
+        case "Dwarfhold":
+            if (!isQuestUnlocked(320)) {
+                msg("Skipping Dwarfhold: Quest 320 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("pines", "Enter", "Right");
+            ensureQuest(320);
+            ensureQuest(321);
+            if (!hunt("Pine Grizzly", "Bear Skin", 5)) return;
+            if (!hunt("Red Shell Turtle", "Red Turtle Shell", 5)) return;
+            if (isQuestComplete(320)) ensureComplete(320);
+            if (isQuestComplete(321)) ensureComplete(321);
+
+        case "Druid Grove":
+            if (!isQuestUnlocked(3049)) {
+                msg("Skipping Druid Grove: Quest 3049 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("bloodtusk");
+            ensureQuest(3049);
+            if (!hunt("Crystal-Rock", 5)) return;
+            if (isQuestComplete(3049)) ensureComplete(3049);
+
+        case "Aegis":
+            if (!isQuestUnlocked(4900)) {
+                msg("Skipping Aegis: Quest 4900 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("skytower");
+            ensureQuest(4900);
+            if (!hunt("Seraphic Assassin", 5)) return;
+            if (!hunt("Virtuous Warrior", 5)) return;
+            if (isQuestComplete(4900)) ensureComplete(4900);
+
+        case "Chaos Militia":
+            if (!isQuestUnlocked(5775)) {
+                msg("Skipping Chaos Militia: Quest 5775 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("citadel");
+            ensureQuest(5775);
+            if (!hunt("Inquisitor Guard", 5)) return;
+            if (isQuestComplete(5775)) ensureComplete(5775);
+
+        case "Infernal Army":
+            if (!isQuestUnlocked(5707)) {
+                msg("Skipping Infernal Army: Quest 5707 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("dreadfire", "r10", "Left");
+            ensureQuest(5707);
+            if (!hunt("Living Brimstone", "Living Brimstone Defeated", 1)) return;
+            if (isQuestComplete(5707)) ensureComplete(5707);
+
+        case "Monster Hunter":
+            if (!isQuestUnlocked(5849)) {
+                msg("Skipping Monster Hunter: Quest 5849 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("pilgrimage", "r5", "Left");
+            ensureQuest(5849);
+            if (!hunt("SpiderWing", "Spiderwing Captured", 4)) return;
+            if (isQuestComplete(5849)) ensureComplete(5849);
+
+        case "Somnia":
+            if (!isQuestUnlocked(7665)) {
+                msg("Skipping Somnia: Quest 7665 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("somnia");
+            ensureQuest(7665);
+            if (!hunt("Nightspore", "Dream Truffle", 8)) return;
+            if (isQuestComplete(7665)) ensureComplete(7665);
+
+        case "TreasureHunter":
+            if (!isQuestUnlocked(6593)) {
+                msg("Skipping Treasure Hunter: Quest 6593 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("stalagbite");
+            ensureQuest(6593);
+            if (!hunt("Balboa", "Super Specific Rock", 1)) return;
+            if (isQuestComplete(6593)) ensureComplete(6593);
+
+        case "Necro Crypt":
+            if (!isQuestUnlocked(3048)) {
+                msg("Skipping Necro Crypt: Quest 3048 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("castleundead");
+            ensureQuest(3048);
+            if (!hunt("Skeletal Viking", "Old Bone", 25)) return;
+            if (isQuestComplete(3048)) ensureComplete(3048);
+
+        case "Pet Tamer":
+            if (!isQuestUnlocked(5261)) {
+                msg("Skipping Pet Tamer: Quest 5261 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("greenguardwest", "West7", "Down");
+            ensureQuest(5261);
+            if (!hunt("Mogzard", "Mogzard Captured", 1)) return;
+            if (isQuestComplete(5261)) ensureComplete(5261);
+
+        case "Skye":
+            if (!isQuestUnlocked(9709)) {
+                msg("Skipping Skye: Quest 9709 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("balemorale", "r10", "Bottom");
+            ensureQuest(9709);
+            ensureCombat();
+            if (isQuestComplete(9709)) ensureComplete(9709);
+
+        case "Dreadfire":
+            if (!isQuestUnlocked(5697)) {
+                msg("Skipping Dreadfire: Quest 5697 locked.");
+                nextFaction();
+                return;
+            }
+            ensureMap("dreadfire", "r13", "Bottom");
+            ensureQuest(5697);
+            if (!hunt("Arcane Crystal", 5)) return;
+            if (isQuestComplete(5697)) ensureComplete(5697);
+
+        default:
+            nextFaction();
+    }
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

@@ -1,0 +1,524 @@
+class
+ refid "fl.motion:AdjustColor"
+ instance QName(PackageNamespace("fl.motion"), "AdjustColor")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("fl.motion:AdjustColor")
+  iinit
+   refid "fl.motion:AdjustColor/instance/init"
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix") type QName(PackageNamespace("fl.motion"), "ColorMatrix") end
+  trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix") type QName(PackageNamespace("fl.motion"), "ColorMatrix") end
+  trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix") type QName(PackageNamespace("fl.motion"), "ColorMatrix") end
+  trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix") type QName(PackageNamespace("fl.motion"), "ColorMatrix") end
+  trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix") type QName(PackageNamespace("fl.motion"), "ColorMatrix") end
+  trait setter QName(PackageNamespace(""), "brightness")
+   method
+    refid "fl.motion:AdjustColor/instance/brightness/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix")
+      pushnull
+      ifne                L10
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace("fl.motion"), "ColorMatrix")
+      constructprop       QName(PackageNamespace("fl.motion"), "ColorMatrix"), 0
+      initproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix")
+
+L10:
+      getlocal1
+      pushbyte            0
+      ifeq                L17
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix")
+      getlocal1
+      callpropvoid        QName(PackageNamespace(""), "SetBrightnessMatrix"), 1
+
+L17:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait setter QName(PackageNamespace(""), "contrast")
+   method
+    refid "fl.motion:AdjustColor/instance/contrast/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      convert_d
+      setlocal2
+
+      getlocal1
+      pushbyte            0
+      ifne                L12
+
+      pushbyte            127
+      convert_d
+      setlocal2
+
+      jump                L36
+
+L12:
+      getlocal1
+      pushbyte            0
+      ifngt               L27
+
+      getlex              QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "s_arrayOfDeltaIndex")
+      findpropstrict      QName(PackageNamespace(""), "int")
+      getlocal1
+      callproperty        QName(PackageNamespace(""), "int"), 1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:AdjustColor"), PackageNamespace("fl.motion"), PackageNamespace(""), PrivateNamespace(null, "fl.motion:AdjustColor/instance/contrast/setter"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("fl.motion:AdjustColor"), StaticProtectedNs("fl.motion:AdjustColor"), StaticProtectedNs("Object")])
+      pushbyte            127
+      multiply
+      pushbyte            127
+      add
+      convert_d
+      setlocal2
+
+      jump                L36
+
+L27:
+      getlocal1
+      pushbyte            100
+      divide
+      pushbyte            127
+      multiply
+      pushbyte            127
+      add
+      convert_d
+      setlocal2
+
+L36:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix")
+      pushnull
+      ifne                L44
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace("fl.motion"), "ColorMatrix")
+      constructprop       QName(PackageNamespace("fl.motion"), "ColorMatrix"), 0
+      initproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix")
+
+L44:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix")
+      getlocal2
+      callpropvoid        QName(PackageNamespace(""), "SetContrastMatrix"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait setter QName(PackageNamespace(""), "saturation")
+   method
+    refid "fl.motion:AdjustColor/instance/saturation/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      convert_d
+      setlocal2
+
+      getlocal1
+      pushbyte            0
+      ifne                L12
+
+      pushbyte            1
+      convert_d
+      setlocal2
+
+      jump                L32
+
+L12:
+      getlocal1
+      pushbyte            0
+      ifngt               L25
+
+      pushbyte            1
+      pushbyte            3
+      getlocal1
+      multiply
+      pushbyte            100
+      divide
+      add
+      convert_d
+      setlocal2
+
+      jump                L32
+
+L25:
+      getlocal1
+      pushbyte            100
+      divide
+      pushbyte            1
+      add
+      convert_d
+      setlocal2
+
+L32:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix")
+      pushnull
+      ifne                L40
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace("fl.motion"), "ColorMatrix")
+      constructprop       QName(PackageNamespace("fl.motion"), "ColorMatrix"), 0
+      initproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix")
+
+L40:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix")
+      getlocal2
+      callpropvoid        QName(PackageNamespace(""), "SetSaturationMatrix"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait setter QName(PackageNamespace(""), "hue")
+   method
+    refid "fl.motion:AdjustColor/instance/hue/setter"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix")
+      pushnull
+      ifne                L10
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace("fl.motion"), "ColorMatrix")
+      constructprop       QName(PackageNamespace("fl.motion"), "ColorMatrix"), 0
+      initproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix")
+
+L10:
+      getlocal1
+      pushbyte            0
+      ifeq                L22
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix")
+      getlocal1
+      getlex              QName(PackageNamespace(""), "Math")
+      getproperty         QName(PackageNamespace(""), "PI")
+      multiply
+      pushshort           180
+      divide
+      callpropvoid        QName(PackageNamespace(""), "SetHueMatrix"), 1
+
+L22:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "AllValuesAreSet")
+   method
+    refid "fl.motion:AdjustColor/instance/AllValuesAreSet"
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix")
+      convert_b
+      dup
+      iffalse             L11
+
+      pop
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix")
+      convert_b
+L11:
+      dup
+      iffalse             L17
+
+      pop
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix")
+      convert_b
+L17:
+      dup
+      iffalse             L23
+
+      pop
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix")
+      convert_b
+L23:
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "CalculateFinalFlatArray")
+   method
+    refid "fl.motion:AdjustColor/instance/CalculateFinalFlatArray"
+    returns QName(PackageNamespace(""), "Array")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      callproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "CalculateFinalMatrix"), 0
+      iffalse             L9
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+      callproperty        QName(PackageNamespace(""), "GetFlatArray"), 0
+      returnvalue
+
+L9:
+      pushnull
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "CalculateFinalMatrix")
+   method
+    refid "fl.motion:AdjustColor/instance/fl.motion:AdjustColor/CalculateFinalMatrix"
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      callproperty        QName(PackageNamespace(""), "AllValuesAreSet"), 0
+      iftrue              L7
+
+      pushfalse
+      returnvalue
+
+L7:
+      getlocal0
+      findpropstrict      QName(PackageNamespace("fl.motion"), "ColorMatrix")
+      constructprop       QName(PackageNamespace("fl.motion"), "ColorMatrix"), 0
+      initproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_brightnessMatrix")
+      callpropvoid        QName(PackageNamespace(""), "Multiply"), 1
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_contrastMatrix")
+      callpropvoid        QName(PackageNamespace(""), "Multiply"), 1
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_saturationMatrix")
+      callpropvoid        QName(PackageNamespace(""), "Multiply"), 1
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_finalMatrix")
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "m_hueMatrix")
+      callpropvoid        QName(PackageNamespace(""), "Multiply"), 1
+
+      pushtrue
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "fl.motion:AdjustColor/class/init"
+  body
+   maxstack 102
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "s_arrayOfDeltaIndex")
+    pushbyte            0
+    pushdouble          0.01
+    pushdouble          0.02
+    pushdouble          0.04
+    pushdouble          0.05
+    pushdouble          0.06
+    pushdouble          0.07
+    pushdouble          0.08
+    pushdouble          0.1
+    pushdouble          0.11
+    pushdouble          0.12
+    pushdouble          0.14
+    pushdouble          0.15
+    pushdouble          0.16
+    pushdouble          0.17
+    pushdouble          0.18
+    pushdouble          0.2
+    pushdouble          0.21
+    pushdouble          0.22
+    pushdouble          0.24
+    pushdouble          0.25
+    pushdouble          0.27
+    pushdouble          0.28
+    pushdouble          0.3
+    pushdouble          0.32
+    pushdouble          0.34
+    pushdouble          0.36
+    pushdouble          0.38
+    pushdouble          0.4
+    pushdouble          0.42
+    pushdouble          0.44
+    pushdouble          0.46
+    pushdouble          0.48
+    pushdouble          0.5
+    pushdouble          0.53
+    pushdouble          0.56
+    pushdouble          0.59
+    pushdouble          0.62
+    pushdouble          0.65
+    pushdouble          0.68
+    pushdouble          0.71
+    pushdouble          0.74
+    pushdouble          0.77
+    pushdouble          0.8
+    pushdouble          0.83
+    pushdouble          0.86
+    pushdouble          0.89
+    pushdouble          0.92
+    pushdouble          0.95
+    pushdouble          0.98
+    pushbyte            1
+    pushdouble          1.06
+    pushdouble          1.12
+    pushdouble          1.18
+    pushdouble          1.24
+    pushdouble          1.3
+    pushdouble          1.36
+    pushdouble          1.42
+    pushdouble          1.48
+    pushdouble          1.54
+    pushdouble          1.6
+    pushdouble          1.66
+    pushdouble          1.72
+    pushdouble          1.78
+    pushdouble          1.84
+    pushdouble          1.9
+    pushdouble          1.96
+    pushbyte            2
+    pushdouble          2.12
+    pushdouble          2.25
+    pushdouble          2.37
+    pushdouble          2.5
+    pushdouble          2.62
+    pushdouble          2.75
+    pushdouble          2.87
+    pushbyte            3
+    pushdouble          3.2
+    pushdouble          3.4
+    pushdouble          3.6
+    pushdouble          3.8
+    pushbyte            4
+    pushdouble          4.3
+    pushdouble          4.7
+    pushdouble          4.9
+    pushbyte            5
+    pushdouble          5.5
+    pushbyte            6
+    pushdouble          6.5
+    pushdouble          6.8
+    pushbyte            7
+    pushdouble          7.3
+    pushdouble          7.5
+    pushdouble          7.8
+    pushbyte            8
+    pushdouble          8.4
+    pushdouble          8.7
+    pushbyte            9
+    pushdouble          9.4
+    pushdouble          9.6
+    pushdouble          9.8
+    pushbyte            10
+    newarray            101
+    setproperty         QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "s_arrayOfDeltaIndex")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PrivateNamespace(null, "fl.motion:AdjustColor"), "s_arrayOfDeltaIndex") slotid 1 type QName(PackageNamespace(""), "Array") end
+end ; class

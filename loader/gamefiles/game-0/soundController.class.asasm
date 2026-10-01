@@ -1,0 +1,294 @@
+class
+ refid "soundController"
+ instance QName(PackageNamespace(""), "soundController")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("soundController")
+  iinit
+   refid "soundController/instance/init"
+   param QName(PackageNamespace("flash.media"), "Sound")
+   param QName(PackageNamespace("flash.display"), "MovieClip")
+   body
+    maxstack 4
+    localcount 3
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal2
+     initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "rootClass")
+
+     getlocal0
+     findpropstrict      QName(PackageNamespace("flash.media"), "SoundChannel")
+     constructprop       QName(PackageNamespace("flash.media"), "SoundChannel"), 0
+     initproperty        QName(PackageNamespace(""), "mChannel")
+
+     getlocal0
+     getproperty         QName(PackageNamespace(""), "mChannel")
+     findpropstrict      QName(PackageNamespace("flash.media"), "SoundTransform")
+     getlocal2
+     getproperty         Multiname("litePreference", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     getproperty         Multiname("data", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     getproperty         Multiname("dOptions", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     pushstring          "iSoundMusic"
+     getproperty         MultinameL([PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     pushnull
+     ifeq                L30
+
+     getlocal2
+     getproperty         Multiname("litePreference", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     getproperty         Multiname("data", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     getproperty         Multiname("dOptions", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     pushstring          "iSoundMusic"
+     getproperty         MultinameL([PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+     convert_d
+     jump                L32
+
+L30:
+     pushdouble          0.35
+     convert_d
+L32:
+     constructprop       QName(PackageNamespace("flash.media"), "SoundTransform"), 1
+     setproperty         QName(PackageNamespace(""), "soundTransform")
+
+     getlocal0
+     pushfalse
+     initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+
+     getlocal0
+     getlocal1
+     initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "songClass")
+
+     getlocal0
+     pushtrue
+     initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "songOn")
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PrivateNamespace(null, "soundController/instance#0"), "rootClass") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PrivateNamespace(null, "soundController/instance#0"), "bSong") type QName(PackageNamespace(""), "Boolean") end
+  trait slot QName(PrivateNamespace(null, "soundController/instance#0"), "songOn") type QName(PackageNamespace(""), "Boolean") end
+  trait slot QName(PackageNamespace(""), "mChannel") type QName(PackageNamespace("flash.media"), "SoundChannel") end
+  trait slot QName(PrivateNamespace(null, "soundController/instance#0"), "btnSong") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PrivateNamespace(null, "soundController/instance#0"), "songClass") type QName(PackageNamespace("flash.media"), "Sound") end
+  trait method QName(PackageNamespace(""), "checkSound")
+   method
+    refid "soundController/instance/checkSound"
+    param QName(PackageNamespace("flash.display"), "MovieClip")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Null()
+    body
+     maxstack 5
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "rootClass")
+      getproperty         Multiname("mixer", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      getproperty         Multiname("bSoundOn", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      iffalse             L42
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "songOn")
+      iffalse             L34
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+      iftrue              L33
+
+      getlocal0
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "songClass")
+      pushbyte            0
+      pushshort           9999
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "mChannel")
+      getproperty         QName(PackageNamespace(""), "soundTransform")
+      callproperty        QName(PackageNamespace(""), "play"), 3
+      initproperty        QName(PackageNamespace(""), "mChannel")
+
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+
+      getlocal1
+      pushnull
+      ifeq                L33
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music On"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+L33:
+      jump                L41
+
+L34:
+      getlocal1
+      pushnull
+      ifeq                L41
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music Off"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+L41:
+      jump                L49
+
+L42:
+      getlocal1
+      pushnull
+      ifeq                L49
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music Off"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+L49:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "stopMusic")
+   method
+    refid "soundController/instance/stopMusic"
+    param QName(PackageNamespace("flash.display"), "MovieClip")
+    returns QName(PackageNamespace(""), "void")
+    flag HAS_OPTIONAL
+    optional Null()
+    body
+     maxstack 2
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlex              QName(PackageNamespace("flash.media"), "SoundMixer")
+      callpropvoid        QName(PackageNamespace(""), "stopAll"), 0
+
+      getlocal0
+      pushfalse
+      initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "songOn")
+
+      getlocal1
+      pushnull
+      ifeq                L14
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music Off"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+L14:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "buttonClick")
+   method
+    refid "soundController/instance/buttonClick"
+    param QName(PackageNamespace("flash.display"), "MovieClip")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 5
+     localcount 2
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+      iffalse             L15
+
+      getlex              QName(PackageNamespace("flash.media"), "SoundMixer")
+      callpropvoid        QName(PackageNamespace(""), "stopAll"), 0
+
+      getlocal0
+      pushfalse
+      initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "songOn")
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music Off"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+      jump                L37
+
+L15:
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "rootClass")
+      getproperty         Multiname("mixer", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      getproperty         Multiname("bSoundOn", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      iffalse             L37
+
+      getlocal0
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "songClass")
+      pushbyte            0
+      pushshort           9999
+      getlocal0
+      getproperty         QName(PackageNamespace(""), "mChannel")
+      getproperty         QName(PackageNamespace(""), "soundTransform")
+      callproperty        QName(PackageNamespace(""), "play"), 3
+      initproperty        QName(PackageNamespace(""), "mChannel")
+
+      getlocal0
+      pushtrue
+      initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "songOn")
+
+      getlocal1
+      getproperty         Multiname("txtMusic", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+      pushstring          "Music On"
+      setproperty         Multiname("text", [PrivateNamespace(null, "soundController/instance#0"), PackageNamespace(""), PrivateNamespace(null, "soundController/instance#1"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), ProtectedNamespace("soundController"), StaticProtectedNs("soundController")])
+
+L37:
+      getlocal0
+      getlocal0
+      getproperty         QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+      not
+      initproperty        QName(PrivateNamespace(null, "soundController/instance#0"), "bSong")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "soundController/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

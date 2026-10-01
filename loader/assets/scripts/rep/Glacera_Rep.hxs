@@ -1,0 +1,41 @@
+// ========================================================
+// Script: Glacera Reputation Farm (.hxs)
+// Farms Glacera Reputation to Rank 10
+// Quests: 5597, 5598, 5599, 5600 (Icewind War)
+// Prerequisite: Glacera storyline completed up to Icewind War
+// ========================================================
+
+function onStart() {
+    if (factionRank("Glacera") >= 10) {
+        msg("Glacera Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(5597)) {
+        msg("Prerequisite missing: Quest 5597 is locked. Complete the Glacera storyline up to Icewind War first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("icewindwar", "r5", "Left");
+    autoQuest([5597, 5598, 5599, 5600]);
+}
+
+function onTick() {
+    if (factionRank("Glacera") >= 10) {
+        msg("Glacera Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("icewindwar", "r5", "Left");
+    ensureCombat();
+}
+
+function onStop() {
+    stopAutoQuest();
+    stopCombat();
+}

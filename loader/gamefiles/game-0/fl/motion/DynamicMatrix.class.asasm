@@ -1,0 +1,1083 @@
+class
+ refid "fl.motion:DynamicMatrix"
+ instance QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("fl.motion:DynamicMatrix")
+  iinit
+   refid "fl.motion:DynamicMatrix/instance/init"
+   param QName(PackageNamespace(""), "int")
+   param QName(PackageNamespace(""), "int")
+   body
+    maxstack 3
+    localcount 3
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     getlocal0
+     getlocal1
+     getlocal2
+     callpropvoid        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Create"), 2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width") type QName(PackageNamespace(""), "int") end
+  trait slot QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height") type QName(PackageNamespace(""), "int") end
+  trait slot QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix") type QName(PackageNamespace(""), "Array") end
+  trait method QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Create")
+   method
+    refid "fl.motion:DynamicMatrix/instance/fl.motion:DynamicMatrix:Create"
+    param QName(PackageNamespace(""), "int")
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 4
+     localcount 5
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      setlocal3
+
+      pushbyte            0
+      setlocal            4
+
+      getlocal1
+      pushbyte            0
+      greaterthan
+      dup
+      iffalse             L15
+
+      pop
+      getlocal2
+      pushbyte            0
+      greaterthan
+L15:
+      iffalse             L57
+
+      getlocal0
+      getlocal1
+      initproperty        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+
+      getlocal0
+      getlocal2
+      initproperty        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+
+      getlocal0
+      findpropstrict      QName(PackageNamespace(""), "Array")
+      getlocal2
+      constructprop       QName(PackageNamespace(""), "Array"), 1
+      initproperty        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+
+      pushbyte            0
+      setlocal3
+
+      jump                L54
+
+L30:
+      label
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal3
+      findpropstrict      QName(PackageNamespace(""), "Array")
+      getlocal1
+      constructprop       QName(PackageNamespace(""), "Array"), 1
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      pushbyte            0
+      setlocal            4
+
+      jump                L50
+
+L41:
+      label
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal3
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            4
+      pushbyte            0
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          4
+L50:
+      getlocal            4
+      getlocal2
+      iflt                L41
+
+      inclocal_i          3
+L54:
+      getlocal3
+      getlocal2
+      iflt                L30
+
+L57:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Destroy")
+   method
+    refid "fl.motion:DynamicMatrix/instance/fl.motion:DynamicMatrix:Destroy"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushnull
+      initproperty        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "GetWidth")
+   method
+    refid "fl.motion:DynamicMatrix/instance/GetWidth"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "GetHeight")
+   method
+    refid "fl.motion:DynamicMatrix/instance/GetHeight"
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 1
+     localcount 1
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "GetValue")
+   method
+    refid "fl.motion:DynamicMatrix/instance/GetValue"
+    param QName(PackageNamespace(""), "int")
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "Number")
+    body
+     maxstack 2
+     localcount 4
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      convert_d
+      setlocal3
+
+      getlocal1
+      pushbyte            0
+      greaterequals
+      dup
+      iffalse             L15
+
+      pop
+      getlocal1
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      lessthan
+L15:
+      dup
+      iffalse             L21
+
+      pop
+      getlocal2
+      pushbyte            0
+      greaterequals
+L21:
+      dup
+      iffalse             L28
+
+      pop
+      getlocal2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      lessequals
+L28:
+      iffalse             L37
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal2
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      convert_d
+      setlocal3
+
+L37:
+      getlocal3
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "SetValue")
+   method
+    refid "fl.motion:DynamicMatrix/instance/SetValue"
+    param QName(PackageNamespace(""), "int")
+    param QName(PackageNamespace(""), "int")
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 4
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      getlocal1
+      pushbyte            0
+      greaterequals
+      dup
+      iffalse             L12
+
+      pop
+      getlocal1
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      lessthan
+L12:
+      dup
+      iffalse             L18
+
+      pop
+      getlocal2
+      pushbyte            0
+      greaterequals
+L18:
+      dup
+      iffalse             L25
+
+      pop
+      getlocal2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      lessequals
+L25:
+      iffalse             L33
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal2
+      getlocal3
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+L33:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "LoadIdentity")
+   method
+    refid "fl.motion:DynamicMatrix/instance/LoadIdentity"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      setlocal1
+
+      pushbyte            0
+      setlocal2
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      iffalse             L45
+
+      pushbyte            0
+      setlocal1
+
+      jump                L41
+
+L12:
+      label
+      pushbyte            0
+      setlocal2
+
+      jump                L36
+
+L16:
+      label
+      getlocal1
+      getlocal2
+      ifne                L28
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal2
+      pushbyte            1
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      jump                L35
+
+L28:
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal2
+      pushbyte            0
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+L35:
+      inclocal_i          2
+L36:
+      getlocal2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L16
+
+      inclocal_i          1
+L41:
+      getlocal1
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      iflt                L12
+
+L45:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "LoadZeros")
+   method
+    refid "fl.motion:DynamicMatrix/instance/LoadZeros"
+    returns QName(PackageNamespace(""), "void")
+    body
+     maxstack 3
+     localcount 3
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      setlocal1
+
+      pushbyte            0
+      setlocal2
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      iffalse             L34
+
+      pushbyte            0
+      setlocal1
+
+      jump                L30
+
+L12:
+      label
+      pushbyte            0
+      setlocal2
+
+      jump                L25
+
+L16:
+      label
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal1
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal2
+      pushbyte            0
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          2
+L25:
+      getlocal2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L16
+
+      inclocal_i          1
+L30:
+      getlocal1
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      iflt                L12
+
+L34:
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "Multiply")
+   method
+    refid "fl.motion:DynamicMatrix/instance/Multiply"
+    param QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+    param QName(PackageNamespace(""), "int")
+    returns QName(PackageNamespace(""), "Boolean")
+    flag HAS_OPTIONAL
+    optional Integer(0)
+    body
+     maxstack 5
+     localcount 11
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushnull
+      coerce              QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+      setlocal            5
+
+      pushbyte            0
+      setlocal            6
+
+      pushbyte            0
+      setlocal            7
+
+      pushnan
+      setlocal            8
+
+      pushbyte            0
+      setlocal            9
+
+      pushbyte            0
+      setlocal            10
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      not
+      dup
+      iftrue              L23
+
+      pop
+      getlocal1
+      not
+L23:
+      iffalse             L26
+
+      pushfalse
+      returnvalue
+
+L26:
+      getlocal1
+      callproperty        QName(PackageNamespace(""), "GetHeight"), 0
+      convert_i
+      setlocal3
+
+      getlocal1
+      callproperty        QName(PackageNamespace(""), "GetWidth"), 0
+      convert_i
+      setlocal            4
+
+      getlocal2
+      getlex              QName(PackageNamespace(""), "MATRIX_ORDER_APPEND")
+      ifne                L151
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      getlocal3
+      ifeq                L43
+
+      pushfalse
+      returnvalue
+
+L43:
+      findpropstrict      QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+      getlocal            4
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      constructprop       QName(PackageNamespace("fl.motion"), "DynamicMatrix"), 2
+      coerce              QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+      setlocal            5
+
+      pushbyte            0
+      setlocal            6
+
+      jump                L112
+
+L53:
+      label
+      pushbyte            0
+      setlocal            7
+
+      jump                L108
+
+L57:
+      label
+      pushbyte            0
+      convert_d
+      setlocal            8
+
+      pushbyte            0
+      setlocal            9
+
+      pushbyte            0
+      setlocal            10
+
+      jump                L84
+
+L66:
+      label
+      getlocal            8
+      getlocal1
+      getlocal            9
+      getlocal            7
+      callproperty        QName(PackageNamespace(""), "GetValue"), 2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            6
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            10
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      multiply
+      add
+      convert_d
+      setlocal            8
+
+      inclocal_i          9
+      inclocal_i          10
+L84:
+      getlocal            9
+      getlex              QName(PackageNamespace(""), "Math")
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      getlocal3
+      callproperty        QName(PackageNamespace(""), "max"), 2
+      lessthan
+      dup
+      iffalse             L101
+
+      pop
+      getlocal            10
+      getlex              QName(PackageNamespace(""), "Math")
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      getlocal            4
+      callproperty        QName(PackageNamespace(""), "max"), 2
+      lessthan
+L101:
+      iftrue              L66
+
+      getlocal            5
+      getlocal            6
+      getlocal            7
+      getlocal            8
+      callpropvoid        QName(PackageNamespace(""), "SetValue"), 3
+
+      inclocal_i          7
+L108:
+      getlocal            7
+      getlocal            4
+      iflt                L57
+
+      inclocal_i          6
+L112:
+      getlocal            6
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      iflt                L53
+
+      getlocal0
+      callpropvoid        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Destroy"), 0
+
+      getlocal0
+      getlocal            4
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      callpropvoid        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Create"), 2
+
+      pushbyte            0
+      setlocal            6
+
+      jump                L147
+
+L126:
+      label
+      pushbyte            0
+      setlocal            7
+
+      jump                L142
+
+L130:
+      label
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            6
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            7
+      getlocal            5
+      getlocal            6
+      getlocal            7
+      callproperty        QName(PackageNamespace(""), "GetValue"), 2
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          7
+L142:
+      getlocal            7
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L130
+
+      inclocal_i          6
+L147:
+      getlocal            6
+      getlocal3
+      iflt                L126
+
+      jump                L264
+
+L151:
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      getlocal            4
+      ifeq                L157
+
+      pushfalse
+      returnvalue
+
+L157:
+      findpropstrict      QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      getlocal3
+      constructprop       QName(PackageNamespace("fl.motion"), "DynamicMatrix"), 2
+      coerce              QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+      setlocal            5
+
+      pushbyte            0
+      setlocal            6
+
+      jump                L227
+
+L167:
+      label
+      pushbyte            0
+      setlocal            7
+
+      jump                L222
+
+L171:
+      label
+      pushbyte            0
+      convert_d
+      setlocal            8
+
+      pushbyte            0
+      setlocal            9
+
+      pushbyte            0
+      setlocal            10
+
+      jump                L198
+
+L180:
+      label
+      getlocal            8
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            9
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            7
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal1
+      getlocal            6
+      getlocal            10
+      callproperty        QName(PackageNamespace(""), "GetValue"), 2
+      multiply
+      add
+      convert_d
+      setlocal            8
+
+      inclocal_i          9
+      inclocal_i          10
+L198:
+      getlocal            9
+      getlex              QName(PackageNamespace(""), "Math")
+      getlocal3
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      callproperty        QName(PackageNamespace(""), "max"), 2
+      lessthan
+      dup
+      iffalse             L215
+
+      pop
+      getlocal            10
+      getlex              QName(PackageNamespace(""), "Math")
+      getlocal            4
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      callproperty        QName(PackageNamespace(""), "max"), 2
+      lessthan
+L215:
+      iftrue              L180
+
+      getlocal            5
+      getlocal            6
+      getlocal            7
+      getlocal            8
+      callpropvoid        QName(PackageNamespace(""), "SetValue"), 3
+
+      inclocal_i          7
+L222:
+      getlocal            7
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L171
+
+      inclocal_i          6
+L227:
+      getlocal            6
+      getlocal3
+      iflt                L167
+
+      getlocal0
+      callpropvoid        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Destroy"), 0
+
+      getlocal0
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      getlocal3
+      callpropvoid        QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "Create"), 2
+
+      pushbyte            0
+      setlocal            6
+
+      jump                L261
+
+L240:
+      label
+      pushbyte            0
+      setlocal            7
+
+      jump                L256
+
+L244:
+      label
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            6
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            7
+      getlocal            5
+      getlocal            6
+      getlocal            7
+      callproperty        QName(PackageNamespace(""), "GetValue"), 2
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          7
+L256:
+      getlocal            7
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L244
+
+      inclocal_i          6
+L261:
+      getlocal            6
+      getlocal3
+      iflt                L240
+
+L264:
+      pushtrue
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "MultiplyNumber")
+   method
+    refid "fl.motion:DynamicMatrix/instance/MultiplyNumber"
+    param QName(PackageNamespace(""), "Number")
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 3
+     localcount 5
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      setlocal3
+
+      pushnan
+      setlocal            4
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      iftrue              L11
+
+      pushfalse
+      returnvalue
+
+L11:
+      pushbyte            0
+      setlocal2
+
+      jump                L45
+
+L14:
+      label
+      pushbyte            0
+      setlocal3
+
+      jump                L40
+
+L18:
+      label
+      pushbyte            0
+      convert_d
+      setlocal            4
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal2
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal3
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal1
+      multiply
+      convert_d
+      setlocal            4
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal2
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal3
+      getlocal            4
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          3
+L40:
+      getlocal3
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L18
+
+      inclocal_i          2
+L45:
+      getlocal2
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      iflt                L14
+
+      pushtrue
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageNamespace(""), "Add")
+   method
+    refid "fl.motion:DynamicMatrix/instance/Add"
+    param QName(PackageNamespace("fl.motion"), "DynamicMatrix")
+    returns QName(PackageNamespace(""), "Boolean")
+    body
+     maxstack 4
+     localcount 7
+     initscopedepth 4
+     maxscopedepth 5
+     code
+      getlocal0
+      pushscope
+
+      pushbyte            0
+      setlocal            5
+
+      pushnan
+      setlocal            6
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      not
+      dup
+      iftrue              L14
+
+      pop
+      getlocal1
+      not
+L14:
+      iffalse             L17
+
+      pushfalse
+      returnvalue
+
+L17:
+      getlocal1
+      callproperty        QName(PackageNamespace(""), "GetHeight"), 0
+      convert_i
+      setlocal2
+
+      getlocal1
+      callproperty        QName(PackageNamespace(""), "GetWidth"), 0
+      convert_i
+      setlocal3
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      getlocal3
+      equals
+      not
+      dup
+      iftrue              L38
+
+      pop
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      getlocal2
+      equals
+      not
+L38:
+      iffalse             L41
+
+      pushfalse
+      returnvalue
+
+L41:
+      pushbyte            0
+      setlocal            4
+
+      jump                L78
+
+L44:
+      label
+      pushbyte            0
+      setlocal            5
+
+      jump                L73
+
+L48:
+      label
+      pushbyte            0
+      convert_d
+      setlocal            6
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            4
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            5
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal1
+      getlocal            4
+      getlocal            5
+      callproperty        QName(PackageNamespace(""), "GetValue"), 2
+      add
+      convert_d
+      setlocal            6
+
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_matrix")
+      getlocal            4
+      getproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+      getlocal            5
+      getlocal            6
+      setproperty         MultinameL([PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#0"), PackageNamespace(""), ProtectedNamespace("fl.motion:DynamicMatrix"), PrivateNamespace(null, "fl.motion:DynamicMatrix/instance#1"), PackageNamespace("fl.motion"), PackageInternalNs("fl.motion"), Namespace("http://adobe.com/AS3/2006/builtin"), StaticProtectedNs("fl.motion:DynamicMatrix"), StaticProtectedNs("Object")])
+
+      inclocal_i          5
+L73:
+      getlocal            5
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_width")
+      iflt                L48
+
+      inclocal_i          4
+L78:
+      getlocal            4
+      getlocal0
+      getproperty         QName(ProtectedNamespace("fl.motion:DynamicMatrix"), "m_height")
+      iflt                L44
+
+      pushtrue
+      returnvalue
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "fl.motion:DynamicMatrix/class/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "MATRIX_ORDER_PREPEND")
+    pushbyte            0
+    initproperty        QName(PackageNamespace(""), "MATRIX_ORDER_PREPEND")
+
+    findproperty        QName(PackageNamespace(""), "MATRIX_ORDER_APPEND")
+    pushbyte            1
+    initproperty        QName(PackageNamespace(""), "MATRIX_ORDER_APPEND")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait const QName(PackageNamespace(""), "MATRIX_ORDER_PREPEND") slotid 1 type QName(PackageNamespace(""), "int") value Integer(0) end
+ trait const QName(PackageNamespace(""), "MATRIX_ORDER_APPEND") slotid 2 type QName(PackageNamespace(""), "int") value Integer(1) end
+end ; class

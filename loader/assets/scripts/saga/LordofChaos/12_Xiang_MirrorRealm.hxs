@@ -1,0 +1,169 @@
+// ========================================================
+// Script: 12_Xiang_MirrorRealm.hxs
+// 13 Lords of Chaos Saga: 11th Lord - Xiang (Mirror Realm)
+// Final Quest: 3189 (Good, Evil and Chaos Battle!)
+// ========================================================
+
+function onStart() {
+    if (isCompletedBefore(3189)) {
+        log("Xiang chapter is already completed.");
+        stop();
+        return;
+    }
+    acceptAllDrops();
+    setSkipCutscenes(true);
+    equipLoadout("farm");
+}
+
+function onTick() {
+    if (isCompletedBefore(3189)) {
+        log("Xiang chapter completed!");
+        stop();
+        return;
+    }
+
+    // 2909: Bright Idea
+    if (!storyMapItemQuest(2909, "battleoff", 1779)) return;
+
+    // 2910: Spare Parts
+    if (!storyMapItemQuest(2910, "battleoff", 1780, 8)) return;
+
+    // 2911: Power It Up
+    if (!storyKillQuest(2911, "battleoff", "Evil Moglin")) return;
+
+    // 2912: Filthy Creatures
+    if (!storyKillQuest(2912, "battleoff", "Evil Moglin")) return;
+
+    // 2913: Wave After Wave
+    if (!storyKillQuest(2913, "brightfall", "Undead Minion")) return;
+
+    // 2914: Take out Their Firepower
+    if (!storyKillQuest(2914, "brightfall", "Undead Mage")) return;
+
+    // 2915: Help Where It is Needed
+    if (!storyMapItemQuest(2915, "brightfall", 1781, 6)) return;
+
+    // 2916: Bring A Ward To A Swordfight
+    if (!storyMapItemQuest(2916, "brightfall", 1782, 8)) return;
+
+    // 2917: Cut Off The Head
+    if (!storyKillQuest(2917, "brightfall", "Painadin Overlord")) return;
+
+    // 2918: Rearm The Legion of Light
+    if (!isCompletedBefore(2918)) {
+        storyChainQuest(2918, "overworld");
+        return;
+    }
+
+    // 2919: Speak to Dage The Good
+    if (!storyKillQuest(2919, "overworld", "Undead Minion")) return;
+
+    // 2920: Free Their Souls
+    if (!storyKillQuest(2920, "overworld", "Undead Minion")) return;
+
+    // 2921: One Ring
+    if (!storyKillQuest(2921, "overworld", "Undead Minion")) return;
+
+    // 2922: Severing Ties
+    if (!storyKillQuest(2922, "overworld", "Undead Mage")) return;
+
+    // 2923: Legion's Lifesblood
+    if (!storyMapItemQuest(2923, "overworld", 1800, 6)) return;
+
+    // 2924: Legion's Purpose
+    if (!storyKillQuest(2924, "overworld", "Undead Bruiser")) return;
+
+    // 2925: What's His Endgame
+    if (!storyKillQuest(2925, "overworld", "Undead Bruiser")) return;
+
+    // 2926: A Stopping Block
+    if (!storyKillQuest(2926, "overworld", "Undead Minion")) return;
+
+    // 2927: Boost Morale
+    if (!storyMapItemQuest(2927, "overworld", 1801, 8)) return;
+
+    // 2928: Alteon's Folly
+    if (!storyKillQuest(2928, "overworld", "Undead Minion")) return;
+
+    // 2929: DoomFire
+    if (!storyKillQuest(2929, "overworld", "Undead Minion")) return;
+
+    // 2930: Spoiled Souls
+    if (!storyKillQuest(2930, "overworld", "Undead Minion")) return;
+
+    // 2931: Purity of Bone
+    if (!storyMapItemQuest(2931, "overworld", 1802, 10)) return;
+
+    // 2932: Undead Artix Returns!
+    if (!storyKillQuest(2932, "overworld", "Undead Artix")) return;
+
+    // 3166: I Can't Touch This
+    if (!storyKillQuest(3166, "reddeath", "Fire Leech")) return;
+
+    // 3167: Nope, Still a Ghost
+    if (!storyMapItemQuest(3167, "reddeath", [2178, 2179])) return;
+    if (!storyKillQuest(3167, "reddeath", "Reddeath Moglin")) return;
+
+    // 3168: First We Need a Beacon...
+    if (!storyMapItemQuest(3168, "reddeath", 2180)) return;
+
+    // 3169: Light It Up
+    if (!storyKillQuest(3169, "reddeath", "Fire Leech")) return;
+
+    // 3170: ...Next We need a Trap
+    if (!storyKillQuest(3170, "reddeath", "Grim Widow")) return;
+
+    // 3171: For Spirits, Not People
+    if (!storyKillQuest(3171, "reddeath", "Swamp Wraith")) return;
+
+    // 3172: Still To Fragile
+    if (!storyKillQuest(3172, "reddeath", "Swamp Wraith")) return;
+
+    // 3183: Craft a Better Defense
+    if (!storyMapItemQuest(3183, "battleontown", 2203)) return;
+
+    // 3184: Reflect the Damage
+    if (!storyKillQuest(3184, "earthstorm", "Shard Spinner")) return;
+
+    // 3185: Pure Chaos
+    if (!storyKillQuest(3185, "bloodtuskwar", "Chaotic Horcboar")) return;
+
+    // 3186: Enemies of a Feather Flock Together
+    if (!storyKillQuest(3186, "bloodtuskwar", "Chaos Tigriff")) return;
+
+    // 3187: Ward Off the Beast
+    if (!isCompletedBefore(3187)) {
+        if (!ensureMap("mirrorportal")) return;
+        storyChainQuest(3187);
+        return;
+    }
+
+    // 3188: Horror Takes Flight
+    if (!isCompletedBefore(3188)) {
+        equipLoadout("solo");
+        if (!ensureMap("mirrorportal")) return;
+        ensureQuest(3188);
+        if (!hasItem("Shriekward Potion")) {
+            buyItem(774, "Shriekward Potion", 10);
+        }
+        if (!canComplete(3188)) {
+            hunt("Chaos Harpy");
+            return;
+        }
+        ensureComplete(3188);
+        return;
+    }
+
+    // 3189: Good, Evil and Chaos Battle!
+    if (!isCompletedBefore(3189)) {
+        equipLoadout("solo");
+        if (!ensureMap("mirrorportal", "r4", "Right")) return;
+        ensureQuest(3189);
+        if (!canComplete(3189)) {
+            hunt("Chaos Lord Xiang");
+            return;
+        }
+        ensureComplete(3189);
+        return;
+    }
+}

@@ -1,0 +1,260 @@
+// ========================================================
+// Script: Dragon of Time Class Farm (.hxs)
+// Completes all 9 quests (7716-7724) to unlock Dragon of Time
+// Uses built-in "dot" preset for safe banking and unbanking
+// ========================================================
+
+function onStart() {
+    log("Starting Dragon of Time farm");
+    acceptAllDrops();
+    equipLoadout("farm");
+
+    // Bank unequipped backpack junk while preserving all 49 DoT materials:
+    bankAll("dot");
+
+    // Unbank all DoT reagents from the bank into backpack:
+    unbankPreset("dot");
+}
+
+function onTick() {
+    // 1. Wait for unbanking or banking queues to complete
+    if (isUnbanking() || isBanking()) return;
+
+    // 2. Check if player already owns the class
+    if (hasItem("Dragon of Time")) {
+        log("Dragon of Time already owned");
+        stop();
+        return;
+    }
+
+    // ====================================================
+    // Quest 1: Acquiring Ancient Secrets (7716)
+    // Rewards: Dragon of Time Helm, Dragon of Time Ponytail
+    // ====================================================
+    if (!isQuestComplete(7716) && !hasItem("Dragon of Time Helm")) {
+        ensureQuest(7716);
+
+        ensureMap("mummies");
+        if (!hunt("Mummy", "Lost Hieroglyphic", 30)) return;
+
+        if (!hasItem("Myths of Lore")) {
+            ensureMap("librarium");
+            buyItem(651, "Myths of Lore");
+            return;
+        }
+
+        ensureMap("timelibrary");
+        if (!hunt("Historia Page", 100)) return;
+
+        ensureMap("kingcoal");
+        if (!hunt("Frost King", "Frost King's Story", 1)) return;
+
+        ensureMap("baconcatyou");
+        if (!hunt("Your Own Memories", 1)) return;
+
+        ensureComplete(7716);
+        return;
+    }
+
+    // ====================================================
+    // Quest 2: Time to Train Yourself (7717)
+    // Rewards: Dragon of Time Runes, Wings, Tail
+    // ====================================================
+    if (!isQuestComplete(7717) && !hasItem("Dragon of Time Runes")) {
+        ensureQuest(7717);
+
+        ensureMap("dragonchallenge");
+        if (!hunt("Desoloth the Final", "Desoloth's Destructive Aura", 1)) return;
+
+        ensureMap("blindingsnow");
+        if (!hunt("Nythera", "Nythera's Patience", 1)) return;
+
+        ensureMap("greed");
+        if (!hunt("Goregold", "Goregold's Luck", 1)) return;
+
+        ensureMap("darkplane");
+        if (!hunt("Victorious", "Victorious's Dignity", 1)) return;
+
+        ensureMap("trigoras");
+        if (!hunt("Trigoras", "Trigoras's Tenacity", 3)) return;
+
+        ensureComplete(7717);
+        return;
+    }
+
+    // ====================================================
+    // Quest 3: Do You Have the Time? (7718)
+    // Rewards: Dragon of Time FangBlade
+    // ====================================================
+    if (!isQuestComplete(7718) && !hasItem("Dragon of Time FangBlade")) {
+        ensureQuest(7718);
+
+        ensureMap("underworld");
+        if (!hunt("Laken", "Cross-Era Stabilizer", 1)) return;
+
+        if (!hasItem("Chronomancer's Codex")) {
+            ensureMap("timespace");
+            if (!hunt("Chaos Lord Iadoa", "Chronomancer's Codex", 1)) return;
+        }
+
+        ensureMap("arena");
+        if (!hunt("Timestream Rider", "Timestream String", 100)) return;
+
+        ensureComplete(7718);
+        return;
+    }
+
+    // ====================================================
+    // Quest 4: Through the Wormhole (7719)
+    // Rewards: Dragon of Time Armor
+    // ====================================================
+    if (!isQuestComplete(7719) && !hasItem("Dragon of Time Armor")) {
+        ensureQuest(7719);
+
+        ensureMap("cathedral");
+        if (!hunt("Incarnation of Time", "Time Loop Broken", 1)) return;
+
+        ensureMap("portalwar");
+        if (!hunt("Anomaly Silenced", 100)) return;
+
+        ensureMap("portalmaze");
+        if (!hunt("ChronoLord", "Chronolord Stopped", 50)) return;
+
+        ensureMap("ubear");
+        if (!hunt("Cornholio", "Is This a Wormhole?", 1)) return;
+
+        ensureComplete(7719);
+        return;
+    }
+
+    // ====================================================
+    // Quest 5: Rend (7720)
+    // Rewards: Dragon of Time Daggers, Cleaver
+    // ====================================================
+    if (!isQuestComplete(7720) && !hasItem("Dragon of Time Daggers")) {
+        ensureQuest(7720);
+
+        ensureMap("lairdefend");
+        if (!hunt("Dragon Summoner", "Dimensional Dragon Portal", 2)) return;
+
+        ensureMap("bosschallenge");
+        if (!hunt("Grievous Inbunche", "Brutal Slash Studied", 10)) return;
+
+        ensureMap("hydrachallenge");
+        if (!hunt("Epic Hydra Fang", 125)) return;
+
+        ensureComplete(7720);
+        return;
+    }
+
+    // ====================================================
+    // Quest 6: Confluence of Fates (7721)
+    // Rewards: Runes Of Time
+    // ====================================================
+    if (!isQuestComplete(7721) && !hasItem("Runes Of Time")) {
+        ensureQuest(7721);
+
+        ensureMap("ivoliss");
+        if (!hunt("Ivoliss", "Sword of Voids", 1)) return;
+
+        if (!hasItem("Semiramis Feather")) {
+            ensureQuest(6286);
+            ensureMap("guardiantree");
+            if (!hunt("Terrane", "Semiramis Feather", 1)) return;
+            ensureComplete(6286);
+            return;
+        }
+
+        ensureMap("aqw3d");
+        if (!hunt("Cross-Dimensional Weapons", 300)) return;
+
+        if (!hasItem("Starlight Singularity")) {
+            ensureQuest(5186);
+            ensureMap("whitehole");
+            if (!hunt("Mehensi Serpent", "Starlight Singularity", 1)) return;
+            ensureComplete(5186);
+            return;
+        }
+
+        ensureComplete(7721);
+        return;
+    }
+
+    // ====================================================
+    // Quest 7: Dragon's Will (7722)
+    // Rewards: Dragon of Time Reaper, WingBlade
+    // ====================================================
+    if (!isQuestComplete(7722) && !hasItem("Dragon of Time Reaper")) {
+        ensureQuest(7722);
+
+        ensureMap("moonlab");
+        if (!hunt("Slime Mold", "Unyielding Slime", 300)) return;
+
+        ensureMap("bosschallenge");
+        if (!hunt("Mutated Void Dragon", "Omnipotent Cells", 20)) return;
+
+        ensureMap("underlair");
+        if (!hunt("ArchFiend Dragonlord", "Dragon's Plasma", 20)) return;
+
+        ensureMap("chaoskraken");
+        if (!hunt("Chaos Kraken", "Chaotic Invertebrae", 20)) return;
+
+        ensureMap("towerofdoom9");
+        if (!hunt("Dread Fang", "Cryostatic Essence", 20)) return;
+
+        ensureMap("castleroof");
+        if (!hunt("Ultra Chaos Dragon", "Salvaged Chaos Dragon Biomass", 20)) return;
+
+        ensureComplete(7722);
+        return;
+    }
+
+    // ====================================================
+    // Quest 8: Burning Fates (7723)
+    // Rewards: Ascended Dragon of Time
+    // ====================================================
+    if (!isQuestComplete(7723) && !hasItem("Ascended Dragon of Time")) {
+        ensureQuest(7723);
+
+        ensureMap("volcano");
+        if (!hunt("Fire Imp", "Fire Essence", 3000)) return;
+
+        ensureMap("charredplains");
+        if (!hunt("Akriloth", "Akriloth's Flametongue", 100)) return;
+
+        ensureMap("ultraphedra");
+        if (!hunt("Ultra Phedra", "Immortal Embers", 50)) return;
+
+        ensureMap("thevoid");
+        if (!hunt("Reaper", "Ashes from the Void Realm", 50)) return;
+
+        ensureComplete(7723);
+        return;
+    }
+
+    // ====================================================
+    // Quest 9: Hero's Heartbeat (7724)
+    // REWARDS: DRAGON OF TIME CLASS!
+    // ====================================================
+    if (!isQuestComplete(7724)) {
+        ensureQuest(7724);
+
+        ensureMap("chaoslord");
+        if (!hunt("Conquered Past", 1)) return;
+
+        ensureMap("towerofdoom10");
+        if (!hunt("Slugbutter", "Slugbutter Trophy", 100)) return;
+
+        ensureMap("icewing");
+        if (!hunt("Warlord Icewing", "Icewing's Laurel", 30)) return;
+
+        // Turn in quest 7724 to receive Dragon of Time, then halt!
+        ensureComplete(7724, stop);
+        return;
+    }
+}
+
+function onStop() {
+    log("Dragon of Time farm stopped");
+    join("house");
+}

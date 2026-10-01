@@ -1,0 +1,46 @@
+// ========================================================
+// Script: Eternal Reputation Farm (.hxs)
+// Farms Eternal Reputation to Rank 10
+// Quest: 5198 (Sphynxes are Riddled with Gems)
+// Prerequisite: Fourdpyramid story completed up to quest 5198
+// ========================================================
+
+function onStart() {
+    if (factionRank("Eternal") >= 10) {
+        msg("Eternal Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(5198)) {
+        msg("Prerequisite missing: Quest 5198 [Sphynxes are Riddled with Gems] is locked. Complete the Fourdpyramid story in /fourdpyramid first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("fourdpyramid");
+}
+
+function onTick() {
+    if (factionRank("Eternal") >= 10) {
+        msg("Eternal Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("fourdpyramid");
+    ensureQuest(5198);
+
+    if (!hunt("White Sphynx", "White Gem", 2)) return;
+    if (!hunt("Black Sphynx", "Black Gem", 2)) return;
+
+    if (isQuestComplete(5198)) {
+        ensureComplete(5198);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

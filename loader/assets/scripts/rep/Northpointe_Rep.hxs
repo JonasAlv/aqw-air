@@ -1,0 +1,45 @@
+// ========================================================
+// Script: Northpointe Reputation Farm (.hxs)
+// Farms Northpointe Reputation to Rank 10
+// Quest: 4027 (Sage Advice)
+// Prerequisite: Northpointe quests unlocked
+// ========================================================
+
+function onStart() {
+    if (factionRank("Northpointe") >= 10) {
+        msg("Northpointe Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isQuestUnlocked(4027)) {
+        msg("Prerequisite missing: Quest 4027 is locked. Complete Northpointe intro first.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+    ensureMap("northpointe");
+}
+
+function onTick() {
+    if (factionRank("Northpointe") >= 10) {
+        msg("Northpointe Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    ensureMap("northpointe");
+    ensureQuest(4027);
+
+    if (!hunt("Grim Stalker", "Bunch of Sage", 10)) return;
+
+    if (isQuestComplete(4027)) {
+        ensureComplete(4027);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

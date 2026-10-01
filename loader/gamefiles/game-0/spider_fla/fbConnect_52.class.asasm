@@ -1,0 +1,74 @@
+class
+ refid "spider_fla:fbConnect_52"
+ instance QName(PackageNamespace("spider_fla"), "fbConnect_52")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("spider_fla:fbConnect_52")
+  iinit
+   refid "spider_fla:fbConnect_52/instance/init"
+   body
+    maxstack 3
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     findpropstrict      Multiname("addFrameScript", [PrivateNamespace(null, "spider_fla:fbConnect_52/instance#0"), PrivateNamespace(null, "spider_fla:fbConnect_52/instance#1"), PackageNamespace(""), PackageNamespace("spider_fla"), PackageInternalNs("spider_fla"), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("spider_fla:fbConnect_52"), StaticProtectedNs("spider_fla:fbConnect_52"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     pushbyte            0
+     getlocal0
+     getproperty         Multiname("frame1", [PrivateNamespace(null, "spider_fla:fbConnect_52/instance#0"), PrivateNamespace(null, "spider_fla:fbConnect_52/instance#1"), PackageNamespace(""), PackageNamespace("spider_fla"), PackageInternalNs("spider_fla"), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("spider_fla:fbConnect_52"), StaticProtectedNs("spider_fla:fbConnect_52"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+     callpropvoid        Multiname("addFrameScript", [PrivateNamespace(null, "spider_fla:fbConnect_52/instance#0"), PrivateNamespace(null, "spider_fla:fbConnect_52/instance#1"), PackageNamespace(""), PackageNamespace("spider_fla"), PackageInternalNs("spider_fla"), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("spider_fla:fbConnect_52"), StaticProtectedNs("spider_fla:fbConnect_52"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")]), 2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait slot QName(PackageNamespace(""), "btnClose") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "btnFBCreate") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "btnFBLink") type QName(PackageNamespace("flash.display"), "SimpleButton") end
+  trait slot QName(PackageNamespace(""), "frame") type QName(PackageNamespace("flash.display"), "MovieClip") end
+  trait slot QName(PackageNamespace(""), "strPassword") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait slot QName(PackageNamespace(""), "strUsername") type QName(PackageNamespace("flash.text"), "TextField") end
+  trait method QName(PackageInternalNs("spider_fla"), "frame1")
+   method
+    refid "spider_fla:fbConnect_52/instance/spider_fla:frame1"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      getlocal0
+      pushfalse
+      setproperty         Multiname("visible", [PrivateNamespace(null, "spider_fla:fbConnect_52/instance#0"), PrivateNamespace(null, "spider_fla:fbConnect_52/instance#1"), PackageNamespace(""), PackageNamespace("spider_fla"), PackageInternalNs("spider_fla"), Namespace("http://adobe.com/AS3/2006/builtin"), Namespace("adobe.utils"), PackageNamespace("flash.accessibility"), Namespace("flash.desktop"), PackageNamespace("flash.display"), PackageNamespace("flash.errors"), PackageNamespace("flash.events"), PackageNamespace("flash.external"), PackageNamespace("flash.filters"), PackageNamespace("flash.geom"), Namespace("flash.globalization"), PackageNamespace("flash.media"), PackageNamespace("flash.net"), PackageNamespace("flash.net.drm"), Namespace("flash.printing"), Namespace("flash.profiler"), Namespace("flash.sampler"), Namespace("flash.sensors"), PackageNamespace("flash.system"), PackageNamespace("flash.text"), PackageNamespace("flash.text.ime"), Namespace("flash.text.engine"), PackageNamespace("flash.ui"), PackageNamespace("flash.utils"), Namespace("flash.xml"), ProtectedNamespace("spider_fla:fbConnect_52"), StaticProtectedNs("spider_fla:fbConnect_52"), StaticProtectedNs("flash.display:MovieClip"), StaticProtectedNs("flash.display:Sprite"), StaticProtectedNs("flash.display:DisplayObjectContainer"), StaticProtectedNs("flash.display:InteractiveObject"), StaticProtectedNs("flash.display:DisplayObject"), StaticProtectedNs("flash.events:EventDispatcher")])
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "spider_fla:fbConnect_52/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

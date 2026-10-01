@@ -1,0 +1,58 @@
+// ========================================================
+// Script: BeastMaster Reputation Farm (.hxs)
+// Farms BeastMaster Reputation to Rank 10
+// Quests: 3754 -> 3755
+// Prerequisite: Member-Only, Level 50+
+// ========================================================
+
+function onStart() {
+    if (factionRank("BeastMaster") >= 10) {
+        msg("BeastMaster Reputation is already Rank 10.");
+        stop();
+        return;
+    }
+
+    if (!isMember()) {
+        msg("Prerequisite missing: BeastMaster Reputation is Member-Only.");
+        stop();
+        return;
+    }
+
+    if (level() < 50) {
+        msg("Prerequisite missing: BeastMaster Reputation requires Level 50+.");
+        stop();
+        return;
+    }
+
+    acceptAllDrops();
+    equipLoadout("farm");
+}
+
+function onTick() {
+    var curRank = factionRank("BeastMaster");
+    if (curRank >= 10) {
+        msg("BeastMaster Reputation reached Rank 10! Farm complete.");
+        stop();
+        return;
+    }
+
+    if (curRank < 3) {
+        ensureQuest(3754);
+        ensureMap("boxes");
+        if (!hunt("Sneevil", "Beast Crate", 6)) return;
+        ensureMap("pirates");
+        if (!hunt("Fishwing", "Fish Scale", 6)) return;
+        if (isQuestComplete(3754)) ensureComplete(3754);
+    } else {
+        ensureQuest(3755);
+        ensureMap("bamboo");
+        if (!hunt("Tanuki", "Secret Scroll of Beast Commanding", 7)) return;
+        ensureMap("pines");
+        if (!hunt("Pine Troll", "Troll's Treatise on Beasts", 1)) return;
+        if (isQuestComplete(3755)) ensureComplete(3755);
+    }
+}
+
+function onStop() {
+    stopCombat();
+}

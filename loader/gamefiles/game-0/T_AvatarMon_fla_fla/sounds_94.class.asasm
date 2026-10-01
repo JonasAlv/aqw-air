@@ -1,0 +1,331 @@
+class
+ refid "T_AvatarMon_fla_fla:sounds_94"
+ instance QName(PackageNamespace("T_AvatarMon_fla_fla"), "sounds_94")
+  extends QName(PackageNamespace("flash.display"), "MovieClip")
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("T_AvatarMon_fla_fla:sounds_94")
+  iinit
+   refid "T_AvatarMon_fla_fla:sounds_94/instance/init"
+   body
+    maxstack 23
+    localcount 1
+    initscopedepth 10
+    maxscopedepth 11
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     findpropstrict      QName(PackageNamespace(""), "addFrameScript")
+     pushbyte            0
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame1")
+     pushbyte            8
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame9")
+     pushbyte            50
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame51")
+     pushbyte            63
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame64")
+     pushbyte            77
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame78")
+     pushbyte            89
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame90")
+     pushbyte            102
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame103")
+     pushbyte            115
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame116")
+     pushshort           140
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame141")
+     pushshort           152
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame153")
+     pushshort           182
+     getlocal0
+     getproperty         QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame183")
+     callpropvoid        QName(PackageNamespace(""), "addFrameScript"), 22
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame1")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame1"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "stop")
+      callpropvoid        QName(PackageNamespace(""), "stop"), 0
+
+      findproperty        QName(PackageNamespace(""), "visible")
+      pushfalse
+      initproperty        QName(PackageNamespace(""), "visible")
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame9")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame9"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame51")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame51"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame64")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame64"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame78")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame78"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "played 9"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame90")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame90"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "played 10"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame103")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame103"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "played 11"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame116")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame116"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "played 12"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame141")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame141"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "trace")
+      pushstring          "played 13"
+      callpropvoid        QName(PackageNamespace(""), "trace"), 1
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame153")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame153"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+  trait method QName(PackageInternalNs("T_AvatarMon_fla_fla"), "frame183")
+   method
+    refid "T_AvatarMon_fla_fla:sounds_94/instance/T_AvatarMon_fla_fla:frame183"
+    body
+     maxstack 2
+     localcount 1
+     initscopedepth 10
+     maxscopedepth 11
+     code
+      getlocal0
+      pushscope
+
+      findpropstrict      QName(PackageNamespace(""), "gotoAndStop")
+      pushstring          "Ready"
+      callpropvoid        QName(PackageNamespace(""), "gotoAndStop"), 1
+
+      returnvoid
+     end ; code
+    end ; body
+   end ; method
+  end ; trait
+ end ; instance
+ cinit
+  refid "T_AvatarMon_fla_fla:sounds_94/class/init"
+  body
+   maxstack 1
+   localcount 1
+   initscopedepth 9
+   maxscopedepth 10
+   code
+    getlocal0
+    pushscope
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+end ; class

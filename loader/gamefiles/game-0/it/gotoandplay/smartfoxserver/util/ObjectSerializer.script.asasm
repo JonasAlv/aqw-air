@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "it.gotoandplay.smartfoxserver.util:ObjectSerializer/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("ObjectSerializer", [PackageNamespace("it.gotoandplay.smartfoxserver.util")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "it.gotoandplay.smartfoxserver.util:ObjectSerializer#1"), PackageNamespace(""), PackageNamespace("it.gotoandplay.smartfoxserver.util"), PackageInternalNs("it.gotoandplay.smartfoxserver.util"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "it.gotoandplay.smartfoxserver.util:ObjectSerializer"
+    popscope
+    initproperty        QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "ObjectSerializer")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("it.gotoandplay.smartfoxserver.util"), "ObjectSerializer")
+  #include "ObjectSerializer.class.asasm"
+ end ; trait
+end ; script

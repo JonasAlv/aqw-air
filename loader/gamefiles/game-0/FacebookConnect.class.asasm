@@ -1,0 +1,1210 @@
+class
+ refid "FacebookConnect"
+ instance QName(PackageNamespace(""), "FacebookConnect")
+  extends QName(PackageNamespace(""), "Object")
+  flag SEALED
+  flag PROTECTEDNS
+  protectedns ProtectedNamespace("FacebookConnect")
+  iinit
+   refid "FacebookConnect/instance/init"
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 1
+    localcount 1
+    initscopedepth 4
+    maxscopedepth 5
+    code
+     getlocal0
+     pushscope
+
+     getlocal0
+     constructsuper      0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; instance
+ cinit
+  refid "FacebookConnect/class/init"
+  body
+   maxstack 3
+   localcount 1
+   initscopedepth 3
+   maxscopedepth 4
+   code
+    getlocal0
+    pushscope
+
+    findproperty        QName(PackageNamespace(""), "fbpoll")
+    findpropstrict      Multiname("Timer", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.utils")])
+    pushshort           5000
+    constructprop       Multiname("Timer", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.utils")]), 1
+    setproperty         QName(PackageNamespace(""), "fbpoll")
+
+    findproperty        QName(PackageNamespace(""), "pollTries")
+    pushbyte            0
+    setproperty         QName(PackageNamespace(""), "pollTries")
+
+    findproperty        QName(PackageNamespace(""), "FB_ME_URL")
+    pushstring          "https://graph.facebook.com/me?access_token="
+    setproperty         QName(PackageNamespace(""), "FB_ME_URL")
+
+    findproperty        QName(PackageNamespace(""), "AccessToken")
+    pushstring          ""
+    setproperty         QName(PackageNamespace(""), "AccessToken")
+
+    findproperty        QName(PackageNamespace(""), "IPAddr")
+    pushstring          ""
+    setproperty         QName(PackageNamespace(""), "IPAddr")
+
+    findproperty        QName(PackageNamespace(""), "isLoggedIn")
+    pushfalse
+    setproperty         QName(PackageNamespace(""), "isLoggedIn")
+
+    findproperty        QName(PackageNamespace(""), "Mode")
+    pushstring          ""
+    setproperty         QName(PackageNamespace(""), "Mode")
+
+    findproperty        QName(PrivateNamespace(null, "FacebookConnect/class"), "sURL")
+    pushstring          "https://www.aq.com/game/"
+    setproperty         QName(PrivateNamespace(null, "FacebookConnect/class"), "sURL")
+
+    findproperty        QName(PrivateNamespace(null, "FacebookConnect/class"), "rdURL")
+    pushstring          "https://www.aq.com/game/"
+    setproperty         QName(PrivateNamespace(null, "FacebookConnect/class"), "rdURL")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait slot QName(PackageNamespace(""), "fbpoll") slotid 1 type QName(PackageNamespace("flash.utils"), "Timer") end
+ trait slot QName(PackageNamespace(""), "pollTries") slotid 2 type QName(PackageNamespace(""), "int") value Integer(0) end
+ trait slot QName(PackageNamespace(""), "FB_ME_URL") slotid 3 type QName(PackageNamespace(""), "String") value Utf8("https://graph.facebook.com/me?access_token=") end
+ trait slot QName(PackageNamespace(""), "Me") slotid 4 type QName(PackageNamespace(""), "Object") end
+ trait slot QName(PackageNamespace(""), "AccessToken") slotid 5 type QName(PackageNamespace(""), "String") value Utf8("") end
+ trait slot QName(PackageNamespace(""), "IPAddr") slotid 6 type QName(PackageNamespace(""), "String") value Utf8("") end
+ trait slot QName(PrivateNamespace(null, "FacebookConnect/class"), "_game") slotid 7 type QName(PackageNamespace("flash.display"), "MovieClip") end
+ trait slot QName(PackageNamespace(""), "isLoggedIn") slotid 8 type QName(PackageNamespace(""), "Boolean") value False() end
+ trait slot QName(PackageNamespace(""), "Mode") slotid 9 type QName(PackageNamespace(""), "String") value Utf8("") end
+ trait slot QName(PrivateNamespace(null, "FacebookConnect/class"), "sURL") slotid 10 type QName(PackageNamespace(""), "String") value Utf8("https://www.aq.com/game/") end
+ trait slot QName(PrivateNamespace(null, "FacebookConnect/class"), "rdURL") slotid 11 type QName(PackageNamespace(""), "String") value Utf8("https://www.aq.com/game/") end
+ trait slot QName(PrivateNamespace(null, "FacebookConnect/class"), "FBWeb") slotid 12 type QName(PackageNamespace(""), "FacebookWeb") end
+ trait method QName(PackageNamespace(""), "consoleLog") flag FINAL dispid 3
+  method
+   refid "FacebookConnect/class/consoleLog"
+   param QName(PackageNamespace(""), "String")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     callpropvoid        Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "RegisterGame") flag FINAL dispid 4
+  method
+   refid "FacebookConnect/class/RegisterGame"
+   param QName(PackageNamespace("flash.display"), "MovieClip")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findproperty        Multiname("_game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     setproperty         Multiname("_game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("ISWEB", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     iffalse             L15
+
+     findproperty        Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     findpropstrict      Multiname("FacebookWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     constructprop       Multiname("FacebookWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     setproperty         Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlex              Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     callpropvoid        Multiname("InitListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+L15:
+     findproperty        Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     findpropstrict      Multiname("GetToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     setproperty         Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "RequestFBConnect") flag FINAL dispid 5
+  method
+   refid "FacebookConnect/class/RequestFBConnect"
+   param QName(PackageNamespace(""), "String")
+   returns QName(PackageNamespace(""), "void")
+   flag HAS_OPTIONAL
+   optional Utf8("")
+   body
+    maxstack 3
+    localcount 5
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+     setlocal2
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+     setlocal3
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     setlocal            4
+
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("ISWEB", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     iffalse             L17
+
+     getlex              Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("Login", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     jump                L79
+
+L17:
+     findproperty        Multiname("Mode", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     setproperty         Multiname("Mode", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("GetToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     pushstring          ""
+     ifeq                L28
+
+     findpropstrict      Multiname("FetchMe", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("FetchMe", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     jump                L79
+
+L28:
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "Making a request at "
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("serverGamePath", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     pushstring          "api/login/FBRequestConnect?state="
+     add
+     getlex              Multiname("GUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetGUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     add
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("serverGamePath", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "api/login/FBRequestConnect"
+     add
+     constructprop       Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+     setlocal2
+
+     findpropstrict      Multiname("URLVariables", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     constructprop       Multiname("URLVariables", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+     setlocal3
+
+     getlocal3
+     getlex              Multiname("GUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetGUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     setproperty         Multiname("state", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlocal2
+     getlocal3
+     setproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlocal2
+     getlex              Multiname("URLRequestMethod", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getproperty         Multiname("POST", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("method", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     constructprop       Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     dup
+     setlocal            4
+
+     getlex              Multiname("Event", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("COMPLETE", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("onFBRequestComplete", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     getlocal            4
+     getlex              Multiname("IOErrorEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("IO_ERROR", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("onFBRequestError", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     getlocal            4
+     getlocal2
+     callpropvoid        Multiname("load", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+L79:
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "onFBRequestError") flag FINAL dispid 6
+  method
+   refid "FacebookConnect/class/onFBRequestError"
+   param QName(PackageNamespace("flash.events"), "IOErrorEvent")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 3
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "ERROR:  "
+     getlocal1
+     getproperty         Multiname("text", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     istypelate
+     iffalse             L18
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     callpropvoid        Multiname("close", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L18:
+     findpropstrict      Multiname("onFBRequestComplete", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushnull
+     callpropvoid        Multiname("onFBRequestComplete", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "onFBRequestComplete") flag FINAL dispid 7
+  method
+   refid "FacebookConnect/class/onFBRequestComplete"
+   param QName(PackageNamespace("flash.events"), "Event")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 4
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlocal1
+     pushnull
+     equals
+     not
+     dup
+     iffalse             L13
+
+     pop
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     istypelate
+L13:
+     iffalse             L19
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     callpropvoid        Multiname("close", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L19:
+     findpropstrict      Multiname("navigateToURL", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     pushstring          "https://www.facebook.com/v2.12/dialog/oauth?client_id=163679093835836&&auth_type=rerequest&scope=email&redirect_uri="
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("serverGamePath", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     pushstring          "AQWFB.html&state="
+     add
+     getlex              Multiname("GUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetGUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     add
+     constructprop       Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     pushstring          "_blank"
+     callpropvoid        Multiname("navigateToURL", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 2
+
+     findpropstrict      Multiname("StartPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("StartPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "pollFBApi") flag FINAL dispid 8
+  method
+   refid "FacebookConnect/class/pollFBApi"
+   param QName(PackageNamespace("flash.events"), "TimerEvent")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 3
+    localcount 7
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+     setlocal2
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+     setlocal3
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     setlocal            4
+
+     findpropstrict      Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     dup
+     setlocal            5
+
+     getproperty         Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     increment_i
+     setlocal            6
+
+     getlocal            5
+     getlocal            6
+     setproperty         Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     kill                6
+     kill                5
+     getlex              Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushbyte            10
+     ifngt               L32
+
+     findpropstrict      Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     getlex              Multiname("_game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("mcConnDetail", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "Facebook Connection Timed Out.  Please try again."
+     callpropvoid        Multiname("showConn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     jump                L83
+
+L32:
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "Making a request at "
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("serverGamePath", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     pushstring          "api/login/FBCheckConnect?state="
+     add
+     getlex              Multiname("GUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetGUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     add
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("serverGamePath", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "api/login/FBCheckConnect"
+     add
+     constructprop       Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+     setlocal2
+
+     findpropstrict      Multiname("URLVariables", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     constructprop       Multiname("URLVariables", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "URLVariables")
+     setlocal3
+
+     getlocal3
+     getlex              Multiname("GUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetGUID", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     setproperty         Multiname("state", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlocal2
+     getlocal3
+     setproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlocal2
+     getlex              Multiname("URLRequestMethod", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getproperty         Multiname("POST", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("method", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     constructprop       Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     dup
+     setlocal            4
+
+     getlex              Multiname("Event", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("COMPLETE", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("onFBCheckComplete", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     getlocal            4
+     getlex              Multiname("IOErrorEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("IO_ERROR", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("onFBPollError", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     getlocal            4
+     getlocal2
+     callpropvoid        Multiname("load", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+L83:
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "onFBCheckComplete") flag FINAL dispid 9
+  method
+   refid "FacebookConnect/class/onFBCheckComplete"
+   param QName(PackageNamespace("flash.events"), "Event")
+   returns QName(PackageNamespace(""), "void")
+   body
+    maxstack 3
+    localcount 4
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     astypelate
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     setlocal2
+
+     getlocal2
+     getproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     coerce_s
+     setlocal3
+
+     getlocal2
+     callpropvoid        Multiname("close", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     getlocal3
+     pushstring          "status="
+     callproperty        Multiname("indexOf", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     pushbyte            -1
+     ifne                L52
+
+     findproperty        Multiname("IPAddr", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal3
+     pushstring          "::"
+     callproperty        Multiname("split", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     pushbyte            0
+     getproperty         MultinameL([PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("IPAddr", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findproperty        Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal3
+     pushstring          "::"
+     callproperty        Multiname("split", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     pushbyte            1
+     getproperty         MultinameL([PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "FBTOKEN: "
+     getlex              Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     pushstring          "IP ADDR: "
+     add
+     getlex              Multiname("IPAddr", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     findpropstrict      Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     findproperty        Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushtrue
+     setproperty         Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("SaveToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("SaveToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     findpropstrict      Multiname("FetchMe", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("FetchMe", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+L52:
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "onFBPollError") flag FINAL dispid 10
+  method
+   refid "FacebookConnect/class/onFBPollError"
+   param QName(PackageNamespace("flash.events"), "IOErrorEvent")
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     callproperty        Multiname("toString", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     istypelate
+     iffalse             L16
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlocal1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     callpropvoid        Multiname("close", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L16:
+     findpropstrict      Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "StopPoll") flag FINAL dispid 11
+  method
+   refid "FacebookConnect/class/StopPoll"
+   body
+    maxstack 3
+    localcount 1
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     iftrue              L5
+
+     returnvoid
+
+L5:
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("reset", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("TimerEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("TIMER", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("hasEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     iffalse             L17
+
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("TimerEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("TIMER", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("pollFBApi", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("removeEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+L17:
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "FB Poll stopped"
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     findproperty        Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushbyte            0
+     setproperty         Multiname("pollTries", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "StartPoll") flag FINAL dispid 12
+  method
+   refid "FacebookConnect/class/StartPoll"
+   body
+    maxstack 3
+    localcount 1
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("StopPoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     findpropstrict      Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "Starting FB Polling..."
+     callpropvoid        Multiname("consoleLog", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("TimerEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("TIMER", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("hasEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     iftrue              L17
+
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("TimerEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("TIMER", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("pollFBApi", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+L17:
+     getlex              Multiname("fbpoll", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("start", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "FetchMe") flag FINAL dispid 13
+  method
+   refid "FacebookConnect/class/FetchMe"
+   param QName(PackageNamespace(""), "String")
+   body
+    maxstack 3
+    localcount 4
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getlex              Multiname("FB_ME_URL", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     add
+     pushstring          "&fields=id,name,email,birthday"
+     add
+     constructprop       Multiname("URLRequest", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 1
+     coerce              QName(PackageNamespace("flash.net"), "URLRequest")
+     setlocal2
+
+     getlocal2
+     getlex              Multiname("URLRequestMethod", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     getproperty         Multiname("GET", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("method", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     constructprop       Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     setlocal3
+
+     getlocal3
+     getlex              Multiname("Event", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.events")])
+     getproperty         Multiname("COMPLETE", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("onFBMeRequestComplete", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("addEventListener", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     getlocal3
+     getlocal2
+     callpropvoid        Multiname("load", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "onFBMeRequestComplete") flag FINAL dispid 14
+  method
+   refid "FacebookConnect/class/onFBMeRequestComplete"
+   param QName(PackageNamespace("flash.events"), "Event")
+   flag NEED_ACTIVATION
+   body
+    maxstack 9
+    localcount 4
+    initscopedepth 4
+    maxscopedepth 9
+    code
+     getlocal0
+     pushscope
+
+     newactivation
+     dup
+     setlocal2
+
+     pushscope
+
+     getscopeobject      1
+     pushnull
+     coerce              QName(PackageNamespace(""), "Object")
+     setslot             5
+
+     getscopeobject      1
+     pushundefined
+     coerce_a
+     setslot             6
+
+     getscopeobject      1
+     getlocal1
+     setslot             1
+
+     getscopeobject      1
+     getscopeobject      1
+     getslot             1
+     getproperty         Multiname("target", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("URLLoader", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     astypelate
+     coerce              QName(PackageNamespace("flash.net"), "URLLoader")
+     setslot             2
+
+     getscopeobject      1
+     pushfalse
+     setslot             3
+
+     getscopeobject      1
+     pushstring          "Failed to retrieve Facebook User."
+     setslot             4
+
+L31:
+     getscopeobject      1
+     getlex              Multiname("JSON", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getscopeobject      1
+     getslot             2
+     getproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("parse", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     coerce              QName(PackageNamespace(""), "Object")
+     setslot             5
+
+     findproperty        Multiname("Me", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getscopeobject      1
+     getslot             5
+     setproperty         Multiname("Me", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getscopeobject      1
+     pushtrue
+     setslot             3
+
+     getscopeobject      1
+     pushstring          "Retrieved Facebook User: "
+     getlex              Multiname("Me", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("name", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     coerce_s
+     setslot             4
+
+     findproperty        Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushtrue
+     setproperty         Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+L56:
+     jump                L79
+
+L57:
+     getlocal0
+     pushscope
+
+     getlocal2
+     pushscope
+
+     newcatch            0
+     dup
+     setlocal3
+
+     dup
+     pushscope
+
+     swap
+     setslot             1
+
+     findpropstrict      Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "[Game] ERR FetchMe: "
+     getscopeobject      2
+     getslot             1
+     getproperty         Multiname("message", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     callpropvoid        Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     findpropstrict      Multiname("ClearToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("ClearToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     popscope
+     kill                3
+L79:
+     getscopeobject      1
+     getslot             2
+     callpropvoid        Multiname("close", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     getlex              Multiname("_game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushnull
+     ifeq                L105
+
+     getscopeobject      1
+     findpropstrict      Multiname("FacebookConnectEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("FacebookConnectEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("ONCONNECT", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "success"
+     getscopeobject      1
+     getslot             3
+     pushstring          "message"
+     getscopeobject      1
+     getslot             4
+     pushstring          "mode"
+     getlex              Multiname("Mode", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     newobject           3
+     constructprop       Multiname("FacebookConnectEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+     coerce_a
+     setslot             6
+
+     getlex              Multiname("_game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getscopeobject      1
+     getslot             6
+     callpropvoid        Multiname("dispatchEvent", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+L105:
+     returnvoid
+    end ; code
+    try from L31 to L56 target L57 type QName(PackageNamespace(""), "Error") name QName(PackageNamespace(""), "e") end
+    trait slot QName(PackageInternalNs(""), "e") slotid 1 type QName(PackageNamespace("flash.events"), "Event") end
+    trait slot QName(PackageInternalNs(""), "loader") slotid 2 type QName(PackageNamespace("flash.net"), "URLLoader") end
+    trait slot QName(PackageInternalNs(""), "result") slotid 3 type QName(PackageNamespace(""), "Boolean") end
+    trait slot QName(PackageInternalNs(""), "msg") slotid 4 type QName(PackageNamespace(""), "String") end
+    trait slot QName(PackageInternalNs(""), "meObj") slotid 5 type QName(PackageNamespace(""), "Object") end
+    trait slot QName(PackageInternalNs(""), "evt") slotid 6 end
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "Logout") flag FINAL dispid 15
+  method
+   refid "FacebookConnect/class/Logout"
+   body
+    maxstack 2
+    localcount 1
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findproperty        Multiname("Me", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushnull
+     setproperty         Multiname("Me", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findproperty        Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushfalse
+     setproperty         Multiname("isLoggedIn", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findproperty        Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          ""
+     setproperty         Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("ClearToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("ClearToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("ISWEB", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     iffalse             L18
+
+     getlex              Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callpropvoid        Multiname("Logout", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L18:
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PrivateNamespace(null, "FacebookConnect/class"), "GetToken") flag FINAL dispid 16
+  method
+   refid "FacebookConnect/class/FacebookConnect/class/GetToken"
+   returns QName(PackageNamespace(""), "String")
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findpropstrict      Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setlocal1
+
+     getlocal1
+     getproperty         Multiname("size", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushbyte            0
+     ifngt               L17
+
+     findproperty        Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     getproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("token", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     getlex              Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     returnvalue
+
+L17:
+     pushstring          ""
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "SaveToken") flag FINAL dispid 17
+  method
+   refid "FacebookConnect/class/SaveToken"
+   flag NEED_ACTIVATION
+   body
+    maxstack 3
+    localcount 3
+    initscopedepth 4
+    maxscopedepth 9
+    code
+     getlocal0
+     pushscope
+
+     newactivation
+     dup
+     setlocal1
+
+     pushscope
+
+     getscopeobject      1
+     findpropstrict      Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setslot             1
+
+L11:
+     getscopeobject      1
+     getslot             1
+     getproperty         Multiname("size", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushbyte            0
+     ifne                L45
+
+     getscopeobject      1
+     getslot             1
+     getproperty         Multiname("data", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlex              Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     setproperty         Multiname("token", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+L21:
+     getscopeobject      1
+     getslot             1
+     callpropvoid        Multiname("flush", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L24:
+     jump                L45
+
+L25:
+     getlocal0
+     pushscope
+
+     getlocal1
+     pushscope
+
+     newcatch            0
+     dup
+     setlocal2
+
+     dup
+     pushscope
+
+     swap
+     setslot             1
+
+     findpropstrict      Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "[Game] ERR SaveToken flush: "
+     getscopeobject      2
+     getslot             1
+     getproperty         Multiname("message", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     callpropvoid        Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     popscope
+     kill                2
+L45:
+     jump                L66
+
+L46:
+     getlocal0
+     pushscope
+
+     getlocal1
+     pushscope
+
+     newcatch            1
+     dup
+     setlocal2
+
+     dup
+     pushscope
+
+     swap
+     setslot             1
+
+     findpropstrict      Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          "[Game] ERR SaveToken: "
+     getscopeobject      2
+     getslot             1
+     getproperty         Multiname("message", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     add
+     callpropvoid        Multiname("trace", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+
+     popscope
+     kill                2
+L66:
+     returnvoid
+    end ; code
+    try from L21 to L24 target L25 type QName(PackageNamespace(""), "Error") name QName(PackageNamespace(""), "e") end
+    try from L11 to L45 target L46 type QName(PackageNamespace(""), "Error") name QName(PackageNamespace(""), "e") end
+    trait slot QName(PackageInternalNs(""), "so_token") slotid 1 type QName(PackageNamespace("flash.net"), "SharedObject") end
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "ClearToken") flag FINAL dispid 18
+  method
+   refid "FacebookConnect/class/ClearToken"
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     findproperty        Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushstring          ""
+     setproperty         Multiname("AccessToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+
+     findpropstrict      Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     callproperty        Multiname("GetSharedObjectToken", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setlocal1
+
+     getlocal1
+     getproperty         Multiname("size", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     pushbyte            0
+     ifngt               L15
+
+     getlocal1
+     callpropvoid        Multiname("clear", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 0
+
+L15:
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PackageNamespace(""), "handleFBMessage") flag FINAL dispid 19
+  method
+   refid "FacebookConnect/class/handleFBMessage"
+   param null
+   param null
+   body
+    maxstack 3
+    localcount 3
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     getlex              Multiname("FBWeb", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getlocal1
+     getlocal2
+     callpropvoid        Multiname("FBMessage", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 2
+
+     returnvoid
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+ trait method QName(PrivateNamespace(null, "FacebookConnect/class"), "GetSharedObjectToken") flag FINAL dispid 20
+  method
+   refid "FacebookConnect/class/FacebookConnect/class/GetSharedObjectToken"
+   returns QName(PackageNamespace("flash.net"), "SharedObject")
+   body
+    maxstack 2
+    localcount 2
+    initscopedepth 3
+    maxscopedepth 4
+    code
+     getlocal0
+     pushscope
+
+     pushnull
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setlocal1
+
+     getlex              Multiname("Game", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     getproperty         Multiname("ISWEB", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")])
+     iffalse             L14
+
+     getlex              Multiname("SharedObject", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     pushstring          "FBT"
+     callproperty        Multiname("getLocal", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setlocal1
+
+     jump                L19
+
+L14:
+     getlex              Multiname("SharedObject", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect"), PackageNamespace("flash.net")])
+     pushstring          "FBTSA"
+     callproperty        Multiname("getLocal", [PrivateNamespace(null, "FacebookConnect/class"), PackageNamespace(""), PrivateNamespace(null, "FacebookConnect"), PackageInternalNs(""), Namespace("http://adobe.com/AS3/2006/builtin"), PackageNamespace("flash.external"), ProtectedNamespace("FacebookConnect"), StaticProtectedNs("FacebookConnect")]), 1
+     coerce              QName(PackageNamespace("flash.net"), "SharedObject")
+     setlocal1
+
+L19:
+     getlocal1
+     returnvalue
+    end ; code
+   end ; body
+  end ; method
+ end ; trait
+end ; class

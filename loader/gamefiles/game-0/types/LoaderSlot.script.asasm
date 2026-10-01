@@ -1,0 +1,29 @@
+script
+ sinit
+  refid "types:LoaderSlot/init"
+  body
+   maxstack 2
+   localcount 1
+   initscopedepth 1
+   maxscopedepth 3
+   code
+    getlocal0
+    pushscope
+
+    findpropstrict      Multiname("LoaderSlot", [PackageNamespace("types")])
+    getlex              QName(PackageNamespace(""), "Object")
+    pushscope
+
+    getlex              Multiname("Object", [PrivateNamespace(null, "types:LoaderSlot"), PackageNamespace(""), PackageNamespace("types"), PackageInternalNs("types"), Namespace("http://adobe.com/AS3/2006/builtin")])
+    newclass            "types:LoaderSlot"
+    popscope
+    initproperty        QName(PackageNamespace("types"), "LoaderSlot")
+
+    returnvoid
+   end ; code
+  end ; body
+ end ; method
+ trait class QName(PackageNamespace("types"), "LoaderSlot")
+  #include "LoaderSlot.class.asasm"
+ end ; trait
+end ; script
