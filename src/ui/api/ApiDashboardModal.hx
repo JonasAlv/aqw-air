@@ -1611,7 +1611,9 @@ class ApiDashboardModal extends Sprite {
                 var pkt:Dynamic = getPocket();
                 var stg:flash.display.Stage = getStage();
                 if (stg != null) stg.frameRate = fps;
-                if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
+                try {
+                    if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
+                } catch (_:Dynamic) {}
             },
             null,
             function():String {

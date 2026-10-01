@@ -193,7 +193,9 @@ class HelperSetting {
             var fpsValues = [24, 30, 60, 75, 120];
             var fpsIdx = getInt(OPTION_FPS, 2);
             if (fpsIdx < 0 || fpsIdx >= fpsValues.length) fpsIdx = 2;
-            cfg.option_fps = fpsValues[fpsIdx];
+            try {
+                cfg.option_fps = fpsValues[fpsIdx];
+            } catch (_:Dynamic) {}
         }
 
         // Apply stage settings (FPS, Orientation)
