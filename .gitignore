@@ -6,5 +6,4 @@ build/
 *.log
 api.log
 *.apk
-
-
+*.p12
