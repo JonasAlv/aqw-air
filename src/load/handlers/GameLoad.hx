@@ -75,6 +75,7 @@ class GameLoad extends Load {
             }
         } catch (_:Dynamic) {}
 
+        util.HelperSetting.syncToPocket(this.pocket);
         controller.ViewportController.instance.init(this.pocket);
 
         this.pocket.networkCore = new Network(this.pocket);

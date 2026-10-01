@@ -156,4 +156,71 @@ class HelperSetting {
     public static function setArray(key:String, value:Array<Dynamic>):Void {
         _set(key, value);
     }
+
+    public static function syncToPocket(pocket:Dynamic):Void {
+        if (pocket == null) return;
+        var cfg:Dynamic = pocket.config;
+        if (cfg != null) {
+            cfg.option_pagination = getBool(OPTION_PAGINATION, true);
+            cfg.option_equipped_on_top = getBool(OPTION_EQUIPPED_ON_TOP, true);
+            cfg.option_skill_tooltips = getBool(OPTION_SKILL_TOOLTIPS, true);
+            cfg.option_disable_cutscenes = getBool(OPTION_DISABLE_CUTSCENES, false);
+            cfg.option_slow_walk = getBool(OPTION_SLOW_WALK, false);
+
+            cfg.option_player_animation_skill = getBool(OPTION_PLAYER_ANIMATION_SKILL, true);
+            cfg.option_player_animation_aura = getBool(OPTION_PLAYER_ANIMATION_AURA, true);
+            cfg.option_monster_animation_skill = getBool(OPTION_MONSTER_ANIMATION_SKILL, true);
+            cfg.option_monster_animation_aura = getBool(OPTION_MONSTER_ANIMATION_AURA, true);
+            cfg.option_self_animation_skill = getBool(OPTION_SELF_ANIMATION_SKILL, true);
+            cfg.option_self_animation_aura = getBool(OPTION_SELF_ANIMATION_AURA, true);
+
+            cfg.option_filter_off = getBool(OPTION_FILTER, false);
+            cfg.option_animation_monster_off = getBool(OPTION_ANIMATION_MONSTER, false);
+            cfg.option_animation_helm_off = getBool(OPTION_ANIMATION_HELM, false);
+            cfg.option_animation_armor_off = getBool(OPTION_ANIMATION_ARMOR, false);
+            cfg.option_animation_cape_off = getBool(OPTION_ANIMATION_CAPE, false);
+            cfg.option_animation_hair_off = getBool(OPTION_ANIMATION_HAIR, false);
+            cfg.option_animation_pet_off = getBool(OPTION_ANIMATION_PET, false);
+            cfg.option_animation_weapon_off = getBool(OPTION_ANIMATION_WEAPON, false);
+            cfg.option_animation_misc_off = getBool(OPTION_ANIMATION_MISC, false);
+
+            var langIdx = getInt(OPTION_LANGUAGE, 0);
+            var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
+            if (langIdx >= 0 && langIdx < langCodes.length) {
+                cfg.option_language = langCodes[langIdx];
+            }
+
+            var fpsValues = [24, 30, 60, 75, 120];
+            var fpsIdx = getInt(OPTION_FPS, 2);
+            if (fpsIdx < 0 || fpsIdx >= fpsValues.length) fpsIdx = 2;
+            cfg.option_fps = fpsValues[fpsIdx];
+        }
+
+        // Apply stage settings (FPS, Orientation)
+        var stg:Dynamic = null;
+        if (pocket.stage != null) stg = pocket.stage;
+        else if (pocket.game != null && pocket.game.stage != null) stg = pocket.game.stage;
+        else if (pocket.overlay != null && pocket.overlay.stage != null) stg = pocket.overlay.stage;
+
+        if (stg != null) {
+            var fpsValues = [24, 30, 60, 75, 120];
+            var fpsIdx = getInt(OPTION_FPS, 2);
+            if (fpsIdx < 0 || fpsIdx >= fpsValues.length) fpsIdx = 2;
+            stg.frameRate = fpsValues[fpsIdx];
+
+            var orientIdx = getInt(OPTION_LOCK_ORIENTATION, 0);
+            try {
+                if (orientIdx == 2) {
+                    untyped stg.autoOrients = true;
+                    untyped stg.setAspectRatio("any");
+                } else if (orientIdx == 1) {
+                    untyped stg.autoOrients = false;
+                    untyped stg.setAspectRatio("portrait");
+                } else {
+                    untyped stg.autoOrients = false;
+                    untyped stg.setAspectRatio("landscape");
+                }
+            } catch (_:Dynamic) {}
+        }
+    }
 }

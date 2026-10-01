@@ -3,4 +3,4 @@
 -swf-lib libs/as3swf.swc
 -swf bin/WorkerMain.swf
 -swf-version 51
--dce full
+-dce no

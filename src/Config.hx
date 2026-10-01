@@ -4,6 +4,8 @@ class Config {
     public static var API_LOGIN_URL:String = GAME_BASE_URL + "api/login/now";
     public static inline var APP_VERSION:String = "1.0.0";
 
+    public var option_fps:Int = 60;
+
     public var option_pagination:Bool = true;
     public var option_equipped_on_top:Bool = true;
 

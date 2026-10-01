@@ -25,7 +25,29 @@ class SWFWorkerClient {
     private var fromWorker:MessageChannel;
 
     private var nextId:Int = 0;
+    #if flash
+    private var pending:flash.utils.Dictionary = new flash.utils.Dictionary();
+    private inline function setJob(id:Int, job:Dynamic):Void {
+        untyped pending[id] = job;
+    }
+    private inline function getJob(id:Int):Dynamic {
+        return untyped pending[id];
+    }
+    private inline function removeJob(id:Int):Void {
+        untyped __delete__(pending, id);
+    }
+    #else
     private var pending:Map<Int, Dynamic> = new Map<Int, Dynamic>();
+    private inline function setJob(id:Int, job:Dynamic):Void {
+        pending.set(id, job);
+    }
+    private inline function getJob(id:Int):Dynamic {
+        return pending.get(id);
+    }
+    private inline function removeJob(id:Int):Void {
+        pending.remove(id);
+    }
+    #end
     private inline static var TIMEOUT_MS:Int = 10000;
 
     public var supported:Bool = false;
@@ -102,12 +124,16 @@ class SWFWorkerClient {
         var timer = Timer.delay(function():Void {
             if (!completed) {
                 completed = true;
-                pending.remove(id);
-                if (onDone != null) onDone(null, "Job timed out after " + effectiveTimeout + "ms");
+                removeJob(id);
+                if (onDone != null) {
+                    try {
+                        onDone(null, "Job timed out after " + effectiveTimeout + "ms");
+                    } catch (_:Dynamic) {}
+                }
             }
         }, effectiveTimeout);
 
-        pending.set(id, {
+        setJob(id, {
             id: id,
             type: type,
             onDone: onDone,
@@ -141,12 +167,16 @@ class SWFWorkerClient {
         var timer = Timer.delay(function():Void {
             if (!completed) {
                 completed = true;
-                pending.remove(id);
-                onDone(bytes);
+                removeJob(id);
+                if (onDone != null) {
+                    try {
+                        onDone(bytes);
+                    } catch (_:Dynamic) {}
+                }
             }
         }, TIMEOUT_MS);
 
-        pending.set(id, {
+        setJob(id, {
             id: id,
             type: "strip_swf",
             callback: onDone,
@@ -316,13 +346,18 @@ class SWFWorkerClient {
 
     private function onWorkerMessage(e:Event):Void {
         while (fromWorker != null && fromWorker.messageAvailable) {
-            var result:Dynamic = fromWorker.receive();
+            var result:Dynamic = null;
+            try {
+                result = fromWorker.receive();
+            } catch (_:Dynamic) {
+                break;
+            }
             if (result == null) continue;
 
-            var job:Dynamic = pending.get(result.id);
+            var job:Dynamic = getJob(result.id);
             if (job == null) continue;
 
-            pending.remove(result.id);
+            removeJob(result.id);
 
             try {
                 if (job.timer != null) job.timer.stop();
@@ -335,14 +370,22 @@ class SWFWorkerClient {
                 var finalBytes:ByteArray = (result.error != null) ?
                     job.originalBytes :
                     ((result.bytes != null) ? cast(result.bytes, ByteArray) : job.originalBytes);
-                job.callback(finalBytes);
+                try {
+                    job.callback(finalBytes);
+                } catch (cbErr:Dynamic) {
+                    trace("SWF callback error: " + Std.string(cbErr));
+                }
                 continue;
             }
 
             // Generic job handler
             if (job.onDone != null) {
                 var data = (result.bytes != null) ? result.bytes : result.data;
-                job.onDone(data, err);
+                try {
+                    job.onDone(data, err);
+                } catch (cbErr:Dynamic) {
+                    trace("Job onDone error: " + Std.string(cbErr));
+                }
             }
         }
     }

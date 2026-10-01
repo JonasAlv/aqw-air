@@ -474,7 +474,7 @@ class ApiDashboardModal extends Sprite {
         var totalH = getTotalContentHeight();
         if (stage == null || totalH <= CONTENT_HEIGHT) return;
         var dy = stage.mouseY - _dragStartY;
-        if (!_isDraggingScroll && Math.abs(dy) > 4) {
+        if (!_isDraggingScroll && Math.abs(dy) > 10) {
             _isDraggingScroll = true;
             _hasDraggedScroll = true;
         }
@@ -664,21 +664,36 @@ class ApiDashboardModal extends Sprite {
         var actionX:Float = rowW - padX - btnW;
         var actionY:Float = (cardH - btnH) / 2;
 
+        var actionControl:Sprite = null;
         if (actionType == "toggle") {
             var toggleBtn = createToggleControl(btnW, btnH, getToggleState, onClick);
             toggleBtn.x = actionX;
             toggleBtn.y = actionY;
             card.addChild(toggleBtn);
+            actionControl = toggleBtn;
         } else if (actionType == "cycle") {
             var cycleBtn = createCycleControl(btnW, btnH, getCycleLabel, onClick);
             cycleBtn.x = actionX;
             cycleBtn.y = actionY;
             card.addChild(cycleBtn);
+            actionControl = cycleBtn;
         } else {
             var btn = createActionButton(actionLabel, btnW, btnH, isPrimary, onClick);
             btn.x = actionX;
             btn.y = actionY;
             card.addChild(btn);
+            actionControl = btn;
+        }
+
+        if (actionType == "toggle") {
+            card.buttonMode = true;
+            card.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+                if (_isDraggingScroll || _hasDraggedScroll) return;
+                if (actionControl != null && (e.target == actionControl || actionControl.contains(cast e.target))) {
+                    return;
+                }
+                if (onClick != null) onClick();
+            });
         }
 
         // Draw card background with hover responsiveness
@@ -1557,11 +1572,22 @@ class ApiDashboardModal extends Sprite {
     private function getPocket():Dynamic {
         if (_pocket != null) return _pocket;
         if (_overlay != null && _overlay.pocket != null) return _overlay.pocket;
-        if (_overlay != null && _overlay.parent != null) return _overlay.parent;
         try {
-            var g:Dynamic = untyped __global__["Pocket"];
-            if (g != null && g.SINGLETON != null) return g.SINGLETON;
-        } catch (e:Dynamic) {}
+            var p:Dynamic = pocket.PocketRoot.SINGLETON;
+            if (p != null) return p;
+        } catch (_:Dynamic) {}
+        if (_overlay != null && _overlay.parent != null) return _overlay.parent;
+        return null;
+    }
+
+    private function getStage():flash.display.Stage {
+        if (this.stage != null) return this.stage;
+        if (_overlay != null && _overlay.stage != null) return _overlay.stage;
+        var pkt:Dynamic = getPocket();
+        if (pkt != null) {
+            if (pkt.game != null && pkt.game.stage != null) return pkt.game.stage;
+            if (pkt.stage != null) return pkt.stage;
+        }
         return null;
     }
 
@@ -1583,7 +1609,7 @@ class ApiDashboardModal extends Sprite {
                 var fps = Std.parseInt(fpsValues[nextIdx]);
                 HelperSetting.setInt(HelperSetting.OPTION_FPS, nextIdx);
                 var pkt:Dynamic = getPocket();
-                var stg:Dynamic = stage != null ? stage : (pkt != null ? pkt.stage : null);
+                var stg:flash.display.Stage = getStage();
                 if (stg != null) stg.frameRate = fps;
                 if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
             },
@@ -1608,8 +1634,7 @@ class ApiDashboardModal extends Sprite {
                 if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
                 var nextIdx = (curIdx + 1) % orientations.length;
                 HelperSetting.setInt(HelperSetting.OPTION_LOCK_ORIENTATION, nextIdx);
-                var pkt:Dynamic = getPocket();
-                var stg:Dynamic = stage != null ? stage : (pkt != null ? pkt.stage : null);
+                var stg:flash.display.Stage = getStage();
                 if (stg != null) {
                     try {
                         if (nextIdx == 2) {

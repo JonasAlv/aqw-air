@@ -3,6 +3,7 @@
 -D air
 -swf-version 40
 -debug
+-dce no
 -lib hscript
 -swf bin/ModUI.swc
 
