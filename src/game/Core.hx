@@ -20,8 +20,12 @@ class Core {
         this.itemPagination = new ItemPagination(this.pocket);
         this.itemFavorite = new ItemFavorite(this.pocket);
 
-        // Continuous state monitor
-        Lib.current.stage.addEventListener(Event.ENTER_FRAME, onEnterFrameWatcher, false, 0, true);
+        // Continuous state monitor attached to main MovieClip
+        if (Lib.current != null) {
+            Lib.current.addEventListener(Event.ENTER_FRAME, onEnterFrameWatcher, false, 0, true);
+        } else if (this.pocket != null && Std.isOfType(this.pocket, flash.events.IEventDispatcher)) {
+            cast(this.pocket, flash.events.IEventDispatcher).addEventListener(Event.ENTER_FRAME, onEnterFrameWatcher, false, 0, true);
+        }
     }
 
     public function get_currentFrame():String {
