@@ -110,7 +110,7 @@ class ApiMenus {
         var fmt = new TextFormat("_sans", 11, 0xEEEEEE, true);
         fmt.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = fmt;
-        txt.text = "\u2699 Control";
+        txt.text = "Control";
         txt.width = btnW;
         txt.height = 18;
         txt.y = 4;
