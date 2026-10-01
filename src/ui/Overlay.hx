@@ -63,6 +63,12 @@ class Overlay extends MovieClip {
 
         if (this.pocket != null && this.pocket.gameUI != null) {
             this.pocket.gameUI.loadPersistedShortcuts();
+            if (util.HelperSetting.getBool(util.HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, false)) {
+                this.pocket.gameUI.showJoystickMouseSimulator();
+            }
+            if (util.HelperSetting.getBool(util.HelperSetting.OPTION_SHOW_JOYSTICK_KEYBOARD, false)) {
+                this.pocket.gameUI.showJoystickKeyboardSimulator();
+            }
         }
 
         this.visible = true;

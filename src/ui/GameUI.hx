@@ -3,6 +3,7 @@ package ui;
 import controller.LayoutController;
 import controller.walk.KeyboardWalkSimulatorController;
 import controller.walk.MouseWalkSimulatorController;
+import controller.walk.WalkController;
 import flash.display.Sprite;
 import flash.events.Event;
 import ui.input.Joystick;
@@ -11,7 +12,7 @@ import util.Helper;
 import util.HelperSetting;
 
 class GameUI extends Sprite {
-    private var pocket:Dynamic;
+    public var pocket:Dynamic;
 
     public var joystickMouseSimulator:Joystick = null;
     public var joystickKeyboardSimulator:Joystick = null;
@@ -24,21 +25,35 @@ class GameUI extends Sprite {
         this.pocket = pocket;
         this.layoutController.pocket = pocket;
 
-        if (this.pocket != null && this.pocket.addChild != null) {
-            this.pocket.addChild(this);
-        }
+        ensureAttached();
 
         this.mouseChildren = true;
         this.mouseEnabled = false;
     }
 
-    private function showJoystick(layout:String, joystickName:String, isMouse:Bool, xPosition:Int, yPosition:Int):Void {
-        var existing:Joystick = cast this.getChildByName(joystickName);
-        if (existing != null) return;
+    public function ensureAttached():Void {
+        if (this.parent != null) return;
+        if (this.pocket != null) {
+            if (this.pocket.game != null && this.pocket.game.addChild != null) {
+                this.pocket.game.addChild(this);
+            } else if (this.pocket.addChild != null) {
+                this.pocket.addChild(this);
+            }
+        }
+    }
 
-        var walkCtrl = isMouse
+    private function showJoystick(layout:String, joystickName:String, isMouse:Bool, xPosition:Int, yPosition:Int):Void {
+        ensureAttached();
+
+        var existing:Joystick = cast this.getChildByName(joystickName);
+        if (existing != null) {
+            existing.visible = true;
+            return;
+        }
+
+        var walkCtrl:WalkController = isMouse
             ? new MouseWalkSimulatorController(this.pocket)
-            : cast new KeyboardWalkSimulatorController(this.pocket);
+            : new KeyboardWalkSimulatorController(this.pocket);
 
         var joystick = new Joystick(walkCtrl);
         joystick.name = joystickName;
@@ -61,13 +76,10 @@ class GameUI extends Sprite {
 
     private function hideJoystick(layout:String, joystickName:String, isMouse:Bool):Void {
         var joystick:Joystick = cast this.getChildByName(joystickName);
-        if (joystick == null) {
-            if (isMouse) this.joystickMouseSimulator = null;
-            else this.joystickKeyboardSimulator = null;
-            return;
+        if (joystick != null && joystick.parent != null) {
+            removeChild(joystick);
         }
 
-        removeChild(joystick);
         this.layoutController.unregister(layout);
         this.layoutController.load();
 
@@ -84,7 +96,7 @@ class GameUI extends Sprite {
     }
 
     public function showJoystickKeyboardSimulator():Void {
-        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 73 + 100, 348);
+        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 73 + 110, 348);
     }
 
     public function hideJoystickKeyboardSimulator():Void {
@@ -93,36 +105,44 @@ class GameUI extends Sprite {
 
     public function showSkillBar():Void {
         if (this.pocket == null || this.pocket.game == null) return;
-        if (this.pocket.gameCore != null && this.pocket.gameCore.currentFrame != "Game") return;
         try {
-            this.pocket.game.ui.mcInterface.actBar.visible = true;
+            if (this.pocket.game.ui != null && this.pocket.game.ui.mcInterface != null && this.pocket.game.ui.mcInterface.actBar != null) {
+                this.pocket.game.ui.mcInterface.actBar.visible = true;
+            }
         } catch (e:Dynamic) {}
     }
 
     public function hideSkillBar():Void {
         if (this.pocket == null || this.pocket.game == null) return;
-        if (this.pocket.gameCore != null && this.pocket.gameCore.currentFrame != "Game") return;
         try {
-            this.pocket.game.ui.mcInterface.actBar.visible = false;
+            if (this.pocket.game.ui != null && this.pocket.game.ui.mcInterface != null && this.pocket.game.ui.mcInterface.actBar != null) {
+                this.pocket.game.ui.mcInterface.actBar.visible = false;
+            }
         } catch (e:Dynamic) {}
     }
 
     public function addShortcutButton(actionName:String):Void {
-        if (Reflect.field(shortcutButtons, actionName) != null) return;
+        if (Reflect.field(shortcutButtons, actionName) != null) {
+            ui.api.ApiNotificationManager.notify("Shortcut already placed: " + actionName);
+            return;
+        }
+
+        ensureAttached();
 
         var layoutKey:String = "shortcut_" + Helper.sanitize(actionName);
         var index:Int = countShortcuts();
 
         var COLS:Int = 4;
-        var CELL:Int = 66;
+        var CELL_X:Int = 64;
+        var CELL_Y:Int = 54;
         var ORIGIN_X:Float = 480;
         var ORIGIN_Y:Float = 245;
 
         var col:Int = index % COLS;
         var row:Int = Std.int(index / COLS);
 
-        var defaultX:Float = ORIGIN_X + col * CELL;
-        var defaultY:Float = ORIGIN_Y + row * CELL;
+        var defaultX:Float = ORIGIN_X + col * CELL_X;
+        var defaultY:Float = ORIGIN_Y + row * CELL_Y;
 
         var btn = new ShortcutButton(this.pocket, actionName);
         btn.name = layoutKey;
@@ -136,6 +156,7 @@ class GameUI extends Sprite {
         Reflect.setField(shortcutButtons, actionName, added);
 
         persistShortcuts();
+        ui.api.ApiNotificationManager.notify("Added shortcut: " + actionName);
     }
 
     public function removeShortcutButton(actionName:String):Void {
@@ -151,8 +172,8 @@ class GameUI extends Sprite {
         this.layoutController.load();
 
         Reflect.deleteField(shortcutButtons, actionName);
-
         persistShortcuts();
+        ui.api.ApiNotificationManager.notify("Removed shortcut: " + actionName);
     }
 
     public function loadPersistedShortcuts():Void {
@@ -176,6 +197,7 @@ class GameUI extends Sprite {
     }
 
     public function showEditLayout():Void {
+        ensureAttached();
         this.layoutController.toggleEdit(true);
     }
 

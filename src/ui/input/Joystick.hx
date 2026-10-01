@@ -14,14 +14,65 @@ class Joystick extends Sprite {
     public var dirX:Float = 0;
     public var dirY:Float = 0;
 
-    private var _limit:Float = 40;
+    private var _limit:Float = 32;
     private var walkController:WalkController;
     private var activeTouchID:Int = -1;
 
     public function new(walkController:WalkController) {
         super();
         this.walkController = walkController;
+
+        // 1. Programmatic Base graphics
+        drawBase();
+
+        // 2. Programmatic Knob graphics
+        this.knob = new Sprite();
+        drawKnob();
+        addChild(this.knob);
+
+        this.mouseChildren = false;
+        this.buttonMode = true;
+        this.useHandCursor = true;
+
         addEventListener(Event.ADDED_TO_STAGE, onAdded, false, 0, true);
+    }
+
+    private function drawBase():Void {
+        graphics.clear();
+        // Outer dark translucent pad
+        graphics.beginFill(0x121212, 0.55);
+        graphics.lineStyle(2, 0x484848, 0.85);
+        graphics.drawCircle(0, 0, 42);
+        graphics.endFill();
+
+        // Inner boundary guide ring
+        graphics.lineStyle(1, 0x333333, 0.5);
+        graphics.drawCircle(0, 0, 32);
+
+        // Directional tick notches
+        graphics.lineStyle(2, 0x888888, 0.7);
+        graphics.moveTo(0, -40); graphics.lineTo(0, -32);
+        graphics.moveTo(0, 32);  graphics.lineTo(0, 40);
+        graphics.moveTo(-40, 0); graphics.lineTo(-32, 0);
+        graphics.moveTo(32, 0);  graphics.lineTo(40, 0);
+    }
+
+    private function drawKnob():Void {
+        knob.graphics.clear();
+        // Main knob body
+        knob.graphics.beginFill(0x282828, 0.92);
+        knob.graphics.lineStyle(2, 0xFFCC00, 0.95);
+        knob.graphics.drawCircle(0, 0, 20);
+        knob.graphics.endFill();
+
+        // Knob inner tactile ring
+        knob.graphics.lineStyle(1, 0xFFFFFF, 0.25);
+        knob.graphics.drawCircle(0, 0, 14);
+
+        // Knob center dot
+        knob.graphics.beginFill(0xFFCC00, 0.7);
+        knob.graphics.drawCircle(0, 0, 4);
+        knob.graphics.endFill();
     }
 
     public function move(stageX:Float, stageY:Float):Void {
@@ -62,10 +113,6 @@ class Joystick extends Sprite {
             addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
         }
         addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
-
-        var knobW:Float = (this.knob != null && this.knob.width > 0) ? this.knob.width : 30;
-        var totalW:Float = (this.width > 0) ? this.width : 100;
-        this._limit = (totalW / 2) - (knobW / 2) * 0.4;
     }
 
     private function onTouchBegin(e:TouchEvent):Void {
@@ -107,10 +154,6 @@ class Joystick extends Sprite {
 
         this.activeTouchID = -1;
 
-        if (this.dirX == 0 && this.dirY == 0) {
-            return;
-        }
-
         this.snapHome();
         if (this.walkController != null) {
             this.walkController.stop();
@@ -144,10 +187,6 @@ class Joystick extends Sprite {
             stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
             stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
             stage.removeEventListener(Event.ENTER_FRAME, onEnterFrameJoystick);
-        }
-
-        if (this.dirX == 0 && this.dirY == 0) {
-            return;
         }
 
         this.snapHome();
