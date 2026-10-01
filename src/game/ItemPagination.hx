@@ -307,8 +307,14 @@ class ItemPagination {
             listItem.select();
         }
 
-        if (key != 0) {
-            listItem.y = iList.height;
+        if (key != 0 && iList.numChildren > 1) {
+            // Position directly below the previous sibling — same logic as
+            // LPFFrameListViewTabbed.as:387-391 in the original game client.
+            // Using iList.height caused exponential stacking because the
+            // container height grows as each child is added.
+            var prev:Dynamic = iList.getChildAt(iList.numChildren - 2);
+            var prevH:Float = (prev.height > 0) ? prev.height : 26.0;
+            listItem.y = prev.y + prevH;
         }
 
         var itemFavorite:ItemFavorite = (this.pocket.gameCore != null) ? this.pocket.gameCore.itemFavorite : null;

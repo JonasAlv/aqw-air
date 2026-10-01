@@ -1576,18 +1576,52 @@ class ApiDashboardModal extends Sprite {
             var p:Dynamic = pocket.PocketRoot.SINGLETON;
             if (p != null) return p;
         } catch (_:Dynamic) {}
+        try {
+            if (com.aqwapi.Api.game != null && Reflect.field(com.aqwapi.Api.game, "pocket") != null) {
+                return Reflect.field(com.aqwapi.Api.game, "pocket");
+            }
+        } catch (_:Dynamic) {}
+        try {
+            var g:Dynamic = untyped __global__["Pocket"];
+            if (g != null && g.SINGLETON != null) return g.SINGLETON;
+        } catch (_:Dynamic) {}
         if (_overlay != null && _overlay.parent != null) return _overlay.parent;
+        return null;
+    }
+
+    private function getGameUI(pkt:Dynamic):Dynamic {
+        if (pkt != null && pkt.gameUI != null) return pkt.gameUI;
+        var p = getPocket();
+        if (p != null && p.gameUI != null) return p.gameUI;
+        try {
+            if (com.aqwapi.Api.game != null) {
+                var pktG:Dynamic = Reflect.field(com.aqwapi.Api.game, "pocket");
+                if (pktG != null && pktG.gameUI != null) return pktG.gameUI;
+                var ui:Dynamic = com.aqwapi.Api.game.getChildByName("GameUI");
+                if (ui != null) return ui;
+            }
+        } catch (_:Dynamic) {}
         return null;
     }
 
     private function getStage():flash.display.Stage {
         if (this.stage != null) return this.stage;
         if (_overlay != null && _overlay.stage != null) return _overlay.stage;
+        try {
+            if (com.aqwapi.Api.game != null && com.aqwapi.Api.game.stage != null) {
+                return com.aqwapi.Api.game.stage;
+            }
+        } catch (_:Dynamic) {}
         var pkt:Dynamic = getPocket();
         if (pkt != null) {
             if (pkt.game != null && pkt.game.stage != null) return pkt.game.stage;
             if (pkt.stage != null) return pkt.stage;
         }
+        try {
+            if (flash.Lib.current != null && flash.Lib.current.stage != null) {
+                return flash.Lib.current.stage;
+            }
+        } catch (_:Dynamic) {}
         return null;
     }
 
@@ -2301,11 +2335,12 @@ class ApiDashboardModal extends Sprite {
                     return;
                 }
                 close();
-                if (pkt.gameCore != null) {
+                var gameUI:Dynamic = getGameUI(pkt);
+                if (pkt != null && pkt.gameCore != null) {
                     pkt.gameCore.setWorldFilters([util.Helper.GRAYSCALE]);
                 }
-                if (pkt.gameUI != null) {
-                    pkt.gameUI.showEditLayout();
+                if (gameUI != null) {
+                    gameUI.showEditLayout();
                 }
             }
         );
@@ -2327,12 +2362,19 @@ class ApiDashboardModal extends Sprite {
         );
     }
 
-    private function isInGame(pkt:Dynamic):Bool {
-        if (pkt == null || pkt.game == null) return false;
+    private function isInGame(?pkt:Dynamic):Bool {
+        // Primary check: our own API says the game world is ready
         try {
-            if (pkt.gameCore != null && pkt.gameCore.currentFrame == "Game") return true;
-            if (pkt.game.world != null && pkt.game.world.myAvatar != null) return true;
             if (com.aqwapi.Api.isReady) return true;
+            if (com.aqwapi.Api.player != null && com.aqwapi.Api.player.isAlive) return true;
+            if (com.aqwapi.Api.game != null && com.aqwapi.Api.game.world != null) return true;
+        } catch (_:Dynamic) {}
+        // Fallback: try reading it from the pocket
+        if (pkt == null) pkt = getPocket();
+        if (pkt == null) return false;
+        try {
+            if (pkt.game != null && pkt.game.world != null && pkt.game.world.myAvatar != null) return true;
+            if (pkt.gameCore != null && pkt.gameCore.currentFrame == "Game") return true;
         } catch (_:Dynamic) {}
         return false;
     }
@@ -2354,11 +2396,13 @@ class ApiDashboardModal extends Sprite {
                     return;
                 }
                 close();
-                var picker:DisplayObject = pkt.game.stage.getChildByName("ShortcutPicker");
+                var stg = getStage();
+                if (stg == null) return;
+                var picker:DisplayObject = stg.getChildByName("ShortcutPicker");
                 if (picker != null && picker.parent != null) {
                     picker.parent.removeChild(picker);
                 }
-                pkt.game.stage.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
+                stg.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
                     if (pkt.gameUI != null) pkt.gameUI.addShortcutButton(actionName);
                 }));
             }
@@ -2378,11 +2422,13 @@ class ApiDashboardModal extends Sprite {
                     return;
                 }
                 close();
-                var picker:DisplayObject = pkt.game.stage.getChildByName("ShortcutPicker");
+                var stg = getStage();
+                if (stg == null) return;
+                var picker:DisplayObject = stg.getChildByName("ShortcutPicker");
                 if (picker != null && picker.parent != null) {
                     picker.parent.removeChild(picker);
                 }
-                pkt.game.stage.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
+                stg.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
                     if (pkt.gameUI != null) pkt.gameUI.removeShortcutButton(actionName);
                 }));
             }
