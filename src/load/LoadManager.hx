@@ -262,10 +262,25 @@ class LoadManager {
                 });
             }
 
+            var targetBytes:ByteArray = finalBytes;
             try {
-                byteLoader.loadBytes(finalBytes, loadData.context);
+                if (finalBytes != null && untyped finalBytes.shareable == true) {
+                    targetBytes = new ByteArray();
+                    finalBytes.position = 0;
+                    finalBytes.readBytes(targetBytes, 0, finalBytes.length);
+                    targetBytes.position = 0;
+                }
+            } catch (_:Dynamic) {}
+            if (targetBytes != null) targetBytes.position = 0;
+
+            try {
+                byteLoader.loadBytes(targetBytes, loadData.context);
             } catch (e:Dynamic) {
                 trace("loadBytes error: " + Std.string(e));
+                if (loadData.isQueued) {
+                    concurrentCount--;
+                    loadNext();
+                }
             }
         };
     }

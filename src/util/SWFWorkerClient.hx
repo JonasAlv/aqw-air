@@ -153,13 +153,9 @@ class SWFWorkerClient {
      */
     public function process(bytes:ByteArray, stripAnimation:Bool, stripFilters:Bool, ?stripSounds:Bool = false, onDone:ByteArray->Void):Void {
         if (!supported || toWorker == null) {
-            onDone(bytes);
+            onDone(ensureNonShared(bytes));
             return;
         }
-
-        try {
-            untyped bytes.shareable = true;
-        } catch (_:Dynamic) {}
 
         var id:Int = nextId++;
         var completed:Bool = false;
@@ -170,7 +166,7 @@ class SWFWorkerClient {
                 removeJob(id);
                 if (onDone != null) {
                     try {
-                        onDone(bytes);
+                        onDone(ensureNonShared(bytes));
                     } catch (_:Dynamic) {}
                 }
             }
@@ -367,9 +363,10 @@ class SWFWorkerClient {
 
             // Specialized handler for SWF stripper jobs
             if (job.type == "strip_swf" && job.callback != null) {
-                var finalBytes:ByteArray = (result.error != null) ?
+                var rawBytes:ByteArray = (result.error != null) ?
                     job.originalBytes :
                     ((result.bytes != null) ? cast(result.bytes, ByteArray) : job.originalBytes);
+                var finalBytes:ByteArray = ensureNonShared(rawBytes);
                 try {
                     job.callback(finalBytes);
                 } catch (cbErr:Dynamic) {
@@ -380,7 +377,7 @@ class SWFWorkerClient {
 
             // Generic job handler
             if (job.onDone != null) {
-                var data = (result.bytes != null) ? result.bytes : result.data;
+                var data = (result.bytes != null) ? ensureNonShared(cast result.bytes) : result.data;
                 try {
                     job.onDone(data, err);
                 } catch (cbErr:Dynamic) {
@@ -388,5 +385,25 @@ class SWFWorkerClient {
                 }
             }
         }
+    }
+
+    /**
+     * Guards against Flash Player ArgumentError #3735 ('This API cannot accept shared ByteArrays').
+     * If a ByteArray is marked shareable=true by the AIR Worker subsystem, clones it into a
+     * clean, non-shared ByteArray before returning to the main thread or passing to Loader.loadBytes.
+     */
+    public static function ensureNonShared(bytes:ByteArray):ByteArray {
+        if (bytes == null) return null;
+        try {
+            if (untyped bytes.shareable == true) {
+                var clean:ByteArray = new ByteArray();
+                bytes.position = 0;
+                bytes.readBytes(clean, 0, bytes.length);
+                clean.position = 0;
+                return clean;
+            }
+        } catch (_:Dynamic) {}
+        bytes.position = 0;
+        return bytes;
     }
 }
