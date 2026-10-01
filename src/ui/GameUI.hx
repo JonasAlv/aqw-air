@@ -4,6 +4,7 @@ import controller.LayoutController;
 import controller.walk.KeyboardWalkSimulatorController;
 import controller.walk.MouseWalkSimulatorController;
 import controller.walk.WalkController;
+import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.events.Event;
 import ui.input.Joystick;
@@ -11,6 +12,11 @@ import ui.shortcut.ShortcutButton;
 import util.Helper;
 import util.HelperSetting;
 
+/**
+ * Modern Touch Controls and Quick Action Shortcuts Layer.
+ * Manages virtual joysticks, quick shortcuts, layout persistence,
+ * and direct drag-and-drop editor from scratch.
+ */
 class GameUI extends Sprite {
     public var pocket:Dynamic;
 
@@ -25,20 +31,37 @@ class GameUI extends Sprite {
         this.pocket = pocket;
         this.layoutController.pocket = pocket;
 
-        ensureAttached();
-
         this.mouseChildren = true;
         this.mouseEnabled = false;
+
+        ensureAttached();
     }
 
     public function ensureAttached():Void {
-        if (this.parent != null) return;
-        if (this.pocket != null) {
-            if (this.pocket.game != null && this.pocket.game.addChild != null) {
-                this.pocket.game.addChild(this);
-            } else if (this.pocket.addChild != null) {
-                this.pocket.addChild(this);
+        if (this.pocket == null) return;
+
+        var targetParent:DisplayObjectContainer = null;
+        if (this.pocket.game != null) {
+            targetParent = this.pocket.game;
+        } else if (this.pocket.stage != null) {
+            targetParent = this.pocket.stage;
+        } else {
+            targetParent = this.pocket;
+        }
+
+        if (targetParent != null && this.parent != targetParent) {
+            if (this.parent != null) {
+                try { this.parent.removeChild(this); } catch (_:Dynamic) {}
             }
+            try { targetParent.addChild(this); } catch (_:Dynamic) {}
+        }
+
+        if (targetParent != null && targetParent.numChildren > 1) {
+            try {
+                if (targetParent.getChildIndex(this) != targetParent.numChildren - 1) {
+                    targetParent.setChildIndex(this, targetParent.numChildren - 1);
+                }
+            } catch (_:Dynamic) {}
         }
     }
 
@@ -55,7 +78,7 @@ class GameUI extends Sprite {
             ? new MouseWalkSimulatorController(this.pocket)
             : new KeyboardWalkSimulatorController(this.pocket);
 
-        var joystick = new Joystick(walkCtrl);
+        var joystick = new Joystick(walkCtrl, !isMouse);
         joystick.name = joystickName;
 
         var defX:Float = xPosition;
@@ -88,7 +111,7 @@ class GameUI extends Sprite {
     }
 
     public function showJoystickMouseSimulator():Void {
-        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_MOUSE, "joystickMouseSimulator", true, 73, 348);
+        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_MOUSE, "joystickMouseSimulator", true, 75, 410);
     }
 
     public function hideJoystickMouseSimulator():Void {
@@ -96,7 +119,7 @@ class GameUI extends Sprite {
     }
 
     public function showJoystickKeyboardSimulator():Void {
-        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 73 + 110, 348);
+        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 75 + 110, 410);
     }
 
     public function hideJoystickKeyboardSimulator():Void {
@@ -109,7 +132,7 @@ class GameUI extends Sprite {
             if (this.pocket.game.ui != null && this.pocket.game.ui.mcInterface != null && this.pocket.game.ui.mcInterface.actBar != null) {
                 this.pocket.game.ui.mcInterface.actBar.visible = true;
             }
-        } catch (e:Dynamic) {}
+        } catch (_:Dynamic) {}
     }
 
     public function hideSkillBar():Void {
@@ -118,7 +141,7 @@ class GameUI extends Sprite {
             if (this.pocket.game.ui != null && this.pocket.game.ui.mcInterface != null && this.pocket.game.ui.mcInterface.actBar != null) {
                 this.pocket.game.ui.mcInterface.actBar.visible = false;
             }
-        } catch (e:Dynamic) {}
+        } catch (_:Dynamic) {}
     }
 
     public function addShortcutButton(actionName:String):Void {
@@ -130,26 +153,14 @@ class GameUI extends Sprite {
         ensureAttached();
 
         var layoutKey:String = "shortcut_" + Helper.sanitize(actionName);
-        var index:Int = countShortcuts();
-
-        var COLS:Int = 4;
-        var CELL_X:Int = 64;
-        var CELL_Y:Int = 54;
-        var ORIGIN_X:Float = 480;
-        var ORIGIN_Y:Float = 245;
-
-        var col:Int = index % COLS;
-        var row:Int = Std.int(index / COLS);
-
-        var defaultX:Float = ORIGIN_X + col * CELL_X;
-        var defaultY:Float = ORIGIN_Y + row * CELL_Y;
+        var coords = getSmartDefaultPosition(actionName);
 
         var btn = new ShortcutButton(this.pocket, actionName);
         btn.name = layoutKey;
-        btn.x = defaultX;
-        btn.y = defaultY;
+        btn.x = coords.x;
+        btn.y = coords.y;
 
-        this.layoutController.register(layoutKey, btn, defaultX, defaultY, btn.scaleX, btn.scaleY);
+        this.layoutController.register(layoutKey, btn, coords.x, coords.y, btn.scaleX, btn.scaleY);
         this.layoutController.load();
 
         var added:ShortcutButton = cast addChild(btn);
@@ -157,6 +168,50 @@ class GameUI extends Sprite {
 
         persistShortcuts();
         ui.api.ApiNotificationManager.notify("Added shortcut: " + actionName);
+    }
+
+    private function getSmartDefaultPosition(actionName:String):{x:Float, y:Float} {
+        // Ergonomic mobile placement defaults
+        switch (actionName) {
+            case "Auto Attack":
+                return {x: 875, y: 395};
+            case "Skill 2":
+                return {x: 805, y: 420};
+            case "Skill 3":
+                return {x: 775, y: 355};
+            case "Skill 4":
+                return {x: 815, y: 295};
+            case "Skill 5":
+                return {x: 885, y: 265};
+            case "Skill 6":
+                return {x: 710, y: 420};
+            case "Target Random Monster":
+                return {x: 885, y: 330};
+            case "Cancel Target":
+                return {x: 725, y: 355};
+            case "Rest":
+                return {x: 880, y: 195};
+            case "Jump":
+                return {x: 810, y: 230};
+            case "Dash":
+                return {x: 740, y: 230};
+            case "Bank":
+                return {x: 880, y: 80};
+            case "Inventory":
+                return {x: 880, y: 135};
+            default:
+                // Grid layout for other utility/interface buttons
+                var index:Int = countShortcuts();
+                var COLS:Int = 3;
+                var CELL_X:Float = 64;
+                var CELL_Y:Float = 54;
+                var ORIGIN_X:Float = 460;
+                var ORIGIN_Y:Float = 200;
+
+                var col:Int = index % COLS;
+                var row:Int = Std.int(index / COLS);
+                return {x: ORIGIN_X + col * CELL_X, y: ORIGIN_Y + row * CELL_Y};
+        }
     }
 
     public function removeShortcutButton(actionName:String):Void {
@@ -181,8 +236,9 @@ class GameUI extends Sprite {
         if (saved == null || saved.length == 0) return;
 
         for (action in saved.split(",")) {
-            if (action.length > 0) {
-                addShortcutButton(action);
+            var trimmed = StringTools.trim(action);
+            if (trimmed.length > 0 && Reflect.field(shortcutButtons, trimmed) == null) {
+                addShortcutButton(trimmed);
             }
         }
     }

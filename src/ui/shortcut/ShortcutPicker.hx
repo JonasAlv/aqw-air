@@ -1,210 +1,102 @@
 package ui.shortcut;
 
-import data.Action;
 import flash.display.DisplayObject;
-import flash.display.SimpleButton;
+import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
-import flash.Vector;
-
-import ui.util.Scroll;
-import flash.display.Shape;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
+import flash.text.TextFieldType;
 import flash.text.TextFormat;
-import util.HelperScroll;
-import util.HelperSetting;
+import flash.text.TextFormatAlign;
+import util.Helper;
 
+/**
+ * Modern Shortcut Action Definition
+ */
+class ShortcutActionItem {
+    public var name:String;
+    public var category:String; // "Combat", "Storage", "Movement", "Interface"
+    public var description:String;
+
+    public function new(name:String, category:String, description:String) {
+        this.name = name;
+        this.category = category;
+        this.description = description;
+    }
+}
+
+/**
+ * Modern On-Screen Shortcut Picker created from scratch.
+ * Features categorized tabs, instant search filtering, status indicators,
+ * and mouse-wheel scrolling with zero reliance on missing Flash FLA symbols.
+ */
 class ShortcutPicker extends Sprite {
-    public static var ACTIONS:Array<Action> = [
-        new Action("Fix Lag", function(pocket:Dynamic):Void {
-            if (pocket != null && pocket.game != null) {
-                pocket.game.stopAllMovieClips();
-            }
-        }),
-        new Action("Hide Monsters"),
-        new Action("Hide Players"),
-        new Action("Hide UI"),
-        new Action("Auto Attack", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i1");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Skill 2", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i2");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Skill 3", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i3");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Skill 4", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i4");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Skill 5", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i5");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Skill 6", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null) return;
-            var bar = pocket.game.ui.mcInterface.actBar;
-            if (bar != null) {
-                var icon:Dynamic = bar.getChildByName("i6");
-                if (icon != null && icon.actObj != null) {
-                    if (icon.actObj.auto == true) {
-                        pocket.game.world.approachTarget();
-                    } else {
-                        pocket.game.world.testAction(icon.actObj);
-                    }
-                }
-            }
-        }),
-        new Action("Target Random Monster"),
-        new Action("Cancel Target"),
-        new Action("Rest"),
-        new Action("Dash"),
-        new Action("Jump"),
-        new Action("Player HP Bar"),
-        new Action("Focus Chat", function(pocket:Dynamic):Void {
-            if (pocket != null && pocket.game != null) {
-                pocket.game.stage.focus = null;
-                pocket.game.dispatchEvent(new KeyboardEvent(KeyboardEvent.KEY_DOWN, true, false, 13, 13));
-            }
-        }),
-        new Action("Inventory"),
-        new Action("Bank"),
-        new Action("Outfits"),
-        new Action("Quest Log"),
-        new Action("Character Panel"),
-        new Action("Stats Overview"),
-        new Action("Battle Analyzer"),
-        new Action("Battle Analyzer Toggle"),
-        new Action("Friends List"),
-        new Action("Friendships UI"),
-        new Action("Area List"),
-        new Action("Options"),
-        new Action("Custom Drops UI"),
-        new Action("Decline All Drops"),
-        new Action("Toggle World", function(pocket:Dynamic):Void {
-            if (pocket != null && pocket.game != null && pocket.game.world != null && pocket.game.world.map != null) {
-                pocket.game.world.map.visible = !pocket.game.world.map.visible;
-            }
-        }),
-        new Action("Toggle Joystick", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.gameCore == null || pocket.gameCore.currentFrame != "Game") return;
-            var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, true);
-            var next = !cur;
-            HelperSetting.setBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, next);
-            if (pocket.gameUI != null && pocket.gameUI.joystickMouse != null) {
-                pocket.gameUI.joystickMouse.visible = next;
-            }
-        }),
-        new Action("Toggle Skills", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.gameCore == null || pocket.gameCore.currentFrame != "Game") return;
-            var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_SKILL_BAR, true);
-            var next = !cur;
-            HelperSetting.setBool(HelperSetting.OPTION_SHOW_SKILL_BAR, next);
-            if (pocket.gameUI != null && pocket.gameUI.skillBar != null) {
-                pocket.gameUI.skillBar.visible = next;
-            }
-        }),
-        new Action("Toggle Skills Shortcuts", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null || pocket.gameUI == null) return;
-            var isVisible:Null<Bool> = null;
-            var btns:Dynamic = pocket.gameUI.shortcutButtons;
-            if (btns != null) {
-                for (actionName in Reflect.fields(btns)) {
-                    switch (actionName) {
-                        case "Auto Attack", "Skill 2", "Skill 3", "Skill 4", "Skill 5", "Skill 6":
-                            var btn:Dynamic = Reflect.field(btns, actionName);
-                            if (btn != null) {
-                                if (isVisible == null) {
-                                    isVisible = btn.visible;
-                                }
-                                btn.visible = !isVisible;
-                            }
-                    }
-                }
-            }
-        }),
-        new Action("Toggle Shortcuts", function(pocket:Dynamic):Void {
-            if (pocket == null || pocket.game == null || pocket.gameUI == null) return;
-            var btns:Dynamic = pocket.gameUI.shortcutButtons;
-            if (btns != null) {
-                for (actionName in Reflect.fields(btns)) {
-                    if (actionName == "Toggle Shortcuts") continue;
-                    var btn:Dynamic = Reflect.field(btns, actionName);
-                    if (btn != null) {
-                        btn.visible = !btn.visible;
-                    }
-                }
-            }
-        }),
-        new Action("Travel Menu's Travel"),
-        new Action("Camera Tool"),
-        new Action("World Camera"),
-        new Action("World Camera's Hide")
-    ];
+    public static var ACTIONS:Array<ShortcutActionItem> = [
+        // COMBAT
+        new ShortcutActionItem("Auto Attack", "Combat", "Attack / Approach nearest target"),
+        new ShortcutActionItem("Skill 2", "Combat", "Cast class skill 2"),
+        new ShortcutActionItem("Skill 3", "Combat", "Cast class skill 3"),
+        new ShortcutActionItem("Skill 4", "Combat", "Cast class skill 4"),
+        new ShortcutActionItem("Skill 5", "Combat", "Cast class skill 5"),
+        new ShortcutActionItem("Skill 6", "Combat", "Use potion or consumable"),
+        new ShortcutActionItem("Target Random Monster", "Combat", "Target nearest monster"),
+        new ShortcutActionItem("Cancel Target", "Combat", "Deselect active target"),
+        new ShortcutActionItem("Battle Analyzer", "Combat", "Open combat DPS analyzer"),
+        new ShortcutActionItem("Battle Analyzer Toggle", "Combat", "Toggle floating DPS meter"),
 
-    public var closeBtn:SimpleButton;
-    public var content:Sprite;
-    public var contentMask:DisplayObject;
-    public var contentScroll:Scroll;
+        // STORAGE
+        new ShortcutActionItem("Bank", "Storage", "Toggle bank storage panel"),
+        new ShortcutActionItem("Inventory", "Storage", "Open player inventory"),
+        new ShortcutActionItem("Outfits", "Storage", "Open saved equipment outfits"),
+        new ShortcutActionItem("Custom Drops UI", "Storage", "Open custom item drops screen"),
+        new ShortcutActionItem("Decline All Drops", "Storage", "Decline all current drop items"),
+
+        // MOVEMENT
+        new ShortcutActionItem("Rest", "Movement", "Rest to regenerate HP & MP"),
+        new ShortcutActionItem("Jump", "Movement", "Jump to pad in current room"),
+        new ShortcutActionItem("Dash", "Movement", "Perform dodge / dash roll"),
+        new ShortcutActionItem("Area List", "Movement", "Open room / cell navigator"),
+        new ShortcutActionItem("Toggle World", "Movement", "Toggle world map view"),
+
+        // INTERFACE
+        new ShortcutActionItem("Character Panel", "Interface", "View stats and character sheet"),
+        new ShortcutActionItem("Quest Log", "Interface", "Open active quest log"),
+        new ShortcutActionItem("Player HP Bar", "Interface", "Toggle player frame display"),
+        new ShortcutActionItem("Friends List", "Interface", "Open friends list"),
+        new ShortcutActionItem("Friendships UI", "Interface", "Open NPC friendships panel"),
+        new ShortcutActionItem("Options", "Interface", "Open game options modal"),
+        new ShortcutActionItem("Focus Chat", "Interface", "Focus chat input box"),
+        new ShortcutActionItem("Fix Lag", "Interface", "Stop background MovieClips"),
+        new ShortcutActionItem("Hide Monsters", "Interface", "Toggle monster visibility"),
+        new ShortcutActionItem("Hide Players", "Interface", "Toggle player visibility"),
+        new ShortcutActionItem("Hide UI", "Interface", "Toggle game HUD visibility"),
+        new ShortcutActionItem("Toggle Joystick", "Interface", "Toggle virtual walk joystick"),
+        new ShortcutActionItem("Toggle Skills", "Interface", "Toggle AQW skill action bar"),
+        new ShortcutActionItem("Toggle Shortcuts", "Interface", "Toggle all shortcut buttons")
+    ];
 
     private var pocket:Dynamic;
     private var onPick:String->Void;
+
+    private var win:Sprite;
+    private var searchInput:TextField;
+    private var listContainer:Sprite;
+    private var listMask:Shape;
+    private var scrollTrack:Sprite;
+    private var scrollThumb:Sprite;
+
+    private var selectedCategory:String = "ALL";
+    private var searchQuery:String = "";
+
+    private static inline var WIN_W:Float = 550;
+    private static inline var WIN_H:Float = 430;
+    private static inline var LIST_X:Float = 18;
+    private static inline var LIST_Y:Float = 125;
+    private static inline var LIST_W:Float = 496;
+    private static inline var LIST_H:Float = 285;
 
     public function new(pocket:Dynamic, onPick:String->Void) {
         super();
@@ -217,172 +109,370 @@ class ShortcutPicker extends Sprite {
 
     private function onAdded(e:Event):Void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-        buildPanel();
+        buildUI();
     }
 
-    private function buildPanel():Void {
-        if (closeBtn != null) {
-            closeBtn.addEventListener(MouseEvent.CLICK, onDismiss, false, 0, true);
+    private function buildUI():Void {
+        var stageW:Float = (stage != null && stage.stageWidth > 0) ? stage.stageWidth : 960;
+        var stageH:Float = (stage != null && stage.stageHeight > 0) ? stage.stageHeight : 550;
+
+        // 1. Semi-transparent backdrop
+        var backdrop = new Sprite();
+        backdrop.graphics.beginFill(0x000000, 0.72);
+        backdrop.graphics.drawRect(0, 0, stageW, stageH);
+        backdrop.graphics.endFill();
+        backdrop.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (e.target == backdrop) onDismiss();
+        });
+        addChild(backdrop);
+
+        // 2. Main Window
+        win = new Sprite();
+        win.graphics.beginFill(0x131313, 0.98);
+        win.graphics.lineStyle(2, 0xFFCC00, 0.95);
+        win.graphics.drawRoundRect(0, 0, WIN_W, WIN_H, 12, 12);
+        win.graphics.endFill();
+
+        // Inner header line
+        win.graphics.lineStyle(1, 0x333333, 0.8);
+        win.graphics.moveTo(0, 48);
+        win.graphics.lineTo(WIN_W, 48);
+
+        win.x = (stageW - WIN_W) / 2;
+        win.y = (stageH - WIN_H) / 2;
+        addChild(win);
+
+        // 3. Header Title
+        var title = new TextField();
+        title.defaultTextFormat = new TextFormat("_sans", 13, 0xFFCC00, true);
+        title.text = "ADD ON-SCREEN SHORTCUT";
+        title.autoSize = TextFieldAutoSize.LEFT;
+        title.x = 18;
+        title.y = 10;
+        title.selectable = false;
+        title.mouseEnabled = false;
+        win.addChild(title);
+
+        var subTitle = new TextField();
+        subTitle.defaultTextFormat = new TextFormat("_sans", 9, 0x888888, false);
+        subTitle.text = "Tap any action to place a touch shortcut button onto your HUD";
+        subTitle.autoSize = TextFieldAutoSize.LEFT;
+        subTitle.x = 18;
+        subTitle.y = 28;
+        subTitle.selectable = false;
+        subTitle.mouseEnabled = false;
+        win.addChild(subTitle);
+
+        // 4. Close Button
+        var closeBtn = new Sprite();
+        closeBtn.graphics.beginFill(0x222222, 0.9);
+        closeBtn.graphics.lineStyle(1.5, 0x444444);
+        closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
+        closeBtn.graphics.endFill();
+        closeBtn.x = WIN_W - 38;
+        closeBtn.y = 10;
+        closeBtn.buttonMode = true;
+        closeBtn.useHandCursor = true;
+
+        var closeTxt = new TextField();
+        closeTxt.defaultTextFormat = new TextFormat("_sans", 13, 0xDDDDDD, true);
+        closeTxt.text = "✕";
+        closeTxt.autoSize = TextFieldAutoSize.CENTER;
+        closeTxt.width = 28;
+        closeTxt.x = 0;
+        closeTxt.y = 3;
+        closeTxt.selectable = false;
+        closeTxt.mouseEnabled = false;
+        closeBtn.addChild(closeTxt);
+
+        closeBtn.addEventListener(MouseEvent.ROLL_OVER, function(_):Void {
+            closeBtn.graphics.clear();
+            closeBtn.graphics.beginFill(0xDC3545, 0.95);
+            closeBtn.graphics.lineStyle(1.5, 0xFFFFFF);
+            closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
+            closeBtn.graphics.endFill();
+        });
+        closeBtn.addEventListener(MouseEvent.ROLL_OUT, function(_):Void {
+            closeBtn.graphics.clear();
+            closeBtn.graphics.beginFill(0x222222, 0.9);
+            closeBtn.graphics.lineStyle(1.5, 0x444444);
+            closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
+            closeBtn.graphics.endFill();
+        });
+        closeBtn.addEventListener(MouseEvent.CLICK, function(_):Void {
+            onDismiss();
+        });
+        win.addChild(closeBtn);
+
+        // 5. Category Tabs
+        var categories = ["ALL", "Combat", "Storage", "Movement", "Interface"];
+        var tabX:Float = 18;
+        for (cat in categories) {
+            var tabBtn = makeCategoryTab(cat);
+            tabBtn.x = tabX;
+            tabBtn.y = 56;
+            win.addChild(tabBtn);
+            tabX += tabBtn.width + 8;
         }
 
-        if (content != null) {
-            var i:Int = 0;
-            for (action in ACTIONS) {
-                var shortcutRow = new ShortcutRow();
-                shortcutRow.name = action.name;
+        // 6. Search Bar
+        var searchBg = new Sprite();
+        searchBg.graphics.beginFill(0x1E1E1E, 0.9);
+        searchBg.graphics.lineStyle(1, 0x444444);
+        searchBg.graphics.drawRoundRect(0, 0, WIN_W - 36, 26, 6, 6);
+        searchBg.graphics.endFill();
+        searchBg.x = 18;
+        searchBg.y = 90;
+        win.addChild(searchBg);
 
-                if (shortcutRow.shortcutTxt != null) {
-                    shortcutRow.shortcutTxt.selectable = false;
-                    shortcutRow.shortcutTxt.mouseEnabled = false;
-                    shortcutRow.shortcutTxt.text = action.name;
+        var searchIcon = new TextField();
+        searchIcon.defaultTextFormat = new TextFormat("_sans", 10, 0x888888);
+        searchIcon.text = "🔍";
+        searchIcon.x = 24;
+        searchIcon.y = 94;
+        searchIcon.autoSize = TextFieldAutoSize.LEFT;
+        searchIcon.selectable = false;
+        searchIcon.mouseEnabled = false;
+        win.addChild(searchIcon);
+
+        searchInput = new TextField();
+        searchInput.type = TextFieldType.INPUT;
+        searchInput.defaultTextFormat = new TextFormat("_sans", 11, 0xFFFFFF);
+        searchInput.text = "";
+        searchInput.width = WIN_W - 75;
+        searchInput.height = 20;
+        searchInput.x = 45;
+        searchInput.y = 94;
+        searchInput.addEventListener(Event.CHANGE, function(_):Void {
+            searchQuery = StringTools.trim(searchInput.text).toLowerCase();
+            refreshList();
+        });
+        win.addChild(searchInput);
+
+        // 7. Scrollable List Container & Mask
+        listContainer = new Sprite();
+        listContainer.x = LIST_X;
+        listContainer.y = LIST_Y;
+        win.addChild(listContainer);
+
+        listMask = new Shape();
+        listMask.graphics.beginFill(0xFFFFFF);
+        listMask.graphics.drawRect(0, 0, LIST_W, LIST_H);
+        listMask.graphics.endFill();
+        listMask.x = LIST_X;
+        listMask.y = LIST_Y;
+        win.addChild(listMask);
+        listContainer.mask = listMask;
+
+        // 8. Mouse Wheel Scroll
+        win.addEventListener(MouseEvent.MOUSE_WHEEL, function(e:MouseEvent):Void {
+            scrollList(e.delta * 22);
+        });
+
+        refreshList();
+    }
+
+    private function makeCategoryTab(cat:String):Sprite {
+        var sp = new Sprite();
+        sp.name = "tab_" + cat;
+        sp.buttonMode = true;
+        sp.useHandCursor = true;
+        sp.mouseChildren = false;
+
+        var isSelected = (selectedCategory == cat);
+        var label = (cat == "ALL") ? "ALL ACTIONS" : cat.toUpperCase();
+
+        var txt = new TextField();
+        var tf = new TextFormat("_sans", 10, isSelected ? 0x000000 : 0xAAAAAA, true);
+        tf.align = TextFormatAlign.CENTER;
+        txt.defaultTextFormat = tf;
+        txt.text = label;
+        txt.autoSize = TextFieldAutoSize.LEFT;
+        txt.x = 10;
+        txt.y = 4;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+
+        var tabW = txt.width + 20;
+        var tabH:Float = 24;
+
+        sp.graphics.beginFill(isSelected ? 0xFFCC00 : 0x242424, 0.95);
+        sp.graphics.lineStyle(1, isSelected ? 0xFFDD00 : 0x404040);
+        sp.graphics.drawRoundRect(0, 0, tabW, tabH, 6, 6);
+        sp.graphics.endFill();
+        sp.addChild(txt);
+
+        sp.addEventListener(MouseEvent.CLICK, function(_):Void {
+            selectedCategory = cat;
+            // Redraw all tabs
+            for (c in ["ALL", "Combat", "Storage", "Movement", "Interface"]) {
+                var otherTab:Sprite = cast win.getChildByName("tab_" + c);
+                if (otherTab != null) {
+                    var otherSelected = (c == selectedCategory);
+                    otherTab.graphics.clear();
+                    otherTab.graphics.beginFill(otherSelected ? 0xFFCC00 : 0x242424, 0.95);
+                    otherTab.graphics.lineStyle(1, otherSelected ? 0xFFDD00 : 0x404040);
+                    otherTab.graphics.drawRoundRect(0, 0, otherTab.width, tabH, 6, 6);
+                    otherTab.graphics.endFill();
+                    var otherTxt:TextField = cast otherTab.getChildAt(0);
+                    if (otherTxt != null) {
+                        var otf = new TextFormat("_sans", 10, otherSelected ? 0x000000 : 0xAAAAAA, true);
+                        otf.align = TextFormatAlign.CENTER;
+                        otherTxt.defaultTextFormat = otf;
+                        otherTxt.setTextFormat(otf);
+                    }
                 }
-
-                shortcutRow.y = i * (shortcutRow.height > 0 ? shortcutRow.height : 30);
-                shortcutRow.buttonMode = true;
-                shortcutRow.useHandCursor = true;
-
-                shortcutRow.addEventListener(MouseEvent.CLICK, onRowClick, false, 0, true);
-                content.addChild(shortcutRow);
-                i++;
             }
+            refreshList();
+        });
 
-            if (contentScroll != null && contentMask != null) {
-                new HelperScroll(contentScroll, content, contentMask);
+        return sp;
+    }
+
+    private function refreshList():Void {
+        while (listContainer.numChildren > 0) {
+            listContainer.removeChildAt(0);
+        }
+        listContainer.y = LIST_Y;
+
+        var filtered = ACTIONS.filter(function(item) {
+            if (selectedCategory != "ALL" && item.category != selectedCategory) return false;
+            if (searchQuery.length > 0) {
+                var matchName = item.name.toLowerCase().indexOf(searchQuery) != -1;
+                var matchDesc = item.description.toLowerCase().indexOf(searchQuery) != -1;
+                return matchName || matchDesc;
             }
-        } else {
-            // Programmatic UI when SWF symbol is not available
-            var stageW:Float = (stage != null && stage.stageWidth > 0) ? stage.stageWidth : 960;
-            var stageH:Float = (stage != null && stage.stageHeight > 0) ? stage.stageHeight : 500;
+            return true;
+        });
 
-            var backdrop = new Sprite();
-            backdrop.graphics.beginFill(0x000000, 0.65);
-            backdrop.graphics.drawRect(0, 0, stageW, stageH);
-            backdrop.graphics.endFill();
-            backdrop.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-                if (e.target == backdrop) onDismiss();
-            });
-            addChild(backdrop);
+        var CARD_W:Float = (LIST_W - 10) / 2;
+        var CARD_H:Float = 42;
+        var GAP:Float = 8;
 
-            var winW:Float = 480;
-            var winH:Float = 400;
-            var win = new Sprite();
-            win.graphics.beginFill(0x161616, 0.98);
-            win.graphics.lineStyle(1.5, 0x333333);
-            win.graphics.drawRoundRect(0, 0, winW, winH, 8, 8);
-            win.graphics.endFill();
-            win.x = (stageW - winW) / 2;
-            win.y = (stageH - winH) / 2;
-            addChild(win);
+        for (i in 0...filtered.length) {
+            var item = filtered[i];
+            var col = i % 2;
+            var row = Std.int(i / 2);
 
-            var title = new TextField();
-            title.defaultTextFormat = new TextFormat("_sans", 13, 0xFFCC00, true);
-            title.text = "SELECT SHORTCUT ACTION";
-            title.autoSize = TextFieldAutoSize.LEFT;
-            title.x = 16;
-            title.y = 12;
-            title.selectable = false;
-            title.mouseEnabled = false;
-            win.addChild(title);
-
-            var closeBtnSp = new Sprite();
-            closeBtnSp.graphics.beginFill(0x282828);
-            closeBtnSp.graphics.drawRoundRect(0, 0, 24, 24, 4, 4);
-            closeBtnSp.graphics.endFill();
-            closeBtnSp.x = winW - 36;
-            closeBtnSp.y = 8;
-            closeBtnSp.buttonMode = true;
-            var closeTxt = new TextField();
-            closeTxt.defaultTextFormat = new TextFormat("_sans", 12, 0xAAAAAA, true);
-            closeTxt.text = "✕";
-            closeTxt.autoSize = TextFieldAutoSize.CENTER;
-            closeTxt.x = 7;
-            closeTxt.y = 4;
-            closeTxt.selectable = false;
-            closeTxt.mouseEnabled = false;
-            closeBtnSp.addChild(closeTxt);
-            closeBtnSp.addEventListener(MouseEvent.CLICK, onDismiss);
-            win.addChild(closeBtnSp);
-
-            var listContainer = new Sprite();
-            listContainer.x = 16;
-            listContainer.y = 44;
-            win.addChild(listContainer);
-
-            var maskSp = new Shape();
-            maskSp.graphics.beginFill(0xFFFFFF);
-            maskSp.graphics.drawRect(0, 0, winW - 32, winH - 56);
-            maskSp.graphics.endFill();
-            maskSp.x = 16;
-            maskSp.y = 44;
-            win.addChild(maskSp);
-            listContainer.mask = maskSp;
-
-            var colW:Float = (winW - 44) / 2;
-            var rowH:Float = 32;
-            var i:Int = 0;
-            for (action in ACTIONS) {
-                var col = i % 2;
-                var row = Std.int(i / 2);
-                var btn = new Sprite();
-                btn.graphics.beginFill(0x222222);
-                btn.graphics.lineStyle(1, 0x383838);
-                btn.graphics.drawRoundRect(0, 0, colW, rowH - 4, 4, 4);
-                btn.graphics.endFill();
-                btn.x = col * (colW + 12);
-                btn.y = row * rowH;
-                btn.buttonMode = true;
-                btn.mouseChildren = false;
-
-                var txt = new TextField();
-                txt.defaultTextFormat = new TextFormat("_sans", 11, 0xDDDDDD);
-                txt.text = action.name;
-                txt.autoSize = TextFieldAutoSize.CENTER;
-                txt.width = colW;
-                txt.y = 5;
-                txt.selectable = false;
-                txt.mouseEnabled = false;
-                btn.addChild(txt);
-
-                var actionName = action.name;
-                btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-                    if (onPick != null) onPick(actionName);
-                    onDismiss();
-                });
-                btn.addEventListener(MouseEvent.ROLL_OVER, function(e:MouseEvent):Void {
-                    btn.graphics.clear();
-                    btn.graphics.beginFill(0x333333);
-                    btn.graphics.lineStyle(1, 0x555555);
-                    btn.graphics.drawRoundRect(0, 0, colW, rowH - 4, 4, 4);
-                    btn.graphics.endFill();
-                });
-                btn.addEventListener(MouseEvent.ROLL_OUT, function(e:MouseEvent):Void {
-                    btn.graphics.clear();
-                    btn.graphics.beginFill(0x222222);
-                    btn.graphics.lineStyle(1, 0x383838);
-                    btn.graphics.drawRoundRect(0, 0, colW, rowH - 4, 4, 4);
-                    btn.graphics.endFill();
-                });
-
-                listContainer.addChild(btn);
-                i++;
-            }
-
-            var totalRows = Std.int((ACTIONS.length + 1) / 2);
-            var maxScroll = Math.max(0, totalRows * rowH - (winH - 56));
-            win.addEventListener(MouseEvent.MOUSE_WHEEL, function(e:MouseEvent):Void {
-                var newY = listContainer.y + (e.delta > 0 ? 30 : -30);
-                if (newY > 44) newY = 44;
-                if (newY < 44 - maxScroll) newY = 44 - maxScroll;
-                listContainer.y = newY;
-            });
+            var card = makeActionCard(item, CARD_W, CARD_H);
+            card.x = col * (CARD_W + GAP);
+            card.y = row * (CARD_H + GAP);
+            listContainer.addChild(card);
         }
     }
 
-    private function onRowClick(e:MouseEvent):Void {
-        var target:Sprite = cast e.currentTarget;
-        if (target != null && onPick != null) {
-            onPick(target.name);
+    private function makeActionCard(item:ShortcutActionItem, w:Float, h:Float):Sprite {
+        var card = new Sprite();
+        card.buttonMode = true;
+        card.useHandCursor = true;
+
+        var isPlaced = false;
+        if (pocket != null && pocket.gameUI != null && pocket.gameUI.shortcutButtons != null) {
+            isPlaced = Reflect.field(pocket.gameUI.shortcutButtons, item.name) != null;
         }
+
+        var catColor = getCategoryColor(item.category);
+
+        var drawCard = function(isHover:Bool):Void {
+            card.graphics.clear();
+
+            var fill = isPlaced ? 0x1A1A1A : (isHover ? 0x2A2A2A : 0x1E1E1E);
+            var border = isPlaced ? 0x333333 : (isHover ? 0xFFCC00 : 0x3A3A3A);
+
+            card.graphics.beginFill(fill, 0.95);
+            card.graphics.lineStyle(1.5, border, 0.95);
+            card.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            card.graphics.endFill();
+
+            // Left Category Color Pill
+            card.graphics.beginFill(isPlaced ? 0x555555 : catColor, 0.9);
+            card.graphics.lineStyle(0, 0, 0);
+            card.graphics.drawRoundRect(3, 4, 4, h - 8, 2, 2);
+            card.graphics.endFill();
+        };
+
+        drawCard(false);
+
+        // Action Name
+        var nameTxt = new TextField();
+        var nTf = new TextFormat("_sans", 11, isPlaced ? 0x777777 : 0xFFFFFF, true);
+        nameTxt.defaultTextFormat = nTf;
+        nameTxt.text = item.name;
+        nameTxt.x = 14;
+        nameTxt.y = 4;
+        nameTxt.autoSize = TextFieldAutoSize.LEFT;
+        nameTxt.selectable = false;
+        nameTxt.mouseEnabled = false;
+        card.addChild(nameTxt);
+
+        // Action Description
+        var descTxt = new TextField();
+        var dTf = new TextFormat("_sans", 9, isPlaced ? 0x555555 : 0x888888, false);
+        descTxt.defaultTextFormat = dTf;
+        descTxt.text = item.description;
+        descTxt.x = 14;
+        descTxt.y = 22;
+        descTxt.autoSize = TextFieldAutoSize.LEFT;
+        descTxt.selectable = false;
+        descTxt.mouseEnabled = false;
+        card.addChild(descTxt);
+
+        if (isPlaced) {
+            // Placed Badge
+            var badge = new TextField();
+            var bTf = new TextFormat("_sans", 8, 0x888888, true);
+            bTf.align = TextFormatAlign.RIGHT;
+            badge.defaultTextFormat = bTf;
+            badge.text = "[ ACTIVE ]";
+            badge.autoSize = TextFieldAutoSize.RIGHT;
+            badge.x = w - 62;
+            badge.y = 12;
+            badge.selectable = false;
+            badge.mouseEnabled = false;
+            card.addChild(badge);
+            card.alpha = 0.55;
+        } else {
+            card.addEventListener(MouseEvent.ROLL_OVER, function(_):Void {
+                drawCard(true);
+            });
+            card.addEventListener(MouseEvent.ROLL_OUT, function(_):Void {
+                drawCard(false);
+            });
+            card.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+                if (onPick != null) {
+                    onPick(item.name);
+                }
+                onDismiss();
+            });
+        }
+
+        return card;
+    }
+
+    private function getCategoryColor(cat:String):Int {
+        return switch (cat) {
+            case "Combat": 0xDC3545; // Red
+            case "Storage": 0x007BFF; // Blue
+            case "Movement": 0x28A745; // Green
+            default: 0x9B59B6; // Purple
+        };
+    }
+
+    private function scrollList(delta:Float):Void {
+        var contentH = listContainer.height;
+        if (contentH <= LIST_H) {
+            listContainer.y = LIST_Y;
+            return;
+        }
+
+        var newY = listContainer.y + delta;
+        var minY = LIST_Y - (contentH - LIST_H);
+        var maxY = LIST_Y;
+
+        if (newY < minY) newY = minY;
+        if (newY > maxY) newY = maxY;
+
+        listContainer.y = newY;
     }
 
     private function onDismiss(?e:MouseEvent):Void {

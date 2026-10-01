@@ -2296,7 +2296,7 @@ class ApiDashboardModal extends Sprite {
             true,
             function():Void {
                 var pkt:Dynamic = getPocket();
-                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                if (!isInGame(pkt)) {
                     ApiNotificationManager.notify("Layout editor is only available while in-game.");
                     return;
                 }
@@ -2327,6 +2327,16 @@ class ApiDashboardModal extends Sprite {
         );
     }
 
+    private function isInGame(pkt:Dynamic):Bool {
+        if (pkt == null || pkt.game == null) return false;
+        try {
+            if (pkt.gameCore != null && pkt.gameCore.currentFrame == "Game") return true;
+            if (pkt.game.world != null && pkt.game.world.myAvatar != null) return true;
+            if (com.aqwapi.Api.isReady) return true;
+        } catch (_:Dynamic) {}
+        return false;
+    }
+
     private function renderShortcutsTab():Void {
         addSectionHeader("In-Game Shortcuts");
 
@@ -2339,7 +2349,7 @@ class ApiDashboardModal extends Sprite {
             true,
             function():Void {
                 var pkt:Dynamic = getPocket();
-                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                if (!isInGame(pkt)) {
                     ApiNotificationManager.notify("Shortcuts are only available while in-game.");
                     return;
                 }
@@ -2363,7 +2373,7 @@ class ApiDashboardModal extends Sprite {
             false,
             function():Void {
                 var pkt:Dynamic = getPocket();
-                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                if (!isInGame(pkt)) {
                     ApiNotificationManager.notify("Shortcuts are only available while in-game.");
                     return;
                 }

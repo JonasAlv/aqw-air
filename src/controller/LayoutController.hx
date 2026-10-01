@@ -3,349 +3,266 @@ package controller;
 import data.WidgetEntry;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
-import flash.display.SimpleButton;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
-import flash.events.TouchEvent;
-import flash.geom.Point;
-import flash.ui.Multitouch;
-import flash.Vector;
-import ui.util.BasicButton;
-import ui.util.Handle;
+import flash.text.TextField;
+import flash.text.TextFormat;
+import flash.text.TextFormatAlign;
 import util.Helper;
 import util.HelperSetting;
 
+/**
+ * Modern Direct Drag-and-Drop Layout Manager created from scratch.
+ * Replaces legacy 2018 Handle buttons with intuitive direct mouse/touch dragging,
+ * mouse-wheel scaling, and a floating gold control toolbar.
+ */
 class LayoutController {
-    private static inline var SCALE_STEP:Float = 0.15;
-    private static inline var SCALE_MIN:Float = 0.1;
-    private static inline var SCALE_MAX:Float = 5.0;
-    private static inline var GRID_SIZE:Float = 22.0;
-
     public static var editMode:Bool = false;
-    private static var current:WidgetEntry;
 
     private var widgets:Array<WidgetEntry> = [];
-    private var dragOffsetX:Float = 0;
-    private var dragOffsetY:Float = 0;
-    private var activeTouchID:Int = -1;
     public var pocket:Dynamic = null;
+    private var toolbar:Sprite = null;
 
     public function new() {}
 
     public function register(id:String, target:Sprite, defaultPositionX:Float, defaultPositionY:Float, defaultScaleX:Float, defaultScaleY:Float):Void {
-        this.widgets.push(new WidgetEntry(id, target, defaultPositionX, defaultPositionY, defaultScaleX, defaultScaleY));
+        for (w in widgets) {
+            if (w.id == id) {
+                w.target = target;
+                w.defaultPositionX = defaultPositionX;
+                w.defaultPositionY = defaultPositionY;
+                return;
+            }
+        }
+        widgets.push(new WidgetEntry(id, target, defaultPositionX, defaultPositionY, defaultScaleX, defaultScaleY));
     }
 
     public function unregister(id:String):Void {
-        for (i in 0...this.widgets.length) {
-            if (this.widgets[i].id == id) {
-                hideHandles(this.widgets[i]);
-                this.widgets.splice(i, 1);
+        for (i in 0...widgets.length) {
+            if (widgets[i].id == id) {
+                widgets.splice(i, 1);
                 return;
             }
         }
     }
 
     public function load():Void {
-        for (widgetEntry in this.widgets) {
-            var saved:Dynamic = HelperSetting._get(widgetEntry.id);
+        for (w in widgets) {
+            if (w.target == null) continue;
+            var saved:Dynamic = HelperSetting._get(w.id);
             if (saved != null) {
-                widgetEntry.target.x = saved.x != null ? saved.x : widgetEntry.defaultPositionX;
-                widgetEntry.target.y = saved.y != null ? saved.y : widgetEntry.defaultPositionY;
-                widgetEntry.target.scaleX = saved.scaleX != null ? saved.scaleX : widgetEntry.defaultScaleX;
-                widgetEntry.target.scaleY = saved.scaleY != null ? saved.scaleY : widgetEntry.defaultScaleY;
+                w.target.x = (saved.x != null) ? saved.x : w.defaultPositionX;
+                w.target.y = (saved.y != null) ? saved.y : w.defaultPositionY;
+                w.target.scaleX = (saved.scaleX != null) ? saved.scaleX : w.defaultScaleX;
+                w.target.scaleY = (saved.scaleY != null) ? saved.scaleY : w.defaultScaleY;
             } else {
-                widgetEntry.target.x = widgetEntry.defaultPositionX;
-                widgetEntry.target.y = widgetEntry.defaultPositionY;
-                widgetEntry.target.scaleX = widgetEntry.defaultScaleX;
-                widgetEntry.target.scaleY = widgetEntry.defaultScaleY;
+                w.target.x = w.defaultPositionX;
+                w.target.y = w.defaultPositionY;
+                w.target.scaleX = w.defaultScaleX;
+                w.target.scaleY = w.defaultScaleY;
+            }
+        }
+    }
+
+    public function updatePosition(id:String, x:Float, y:Float):Void {
+        for (w in widgets) {
+            if (w.id == id) {
+                HelperSetting._set(id, {
+                    x: x,
+                    y: y,
+                    scaleX: (w.target != null ? w.target.scaleX : 1.0),
+                    scaleY: (w.target != null ? w.target.scaleY : 1.0)
+                });
+                return;
             }
         }
     }
 
     public function toggleEdit(state:Bool):Void {
         editMode = state;
-        var pocket:Dynamic = this.pocket;
-        if (pocket == null) {
-            try {
-                var g:Dynamic = untyped __global__["Pocket"];
-                if (g != null && g.SINGLETON != null) pocket = g.SINGLETON;
-            } catch (e:Dynamic) {}
+        var p = getPocketInstance();
+
+        // 1. Notify all widgets of edit mode state
+        for (w in widgets) {
+            if (w.target == null) continue;
+            if (Std.isOfType(w.target, ui.shortcut.ShortcutButton)) {
+                cast(w.target, ui.shortcut.ShortcutButton).setEditMode(editMode);
+            } else if (Std.isOfType(w.target, ui.input.Joystick)) {
+                cast(w.target, ui.input.Joystick).setEditMode(editMode);
+            }
         }
 
         if (editMode) {
-            if (pocket != null && pocket.gameUI != null && pocket.gameUI.getChildByName("LayoutSaveButton") == null) {
-                if (pocket.gameCore != null) {
-                    pocket.gameCore.setWorldFilters([Helper.GRAYSCALE]);
-                }
-
-                var saveButton = new BasicButton("Save");
-                saveButton.name = "LayoutSaveButton";
-                saveButton.x = 480 - (saveButton.width / 2);
-                saveButton.y = 10;
-
-                var onHide = function(e:Dynamic):Void {
-                    if (pocket != null && pocket.gameUI != null) {
-                        pocket.gameUI.hideEditLayout();
-                    }
-                };
-
-                if (Multitouch.supportsTouchEvents) {
-                    saveButton.addEventListener(TouchEvent.TOUCH_TAP, onHide, false, 0, true);
-                }
-                saveButton.addEventListener(MouseEvent.CLICK, onHide, false, 0, true);
-
-                pocket.gameUI.addChild(saveButton);
+            if (p != null && p.gameCore != null) {
+                p.gameCore.setWorldFilters([Helper.GRAYSCALE]);
             }
+            showToolbar();
+            attachWheelScaleListener();
+            ui.api.ApiNotificationManager.notify("Layout Editor Active: Drag buttons directly to move!");
         } else {
-            if (pocket != null && pocket.gameCore != null) {
-                pocket.gameCore.setWorldFilters([]);
+            if (p != null && p.gameCore != null) {
+                p.gameCore.setWorldFilters([]);
             }
+            hideToolbar();
+            removeWheelScaleListener();
+            saveAll();
+        }
+    }
 
-            if (pocket != null && pocket.gameUI != null) {
-                var saveButton2:DisplayObject = pocket.gameUI.getChildByName("LayoutSaveButton");
-                if (saveButton2 != null && saveButton2.parent != null) {
-                    saveButton2.parent.removeChild(saveButton2);
-                }
+    private function showToolbar():Void {
+        hideToolbar();
+        var p = getPocketInstance();
+        if (p == null || p.gameUI == null) return;
+
+        var stageW:Float = (p.game != null && p.game.stage != null) ? p.game.stage.stageWidth : 960;
+        var barW:Float = 340;
+        var barH:Float = 42;
+
+        toolbar = new Sprite();
+        toolbar.name = "LayoutEditToolbar";
+        toolbar.graphics.beginFill(0x181818, 0.95);
+        toolbar.graphics.lineStyle(2, 0xFFCC00, 1.0);
+        toolbar.graphics.drawRoundRect(0, 0, barW, barH, 20, 20);
+        toolbar.graphics.endFill();
+
+        toolbar.x = (stageW - barW) / 2;
+        toolbar.y = 12;
+
+        // Button 1: Save (Green)
+        var saveBtn = makeToolbarButton("✓ Save Layout", 0x28A745, 120, 28);
+        saveBtn.x = 10;
+        saveBtn.y = 7;
+        saveBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            toggleEdit(false);
+            ui.api.ApiNotificationManager.notify("Controls layout saved!");
+        });
+        toolbar.addChild(saveBtn);
+
+        // Button 2: Reset (Dark Grey)
+        var resetBtn = makeToolbarButton("↺ Reset", 0x333333, 90, 28);
+        resetBtn.x = 138;
+        resetBtn.y = 7;
+        resetBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            resetToDefaults();
+            ui.api.ApiNotificationManager.notify("Layout reset to defaults!");
+        });
+        toolbar.addChild(resetBtn);
+
+        // Button 3: Close (Red)
+        var closeBtn = makeToolbarButton("✕ Exit", 0xDC3545, 90, 28);
+        closeBtn.x = 238;
+        closeBtn.y = 7;
+        closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            toggleEdit(false);
+        });
+        toolbar.addChild(closeBtn);
+
+        p.gameUI.addChild(toolbar);
+    }
+
+    private function hideToolbar():Void {
+        if (toolbar != null && toolbar.parent != null) {
+            toolbar.parent.removeChild(toolbar);
+            toolbar = null;
+        }
+    }
+
+    private function makeToolbarButton(label:String, bgColor:Int, w:Float, h:Float):Sprite {
+        var sp = new Sprite();
+        sp.buttonMode = true;
+        sp.useHandCursor = true;
+        sp.mouseChildren = false;
+
+        var drawState = function(fill:Int, border:Int):Void {
+            sp.graphics.clear();
+            sp.graphics.beginFill(fill, 0.95);
+            sp.graphics.lineStyle(1.5, border, 0.9);
+            sp.graphics.drawRoundRect(0, 0, w, h, 14, 14);
+            sp.graphics.endFill();
+        };
+
+        drawState(bgColor, 0x666666);
+
+        var txt = new TextField();
+        var tf = new TextFormat("_sans", 11, 0xFFFFFF, true);
+        tf.align = TextFormatAlign.CENTER;
+        txt.defaultTextFormat = tf;
+        txt.text = label;
+        txt.width = w;
+        txt.y = 5;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+        sp.addChild(txt);
+
+        sp.addEventListener(MouseEvent.ROLL_OVER, function(e:MouseEvent):Void {
+            drawState(bgColor + 0x1A1A1A, 0xFFCC00);
+        });
+        sp.addEventListener(MouseEvent.ROLL_OUT, function(e:MouseEvent):Void {
+            drawState(bgColor, 0x666666);
+        });
+
+        return sp;
+    }
+
+    private function attachWheelScaleListener():Void {
+        var p = getPocketInstance();
+        if (p != null && p.game != null && p.game.stage != null) {
+            p.game.stage.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheelScale, false, 0, true);
+        }
+    }
+
+    private function removeWheelScaleListener():Void {
+        var p = getPocketInstance();
+        if (p != null && p.game != null && p.game.stage != null) {
+            p.game.stage.removeEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheelScale);
+        }
+    }
+
+    private function onMouseWheelScale(e:MouseEvent):Void {
+        if (!editMode) return;
+        for (w in widgets) {
+            if (w.target == null) continue;
+            if (w.target.hitTestPoint(e.stageX, e.stageY, true)) {
+                var deltaScale = (e.delta > 0) ? 0.08 : -0.08;
+                var newScale = Math.max(0.5, Math.min(2.5, w.target.scaleX + deltaScale));
+                w.target.scaleX = newScale;
+                w.target.scaleY = newScale;
+                updatePosition(w.id, w.target.x, w.target.y);
+                break;
             }
         }
+    }
 
-        for (widgetEntry in this.widgets) {
-            if (editMode) {
-                showHandles(widgetEntry);
-            } else {
-                hideHandles(widgetEntry);
-                HelperSetting._set(widgetEntry.id, {
-                    x: widgetEntry.target.x,
-                    y: widgetEntry.target.y,
-                    scaleX: widgetEntry.target.scaleX,
-                    scaleY: widgetEntry.target.scaleY
-                });
-            }
+    public function saveAll():Void {
+        for (w in widgets) {
+            if (w.target == null) continue;
+            HelperSetting._set(w.id, {
+                x: w.target.x,
+                y: w.target.y,
+                scaleX: w.target.scaleX,
+                scaleY: w.target.scaleY
+            });
         }
     }
 
     public function resetToDefaults():Void {
-        if (editMode) {
-            for (e in this.widgets) {
-                hideHandles(e);
-            }
-            editMode = false;
-        }
-
-        for (widgetEntry in this.widgets) {
-            widgetEntry.target.x = widgetEntry.defaultPositionX;
-            widgetEntry.target.y = widgetEntry.defaultPositionY;
-            widgetEntry.target.scaleX = widgetEntry.defaultScaleX;
-            widgetEntry.target.scaleY = widgetEntry.defaultScaleY;
-
-            HelperSetting._delete(widgetEntry.id);
+        for (w in widgets) {
+            if (w.target == null) continue;
+            w.target.x = w.defaultPositionX;
+            w.target.y = w.defaultPositionY;
+            w.target.scaleX = w.defaultScaleX;
+            w.target.scaleY = w.defaultScaleY;
+            HelperSetting._set(w.id, null);
         }
     }
 
-    private function showHandles(widgetEntry:WidgetEntry):Void {
-        if (widgetEntry.handle != null || widgetEntry.target == null || widgetEntry.target.parent == null) {
-            return;
-        }
-
-        var parent:DisplayObjectContainer = widgetEntry.target.parent;
-        var handle = new Handle();
-        handle.x = widgetEntry.target.x;
-        handle.y = widgetEntry.target.y;
-
-        parent.addChild(handle);
-
-        if (Multitouch.supportsTouchEvents) {
-            if (handle.drag != null) handle.drag.addEventListener(TouchEvent.TOUCH_BEGIN, onHandleTouchBegin, false, 0, true);
-            if (handle.up != null) handle.up.addEventListener(TouchEvent.TOUCH_TAP, onResizeUp, false, 0, true);
-            if (handle.down != null) handle.down.addEventListener(TouchEvent.TOUCH_TAP, onResizeDown, false, 0, true);
-        }
-
-        if (handle.drag != null) handle.drag.addEventListener(MouseEvent.MOUSE_DOWN, onHandleMouseDown, false, 0, true);
-        if (handle.up != null) handle.up.addEventListener(MouseEvent.CLICK, onResizeUp, false, 0, true);
-        if (handle.down != null) handle.down.addEventListener(MouseEvent.CLICK, onResizeDown, false, 0, true);
-
-        widgetEntry.handle = handle;
-    }
-
-    private function repositionHandles(widgetEntry:WidgetEntry):Void {
-        if (widgetEntry.handle == null) return;
-        widgetEntry.handle.x = widgetEntry.target.x;
-        widgetEntry.handle.y = widgetEntry.target.y;
-    }
-
-    private function hideHandles(widgetEntry:WidgetEntry):Void {
-        if (widgetEntry.handle == null) return;
-
-        if (Multitouch.supportsTouchEvents) {
-            if (widgetEntry.handle.drag != null) widgetEntry.handle.drag.removeEventListener(TouchEvent.TOUCH_BEGIN, onHandleTouchBegin);
-            if (widgetEntry.handle.up != null) widgetEntry.handle.up.removeEventListener(TouchEvent.TOUCH_TAP, onResizeUp);
-            if (widgetEntry.handle.down != null) widgetEntry.handle.down.removeEventListener(TouchEvent.TOUCH_TAP, onResizeDown);
-        }
-
-        if (widgetEntry.handle.drag != null) widgetEntry.handle.drag.removeEventListener(MouseEvent.MOUSE_DOWN, onHandleMouseDown);
-        if (widgetEntry.handle.up != null) widgetEntry.handle.up.removeEventListener(MouseEvent.CLICK, onResizeUp);
-        if (widgetEntry.handle.down != null) widgetEntry.handle.down.removeEventListener(MouseEvent.CLICK, onResizeDown);
-
-        if (widgetEntry.handle.parent != null) {
-            widgetEntry.handle.parent.removeChild(widgetEntry.handle);
-        }
-
-        widgetEntry.handle = null;
-    }
-
-    private function entryForHandle(button:SimpleButton):WidgetEntry {
-        if (button == null) return null;
-        for (widgetEntry in this.widgets) {
-            if (widgetEntry.handle != null && (widgetEntry.handle.drag == button || widgetEntry.handle.up == button || widgetEntry.handle.down == button)) {
-                return widgetEntry;
-            }
-        }
+    private function getPocketInstance():Dynamic {
+        if (this.pocket != null) return this.pocket;
+        try {
+            var g:Dynamic = untyped __global__["Pocket"];
+            if (g != null && g.SINGLETON != null) return g.SINGLETON;
+        } catch (_:Dynamic) {}
         return null;
-    }
-
-    private function onHandleTouchBegin(e:TouchEvent):Void {
-        if (this.activeTouchID != -1) return;
-        current = entryForHandle(cast e.currentTarget);
-        if (current == null || current.target == null || current.target.parent == null) return;
-
-        this.activeTouchID = e.touchPointID;
-        var parent:DisplayObjectContainer = current.target.parent;
-        var pointer:Point = parent.globalToLocal(new Point(e.stageX, e.stageY));
-
-        dragOffsetX = pointer.x - current.target.x;
-        dragOffsetY = pointer.y - current.target.y;
-
-        if (current.handle != null) current.handle.visible = false;
-        if (current.target.stage != null) {
-            current.target.stage.addEventListener(TouchEvent.TOUCH_MOVE, onTouchMove, false, 0, true);
-            current.target.stage.addEventListener(TouchEvent.TOUCH_END, onTouchEnd, false, 0, true);
-        }
-    }
-
-    private function onTouchMove(e:TouchEvent):Void {
-        if (current == null || current.target.parent == null || e.touchPointID != this.activeTouchID) return;
-
-        var parent:DisplayObjectContainer = current.target.parent;
-        var pointer:Point = parent.globalToLocal(new Point(e.stageX, e.stageY));
-
-        var nextX:Float = pointer.x - dragOffsetX;
-        var nextY:Float = pointer.y - dragOffsetY;
-
-        if (isSnapToGridEnabled()) {
-            nextX = snap(nextX);
-            nextY = snap(nextY);
-        }
-
-        current.target.x = nextX;
-        current.target.y = nextY;
-    }
-
-    private function onTouchEnd(e:TouchEvent):Void {
-        if (current == null || e.touchPointID != this.activeTouchID) return;
-
-        if (current.target != null && current.target.stage != null) {
-            current.target.stage.removeEventListener(TouchEvent.TOUCH_MOVE, onTouchMove);
-            current.target.stage.removeEventListener(TouchEvent.TOUCH_END, onTouchEnd);
-        }
-
-        this.activeTouchID = -1;
-
-        if (isSnapToGridEnabled()) {
-            current.target.x = snap(current.target.x);
-            current.target.y = snap(current.target.y);
-        }
-
-        if (current.handle != null) {
-            current.handle.visible = true;
-            repositionHandles(current);
-        }
-
-        current = null;
-    }
-
-    private function onHandleMouseDown(e:MouseEvent):Void {
-        current = entryForHandle(cast e.currentTarget);
-        if (current == null || current.target == null || current.target.parent == null) return;
-
-        var parent:DisplayObjectContainer = current.target.parent;
-        var pointer:Point = parent.globalToLocal(new Point(e.stageX, e.stageY));
-
-        dragOffsetX = pointer.x - current.target.x;
-        dragOffsetY = pointer.y - current.target.y;
-
-        if (current.handle != null) current.handle.visible = false;
-        if (current.target.stage != null) {
-            current.target.stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove, false, 0, true);
-            current.target.stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp, false, 0, true);
-        }
-    }
-
-    private function onMouseMove(e:MouseEvent):Void {
-        if (current == null || current.target.parent == null) return;
-
-        var parent:DisplayObjectContainer = current.target.parent;
-        var pointer:Point = parent.globalToLocal(new Point(e.stageX, e.stageY));
-
-        var nextX:Float = pointer.x - dragOffsetX;
-        var nextY:Float = pointer.y - dragOffsetY;
-
-        if (isSnapToGridEnabled()) {
-            nextX = snap(nextX);
-            nextY = snap(nextY);
-        }
-
-        current.target.x = nextX;
-        current.target.y = nextY;
-    }
-
-    private function onMouseUp(e:MouseEvent):Void {
-        if (current == null) return;
-
-        if (current.target != null && current.target.stage != null) {
-            current.target.stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-            current.target.stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
-        }
-
-        if (isSnapToGridEnabled()) {
-            current.target.x = snap(current.target.x);
-            current.target.y = snap(current.target.y);
-        }
-
-        if (current.handle != null) {
-            current.handle.visible = true;
-            repositionHandles(current);
-        }
-
-        current = null;
-    }
-
-    private function onResizeUp(e:Dynamic):Void {
-        var entry:WidgetEntry = entryForHandle(cast e.currentTarget);
-        if (entry == null) return;
-
-        var scale:Float = Math.min(SCALE_MAX, entry.target.scaleX + SCALE_STEP);
-        entry.target.scaleX = scale;
-        entry.target.scaleY = scale;
-        repositionHandles(entry);
-    }
-
-    private function onResizeDown(e:Dynamic):Void {
-        var entry:WidgetEntry = entryForHandle(cast e.currentTarget);
-        if (entry == null) return;
-
-        var scale:Float = Math.max(SCALE_MIN, entry.target.scaleX - SCALE_STEP);
-        entry.target.scaleX = scale;
-        entry.target.scaleY = scale;
-        repositionHandles(entry);
-    }
-
-    private function isSnapToGridEnabled():Bool {
-        return HelperSetting.getBool(HelperSetting.OPTION_SNAP_TO_GRID, true);
-    }
-
-    private function snap(value:Float):Float {
-        return Math.round(value / GRID_SIZE) * GRID_SIZE;
     }
 }

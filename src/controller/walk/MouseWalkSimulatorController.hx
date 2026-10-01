@@ -6,6 +6,10 @@ import flash.geom.ColorTransform;
 import flash.geom.Point;
 import flash.Lib;
 
+/**
+ * Virtual Analog Mouse Walk Simulator Controller.
+ * Simulates smooth 360-degree character walking and sprint/dash in AQW.
+ */
 class MouseWalkSimulatorController extends WalkController {
     public static var IS_DASHING_ON:Bool = false;
 
@@ -43,12 +47,19 @@ class MouseWalkSimulatorController extends WalkController {
             return;
         }
 
-        if (!this.pocket.game.world.isMoveOK(this.pocket.game.world.myAvatar.dataLeaf) || !(this.pocket.game.world.bitWalk == true)) {
-            return;
-        }
+        var world:Dynamic = this.pocket.game.world;
+        var canMove:Bool = true;
+        try {
+            if (world.isMoveOK != null && world.myAvatar.dataLeaf != null) {
+                canMove = world.isMoveOK(world.myAvatar.dataLeaf);
+            }
+        } catch (_:Dynamic) {}
+        if (!canMove) return;
+
+        if (world.bitWalk == false || world.bitWalk == 0) return;
 
         var angle:Float = Math.atan2(dirY, dirX);
-        var baseSpeed:Float = Std.parseFloat(Std.string(this.pocket.game.world.WALKSPEED));
+        var baseSpeed:Float = Std.parseFloat(Std.string(world.WALKSPEED));
         if (Math.isNaN(baseSpeed) || baseSpeed <= 0) baseSpeed = 8.0;
 
         var moveSpeed:Float = baseSpeed;
@@ -73,15 +84,15 @@ class MouseWalkSimulatorController extends WalkController {
             }
         } else if (directionMagnitude >= WALK_MAX_THRESHOLD && directionMagnitude < DASH_THRESHOLD) {
             moveSpeed = baseSpeed;
-        } else if (IS_DASHING_ON && !(this.pocket.game.world.justRan2 == true)) {
+        } else if (IS_DASHING_ON && !(world.justRan2 == true)) {
             var currentTime:Int = Lib.getTimer();
 
             if (currentTime - this.lastDashTime >= DASH_COOLDOWN_MS) {
-                var myAvatar:Dynamic = this.pocket.game.world.myAvatar;
+                var myAvatar:Dynamic = world.myAvatar;
                 var playerName:String = myAvatar.pnm;
                 var dashCost:Float = 100;
                 try {
-                    var uoTree:Dynamic = this.pocket.game.world.uoTree;
+                    var uoTree:Dynamic = world.uoTree;
                     if (uoTree != null) {
                         var pData = Reflect.field(uoTree, playerName);
                         if (pData != null && pData.sta != null) {
@@ -98,24 +109,29 @@ class MouseWalkSimulatorController extends WalkController {
             }
         }
 
-        if (this.pocket.game.pDash == true && !(this.pocket.game.world.justRan2 == true)) {
-            this.pocket.game.world.justRan2 = true;
+        if (this.pocket.game.pDash == true && !(world.justRan2 == true)) {
+            world.justRan2 = true;
             this.pocket.game.pDash = false;
         }
 
-        if (this.pocket.game.world.justRan2 == true) {
+        if (world.justRan2 == true) {
             moveSpeed = baseSpeed * 3;
         }
 
-        this.pocket.game.world.speed2 = moveSpeed;
+        world.speed2 = moveSpeed;
 
         var localX:Float = pMC.x + Math.cos(angle) * MOVE_SPEED_MULTIPLIER * 10;
         var localY:Float = pMC.y + Math.sin(angle) * MOVE_SPEED_MULTIPLIER * 10;
 
-        var stagePt:Point = (cast(this.pocket.game.world.CHARS, Sprite)).localToGlobal(new Point(localX, localY));
+        if (world.CHARS != null) {
+            var charsSp:Sprite = cast world.CHARS;
+            var stagePt:Point = charsSp.localToGlobal(new Point(localX, localY));
+            var stageW:Float = (this.pocket.game.stage != null && this.pocket.game.stage.stageWidth > 0) ? this.pocket.game.stage.stageWidth : 960;
+            var stageH:Float = (this.pocket.game.stage != null && this.pocket.game.stage.stageHeight > 0) ? this.pocket.game.stage.stageHeight : 550;
 
-        if (stagePt.x < 0 || stagePt.x > 960 || stagePt.y < 0 || stagePt.y > 550) {
-            return;
+            if (stagePt.x < -50 || stagePt.x > stageW + 50 || stagePt.y < -50 || stagePt.y > stageH + 50) {
+                return;
+            }
         }
 
         var mvPT:Point = pMC.simulateTo(localX, localY, moveSpeed);
@@ -131,7 +147,7 @@ class MouseWalkSimulatorController extends WalkController {
         if (this.frameTick >= SEND_EVERY_N_FRAMES) {
             this.frameTick = 0;
 
-            this.pocket.game.world.moveRequest({
+            world.moveRequest({
                 mc: pMC,
                 tx: mvPT.x,
                 ty: mvPT.y,
