@@ -13,7 +13,6 @@ class HelperSetting {
     public static inline var OPTION_FPS:String = "option_fps";
     public static inline var OPTION_LANGUAGE:String = "option_language";
     public static inline var OPTION_LOCK_ORIENTATION:String = "option_lock_orientation";
-    public static inline var OPTION_DISCORD_RPC:String = "option_discord_rpc";
 
     public static inline var OPTION_PAGINATION:String = "option_pagination";
     public static inline var OPTION_EQUIPPED_ON_TOP:String = "option_equipped_on_top";

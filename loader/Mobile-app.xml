@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <application xmlns="http://ns.adobe.com/air/application/51.3">
   <id>com.aqw.pocket</id>
-  <versionNumber>3.5.3</versionNumber>
-  <versionLabel>3.5.3</versionLabel>
+  <versionNumber>1.0.0</versionNumber>
+  <versionLabel>1.0.0</versionLabel>
   <filename>AQW Pocket</filename>
   <description>Play AdventureQuest Worlds on your mobile device.</description>
   <name>AQW Pocket</name>
@@ -14,7 +14,7 @@
     <visible>true</visible>
     <fullScreen>true</fullScreen>
     <aspectRatio>landscape</aspectRatio>
-    <renderMode>auto</renderMode>
+    <renderMode>direct</renderMode>
     <width>960</width>
     <height>550</height>
     <maximizable>true</maximizable>

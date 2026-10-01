@@ -128,11 +128,9 @@ for link in assets icons gamefiles; do
     fi
 done
 
-if [ -f "$DIR/loader/Desktop-app-local.xml" ]; then
-    cp "$DIR/loader/Desktop-app-local.xml" "$BUILD/Desktop-app-local.xml"
-fi
 if [ -f "$DIR/loader/Desktop-app.xml" ]; then
     cp "$DIR/loader/Desktop-app.xml" "$BUILD/Desktop-app.xml"
+    sed "s|<renderMode>.*</renderMode>|<renderMode>gpu</renderMode>|" "$DIR/loader/Desktop-app.xml" > "$BUILD/Desktop-app-gpu.xml"
 fi
 
 echo "=> Build Complete! Pristine loader/ was untouched. Artifacts isolated in build/"

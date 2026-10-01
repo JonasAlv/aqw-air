@@ -591,11 +591,6 @@ class ApiMenus {
                         }
                     } catch (err:Dynamic) {}
                 }
-
-                var isApiMenu = (overlay.menus == apiMenus);
-                if (overlay.updateBtn != null) overlay.updateBtn.visible = !isApiMenu;
-                if (overlay.discordBtn != null) overlay.discordBtn.visible = !isApiMenu;
-                if (overlay.reportBugBtn != null) overlay.reportBugBtn.visible = !isApiMenu;
             }
         });
     }

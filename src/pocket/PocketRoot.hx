@@ -38,8 +38,6 @@ class PocketRoot extends Sprite {
     private var versionLoad:VersionLoad;
 
     public var version:Version;
-    public var release:Dynamic;
-    public var discordRichPresence:Dynamic = null;
 
     public var loadManager:LoadManager;
     public var config:Config;

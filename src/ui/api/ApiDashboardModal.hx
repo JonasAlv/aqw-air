@@ -1832,30 +1832,6 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 6. Discord RPC
-        addItemRow(
-            "Discord Rich Presence",
-            "Broadcast your AQW character name, level, and map area to Discord status.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getBool(HelperSetting.OPTION_DISCORD_RPC, true);
-                var next = !cur;
-                HelperSetting.setBool(HelperSetting.OPTION_DISCORD_RPC, next);
-                var pkt:Dynamic = getPocket();
-                if (pkt != null && untyped pkt.discordRichPresence != null) {
-                    try {
-                        if (next) pkt.discordRichPresence.enable();
-                        else pkt.discordRichPresence.disable();
-                    } catch (e:Dynamic) {}
-                }
-            },
-            function():Bool {
-                return HelperSetting.getBool(HelperSetting.OPTION_DISCORD_RPC, true);
-            }
-        );
-
         // 7. Hide Pocket Overlay
         addItemRow(
             "Hide Pocket Overlay",

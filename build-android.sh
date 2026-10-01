@@ -56,47 +56,22 @@ else
     ARCHS=("armv8" "armv7")
 fi
 
-# Parse render modes: defaults to auto, gpu, and direct if none specified
+# Parse render modes: defaults to direct (default) and gpu (optional)
 TARGET_MODES=("$@")
 if [ ${#TARGET_MODES[@]} -eq 0 ]; then
-    TARGET_MODES=("auto" "gpu" "direct")
+    TARGET_MODES=("direct" "gpu")
 fi
 
 KEYSTORE="${KEYSTORE:-$DIR/aqwpocket_keystore_local.p12}"
 HAXE_API_DIR="${HAXE_API_DIR:-$DIR/../aqw-haxe-api}"
 HAXE_UI_DIR="${HAXE_UI_DIR:-$DIR}"
 
-# ---- Step 0: Pull latest upstream gamefiles from Anthony's release ----
-echo "=> [0/5] Checking latest upstream gamefiles from Anthony (anthony-hyo/aqw-mobile)..."
-mkdir -p "$DIR/loader/gamefiles"
-UPSTREAM_APK_URL=$(curl -s "https://api.github.com/repos/anthony-hyo/aqw-mobile/releases/latest" 2>/dev/null | grep -m1 "browser_download_url.*AQWPocket-.*-armv8\.apk" | cut -d '"' -f 4 || true)
-
-if [ -n "$UPSTREAM_APK_URL" ]; then
-    echo "   Found upstream release APK: $UPSTREAM_APK_URL"
-    TMP_UPSTREAM="$BUILD/upstream.apk"
-    if curl -sL "$UPSTREAM_APK_URL" -o "$TMP_UPSTREAM"; then
-        echo "   Extracting latest gamefiles from upstream APK..."
-        mkdir -p "$STAGING/gamefiles"
-        unzip -q -o -j "$TMP_UPSTREAM" "assets/gamefiles/*" -d "$STAGING/gamefiles/" 2>/dev/null || true
-        # Update loader cache so offline builds remain updated
-        cp -f "$STAGING/gamefiles/"*.swf "$DIR/loader/gamefiles/" 2>/dev/null || true
-        rm -f "$TMP_UPSTREAM"
-        echo "   Upstream gamefiles updated successfully."
-    else
-        echo "   Warning: Failed to download upstream APK, falling back to local loader/gamefiles."
-    fi
-else
-    echo "   Notice: Offline or GitHub API rate-limited. Using local loader/gamefiles."
-fi
-
 # ---- Step 1: Copy pristine files into sandbox ----
-echo "=> [1/5] Copying repository files to sandbox ($STAGING)..."
+echo "=> [1/4] Copying repository files to sandbox ($STAGING)..."
 mkdir -p "$STAGING/libs"
+mkdir -p "$STAGING/gamefiles"
 cp -r "$DIR/loader/src" "$STAGING/src"
-if [ ! -d "$STAGING/gamefiles" ] || [ -z "$(ls -A "$STAGING/gamefiles" 2>/dev/null)" ]; then
-    mkdir -p "$STAGING/gamefiles"
-    cp -r "$DIR/loader/gamefiles/"* "$STAGING/gamefiles/" 2>/dev/null || true
-fi
+cp -r "$DIR/loader/gamefiles/"* "$STAGING/gamefiles/" 2>/dev/null || true
 cp -r "$DIR/loader/assets" "$STAGING/assets"
 cp -r "$DIR/loader/icons" "$STAGING/icons"
 cp "$DIR/loader/Mobile-app.xml" "$STAGING/Mobile-app.xml"

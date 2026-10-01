@@ -70,9 +70,18 @@ if [ -z "$AIRSDK_WINDOWS" ] || [ ! -f "$AIRSDK_WINDOWS/bin/adl.exe" ]; then
     exit 1
 fi
 
+XML_TARGET="Desktop-app.xml"
+RENDER_DESC="Direct [Default]"
+for arg in "$@"; do
+    if [ "$arg" == "--gpu" ] || [ "$arg" == "gpu" ]; then
+        XML_TARGET="Desktop-app-gpu.xml"
+        RENDER_DESC="GPU (Hardware Acceleration)"
+    fi
+done
+
 echo "=> Launching ADL (Windows AIR Debug Launcher) via Wine from build/..."
-echo "   (Using Desktop-app-local.xml - Discord RPC disabled for local testing)"
+echo "   (Render Mode: $RENDER_DESC -> $XML_TARGET)"
 cd "$BUILD"
-wine "$AIRSDK_WINDOWS/bin/adl.exe" -profile extendedDesktop Desktop-app-local.xml
+wine "$AIRSDK_WINDOWS/bin/adl.exe" -profile extendedDesktop "$XML_TARGET"
 
 echo "=> ADL closed."

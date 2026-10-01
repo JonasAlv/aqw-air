@@ -2,27 +2,7 @@ class Config {
     public static inline var GAME_BASE_URL:String = "https://game.aq.com/game/";
     public static var API_VERSION_URL:String = GAME_BASE_URL + "api/data/gameversion";
     public static var API_LOGIN_URL:String = GAME_BASE_URL + "api/login/now";
-    public static var APP_VERSION:String = getVersion();
-    public static inline var GITHUB_RELEASES_URL:String = "https://api.github.com/repos/anthony-hyo/aqw-mobile/releases/latest";
-
-    private static function getVersion():String {
-        try {
-            #if flash
-            var nativeAppCls:Dynamic = untyped __global__["flash.desktop.NativeApplication"];
-            if (nativeAppCls != null) {
-                var appDesc:Dynamic = nativeAppCls.nativeApplication.applicationDescriptor;
-                if (appDesc != null) {
-                    var str:String = Std.string(appDesc);
-                    var r = ~/<versionNumber>([^<]+)<\/versionNumber>/;
-                    if (r.match(str)) {
-                        return "v" + r.matched(1);
-                    }
-                }
-            }
-            #end
-        } catch (e:Dynamic) {}
-        return "v1.0.0";
-    }
+    public static inline var APP_VERSION:String = "1.0.0";
 
     public var option_pagination:Bool = true;
     public var option_equipped_on_top:Bool = true;

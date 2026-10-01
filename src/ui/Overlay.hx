@@ -196,25 +196,6 @@ class Overlay extends MovieClip {
             }
         ));
 
-        generalOpts.push(new Check(
-            HelperSetting.OPTION_DISCORD_RPC,
-            true,
-            "Discord RPC",
-            "Enable Discord Rich Presence",
-            !isMobile(),
-            function(option:Dynamic):Void {
-                var pkt:Dynamic = getPocket();
-                if (pkt != null && untyped pkt.discordRichPresence != null) {
-                    try {
-                        if (option.state) {
-                            pkt.discordRichPresence.enable();
-                        } else {
-                            pkt.discordRichPresence.disable();
-                        }
-                    } catch (e:Dynamic) {}
-                }
-            }
-        ));
 
         generalOpts.push(new Button(
             null,
@@ -849,9 +830,9 @@ class Overlay extends MovieClip {
             selectMenu(firstMenu);
         }
 
-        if (this.reportBugBtn != null) this.reportBugBtn.addEventListener(MouseEvent.CLICK, onReportBug);
-        if (this.updateBtn != null) this.updateBtn.addEventListener(MouseEvent.CLICK, onUpdate);
-        if (this.discordBtn != null) this.discordBtn.addEventListener(MouseEvent.CLICK, onDiscord);
+        if (this.reportBugBtn != null) this.reportBugBtn.visible = false;
+        if (this.updateBtn != null) this.updateBtn.visible = false;
+        if (this.discordBtn != null) this.discordBtn.visible = false;
 
         this.visible = true;
         stop();
@@ -896,12 +877,6 @@ class Overlay extends MovieClip {
     public function onHidePanel(?mouseEvent:MouseEvent):Void {
         ApiDashboardModal.close();
     }
-
-    private function onReportBug(e:MouseEvent):Void {}
-
-    private function onUpdate(e:MouseEvent):Void {}
-
-    private function onDiscord(e:MouseEvent):Void {}
 
     public function notification(message:String):Void {
         ui.api.ApiNotificationManager.notify(message);

@@ -1,27 +1,19 @@
 package game;
 
-import flash.events.Event;
 import ui.option.Menu;
 import ui.option.Option;
 
 class Core {
-    private static inline var TICK_DISCORD_RPC:Int = 150;
-
     private var pocket:Dynamic;
     public var itemPagination:ItemPagination;
     public var itemFavorite:ItemFavorite;
 
-    private var _tickDiscordRPC:Int = 0;
     public var currentFrame:String = "Game";
 
     public function new(pocket:Dynamic) {
         this.pocket = pocket;
         this.itemPagination = new ItemPagination(this.pocket);
         this.itemFavorite = new ItemFavorite(this.pocket);
-
-        if (this.pocket != null && this.pocket.addEventListener != null) {
-            this.pocket.addEventListener(Event.ENTER_FRAME, this.onEnterFrame, false, 0, true);
-        }
     }
 
     public function setWorldFilters(filters:Array<Dynamic>):Void {
@@ -71,17 +63,6 @@ class Core {
                     this.pocket.game.setChildIndex(this.pocket.gameUI, this.pocket.game.numChildren - 1);
                 }
             } catch (e:Dynamic) {}
-        }
-    }
-
-    public function onEnterFrame(event:Event):Void {
-        if (++_tickDiscordRPC >= TICK_DISCORD_RPC) {
-            _tickDiscordRPC = 0;
-            if (this.pocket != null && untyped this.pocket.discordRichPresence != null) {
-                try {
-                    untyped this.pocket.discordRichPresence.refreshPresence();
-                } catch (e:Dynamic) {}
-            }
         }
     }
 }
