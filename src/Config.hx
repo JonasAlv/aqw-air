@@ -17,6 +17,7 @@ class Config {
     public var option_animation_weapon_off:Bool = false;
 
     public var option_filter_off:Bool = false;
+    public var option_sound_off:Bool = false;
 
     public var option_language:String = "en";
     public var option_skill_tooltips:Bool = true;

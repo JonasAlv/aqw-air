@@ -14,6 +14,7 @@
 --macro include('load')
 Config
 --macro include('pocket')
+--macro include('worker')
 
 --macro exclude('com.aqwapi')
 --macro exclude('hscript')

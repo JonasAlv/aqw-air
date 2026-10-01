@@ -215,6 +215,7 @@ class LoadManager {
             var animationOn:Bool = (categoryCheck != null && categoryCheck());
             var p = pocket.PocketRoot.SINGLETON;
             var filterOn:Bool = (categoryCheck != null && p != null && p.config != null && p.config.option_filter_off);
+            var soundStripOn:Bool = (p != null && p.config != null && p.config.option_sound_off);
 
             var finishLoad = function(finalBytes:ByteArray):Void {
                 var byteLoader:Loader = (loadData.loader == null) ? new Loader() : loadData.loader;
@@ -280,8 +281,8 @@ class LoadManager {
                 }
             };
 
-            if (animationOn || filterOn) {
-                SWFWorkerClient.instance.process(rawBytes, animationOn, filterOn, finishLoad);
+            if (animationOn || filterOn || soundStripOn) {
+                SWFWorkerClient.instance.process(rawBytes, animationOn, filterOn, soundStripOn, finishLoad);
             } else {
                 finishLoad(rawBytes);
             }

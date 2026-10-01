@@ -4,7 +4,7 @@ package worker;
 import flash.utils.ByteArray;
 
 class SWFStripper {
-    public static function process(originalBytes:ByteArray, stripAnimation:Bool, stripFilters:Bool):ByteArray {
+    public static function process(originalBytes:ByteArray, stripAnimation:Bool, stripFilters:Bool, stripSounds:Bool = false):ByteArray {
         if (originalBytes == null) return null;
         originalBytes.position = 0;
 
@@ -13,7 +13,7 @@ class SWFStripper {
 
         var swf:Dynamic = untyped __new__(swfCls, originalBytes);
 
-        stripTags(swf.tags, stripAnimation, stripFilters);
+        stripTags(swf.tags, stripAnimation, stripFilters, stripSounds);
 
         if (swf.tagsRaw != null && swf.tagsRaw.length > swf.tags.length) {
             swf.tagsRaw.length = swf.tags.length;
@@ -29,7 +29,7 @@ class SWFStripper {
         return newBytes;
     }
 
-    private static function stripTags(tags:Dynamic, stripAnimation:Bool, stripFilters:Bool):Void {
+    private static function stripTags(tags:Dynamic, stripAnimation:Bool, stripFilters:Bool, stripSounds:Bool):Void {
         if (tags == null) return;
         var tagFrameLabelCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagFrameLabel"];
         var tagShowFrameCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagShowFrame"];
@@ -38,6 +38,8 @@ class SWFStripper {
         var tagRemoveObjectCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagRemoveObject"];
         var tagRemoveObject2Cls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagRemoveObject2"];
         var tagEndCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagEnd"];
+        var tagDefineSoundCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagDefineSound"];
+        var tagStartSoundCls:Dynamic = untyped __global__["com.codeazur.as3swf.tags.TagStartSound"];
 
         var hasFrameLabels:Bool = false;
         if (stripAnimation) {
@@ -52,7 +54,7 @@ class SWFStripper {
         }
 
         var shownFirstFrame:Bool = false;
-        var newTags:Array<Dynamic> = hasFrameLabels ? [] : null;
+        var newTags:Array<Dynamic> = (hasFrameLabels || stripSounds) ? [] : null;
 
         var i:Int = 0;
         while (i < tags.length) {
@@ -64,8 +66,13 @@ class SWFStripper {
                 break;
             }
 
+            if (stripSounds && (Std.isOfType(tag, tagDefineSoundCls) || Std.isOfType(tag, tagStartSoundCls))) {
+                i++;
+                continue; // Strip sound tags
+            }
+
             if (Std.isOfType(tag, tagDefineSpriteCls)) {
-                stripTags(tag.tags, stripAnimation, stripFilters);
+                stripTags(tag.tags, stripAnimation, stripFilters, stripSounds);
                 if (tag.tagsRaw != null && tag.tagsRaw.length > tag.tags.length) {
                     tag.tagsRaw.length = tag.tags.length;
                 }
@@ -82,19 +89,22 @@ class SWFStripper {
                                           Std.isOfType(tag, tagRemoveObject2Cls);
 
                 if (stripAnimation && shownFirstFrame && isFrameContent) {
-                    // Stripped looping frames
+                    // Stripped looping animation frames
                 } else {
-                    newTags.push(tag);
+                    if (newTags != null) newTags.push(tag);
                 }
 
                 if (Std.isOfType(tag, tagShowFrameCls)) {
                     shownFirstFrame = true;
                 }
+            } else if (newTags != null) {
+                newTags.push(tag);
             }
+
             i++;
         }
 
-        if (hasFrameLabels && newTags != null) {
+        if (newTags != null) {
             tags.length = 0;
             for (t in newTags) {
                 tags.push(t);
@@ -103,5 +113,9 @@ class SWFStripper {
     }
 }
 #else
-class SWFStripper {}
+class SWFStripper {
+    public static function process(originalBytes:Dynamic, stripAnimation:Bool, stripFilters:Bool, stripSounds:Bool = false):Dynamic {
+        return originalBytes;
+    }
+}
 #end
