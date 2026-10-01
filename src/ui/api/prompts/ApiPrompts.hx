@@ -1,4 +1,4 @@
-package ui.prompts;
+package ui.api.prompts;
 
 #if flash
 import com.aqwapi.Api;
@@ -11,8 +11,8 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFieldType;
-import ui.ApiNotificationManager;
-import ui.Dropdown;
+import ui.api.ApiNotificationManager;
+import ui.api.Dropdown;
 import util.HelperSetting;
 
 class ApiPrompts {
@@ -1830,7 +1830,7 @@ class ApiPrompts {
                     inputName.type = TextFieldType.INPUT;
                     inputName.text = "MyScript";
                     inputName.selectable = true;
-                    inputCode.text = "// New HScript\nfunction onStart() {\n    bot.log(\"Started script!\");\n}\n\nfunction onTick() {\n    // Bot logic here\n}\n\nfunction onStop() {\n    bot.log(\"Stopped script!\");\n}\n";
+                    inputCode.text = "// New HScript\nfunction onStart() {\n    api.log(\"Started script!\");\n}\n\nfunction onTick() {\n    // Bot logic here\n}\n\nfunction onStop() {\n    api.log(\"Stopped script!\");\n}\n";
                     try { inputCode.setTextFormat(codeFmt); } catch (_:Dynamic) {}
                     setDeleteEnabled(false);
                 } else {

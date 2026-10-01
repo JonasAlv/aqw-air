@@ -1,4 +1,4 @@
-package ui.prompts;
+package ui.api.prompts;
 
 #if flash
 import flash.display.Sprite;
@@ -147,7 +147,7 @@ class ApiPromptModal {
                 try {
                     onClick();
                 } catch (e:Dynamic) {
-                    ui.ApiNotificationManager.notify("Action error: " + e);
+                    ui.api.ApiNotificationManager.notify("Action error: " + e);
                 }
             }
         };

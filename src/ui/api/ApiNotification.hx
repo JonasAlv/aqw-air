@@ -1,4 +1,4 @@
-package ui;
+package ui.api;
 
 #if flash
 import flash.display.Sprite;

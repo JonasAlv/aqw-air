@@ -1,37 +1,34 @@
 package ui.option;
 
-#if flash
-import flash.display.Sprite;
 import flash.display.SimpleButton;
+import flash.display.Sprite;
+import flash.events.MouseEvent;
 import flash.text.TextField;
+import flash.Vector;
 
-extern class Toggle extends Option {
-    public function new(
-        key:String,
-        name:String,
-        info:String,
-        options:Array<String>,
-        defaultOption:String = null,
-        onChange:Dynamic->Void = null,
-        onFrameChange:Dynamic->Void = null,
-        onOverlayStateChange:Dynamic->Void = null
-    );
-}
-
-extern class Divide extends Option {
-    public function new();
-}
-
-extern class Menu extends Sprite {
+class Menu extends Sprite {
     public var button:SimpleButton;
     public var buttonTxt:TextField;
-    public var options:Dynamic;
+    public var options:Vector<Option>;
 
-    public function new(buttonLabel:String, options:Dynamic);
+    public function new(buttonLabel:String, options:Vector<Option>) {
+        super();
+        this.options = options;
+
+        if (this.buttonTxt != null) {
+            this.buttonTxt.text = buttonLabel;
+            this.buttonTxt.mouseEnabled = false;
+        }
+
+        if (this.button != null) {
+            this.button.addEventListener(MouseEvent.CLICK, onClick, false, 0, true);
+        }
+    }
+
+    private function onClick(e:MouseEvent):Void {
+        var pocket:Dynamic = untyped __global__["Pocket"].SINGLETON;
+        if (pocket != null && pocket.overlay != null) {
+            pocket.overlay.selectMenu(this);
+        }
+    }
 }
-#else
-extern class Toggle extends Option {}
-extern class Divide extends Option {}
-extern class Menu {}
-#end
-

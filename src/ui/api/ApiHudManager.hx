@@ -1,4 +1,4 @@
-package ui;
+package ui.api;
 
 #if flash
 import com.aqwapi.Api;
@@ -11,8 +11,8 @@ import flash.events.MouseEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
-import ui.ApiDashboardModal;
-import ui.ApiNotificationManager;
+import ui.api.ApiDashboardModal;
+import ui.api.ApiNotificationManager;
 import ui.Overlay;
 import util.HelperSetting;
 

@@ -7,6 +7,11 @@
 -swf bin/ModUI.swc
 
 --macro include('ui')
+--macro include('game')
+--macro include('controller')
+--macro include('util')
+--macro include('data')
+Config
+
 --macro exclude('com.aqwapi')
 --macro exclude('hscript')
-

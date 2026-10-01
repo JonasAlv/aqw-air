@@ -1,10 +1,11 @@
-package ui;
+package ui.api;
 
 #if flash
 import com.aqwapi.Api;
 import com.aqwapi.modules.CombatEngine;
 import com.aqwapi.modules.ScriptManager;
 import com.aqwapi.utils.ApiLogger;
+import flash.display.DisplayObject;
 import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.Event;
@@ -16,17 +17,35 @@ import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
-import ui.ApiNotificationManager;
+import ui.api.ApiNotificationManager;
 import ui.Overlay;
-import ui.prompts.ApiPrompts;
+import ui.option.Check;
+import ui.option.Toggle;
+import ui.option.Button;
+import ui.option.Option;
+import ui.shortcut.ShortcutPicker;
+import controller.walk.MouseWalkSimulatorController;
+import ui.api.prompts.ApiPrompts;
 import util.HelperSetting;
 
+enum DashboardMode {
+    ModeApi;
+    ModeClient;
+}
+
 enum DashboardTab {
+    // API Automation tabs
     TabScripts;
     TabAutomation;
     TabEnhancements;
     TabHud;
     TabSettings;
+    // Client Settings tabs
+    TabGeneral;
+    TabGameplay;
+    TabGraphics;
+    TabControls;
+    TabShortcuts;
 }
 
 class ApiDashboardModal extends Sprite {
@@ -62,6 +81,16 @@ class ApiDashboardModal extends Sprite {
     private var _pocket:Dynamic;
     private var _backdrop:Sprite;
     private var _window:Sprite;
+
+    private var _currentMode:DashboardMode = ModeApi;
+    private var _modeApiBtn:Sprite;
+    private var _modeClientBtn:Sprite;
+    private var _modeApiTxt:TextField;
+    private var _modeClientTxt:TextField;
+
+    private var _titleTxt:TextField;
+    private var _badgeTxt:TextField;
+    private var _sidebarContainer:Sprite;
 
     private var _currentTab:DashboardTab = TabScripts;
     private var _tabButtons:Map<DashboardTab, Sprite> = new Map<DashboardTab, Sprite>();
@@ -110,13 +139,18 @@ class ApiDashboardModal extends Sprite {
         _window.graphics.endFill();
 
         _window.x = (stageW - DIALOG_WIDTH) / 2;
-        _window.y = (stageH - DIALOG_HEIGHT) / 2;
+        _window.y = Math.max(34, (stageH - DIALOG_HEIGHT) / 2 + 16);
         addChild(_window);
+
+        // Mode Switcher Tabs above _window
+        setupModeSwitcher();
 
         // 3. Header Bar
         setupHeader();
 
         // 4. Sidebar Tabs
+        _sidebarContainer = new Sprite();
+        _window.addChild(_sidebarContainer);
         setupSidebar();
 
         // 5. Content Viewport
@@ -151,6 +185,128 @@ class ApiDashboardModal extends Sprite {
     }
 
     // =========================================================================
+    // MODE SWITCHER (TABS ABOVE WINDOW)
+    // =========================================================================
+
+    private function setupModeSwitcher():Void {
+        var modeContainer = new Sprite();
+        modeContainer.x = _window.x + 8;
+        modeContainer.y = _window.y - 30;
+        addChild(modeContainer);
+
+        var btnW:Float = 145;
+        var btnH:Float = 31;
+
+        _modeApiBtn = new Sprite();
+        _modeApiBtn.buttonMode = true;
+        _modeApiBtn.x = 0;
+        _modeApiBtn.y = 0;
+        modeContainer.addChild(_modeApiBtn);
+
+        _modeApiTxt = new TextField();
+        var fmt = new TextFormat("_sans", 12, 0xFFFFFF, true);
+        fmt.align = TextFormatAlign.CENTER;
+        _modeApiTxt.defaultTextFormat = fmt;
+        _modeApiTxt.text = "API Automation";
+        _modeApiTxt.width = btnW;
+        _modeApiTxt.height = 20;
+        _modeApiTxt.y = 6;
+        _modeApiTxt.selectable = false;
+        _modeApiTxt.mouseEnabled = false;
+        _modeApiBtn.addChild(_modeApiTxt);
+
+        _modeClientBtn = new Sprite();
+        _modeClientBtn.buttonMode = true;
+        _modeClientBtn.x = btnW + 6;
+        _modeClientBtn.y = 0;
+        modeContainer.addChild(_modeClientBtn);
+
+        _modeClientTxt = new TextField();
+        var cfmt = new TextFormat("_sans", 12, 0x888888, true);
+        cfmt.align = TextFormatAlign.CENTER;
+        _modeClientTxt.defaultTextFormat = cfmt;
+        _modeClientTxt.text = "Client Settings";
+        _modeClientTxt.width = btnW;
+        _modeClientTxt.height = 20;
+        _modeClientTxt.y = 6;
+        _modeClientTxt.selectable = false;
+        _modeClientTxt.mouseEnabled = false;
+        _modeClientBtn.addChild(_modeClientTxt);
+
+        _modeApiBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_currentMode != ModeApi) switchMode(ModeApi);
+        });
+
+        _modeClientBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_currentMode != ModeClient) switchMode(ModeClient);
+        });
+
+        _modeApiBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            if (_currentMode != ModeApi) renderModeBtnGraphic(_modeApiBtn, btnW, btnH, false, true);
+        });
+        _modeApiBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            if (_currentMode != ModeApi) renderModeBtnGraphic(_modeApiBtn, btnW, btnH, false, false);
+        });
+
+        _modeClientBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            if (_currentMode != ModeClient) renderModeBtnGraphic(_modeClientBtn, btnW, btnH, false, true);
+        });
+        _modeClientBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            if (_currentMode != ModeClient) renderModeBtnGraphic(_modeClientBtn, btnW, btnH, false, false);
+        });
+
+        updateModeVisuals();
+    }
+
+    private function renderModeBtnGraphic(btn:Sprite, w:Float, h:Float, isActive:Bool, isHover:Bool):Void {
+        btn.graphics.clear();
+        if (isActive) {
+            btn.graphics.beginFill(0x880000, 1);
+            btn.graphics.lineStyle(1, 0xAA0000);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+        } else if (isHover) {
+            btn.graphics.beginFill(0x222222, 1);
+            btn.graphics.lineStyle(1, 0x3E3E3E);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+        } else {
+            btn.graphics.beginFill(0x161616, 1);
+            btn.graphics.lineStyle(1, 0x242424);
+            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.endFill();
+        }
+    }
+
+    private function updateModeVisuals():Void {
+        var btnW:Float = 145;
+        var btnH:Float = 31;
+        var isApi = (_currentMode == ModeApi);
+        renderModeBtnGraphic(_modeApiBtn, btnW, btnH, isApi, false);
+        _modeApiTxt.textColor = isApi ? 0xFFFFFF : 0x888888;
+
+        renderModeBtnGraphic(_modeClientBtn, btnW, btnH, !isApi, false);
+        _modeClientTxt.textColor = !isApi ? 0xFFFFFF : 0x888888;
+    }
+
+    private function switchMode(mode:DashboardMode):Void {
+        _currentMode = mode;
+        updateModeVisuals();
+
+        if (mode == ModeApi) {
+            if (_titleTxt != null) _titleTxt.text = "Menu";
+            if (_badgeTxt != null) _badgeTxt.text = "Control Center";
+            setupSidebar();
+            switchTab(TabScripts);
+        } else {
+            if (_titleTxt != null) _titleTxt.text = "Client";
+            if (_badgeTxt != null) _badgeTxt.text = "Game Settings";
+            setupSidebar();
+            switchTab(TabGeneral);
+        }
+    }
+
+    // =========================================================================
     // HEADER
     // =========================================================================
 
@@ -161,30 +317,30 @@ class ApiDashboardModal extends Sprite {
         _window.graphics.lineTo(DIALOG_WIDTH, 48);
 
         // Title
-        var titleTxt = new TextField();
+        _titleTxt = new TextField();
         var titleFmt = new TextFormat("_sans", 16, 0xEEEEEE, true);
-        titleTxt.defaultTextFormat = titleFmt;
-        titleTxt.text = "Menu";
-        titleTxt.x = 22;
-        titleTxt.y = 13;
-        titleTxt.width = 100;
-        titleTxt.height = 28;
-        titleTxt.selectable = false;
-        titleTxt.mouseEnabled = false;
-        _window.addChild(titleTxt);
+        _titleTxt.defaultTextFormat = titleFmt;
+        _titleTxt.text = (_currentMode == ModeApi) ? "Menu" : "Client";
+        _titleTxt.x = 22;
+        _titleTxt.y = 13;
+        _titleTxt.width = 100;
+        _titleTxt.height = 28;
+        _titleTxt.selectable = false;
+        _titleTxt.mouseEnabled = false;
+        _window.addChild(_titleTxt);
 
         // Subtitle badge
-        var badgeTxt = new TextField();
+        _badgeTxt = new TextField();
         var badgeFmt = new TextFormat("_sans", 11, 0x666666, false);
-        badgeTxt.defaultTextFormat = badgeFmt;
-        badgeTxt.text = "Control Center";
-        badgeTxt.x = 85;
-        badgeTxt.y = 17;
-        badgeTxt.width = 120;
-        badgeTxt.height = 20;
-        badgeTxt.selectable = false;
-        badgeTxt.mouseEnabled = false;
-        _window.addChild(badgeTxt);
+        _badgeTxt.defaultTextFormat = badgeFmt;
+        _badgeTxt.text = (_currentMode == ModeApi) ? "Control Center" : "Game Settings";
+        _badgeTxt.x = 85;
+        _badgeTxt.y = 17;
+        _badgeTxt.width = 130;
+        _badgeTxt.height = 20;
+        _badgeTxt.selectable = false;
+        _badgeTxt.mouseEnabled = false;
+        _window.addChild(_badgeTxt);
 
         // Close Button (Vector ✕)
         var closeBtn = new Sprite();
@@ -240,13 +396,30 @@ class ApiDashboardModal extends Sprite {
         _window.graphics.moveTo(SIDEBAR_WIDTH + 14, 48);
         _window.graphics.lineTo(SIDEBAR_WIDTH + 14, DIALOG_HEIGHT);
 
-        var tabs = [
-            { id: TabScripts, label: "Scripts" },
-            { id: TabAutomation, label: "Automation" },
-            { id: TabEnhancements, label: "Enhancements" },
-            { id: TabHud, label: "On-Screen HUD" },
-            { id: TabSettings, label: "Settings" }
-        ];
+        while (_sidebarContainer.numChildren > 0) {
+            _sidebarContainer.removeChildAt(0);
+        }
+        _tabButtons = new Map<DashboardTab, Sprite>();
+        _tabLabels = new Map<DashboardTab, TextField>();
+
+        var tabs:Array<{ id:DashboardTab, label:String }>;
+        if (_currentMode == ModeApi) {
+            tabs = [
+                { id: TabScripts, label: "Scripts" },
+                { id: TabAutomation, label: "Automation" },
+                { id: TabEnhancements, label: "Enhancements" },
+                { id: TabHud, label: "On-Screen HUD" },
+                { id: TabSettings, label: "Settings" }
+            ];
+        } else {
+            tabs = [
+                { id: TabGeneral, label: "General" },
+                { id: TabGameplay, label: "Gameplay" },
+                { id: TabGraphics, label: "Graphics & FPS" },
+                { id: TabControls, label: "Controls" },
+                { id: TabShortcuts, label: "Shortcuts" }
+            ];
+        }
 
         var tabY:Float = 60;
         var tabW:Float = SIDEBAR_WIDTH - 12;
@@ -256,7 +429,7 @@ class ApiDashboardModal extends Sprite {
             var btn = createTabButton(t.label, tabW, tabH, t.id);
             btn.x = 14;
             btn.y = tabY;
-            _window.addChild(btn);
+            _sidebarContainer.addChild(btn);
             tabY += tabH + 8;
         }
     }
@@ -543,7 +716,8 @@ class ApiDashboardModal extends Sprite {
         actionLabel:String,
         isPrimary:Bool,
         onClick:Void->Void,
-        getToggleState:Void->Bool = null
+        getToggleState:Void->Bool = null,
+        getCycleLabel:Void->String = null
     ):Void {
         var rowW:Float = CONTENT_WIDTH - 20;
         var btnW:Float = 116;
@@ -598,6 +772,11 @@ class ApiDashboardModal extends Sprite {
             toggleBtn.x = actionX;
             toggleBtn.y = actionY;
             card.addChild(toggleBtn);
+        } else if (actionType == "cycle") {
+            var cycleBtn = createCycleControl(btnW, btnH, getCycleLabel, onClick);
+            cycleBtn.x = actionX;
+            cycleBtn.y = actionY;
+            card.addChild(cycleBtn);
         } else {
             var btn = createActionButton(actionLabel, btnW, btnH, isPrimary, onClick);
             btn.x = actionX;
@@ -686,6 +865,48 @@ class ApiDashboardModal extends Sprite {
         return btn;
     }
 
+    private function createCycleControl(w:Float, h:Float, getLabel:Void->String, onCycle:Void->Void):Sprite {
+        var btn = new Sprite();
+        btn.buttonMode = true;
+
+        var txt = new TextField();
+        var fmt = new TextFormat("_sans", 11, 0xFFFFFF, true);
+        fmt.align = TextFormatAlign.CENTER;
+        txt.defaultTextFormat = fmt;
+        txt.width = w;
+        txt.height = 20;
+        txt.y = (h - 20) / 2;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+        btn.addChild(txt);
+
+        var updateVisual = function(isHover:Bool = false):Void {
+            btn.graphics.clear();
+            var bg = isHover ? 0x2A2A2A : 0x1E1E1E;
+            var border = isHover ? 0x4A4A4A : 0x333333;
+            btn.graphics.beginFill(bg, 1);
+            btn.graphics.lineStyle(1, border);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
+            btn.graphics.endFill();
+            txt.text = (getLabel != null) ? getLabel() : "";
+        };
+
+        btn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
+            updateVisual(true);
+        });
+        btn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
+            updateVisual(false);
+        });
+        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
+            if (onCycle != null) onCycle();
+            updateVisual(false);
+        });
+
+        updateVisual(false);
+        return btn;
+    }
+
     private function createToggleControl(w:Float, h:Float, getState:Void->Bool, onToggle:Void->Void):Sprite {
         var btn = new Sprite();
         btn.buttonMode = true;
@@ -753,6 +974,16 @@ class ApiDashboardModal extends Sprite {
                 renderHudTab();
             case TabSettings:
                 renderSettingsTab();
+            case TabGeneral:
+                renderGeneralTab();
+            case TabGameplay:
+                renderGameplayTab();
+            case TabGraphics:
+                renderGraphicsTab();
+            case TabControls:
+                renderControlsTab();
+            case TabShortcuts:
+                renderShortcutsTab();
         }
     }
 
@@ -860,16 +1091,49 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 6. Clear Log
+        // 6. Chat Logger (Toggle)
         addItemRow(
-            "Clear Bot Log",
-            "Truncates bot.log to start fresh for monitoring and debugging sessions.",
+            "Chat Logger",
+            "Display API and script actions in the in-game chat box. Turn off to silence blue text messages.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var next = !ApiLogger.printToChat;
+                ApiLogger.setChatLogging(next);
+                ApiNotificationManager.notify("Chat Logger: " + (next ? "Enabled" : "Muted"));
+            },
+            function():Bool {
+                return ApiLogger.printToChat;
+            }
+        );
+
+        // 7. Clear API Log
+        addItemRow(
+            "Clear API Log",
+            "Truncates assets/api.log to start fresh for monitoring and debugging sessions.",
             "button",
             "Clear Log",
             false,
             function():Void {
                 ApiLogger.clearLog();
-                ApiNotificationManager.notify("bot.log cleared!");
+                ApiNotificationManager.notify("api.log cleared!");
+            }
+        );
+
+        // 8. Copy API Log
+        addItemRow(
+            "Copy API Log",
+            "Copies contents of assets/api.log to the system clipboard for sharing and bug reporting.",
+            "button",
+            "Copy Log",
+            false,
+            function():Void {
+                if (ApiLogger.copyToClipboard()) {
+                    ApiNotificationManager.notify("API log copied to clipboard!");
+                } else {
+                    ApiNotificationManager.notify("API log is empty or could not be read.");
+                }
             }
         );
     }
@@ -1385,6 +1649,803 @@ class ApiDashboardModal extends Sprite {
             function():Void {
                 close();
                 ApiPrompts.showShopPrompt(_overlay);
+            }
+        );
+    }
+
+    // =========================================================================
+    // CLIENT SETTINGS TAB CONTENTS
+    // =========================================================================
+
+    private function getPocket():Dynamic {
+        if (_pocket != null) return _pocket;
+        if (_overlay != null && _overlay.pocket != null) return _overlay.pocket;
+        if (_overlay != null && _overlay.parent != null) return _overlay.parent;
+        try {
+            var g:Dynamic = untyped __global__["Pocket"];
+            if (g != null && g.SINGLETON != null) return g.SINGLETON;
+        } catch (e:Dynamic) {}
+        return null;
+    }
+
+    private function getOptionByKey(key:String):Dynamic {
+        if (_overlay == null || _overlay.menus == null) return null;
+        var mList:Dynamic = _overlay.menus;
+        var mLen:Int = untyped mList.length;
+        for (i in 0...mLen) {
+            var menu:Dynamic = untyped mList[i];
+            if (menu == null || menu.options == null) continue;
+            var opts:Dynamic = menu.options;
+            var oLen:Int = untyped opts.length;
+            for (j in 0...oLen) {
+                var opt:Dynamic = untyped opts[j];
+                if (opt != null && opt.key == key) return opt;
+            }
+        }
+        return null;
+    }
+
+    private function renderGeneralTab():Void {
+        addSectionHeader("Display & Engine");
+
+        // 1. Frame Rate (Target FPS)
+        var fpsValues = ["24", "30", "60", "75", "120"];
+        addItemRow(
+            "Target Frame Rate",
+            "Set the maximum game rendering frame rate (FPS). Higher FPS produces smoother gameplay.",
+            "cycle",
+            "",
+            false,
+            function():Void {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_FPS);
+                if (curIdx < 0 || curIdx >= fpsValues.length) curIdx = 2; // default 60
+                var nextIdx = (curIdx + 1) % fpsValues.length;
+                var fps = Std.parseInt(fpsValues[nextIdx]);
+                HelperSetting.setInt(HelperSetting.OPTION_FPS, nextIdx);
+                var pkt:Dynamic = getPocket();
+                var stg:Dynamic = stage != null ? stage : (pkt != null ? pkt.stage : null);
+                if (stg != null) stg.frameRate = fps;
+                if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
+                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_FPS);
+                if (opt != null) {
+                    try { opt.setIndex(nextIdx); if (opt.onChange != null) opt.onChange(opt); } catch (e:Dynamic) {}
+                }
+            },
+            null,
+            function():String {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_FPS);
+                if (curIdx < 0 || curIdx >= fpsValues.length) curIdx = 2;
+                return fpsValues[curIdx] + " FPS";
+            }
+        );
+
+        // 2. Screen Orientation
+        var orientations = ["Landscape", "Portrait", "Auto"];
+        addItemRow(
+            "Screen Orientation",
+            "Controls device orientation lock for mobile and tablet devices.",
+            "cycle",
+            "",
+            false,
+            function():Void {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LOCK_ORIENTATION);
+                if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
+                var nextIdx = (curIdx + 1) % orientations.length;
+                HelperSetting.setInt(HelperSetting.OPTION_LOCK_ORIENTATION, nextIdx);
+                var pkt:Dynamic = getPocket();
+                var stg:Dynamic = stage != null ? stage : (pkt != null ? pkt.stage : null);
+                if (stg != null) {
+                    try {
+                        if (nextIdx == 2) {
+                            untyped stg.autoOrients = true;
+                            untyped stg.setAspectRatio("any");
+                        } else if (nextIdx == 1) {
+                            untyped stg.autoOrients = false;
+                            untyped stg.setAspectRatio("portrait");
+                        } else {
+                            untyped stg.autoOrients = false;
+                            untyped stg.setAspectRatio("landscape");
+                        }
+                    } catch (e:Dynamic) {}
+                }
+            },
+            null,
+            function():String {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LOCK_ORIENTATION);
+                if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
+                return orientations[curIdx];
+            }
+        );
+
+        addSectionHeader("Inventory & Interface");
+
+        // 3. Inventory Pagination
+        addItemRow(
+            "Inventory Pagination",
+            "Enable page numbers and next/previous arrows in Inventory, Bank, and House storage.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_PAGINATION, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_pagination = next;
+                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_PAGINATION);
+                if (opt != null) {
+                    opt.state = next;
+                    if (opt.onChange != null) try { opt.onChange(opt); } catch (e:Dynamic) {}
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
+            }
+        );
+
+        // 4. Equipped On Top
+        addItemRow(
+            "Equipped Items On Top",
+            "Pins currently equipped weapons, armors, and helms to the top of inventory lists.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_equipped_on_top = next;
+                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_EQUIPPED_ON_TOP);
+                if (opt != null) {
+                    opt.state = next;
+                    if (opt.onChange != null) try { opt.onChange(opt); } catch (e:Dynamic) {}
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
+            }
+        );
+
+        // 5. Quest Language
+        var languages = ["English", "Português", "Tagalog", "Español", "Bahasa", "Cebuano"];
+        var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
+        addItemRow(
+            "Quest Language",
+            "Translates in-game quest objectives and dialog text.",
+            "cycle",
+            "",
+            false,
+            function():Void {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE);
+                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
+                var nextIdx = (curIdx + 1) % languages.length;
+                HelperSetting.setInt(HelperSetting.OPTION_LANGUAGE, nextIdx);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_language = langCodes[nextIdx];
+            },
+            null,
+            function():String {
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE);
+                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
+                return languages[curIdx];
+            }
+        );
+
+        // 6. Discord RPC
+        addItemRow(
+            "Discord Rich Presence",
+            "Broadcast your AQW character name, level, and map area to Discord status.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_DISCORD_RPC, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_DISCORD_RPC, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && untyped pkt.discordRichPresence != null) {
+                    try {
+                        if (next) pkt.discordRichPresence.enable();
+                        else pkt.discordRichPresence.disable();
+                    } catch (e:Dynamic) {}
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_DISCORD_RPC, true);
+            }
+        );
+
+        // 7. Hide Pocket Overlay
+        addItemRow(
+            "Hide Pocket Overlay",
+            "Temporarily hide the Pocket UI button and overlay elements from the screen.",
+            "button",
+            "Hide",
+            false,
+            function():Void {
+                close();
+                var pkt:Dynamic = getPocket();
+                if (pkt != null) {
+                    if (pkt.gameUI != null && pkt.gameUI.parent != null) pkt.gameUI.parent.removeChild(pkt.gameUI);
+                    if (pkt.overlay != null && pkt.overlay.parent != null) pkt.overlay.parent.removeChild(pkt.overlay);
+                }
+            }
+        );
+    }
+
+    private function renderGameplayTab():Void {
+        addSectionHeader("Game Mechanics");
+
+        // 1. Show Skill Tooltips
+        addItemRow(
+            "Show Skill Tooltips",
+            "Display ability descriptions, damage stats, and mana costs when hovering over skills.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SKILL_TOOLTIPS, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SKILL_TOOLTIPS, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_skill_tooltips = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SKILL_TOOLTIPS, true);
+            }
+        );
+
+        // 2. Skip Cutscenes
+        addItemRow(
+            "Skip Cutscenes",
+            "Automatically skip and fast-forward map cutscenes during gameplay and quests.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_DISABLE_CUTSCENES, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_DISABLE_CUTSCENES, next);
+                HelperSetting.setBool("api_skip_cutscenes", next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_disable_cutscenes = next;
+                if (com.aqwapi.Api.map != null) com.aqwapi.Api.map.skipCutscenes = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_DISABLE_CUTSCENES, false);
+            }
+        );
+
+        // 3. Slow Walk
+        addItemRow(
+            "Analog Joystick Slow Walk",
+            "Move slower when tilting the joystick lightly, and at full run speed when pushed further.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SLOW_WALK, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SLOW_WALK, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_slow_walk = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SLOW_WALK, false);
+            }
+        );
+
+        addSectionHeader("Skill & Aura Visual Effects");
+
+        // 4. Other Players Skills
+        addItemRow(
+            "Player Skill Animations",
+            "Show skill cast animations from other players in the room.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_PLAYER_ANIMATION_SKILL, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_PLAYER_ANIMATION_SKILL, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_player_animation_skill = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_PLAYER_ANIMATION_SKILL, true);
+            }
+        );
+
+        // 5. Other Players Auras
+        addItemRow(
+            "Player Aura Animations",
+            "Show aura and buff visual rings from other players in the room.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_PLAYER_ANIMATION_AURA, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_PLAYER_ANIMATION_AURA, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_player_animation_aura = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_PLAYER_ANIMATION_AURA, true);
+            }
+        );
+
+        // 6. Monster Skills
+        addItemRow(
+            "Monster Skill Animations",
+            "Show monster attack spell animations.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_MONSTER_ANIMATION_SKILL, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_MONSTER_ANIMATION_SKILL, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_monster_animation_skill = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_MONSTER_ANIMATION_SKILL, true);
+            }
+        );
+
+        // 7. Monster Auras
+        addItemRow(
+            "Monster Aura Animations",
+            "Show monster and boss aura effect rings.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_MONSTER_ANIMATION_AURA, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_MONSTER_ANIMATION_AURA, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_monster_animation_aura = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_MONSTER_ANIMATION_AURA, true);
+            }
+        );
+
+        // 8. Self Skills
+        addItemRow(
+            "Self Skill Animations",
+            "Show your own character's skill cast animations.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SELF_ANIMATION_SKILL, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SELF_ANIMATION_SKILL, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_self_animation_skill = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SELF_ANIMATION_SKILL, true);
+            }
+        );
+
+        // 9. Self Auras
+        addItemRow(
+            "Self Aura Animations",
+            "Show your own character's aura and buff visual rings.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SELF_ANIMATION_AURA, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SELF_ANIMATION_AURA, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_self_animation_aura = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SELF_ANIMATION_AURA, true);
+            }
+        );
+    }
+
+    private function renderGraphicsTab():Void {
+        addSectionHeader("Visual Optimization & Filters");
+
+        // 1. Disable Filters
+        addItemRow(
+            "Disable Glow & Shadow Filters",
+            "Removes all software drop-shadow and glow filters from characters and maps to maximize FPS.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_FILTER, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_FILTER, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null) {
+                    if (pkt.config != null) pkt.config.option_filter_off = next;
+                    if (pkt.gameCore != null) {
+                        if (next) pkt.gameCore.setWorldFilters([]);
+                    }
+                }
+                ApiNotificationManager.notify("Filters " + (next ? "disabled" : "restored") + ".");
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_FILTER, false);
+            }
+        );
+
+        addSectionHeader("Freeze Entity & Gear Animations");
+
+        // 2. Monster Animations
+        addItemRow(
+            "Freeze Monster Animations",
+            "Freezes monster timeline animations to drastically improve frame rates in crowded rooms.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MONSTER, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_MONSTER, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_monster_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MONSTER, false);
+            }
+        );
+
+        // 3. Helm Animations
+        addItemRow(
+            "Freeze Helm Animations",
+            "Freezes helmet particles, animated visors, and glowing eyes.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_HELM, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_HELM, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_helm_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_HELM, false);
+            }
+        );
+
+        // 4. Armor Animations
+        addItemRow(
+            "Freeze Armor Animations",
+            "Freezes armor glow pulses and moving cloth/chain effects.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_ARMOR, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_ARMOR, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_armor_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_ARMOR, false);
+            }
+        );
+
+        // 5. Cape Animations
+        addItemRow(
+            "Freeze Cape & Wing Animations",
+            "Freezes flowing cape physics, animated wings, and back items.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_CAPE, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_CAPE, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_cape_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_CAPE, false);
+            }
+        );
+
+        // 6. Hair Animations
+        addItemRow(
+            "Freeze Hair Animations",
+            "Freezes animated hairstyles and braids.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_HAIR, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_HAIR, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_hair_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_HAIR, false);
+            }
+        );
+
+        // 7. Weapon Animations
+        addItemRow(
+            "Freeze Weapon Animations",
+            "Freezes revolving weapon blades, sparks, and electrical glows.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_WEAPON, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_WEAPON, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_weapon_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_WEAPON, false);
+            }
+        );
+
+        // 8. Pet Animations
+        addItemRow(
+            "Freeze Pet & Minion Animations",
+            "Freezes pet idle movements and hovering minions.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_PET, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_PET, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_pet_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_PET, false);
+            }
+        );
+
+        // 9. Ground / Misc Animations
+        addItemRow(
+            "Freeze Ground & Misc Animations",
+            "Freezes ground runes, floating orbs, and miscellaneous accessories.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MISC, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_MISC, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_misc_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MISC, false);
+            }
+        );
+    }
+
+    private function renderControlsTab():Void {
+        addSectionHeader("Touch & Mobile Input");
+
+        // 1. Show Virtual Joystick
+        addItemRow(
+            "Virtual Analog Joystick",
+            "Display an on-screen analog joystick for touch/mouse movement control.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    if (next) pkt.gameUI.showJoystickMouseSimulator();
+                    else pkt.gameUI.hideJoystickMouseSimulator();
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, true);
+            }
+        );
+
+        // 2. Show Arrow Keys (Keyboard walk)
+        addItemRow(
+            "Virtual Arrow Keys",
+            "Display on-screen directional arrow pads for WASD movement.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_KEYBOARD, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SHOW_JOYSTICK_KEYBOARD, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    if (next) pkt.gameUI.showJoystickKeyboardSimulator();
+                    else pkt.gameUI.hideJoystickKeyboardSimulator();
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_KEYBOARD, false);
+            }
+        );
+
+        // 3. Show Skill Bar
+        addItemRow(
+            "On-Screen Skill Bar",
+            "Display floating touch buttons for Skills 1-5 and Auto-Attack.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_SKILL_BAR, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SHOW_SKILL_BAR, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    if (next) pkt.gameUI.showSkillBar();
+                    else pkt.gameUI.hideSkillBar();
+                }
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SHOW_SKILL_BAR, true);
+            }
+        );
+
+        // 4. Joystick Dash
+        addItemRow(
+            "Joystick Dash Ability",
+            "Double-flick the joystick to dash in the movement direction (requires stamina).",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_JOYSTICK_DASH, false);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_JOYSTICK_DASH, next);
+                MouseWalkSimulatorController.IS_DASHING_ON = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_JOYSTICK_DASH, false);
+            }
+        );
+
+        addSectionHeader("Layout Customization");
+
+        // 5. Snap to Grid
+        addItemRow(
+            "Snap To Grid",
+            "Snap UI elements to grid alignment lines when dragging in edit mode.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SNAP_TO_GRID, true);
+                var next = !cur;
+                HelperSetting.setBool(HelperSetting.OPTION_SNAP_TO_GRID, next);
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SNAP_TO_GRID, true);
+            }
+        );
+
+        // 6. Edit Layout
+        addItemRow(
+            "Edit UI Layout Mode",
+            "Enter draggable layout edit mode to move and resize joystick and skill bars.",
+            "button",
+            "Edit",
+            true,
+            function():Void {
+                var pkt:Dynamic = getPocket();
+                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                    ApiNotificationManager.notify("Layout editor is only available while in-game.");
+                    return;
+                }
+                close();
+                if (pkt.gameCore != null) {
+                    pkt.gameCore.setWorldFilters([util.Helper.GRAYSCALE]);
+                }
+                if (pkt.gameUI != null) {
+                    pkt.gameUI.showEditLayout();
+                }
+            }
+        );
+
+        // 7. Reset Layout
+        addItemRow(
+            "Reset Controls Layout",
+            "Restore default positions and sizes for on-screen joystick and controls.",
+            "button",
+            "Reset",
+            false,
+            function():Void {
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    pkt.gameUI.resetLayout();
+                }
+                ApiNotificationManager.notify("Controls layout restored to default!");
+            }
+        );
+    }
+
+    private function renderShortcutsTab():Void {
+        addSectionHeader("In-Game Shortcuts");
+
+        // 1. Add Shortcut Button
+        addItemRow(
+            "Add Quick Shortcut Button",
+            "Place an on-screen shortcut action button (Auto Attack, Skills, Inventory, Bank, Travel, etc.).",
+            "button",
+            "Add",
+            true,
+            function():Void {
+                var pkt:Dynamic = getPocket();
+                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                    ApiNotificationManager.notify("Shortcuts are only available while in-game.");
+                    return;
+                }
+                close();
+                var picker:DisplayObject = pkt.game.stage.getChildByName("ShortcutPicker");
+                if (picker != null && picker.parent != null) {
+                    picker.parent.removeChild(picker);
+                }
+                pkt.game.stage.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
+                    if (pkt.gameUI != null) pkt.gameUI.addShortcutButton(actionName);
+                }));
+            }
+        );
+
+        // 2. Remove Shortcut Button
+        addItemRow(
+            "Remove Shortcut Button",
+            "Select an on-screen shortcut button to remove from the display.",
+            "button",
+            "Remove",
+            false,
+            function():Void {
+                var pkt:Dynamic = getPocket();
+                if (pkt == null || pkt.game == null || pkt.gameCore == null || pkt.gameCore.currentFrame != "Game") {
+                    ApiNotificationManager.notify("Shortcuts are only available while in-game.");
+                    return;
+                }
+                close();
+                var picker:DisplayObject = pkt.game.stage.getChildByName("ShortcutPicker");
+                if (picker != null && picker.parent != null) {
+                    picker.parent.removeChild(picker);
+                }
+                pkt.game.stage.addChild(new ShortcutPicker(pkt, function(actionName:String):Void {
+                    if (pkt.gameUI != null) pkt.gameUI.removeShortcutButton(actionName);
+                }));
+            }
+        );
+
+        // 3. Reset Shortcuts
+        addItemRow(
+            "Reset All Shortcuts",
+            "Remove all custom shortcut buttons and restore default layout.",
+            "button",
+            "Reset",
+            false,
+            function():Void {
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    pkt.gameUI.resetShortcuts();
+                }
+                ApiNotificationManager.notify("Shortcuts reset to default!");
             }
         );
     }

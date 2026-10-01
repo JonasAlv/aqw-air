@@ -1,10 +1,11 @@
-package ui;
+package ui.api;
 
 import com.aqwapi.Api;
 import com.aqwapi.events.ApiEvent;
 
 #if flash
 import flash.display.Sprite;
+import ui.api.ApiNotification;
 #end
 
 class ApiNotificationManager {
