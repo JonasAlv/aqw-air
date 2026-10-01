@@ -11,7 +11,9 @@
 --macro include('controller')
 --macro include('util')
 --macro include('data')
+--macro include('load')
 Config
+--macro include('pocket')
 
 --macro exclude('com.aqwapi')
 --macro exclude('hscript')
