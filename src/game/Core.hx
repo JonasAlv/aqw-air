@@ -1,8 +1,5 @@
 package game;
 
-import ui.option.Menu;
-import ui.option.Option;
-
 class Core {
     private var pocket:Dynamic;
     public var itemPagination:ItemPagination;
@@ -31,24 +28,6 @@ class Core {
      */
     public function onFrameChange(frame:String):Void {
         this.currentFrame = frame;
-
-        if (this.pocket != null && this.pocket.overlay != null && this.pocket.overlay.menus != null) {
-            var menus:Dynamic = this.pocket.overlay.menus;
-            var mLen:Int = untyped menus.length;
-            for (i in 0...mLen) {
-                var menu:Dynamic = untyped menus[i];
-                if (menu != null && menu.options != null) {
-                    var opts:Dynamic = menu.options;
-                    var oLen:Int = untyped opts.length;
-                    for (j in 0...oLen) {
-                        var option:Dynamic = untyped opts[j];
-                        if (option != null && option.onFrameChange != null) {
-                            option.onFrameChange(frame);
-                        }
-                    }
-                }
-            }
-        }
 
         if (this.pocket != null && this.pocket.overlay != null && this.pocket.overlay.setOverlayButtonTransform != null) {
             this.pocket.overlay.setOverlayButtonTransform();

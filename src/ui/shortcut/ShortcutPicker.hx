@@ -8,9 +8,7 @@ import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 import flash.Vector;
-import ui.option.Check;
-import ui.option.Menu;
-import ui.option.Option;
+
 import ui.util.Scroll;
 import flash.display.Shape;
 import flash.text.TextField;
@@ -146,44 +144,20 @@ class ShortcutPicker extends Sprite {
         }),
         new Action("Toggle Joystick", function(pocket:Dynamic):Void {
             if (pocket == null || pocket.gameCore == null || pocket.gameCore.currentFrame != "Game") return;
-            if (pocket.overlay != null && pocket.overlay.menus != null) {
-                var menus:Dynamic = pocket.overlay.menus;
-                var mLen:Int = untyped menus.length;
-                for (i in 0...mLen) {
-                    var menu:Dynamic = untyped menus[i];
-                    if (menu != null && menu.options != null) {
-                        var opts:Dynamic = menu.options;
-                        var oLen:Int = untyped opts.length;
-                        for (j in 0...oLen) {
-                            var option:Dynamic = untyped opts[j];
-                            if (option != null && option.key == HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE) {
-                                (cast option : Check).onToggle();
-                                return;
-                            }
-                        }
-                    }
-                }
+            var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, true);
+            var next = !cur;
+            HelperSetting.setBool(HelperSetting.OPTION_SHOW_JOYSTICK_MOUSE, next);
+            if (pocket.gameUI != null && pocket.gameUI.joystickMouse != null) {
+                pocket.gameUI.joystickMouse.visible = next;
             }
         }),
         new Action("Toggle Skills", function(pocket:Dynamic):Void {
             if (pocket == null || pocket.gameCore == null || pocket.gameCore.currentFrame != "Game") return;
-            if (pocket.overlay != null && pocket.overlay.menus != null) {
-                var menus:Dynamic = pocket.overlay.menus;
-                var mLen:Int = untyped menus.length;
-                for (i in 0...mLen) {
-                    var menu:Dynamic = untyped menus[i];
-                    if (menu != null && menu.options != null) {
-                        var opts:Dynamic = menu.options;
-                        var oLen:Int = untyped opts.length;
-                        for (j in 0...oLen) {
-                            var option:Dynamic = untyped opts[j];
-                            if (option != null && option.key == HelperSetting.OPTION_SHOW_SKILL_BAR) {
-                                (cast option : Check).onToggle();
-                                return;
-                            }
-                        }
-                    }
-                }
+            var cur = HelperSetting.getBool(HelperSetting.OPTION_SHOW_SKILL_BAR, true);
+            var next = !cur;
+            HelperSetting.setBool(HelperSetting.OPTION_SHOW_SKILL_BAR, next);
+            if (pocket.gameUI != null && pocket.gameUI.skillBar != null) {
+                pocket.gameUI.skillBar.visible = next;
             }
         }),
         new Action("Toggle Skills Shortcuts", function(pocket:Dynamic):Void {

@@ -34,8 +34,20 @@ class Debug extends Sprite {
         }
     }
 
+    private static function getTimestamp():String {
+        try {
+            var d:Dynamic = com.aqwapi.utils.ApiTime.currentDate();
+            var h:String = StringTools.lpad(Std.string(d.getHours()), "0", 2);
+            var m:String = StringTools.lpad(Std.string(d.getMinutes()), "0", 2);
+            var s:String = StringTools.lpad(Std.string(d.getSeconds()), "0", 2);
+            return h + ":" + m + ":" + s;
+        } catch (_:Dynamic) {
+            return "00:00:00";
+        }
+    }
+
     public function log(msg:String):Void {
-        var timestamp:String = Date.now().toString().substr(11, 8);
+        var timestamp:String = getTimestamp();
         var entry:String = "[" + timestamp + "] [Loader] " + msg;
         #if flash
         try {
@@ -53,7 +65,7 @@ class Debug extends Sprite {
     }
 
     public function logError(msg:String):Void {
-        var timestamp:String = Date.now().toString().substr(11, 8);
+        var timestamp:String = getTimestamp();
         var entry:String = "[" + timestamp + "] [Loader:ERROR] " + msg;
         #if flash
         try {

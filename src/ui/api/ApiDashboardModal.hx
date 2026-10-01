@@ -19,19 +19,10 @@ import flash.text.TextFormatAlign;
 import flash.ui.Keyboard;
 import ui.api.ApiNotificationManager;
 import ui.Overlay;
-import ui.option.Check;
-import ui.option.Toggle;
-import ui.option.Button;
-import ui.option.Option;
 import ui.shortcut.ShortcutPicker;
 import controller.walk.MouseWalkSimulatorController;
 import ui.api.prompts.ApiPrompts;
 import util.HelperSetting;
-
-enum DashboardMode {
-    ModeApi;
-    ModeClient;
-}
 
 enum DashboardTab {
     // API Automation tabs
@@ -71,22 +62,16 @@ class ApiDashboardModal extends Sprite {
     }
 
     // Modal layout constants
-    private static inline var DIALOG_WIDTH:Float = 760;
-    private static inline var DIALOG_HEIGHT:Float = 440;
-    private static inline var SIDEBAR_WIDTH:Float = 170;
-    private static inline var CONTENT_WIDTH:Float = 550;
-    private static inline var CONTENT_HEIGHT:Float = 370;
+    private static inline var DIALOG_WIDTH:Float = 780;
+    private static inline var DIALOG_HEIGHT:Float = 470;
+    private static inline var SIDEBAR_WIDTH:Float = 175;
+    private static inline var CONTENT_WIDTH:Float = 565;
+    private static inline var CONTENT_HEIGHT:Float = 405;
 
     private var _overlay:Dynamic;
     private var _pocket:Dynamic;
     private var _backdrop:Sprite;
     private var _window:Sprite;
-
-    private var _currentMode:DashboardMode = ModeApi;
-    private var _modeApiBtn:Sprite;
-    private var _modeClientBtn:Sprite;
-    private var _modeApiTxt:TextField;
-    private var _modeClientTxt:TextField;
 
     private var _titleTxt:TextField;
     private var _badgeTxt:TextField;
@@ -139,11 +124,8 @@ class ApiDashboardModal extends Sprite {
         _window.graphics.endFill();
 
         _window.x = (stageW - DIALOG_WIDTH) / 2;
-        _window.y = Math.max(34, (stageH - DIALOG_HEIGHT) / 2 + 16);
+        _window.y = (stageH - DIALOG_HEIGHT) / 2;
         addChild(_window);
-
-        // Mode Switcher Tabs above _window
-        setupModeSwitcher();
 
         // 3. Header Bar
         setupHeader();
@@ -185,128 +167,6 @@ class ApiDashboardModal extends Sprite {
     }
 
     // =========================================================================
-    // MODE SWITCHER (TABS ABOVE WINDOW)
-    // =========================================================================
-
-    private function setupModeSwitcher():Void {
-        var modeContainer = new Sprite();
-        modeContainer.x = _window.x + 8;
-        modeContainer.y = _window.y - 30;
-        addChild(modeContainer);
-
-        var btnW:Float = 145;
-        var btnH:Float = 31;
-
-        _modeApiBtn = new Sprite();
-        _modeApiBtn.buttonMode = true;
-        _modeApiBtn.x = 0;
-        _modeApiBtn.y = 0;
-        modeContainer.addChild(_modeApiBtn);
-
-        _modeApiTxt = new TextField();
-        var fmt = new TextFormat("_sans", 12, 0xFFFFFF, true);
-        fmt.align = TextFormatAlign.CENTER;
-        _modeApiTxt.defaultTextFormat = fmt;
-        _modeApiTxt.text = "API Automation";
-        _modeApiTxt.width = btnW;
-        _modeApiTxt.height = 20;
-        _modeApiTxt.y = 6;
-        _modeApiTxt.selectable = false;
-        _modeApiTxt.mouseEnabled = false;
-        _modeApiBtn.addChild(_modeApiTxt);
-
-        _modeClientBtn = new Sprite();
-        _modeClientBtn.buttonMode = true;
-        _modeClientBtn.x = btnW + 6;
-        _modeClientBtn.y = 0;
-        modeContainer.addChild(_modeClientBtn);
-
-        _modeClientTxt = new TextField();
-        var cfmt = new TextFormat("_sans", 12, 0x888888, true);
-        cfmt.align = TextFormatAlign.CENTER;
-        _modeClientTxt.defaultTextFormat = cfmt;
-        _modeClientTxt.text = "Client Settings";
-        _modeClientTxt.width = btnW;
-        _modeClientTxt.height = 20;
-        _modeClientTxt.y = 6;
-        _modeClientTxt.selectable = false;
-        _modeClientTxt.mouseEnabled = false;
-        _modeClientBtn.addChild(_modeClientTxt);
-
-        _modeApiBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            if (_currentMode != ModeApi) switchMode(ModeApi);
-        });
-
-        _modeClientBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            if (_currentMode != ModeClient) switchMode(ModeClient);
-        });
-
-        _modeApiBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
-            if (_currentMode != ModeApi) renderModeBtnGraphic(_modeApiBtn, btnW, btnH, false, true);
-        });
-        _modeApiBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
-            if (_currentMode != ModeApi) renderModeBtnGraphic(_modeApiBtn, btnW, btnH, false, false);
-        });
-
-        _modeClientBtn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
-            if (_currentMode != ModeClient) renderModeBtnGraphic(_modeClientBtn, btnW, btnH, false, true);
-        });
-        _modeClientBtn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
-            if (_currentMode != ModeClient) renderModeBtnGraphic(_modeClientBtn, btnW, btnH, false, false);
-        });
-
-        updateModeVisuals();
-    }
-
-    private function renderModeBtnGraphic(btn:Sprite, w:Float, h:Float, isActive:Bool, isHover:Bool):Void {
-        btn.graphics.clear();
-        if (isActive) {
-            btn.graphics.beginFill(0x880000, 1);
-            btn.graphics.lineStyle(1, 0xAA0000);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
-            btn.graphics.endFill();
-        } else if (isHover) {
-            btn.graphics.beginFill(0x222222, 1);
-            btn.graphics.lineStyle(1, 0x3E3E3E);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
-            btn.graphics.endFill();
-        } else {
-            btn.graphics.beginFill(0x161616, 1);
-            btn.graphics.lineStyle(1, 0x242424);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
-            btn.graphics.endFill();
-        }
-    }
-
-    private function updateModeVisuals():Void {
-        var btnW:Float = 145;
-        var btnH:Float = 31;
-        var isApi = (_currentMode == ModeApi);
-        renderModeBtnGraphic(_modeApiBtn, btnW, btnH, isApi, false);
-        _modeApiTxt.textColor = isApi ? 0xFFFFFF : 0x888888;
-
-        renderModeBtnGraphic(_modeClientBtn, btnW, btnH, !isApi, false);
-        _modeClientTxt.textColor = !isApi ? 0xFFFFFF : 0x888888;
-    }
-
-    private function switchMode(mode:DashboardMode):Void {
-        _currentMode = mode;
-        updateModeVisuals();
-
-        if (mode == ModeApi) {
-            if (_titleTxt != null) _titleTxt.text = "Menu";
-            if (_badgeTxt != null) _badgeTxt.text = "Control Center";
-            setupSidebar();
-            switchTab(TabScripts);
-        } else {
-            if (_titleTxt != null) _titleTxt.text = "Client";
-            if (_badgeTxt != null) _badgeTxt.text = "Game Settings";
-            setupSidebar();
-            switchTab(TabGeneral);
-        }
-    }
-
-    // =========================================================================
     // HEADER
     // =========================================================================
 
@@ -320,10 +180,10 @@ class ApiDashboardModal extends Sprite {
         _titleTxt = new TextField();
         var titleFmt = new TextFormat("_sans", 16, 0xEEEEEE, true);
         _titleTxt.defaultTextFormat = titleFmt;
-        _titleTxt.text = (_currentMode == ModeApi) ? "Menu" : "Client";
-        _titleTxt.x = 22;
+        _titleTxt.text = "Control Center";
+        _titleTxt.x = 20;
         _titleTxt.y = 13;
-        _titleTxt.width = 100;
+        _titleTxt.width = 140;
         _titleTxt.height = 28;
         _titleTxt.selectable = false;
         _titleTxt.mouseEnabled = false;
@@ -333,10 +193,10 @@ class ApiDashboardModal extends Sprite {
         _badgeTxt = new TextField();
         var badgeFmt = new TextFormat("_sans", 11, 0x666666, false);
         _badgeTxt.defaultTextFormat = badgeFmt;
-        _badgeTxt.text = (_currentMode == ModeApi) ? "Control Center" : "Game Settings";
-        _badgeTxt.x = 85;
+        _badgeTxt.text = "AQW Pocket Mod & Automation";
+        _badgeTxt.x = 160;
         _badgeTxt.y = 17;
-        _badgeTxt.width = 130;
+        _badgeTxt.width = 240;
         _badgeTxt.height = 20;
         _badgeTxt.selectable = false;
         _badgeTxt.mouseEnabled = false;
@@ -356,13 +216,11 @@ class ApiDashboardModal extends Sprite {
             var border = isHover ? 0xCC0000 : 0x333333;
             var xColor = isHover ? 0xFFFFFF : 0xAAAAAA;
 
-            // Background & Border
             closeBtn.graphics.beginFill(bg, 1);
             closeBtn.graphics.lineStyle(1, border);
             closeBtn.graphics.drawRoundRect(0, 0, cbW, cbH, 5, 5);
             closeBtn.graphics.endFill();
 
-            // Crisp Vector ✕ Icon (No font dependency!)
             var cx:Float = cbW / 2;
             var cy:Float = cbH / 2;
             var size:Float = 4.5;
@@ -402,36 +260,73 @@ class ApiDashboardModal extends Sprite {
         _tabButtons = new Map<DashboardTab, Sprite>();
         _tabLabels = new Map<DashboardTab, TextField>();
 
-        var tabs:Array<{ id:DashboardTab, label:String }>;
-        if (_currentMode == ModeApi) {
-            tabs = [
-                { id: TabScripts, label: "Scripts" },
-                { id: TabAutomation, label: "Automation" },
-                { id: TabEnhancements, label: "Enhancements" },
-                { id: TabHud, label: "On-Screen HUD" },
-                { id: TabSettings, label: "Settings" }
-            ];
-        } else {
-            tabs = [
-                { id: TabGeneral, label: "General" },
-                { id: TabGameplay, label: "Gameplay" },
-                { id: TabGraphics, label: "Graphics & FPS" },
-                { id: TabControls, label: "Controls" },
-                { id: TabShortcuts, label: "Shortcuts" }
-            ];
-        }
-
-        var tabY:Float = 60;
         var tabW:Float = SIDEBAR_WIDTH - 12;
-        var tabH:Float = 36;
+        var tabH:Float = 27;
+        var tabY:Float = 56;
 
-        for (t in tabs) {
+        // Section 1: Automation
+        var autoHeader = createSidebarSectionHeader("AUTOMATION", tabW);
+        autoHeader.x = 14;
+        autoHeader.y = tabY;
+        _sidebarContainer.addChild(autoHeader);
+        tabY += 18;
+
+        var autoTabs = [
+            { id: TabScripts, label: "Scripts" },
+            { id: TabAutomation, label: "Combat & Quests" },
+            { id: TabEnhancements, label: "Enhancements" },
+            { id: TabHud, label: "HUD Controls" }
+        ];
+
+        for (t in autoTabs) {
             var btn = createTabButton(t.label, tabW, tabH, t.id);
             btn.x = 14;
             btn.y = tabY;
             _sidebarContainer.addChild(btn);
-            tabY += tabH + 8;
+            tabY += tabH + 4;
         }
+
+        tabY += 10;
+
+        // Section 2: Client Settings
+        var clientHeader = createSidebarSectionHeader("CLIENT SETTINGS", tabW);
+        clientHeader.x = 14;
+        clientHeader.y = tabY;
+        _sidebarContainer.addChild(clientHeader);
+        tabY += 18;
+
+        var clientTabs = [
+            { id: TabGeneral, label: "Display & FPS" },
+            { id: TabGameplay, label: "Gameplay & Bags" },
+            { id: TabGraphics, label: "Graphics & Hides" },
+            { id: TabControls, label: "Controls & Touch" },
+            { id: TabShortcuts, label: "Hotkeys & Bar" },
+            { id: TabSettings, label: "System Settings" }
+        ];
+
+        for (t in clientTabs) {
+            var btn = createTabButton(t.label, tabW, tabH, t.id);
+            btn.x = 14;
+            btn.y = tabY;
+            _sidebarContainer.addChild(btn);
+            tabY += tabH + 4;
+        }
+    }
+
+    private function createSidebarSectionHeader(title:String, w:Float):Sprite {
+        var sp = new Sprite();
+        var txt = new TextField();
+        var fmt = new TextFormat("_sans", 9, 0xCC4444, true);
+        txt.defaultTextFormat = fmt;
+        txt.text = title;
+        txt.x = 6;
+        txt.y = 0;
+        txt.width = w - 12;
+        txt.height = 16;
+        txt.selectable = false;
+        txt.mouseEnabled = false;
+        sp.addChild(txt);
+        return sp;
     }
 
     private function createTabButton(label:String, w:Float, h:Float, tabId:DashboardTab):Sprite {
@@ -439,12 +334,12 @@ class ApiDashboardModal extends Sprite {
         btn.buttonMode = true;
 
         var txt = new TextField();
-        var fmt = new TextFormat("_sans", 13, 0x888888, true);
+        var fmt = new TextFormat("_sans", 11, 0x888888, true);
         txt.defaultTextFormat = fmt;
         txt.text = label;
-        txt.x = 16;
-        txt.y = (h - 18) / 2;
-        txt.width = w - 24;
+        txt.x = 12;
+        txt.y = (h - 17) / 2;
+        txt.width = w - 16;
         txt.selectable = false;
         txt.mouseEnabled = false;
 
@@ -479,22 +374,22 @@ class ApiDashboardModal extends Sprite {
         if (isActive) {
             btn.graphics.beginFill(0x880000, 1);
             btn.graphics.lineStyle(1, 0xAA0000);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
             btn.graphics.endFill();
 
-            btn.graphics.beginFill(0xFF3333, 1);
+            btn.graphics.beginFill(0xFF4444, 1);
             btn.graphics.lineStyle(0, 0, 0);
-            btn.graphics.drawRoundRect(0, 4, 3, h - 8, 2, 2);
+            btn.graphics.drawRoundRect(0, 3, 3, h - 6, 2, 2);
             btn.graphics.endFill();
         } else if (isHover) {
             btn.graphics.beginFill(0x222222, 1);
             btn.graphics.lineStyle(1, 0x3A3A3A);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
             btn.graphics.endFill();
         } else {
             btn.graphics.beginFill(0x171717, 1);
             btn.graphics.lineStyle(1, 0x242424);
-            btn.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+            btn.graphics.drawRoundRect(0, 0, w, h, 5, 5);
             btn.graphics.endFill();
         }
     }
@@ -503,7 +398,7 @@ class ApiDashboardModal extends Sprite {
         _currentTab = tabId;
 
         var tabW:Float = SIDEBAR_WIDTH - 12;
-        var tabH:Float = 36;
+        var tabH:Float = 27;
 
         for (t in _tabButtons.keys()) {
             var btn = _tabButtons.get(t);
@@ -1668,23 +1563,6 @@ class ApiDashboardModal extends Sprite {
         return null;
     }
 
-    private function getOptionByKey(key:String):Dynamic {
-        if (_overlay == null || _overlay.menus == null) return null;
-        var mList:Dynamic = _overlay.menus;
-        var mLen:Int = untyped mList.length;
-        for (i in 0...mLen) {
-            var menu:Dynamic = untyped mList[i];
-            if (menu == null || menu.options == null) continue;
-            var opts:Dynamic = menu.options;
-            var oLen:Int = untyped opts.length;
-            for (j in 0...oLen) {
-                var opt:Dynamic = untyped opts[j];
-                if (opt != null && opt.key == key) return opt;
-            }
-        }
-        return null;
-    }
-
     private function renderGeneralTab():Void {
         addSectionHeader("Display & Engine");
 
@@ -1706,10 +1584,6 @@ class ApiDashboardModal extends Sprite {
                 var stg:Dynamic = stage != null ? stage : (pkt != null ? pkt.stage : null);
                 if (stg != null) stg.frameRate = fps;
                 if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
-                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_FPS);
-                if (opt != null) {
-                    try { opt.setIndex(nextIdx); if (opt.onChange != null) opt.onChange(opt); } catch (e:Dynamic) {}
-                }
             },
             null,
             function():String {
@@ -1772,11 +1646,6 @@ class ApiDashboardModal extends Sprite {
                 HelperSetting.setBool(HelperSetting.OPTION_PAGINATION, next);
                 var pkt:Dynamic = getPocket();
                 if (pkt != null && pkt.config != null) pkt.config.option_pagination = next;
-                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_PAGINATION);
-                if (opt != null) {
-                    opt.state = next;
-                    if (opt.onChange != null) try { opt.onChange(opt); } catch (e:Dynamic) {}
-                }
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
@@ -1796,11 +1665,6 @@ class ApiDashboardModal extends Sprite {
                 HelperSetting.setBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, next);
                 var pkt:Dynamic = getPocket();
                 if (pkt != null && pkt.config != null) pkt.config.option_equipped_on_top = next;
-                var opt:Dynamic = getOptionByKey(HelperSetting.OPTION_EQUIPPED_ON_TOP);
-                if (opt != null) {
-                    opt.state = next;
-                    if (opt.onChange != null) try { opt.onChange(opt); } catch (e:Dynamic) {}
-                }
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
