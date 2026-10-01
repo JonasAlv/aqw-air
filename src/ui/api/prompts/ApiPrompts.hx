@@ -1803,11 +1803,11 @@ class ApiPrompts {
                 var running = ScriptManager.SINGLETON.isRunning;
                 if (running) {
                     var actName = ScriptManager.SINGLETON.activeScriptName;
-                    lblStatus.text = "● RUNNING: " + (actName != null ? actName : "Custom Script");
+                    lblStatus.text = "[RUNNING] " + (actName != null ? actName : "Custom Script");
                     lblStatus.textColor = 0x55FF55;
                     if (runBtnTxt != null) runBtnTxt.text = "Stop Script";
                 } else {
-                    lblStatus.text = "○ STOPPED";
+                    lblStatus.text = "[STOPPED]";
                     lblStatus.textColor = 0x888888;
                     if (runBtnTxt != null) runBtnTxt.text = "Start Script";
                 }

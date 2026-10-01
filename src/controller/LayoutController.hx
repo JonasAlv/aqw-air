@@ -130,7 +130,7 @@ class LayoutController {
         toolbar.y = 12;
 
         // Button 1: Save (Green)
-        var saveBtn = makeToolbarButton("✓ Save Layout", 0x28A745, 120, 28);
+        var saveBtn = makeToolbarButton("Save Layout", 0x28A745, 120, 28);
         saveBtn.x = 10;
         saveBtn.y = 7;
         saveBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
@@ -140,7 +140,7 @@ class LayoutController {
         toolbar.addChild(saveBtn);
 
         // Button 2: Reset (Dark Grey)
-        var resetBtn = makeToolbarButton("↺ Reset", 0x333333, 90, 28);
+        var resetBtn = makeToolbarButton("Reset", 0x333333, 90, 28);
         resetBtn.x = 138;
         resetBtn.y = 7;
         resetBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
@@ -150,7 +150,7 @@ class LayoutController {
         toolbar.addChild(resetBtn);
 
         // Button 3: Close (Red)
-        var closeBtn = makeToolbarButton("✕ Exit", 0xDC3545, 90, 28);
+        var closeBtn = makeToolbarButton("Exit", 0xDC3545, 90, 28);
         closeBtn.x = 238;
         closeBtn.y = 7;
         closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {

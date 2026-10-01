@@ -15,7 +15,7 @@ import flash.text.TextFormatAlign;
  *
  * Visually matches the AQW UI style:
  *  - Left/Right square rounded-corner buttons with crimson red glowing borders
- *  - High-contrast white chevrons (< / >)
+ *  - Pure vector-drawn chevrons (< / >) - zero font dependencies, never missing glyphs
  *  - Clean centered "Page X of Y" label
  *  - Transparent row background (fits seamlessly inside listMask)
  */
@@ -45,8 +45,6 @@ class Pagination extends MovieClip {
     public var fData:Dynamic;
     public var sel:Dynamic;
 
-    private var _prevChevron:TextField;
-    private var _nextChevron:TextField;
     private var _prevEnabled:Bool = false;
     private var _nextEnabled:Bool = false;
 
@@ -64,9 +62,6 @@ class Pagination extends MovieClip {
         btnPrev.useHandCursor = true;
         addChild(btnPrev);
 
-        _prevChevron = _createChevron("<");
-        btnPrev.addChild(_prevChevron);
-
         btnPrev.addEventListener(MouseEvent.ROLL_OVER, _onPrevOver, false, 0, true);
         btnPrev.addEventListener(MouseEvent.ROLL_OUT,  _onPrevOut,  false, 0, true);
 
@@ -77,9 +72,6 @@ class Pagination extends MovieClip {
         btnNext.buttonMode = true;
         btnNext.useHandCursor = true;
         addChild(btnNext);
-
-        _nextChevron = _createChevron(">");
-        btnNext.addChild(_nextChevron);
 
         btnNext.addEventListener(MouseEvent.ROLL_OVER, _onNextOver, false, 0, true);
         btnNext.addEventListener(MouseEvent.ROLL_OUT,  _onNextOut,  false, 0, true);
@@ -98,25 +90,11 @@ class Pagination extends MovieClip {
         addChild(tPage);
 
         // Initial draw in disabled state
-        _drawButton(btnPrev, false, false);
-        _drawButton(btnNext, false, false);
+        _drawButton(btnPrev, false, false, false);
+        _drawButton(btnNext, true, false, false);
     }
 
-    private function _createChevron(char:String):TextField {
-        var tf:TextField = new TextField();
-        tf.defaultTextFormat = new TextFormat("_sans", 16, C_TEXT_WHITE, true, false, false, null, null, TextFormatAlign.CENTER);
-        tf.selectable   = false;
-        tf.mouseEnabled = false;
-        tf.autoSize     = TextFieldAutoSize.NONE;
-        tf.width        = BTN_SIZE;
-        tf.height       = BTN_SIZE;
-        tf.text         = char;
-        tf.x            = 0;
-        tf.y            = (BTN_SIZE - 22.0) / 2.0;
-        return tf;
-    }
-
-    private function _drawButton(btn:Sprite, enabled:Bool, hovered:Bool):Void {
+    private function _drawButton(btn:Sprite, isNext:Bool, enabled:Bool, hovered:Bool):Void {
         var g:Graphics = btn.graphics;
         g.clear();
 
@@ -146,22 +124,44 @@ class Pagination extends MovieClip {
             g.moveTo(BTN_RADIUS, 1.0);
             g.lineTo(BTN_SIZE - BTN_RADIUS, 1.0);
         }
+
+        // Pure vector chevron (< or >) — 100% vector drawn, zero fonts, zero missing glyphs
+        var chevronColor:Int = enabled ? C_TEXT_WHITE : C_TEXT_DISABLED;
+        var chevronAlpha:Float = enabled ? 1.0 : 0.35;
+        g.lineStyle(2.5, chevronColor, chevronAlpha, true, flash.display.LineScaleMode.NORMAL, flash.display.CapsStyle.ROUND, flash.display.JointStyle.ROUND);
+
+        var midY:Float = BTN_SIZE / 2.0;
+        if (!isNext) {
+            // Left Chevron (<)
+            var tipX:Float = (BTN_SIZE / 2.0) - 3.0;
+            var armX:Float = (BTN_SIZE / 2.0) + 3.0;
+            g.moveTo(armX, midY - 6.0);
+            g.lineTo(tipX, midY);
+            g.lineTo(armX, midY + 6.0);
+        } else {
+            // Right Chevron (>)
+            var tipX:Float = (BTN_SIZE / 2.0) + 3.0;
+            var armX:Float = (BTN_SIZE / 2.0) - 3.0;
+            g.moveTo(armX, midY - 6.0);
+            g.lineTo(tipX, midY);
+            g.lineTo(armX, midY + 6.0);
+        }
     }
 
     private function _onPrevOver(e:MouseEvent):Void {
-        if (_prevEnabled) _drawButton(btnPrev, true, true);
+        if (_prevEnabled) _drawButton(btnPrev, false, true, true);
     }
 
     private function _onPrevOut(e:MouseEvent):Void {
-        _drawButton(btnPrev, _prevEnabled, false);
+        _drawButton(btnPrev, false, _prevEnabled, false);
     }
 
     private function _onNextOver(e:MouseEvent):Void {
-        if (_nextEnabled) _drawButton(btnNext, true, true);
+        if (_nextEnabled) _drawButton(btnNext, true, true, true);
     }
 
     private function _onNextOut(e:MouseEvent):Void {
-        _drawButton(btnNext, _nextEnabled, false);
+        _drawButton(btnNext, true, _nextEnabled, false);
     }
 
     public function fOpen(data:Dynamic):Void {
@@ -189,16 +189,14 @@ class Pagination extends MovieClip {
         // Prev button state
         btnPrev.mouseEnabled  = _prevEnabled;
         btnPrev.useHandCursor = _prevEnabled;
-        btnPrev.alpha         = _prevEnabled ? 1.0 : 0.4;
-        _prevChevron.textColor = _prevEnabled ? C_TEXT_WHITE : C_TEXT_DISABLED;
-        _drawButton(btnPrev, _prevEnabled, false);
+        btnPrev.alpha         = _prevEnabled ? 1.0 : 0.45;
+        _drawButton(btnPrev, false, _prevEnabled, false);
 
         // Next button state
         btnNext.mouseEnabled  = _nextEnabled;
         btnNext.useHandCursor = _nextEnabled;
-        btnNext.alpha         = _nextEnabled ? 1.0 : 0.4;
-        _nextChevron.textColor = _nextEnabled ? C_TEXT_WHITE : C_TEXT_DISABLED;
-        _drawButton(btnNext, _nextEnabled, false);
+        btnNext.alpha         = _nextEnabled ? 1.0 : 0.45;
+        _drawButton(btnNext, true, _nextEnabled, false);
     }
 
     public function fClose():Void {

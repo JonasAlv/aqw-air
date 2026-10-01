@@ -82,24 +82,19 @@ class ShortcutButton extends Sprite {
         deleteBadge.graphics.lineStyle(1.5, 0xFFFFFF, 0.9);
         deleteBadge.graphics.drawCircle(0, 0, 9);
         deleteBadge.graphics.endFill();
+
+        // Crisp vector X cross
+        deleteBadge.graphics.lineStyle(1.8, 0xFFFFFF, 1.0);
+        deleteBadge.graphics.moveTo(-4, -4);
+        deleteBadge.graphics.lineTo(4, 4);
+        deleteBadge.graphics.moveTo(4, -4);
+        deleteBadge.graphics.lineTo(-4, 4);
+
         deleteBadge.x = WIDTH - 2;
         deleteBadge.y = 2;
         deleteBadge.visible = false;
         deleteBadge.buttonMode = true;
         deleteBadge.useHandCursor = true;
-
-        var xTxt = new TextField();
-        var xTf = new TextFormat("_sans", 10, 0xFFFFFF, true);
-        xTf.align = TextFormatAlign.CENTER;
-        xTxt.defaultTextFormat = xTf;
-        xTxt.text = "✕";
-        xTxt.width = 16;
-        xTxt.height = 16;
-        xTxt.x = -8;
-        xTxt.y = -8;
-        xTxt.selectable = false;
-        xTxt.mouseEnabled = false;
-        deleteBadge.addChild(xTxt);
 
         deleteBadge.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
             e.stopPropagation();

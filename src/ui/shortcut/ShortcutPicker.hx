@@ -78,6 +78,14 @@ class ShortcutPicker extends Sprite {
         new ShortcutActionItem("Toggle Shortcuts", "Interface", "Toggle all shortcut buttons")
     ];
 
+    private static var TAB_DEFS:Array<{id:String, label:String, w:Float}> = [
+        { id: "ALL",       label: "ALL ACTIONS", w: 104.0 },
+        { id: "Combat",    label: "COMBAT",      w: 84.0 },
+        { id: "Storage",   label: "STORAGE",     w: 88.0 },
+        { id: "Movement",  label: "MOVEMENT",    w: 94.0 },
+        { id: "Interface", label: "INTERFACE",   w: 98.0 }
+    ];
+
     private var pocket:Dynamic;
     private var onPick:String->Void;
 
@@ -85,8 +93,6 @@ class ShortcutPicker extends Sprite {
     private var searchInput:TextField;
     private var listContainer:Sprite;
     private var listMask:Shape;
-    private var scrollTrack:Sprite;
-    private var scrollThumb:Sprite;
 
     private var selectedCategory:String = "ALL";
     private var searchQuery:String = "";
@@ -163,56 +169,43 @@ class ShortcutPicker extends Sprite {
         subTitle.mouseEnabled = false;
         win.addChild(subTitle);
 
-        // 4. Close Button
+        // 4. Close Button (Pure vector X — zero fonts, zero missing glyphs)
         var closeBtn = new Sprite();
-        closeBtn.graphics.beginFill(0x222222, 0.9);
-        closeBtn.graphics.lineStyle(1.5, 0x444444);
-        closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
-        closeBtn.graphics.endFill();
         closeBtn.x = WIN_W - 38;
         closeBtn.y = 10;
         closeBtn.buttonMode = true;
         closeBtn.useHandCursor = true;
 
-        var closeTxt = new TextField();
-        closeTxt.defaultTextFormat = new TextFormat("_sans", 13, 0xDDDDDD, true);
-        closeTxt.text = "✕";
-        closeTxt.autoSize = TextFieldAutoSize.CENTER;
-        closeTxt.width = 28;
-        closeTxt.x = 0;
-        closeTxt.y = 3;
-        closeTxt.selectable = false;
-        closeTxt.mouseEnabled = false;
-        closeBtn.addChild(closeTxt);
+        var drawClose = function(hovered:Bool):Void {
+            closeBtn.graphics.clear();
+            closeBtn.graphics.beginFill(hovered ? 0xDC3545 : 0x222222, 0.95);
+            closeBtn.graphics.lineStyle(1.5, hovered ? 0xFFFFFF : 0x444444);
+            closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
+            closeBtn.graphics.endFill();
 
-        closeBtn.addEventListener(MouseEvent.ROLL_OVER, function(_):Void {
-            closeBtn.graphics.clear();
-            closeBtn.graphics.beginFill(0xDC3545, 0.95);
-            closeBtn.graphics.lineStyle(1.5, 0xFFFFFF);
-            closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
-            closeBtn.graphics.endFill();
-        });
-        closeBtn.addEventListener(MouseEvent.ROLL_OUT, function(_):Void {
-            closeBtn.graphics.clear();
-            closeBtn.graphics.beginFill(0x222222, 0.9);
-            closeBtn.graphics.lineStyle(1.5, 0x444444);
-            closeBtn.graphics.drawRoundRect(0, 0, 28, 28, 6, 6);
-            closeBtn.graphics.endFill();
-        });
-        closeBtn.addEventListener(MouseEvent.CLICK, function(_):Void {
-            onDismiss();
-        });
+            // Vector X
+            closeBtn.graphics.lineStyle(2, hovered ? 0xFFFFFF : 0xCCCCCC, 1.0);
+            closeBtn.graphics.moveTo(9, 9);
+            closeBtn.graphics.lineTo(19, 19);
+            closeBtn.graphics.moveTo(19, 9);
+            closeBtn.graphics.lineTo(9, 19);
+        };
+        drawClose(false);
+
+        closeBtn.addEventListener(MouseEvent.ROLL_OVER, function(_):Void drawClose(true));
+        closeBtn.addEventListener(MouseEvent.ROLL_OUT, function(_):Void drawClose(false));
+        closeBtn.addEventListener(MouseEvent.CLICK, function(_):Void onDismiss());
         win.addChild(closeBtn);
 
-        // 5. Category Tabs
-        var categories = ["ALL", "Combat", "Storage", "Movement", "Interface"];
+        // 5. Category Tabs with Fixed Widths (No shrinking or text clipping)
         var tabX:Float = 18;
-        for (cat in categories) {
-            var tabBtn = makeCategoryTab(cat);
+        var tabH:Float = 26;
+        for (tDef in TAB_DEFS) {
+            var tabBtn = makeCategoryTab(tDef.id, tDef.label, tDef.w, tabH);
             tabBtn.x = tabX;
-            tabBtn.y = 56;
+            tabBtn.y = 55;
             win.addChild(tabBtn);
-            tabX += tabBtn.width + 8;
+            tabX += tDef.w + 8;
         }
 
         // 6. Search Bar
@@ -225,23 +218,21 @@ class ShortcutPicker extends Sprite {
         searchBg.y = 90;
         win.addChild(searchBg);
 
-        var searchIcon = new TextField();
-        searchIcon.defaultTextFormat = new TextFormat("_sans", 10, 0x888888);
-        searchIcon.text = "🔍";
-        searchIcon.x = 24;
-        searchIcon.y = 94;
-        searchIcon.autoSize = TextFieldAutoSize.LEFT;
-        searchIcon.selectable = false;
-        searchIcon.mouseEnabled = false;
+        // Vector Magnifying Glass (zero font symbols)
+        var searchIcon = new Shape();
+        searchIcon.graphics.lineStyle(1.6, 0x888888, 0.9);
+        searchIcon.graphics.drawCircle(32, 103, 4);
+        searchIcon.graphics.moveTo(35, 106);
+        searchIcon.graphics.lineTo(39, 110);
         win.addChild(searchIcon);
 
         searchInput = new TextField();
         searchInput.type = TextFieldType.INPUT;
         searchInput.defaultTextFormat = new TextFormat("_sans", 11, 0xFFFFFF);
         searchInput.text = "";
-        searchInput.width = WIN_W - 75;
+        searchInput.width = WIN_W - 80;
         searchInput.height = 20;
-        searchInput.x = 45;
+        searchInput.x = 46;
         searchInput.y = 94;
         searchInput.addEventListener(Event.CHANGE, function(_):Void {
             searchQuery = StringTools.trim(searchInput.text).toLowerCase();
@@ -272,7 +263,7 @@ class ShortcutPicker extends Sprite {
         refreshList();
     }
 
-    private function makeCategoryTab(cat:String):Sprite {
+    private function makeCategoryTab(cat:String, label:String, tabW:Float, tabH:Float):Sprite {
         var sp = new Sprite();
         sp.name = "tab_" + cat;
         sp.buttonMode = true;
@@ -280,40 +271,30 @@ class ShortcutPicker extends Sprite {
         sp.mouseChildren = false;
 
         var isSelected = (selectedCategory == cat);
-        var label = (cat == "ALL") ? "ALL ACTIONS" : cat.toUpperCase();
 
         var txt = new TextField();
         var tf = new TextFormat("_sans", 10, isSelected ? 0x000000 : 0xAAAAAA, true);
         tf.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = tf;
         txt.text = label;
-        txt.autoSize = TextFieldAutoSize.LEFT;
-        txt.x = 10;
-        txt.y = 4;
+        txt.autoSize = TextFieldAutoSize.NONE;
+        txt.width = tabW;
+        txt.height = tabH;
+        txt.x = 0;
+        txt.y = 5;
         txt.selectable = false;
         txt.mouseEnabled = false;
 
-        var tabW = txt.width + 20;
-        var tabH:Float = 24;
-
-        sp.graphics.beginFill(isSelected ? 0xFFCC00 : 0x242424, 0.95);
-        sp.graphics.lineStyle(1, isSelected ? 0xFFDD00 : 0x404040);
-        sp.graphics.drawRoundRect(0, 0, tabW, tabH, 6, 6);
-        sp.graphics.endFill();
+        drawTabGraphics(sp, tabW, tabH, isSelected);
         sp.addChild(txt);
 
         sp.addEventListener(MouseEvent.CLICK, function(_):Void {
             selectedCategory = cat;
-            // Redraw all tabs
-            for (c in ["ALL", "Combat", "Storage", "Movement", "Interface"]) {
-                var otherTab:Sprite = cast win.getChildByName("tab_" + c);
+            for (tDef in TAB_DEFS) {
+                var otherTab:Sprite = cast win.getChildByName("tab_" + tDef.id);
                 if (otherTab != null) {
-                    var otherSelected = (c == selectedCategory);
-                    otherTab.graphics.clear();
-                    otherTab.graphics.beginFill(otherSelected ? 0xFFCC00 : 0x242424, 0.95);
-                    otherTab.graphics.lineStyle(1, otherSelected ? 0xFFDD00 : 0x404040);
-                    otherTab.graphics.drawRoundRect(0, 0, otherTab.width, tabH, 6, 6);
-                    otherTab.graphics.endFill();
+                    var otherSelected = (tDef.id == selectedCategory);
+                    drawTabGraphics(otherTab, tDef.w, tabH, otherSelected);
                     var otherTxt:TextField = cast otherTab.getChildAt(0);
                     if (otherTxt != null) {
                         var otf = new TextFormat("_sans", 10, otherSelected ? 0x000000 : 0xAAAAAA, true);
@@ -327,6 +308,14 @@ class ShortcutPicker extends Sprite {
         });
 
         return sp;
+    }
+
+    private function drawTabGraphics(tab:Sprite, w:Float, h:Float, isSelected:Bool):Void {
+        tab.graphics.clear();
+        tab.graphics.beginFill(isSelected ? 0xFFCC00 : 0x242424, 0.95);
+        tab.graphics.lineStyle(1, isSelected ? 0xFFDD00 : 0x404040);
+        tab.graphics.drawRoundRect(0, 0, w, h, 6, 6);
+        tab.graphics.endFill();
     }
 
     private function refreshList():Void {
@@ -400,7 +389,8 @@ class ShortcutPicker extends Sprite {
         nameTxt.text = item.name;
         nameTxt.x = 14;
         nameTxt.y = 4;
-        nameTxt.autoSize = TextFieldAutoSize.LEFT;
+        nameTxt.width = isPlaced ? (w - 75) : (w - 24);
+        nameTxt.height = 18;
         nameTxt.selectable = false;
         nameTxt.mouseEnabled = false;
         card.addChild(nameTxt);
@@ -412,13 +402,14 @@ class ShortcutPicker extends Sprite {
         descTxt.text = item.description;
         descTxt.x = 14;
         descTxt.y = 22;
-        descTxt.autoSize = TextFieldAutoSize.LEFT;
+        descTxt.width = w - 24;
+        descTxt.height = 16;
         descTxt.selectable = false;
         descTxt.mouseEnabled = false;
         card.addChild(descTxt);
 
         if (isPlaced) {
-            // Placed Badge
+            // Placed Badge (Plain ASCII)
             var badge = new TextField();
             var bTf = new TextFormat("_sans", 8, 0x888888, true);
             bTf.align = TextFormatAlign.RIGHT;
