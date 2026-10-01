@@ -204,82 +204,101 @@ class LoadManager {
         return null;
     }
 
+    private function createFinishLoad(loadData:LoadData):ByteArray->Void {
+        return function(finalBytes:ByteArray):Void {
+            var byteLoader:Loader = (loadData.loader == null) ? new Loader() : loadData.loader;
+
+            if (loadData.isQueued) {
+                byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):Void {
+                    try {
+                        if (loadData.onComplete != null) {
+                            loadData.onComplete(e);
+                        }
+                        if (loadData.key != null) {
+                            clearLoader(loadData.key);
+                            loaderStack.set(loadData.key, {
+                                kind: loadData.kind,
+                                loader: byteLoader
+                            });
+                        }
+                    } catch (error:Dynamic) {
+                        trace("Failed to load: " + Std.string(error));
+                    }
+
+                    concurrentCount--;
+                    loadNext();
+                });
+
+                if (loadData.onHTTPError != null) {
+                    byteLoader.contentLoaderInfo.addEventListener(HTTPStatusEvent.HTTP_STATUS, loadData.onHTTPError);
+                }
+
+                byteLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):Void {
+                    if (loadData.onError != null) {
+                        try {
+                            loadData.onError(event);
+                        } catch (error:Dynamic) {
+                            trace("Failed to load bytes: " + Std.string(error));
+                        }
+                    }
+                    concurrentCount--;
+                    loadNext();
+                });
+            } else {
+                if (loadData.onComplete != null) {
+                    byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadData.onComplete);
+                }
+                if (loadData.onHTTPError != null) {
+                    byteLoader.contentLoaderInfo.addEventListener(HTTPStatusEvent.HTTP_STATUS, loadData.onHTTPError);
+                }
+                byteLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):Void {
+                    if (loadData.onError != null) {
+                        loadData.onError(event);
+                        return;
+                    }
+                    try {
+                        byteLoader.dispatchEvent(event);
+                    } catch (_:Dynamic) {}
+                });
+            }
+
+            try {
+                byteLoader.loadBytes(finalBytes, loadData.context);
+            } catch (e:Dynamic) {
+                trace("loadBytes error: " + Std.string(e));
+            }
+        };
+    }
+
     private function onLoad(loadData:LoadData):Void {
+        var finishLoad = createFinishLoad(loadData);
+
+        var categoryCheck = resolveCategoryCheck(loadData.url);
+        var animationOn:Bool = (categoryCheck != null && categoryCheck());
+        var p = pocket.PocketRoot.SINGLETON;
+        var filterOn:Bool = (categoryCheck != null && p != null && p.config != null && p.config.option_filter_off);
+        var soundStripOn:Bool = (p != null && p.config != null && p.config.option_sound_off);
+
+        // 1. Check Two-Tier SWF Cache (Hot RAM + NVMe/Disk Cache)
+        var cachedBytes:ByteArray = SWFCache.get(loadData.url);
+        if (cachedBytes != null) {
+            if (animationOn || filterOn || soundStripOn) {
+                SWFWorkerClient.instance.process(cachedBytes, animationOn, filterOn, soundStripOn, finishLoad);
+            } else {
+                finishLoad(cachedBytes);
+            }
+            return;
+        }
+
+        // 2. Cache Miss: Fetch over Network and store in SWFCache
         var urlLoader = new URLLoader();
         urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
 
         urlLoader.addEventListener(Event.COMPLETE, function(event:Event):Void {
             var rawBytes:ByteArray = cast(cast(event.target, URLLoader).data, ByteArray);
 
-            var categoryCheck = resolveCategoryCheck(loadData.url);
-            var animationOn:Bool = (categoryCheck != null && categoryCheck());
-            var p = pocket.PocketRoot.SINGLETON;
-            var filterOn:Bool = (categoryCheck != null && p != null && p.config != null && p.config.option_filter_off);
-            var soundStripOn:Bool = (p != null && p.config != null && p.config.option_sound_off);
-
-            var finishLoad = function(finalBytes:ByteArray):Void {
-                var byteLoader:Loader = (loadData.loader == null) ? new Loader() : loadData.loader;
-
-                if (loadData.isQueued) {
-                    byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):Void {
-                        try {
-                            if (loadData.onComplete != null) {
-                                loadData.onComplete(e);
-                            }
-                            if (loadData.key != null) {
-                                clearLoader(loadData.key);
-                                loaderStack.set(loadData.key, {
-                                    kind: loadData.kind,
-                                    loader: byteLoader
-                                });
-                            }
-                        } catch (error:Dynamic) {
-                            trace("Failed to load: " + Std.string(error));
-                        }
-
-                        concurrentCount--;
-                        loadNext();
-                    });
-
-                    if (loadData.onHTTPError != null) {
-                        byteLoader.contentLoaderInfo.addEventListener(HTTPStatusEvent.HTTP_STATUS, loadData.onHTTPError);
-                    }
-
-                    byteLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):Void {
-                        if (loadData.onError != null) {
-                            try {
-                                loadData.onError(event);
-                            } catch (error:Dynamic) {
-                                trace("Failed to load bytes: " + Std.string(error));
-                            }
-                        }
-                        concurrentCount--;
-                        loadNext();
-                    });
-                } else {
-                    if (loadData.onComplete != null) {
-                        byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadData.onComplete);
-                    }
-                    if (loadData.onHTTPError != null) {
-                        byteLoader.contentLoaderInfo.addEventListener(HTTPStatusEvent.HTTP_STATUS, loadData.onHTTPError);
-                    }
-                    byteLoader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, function(event:IOErrorEvent):Void {
-                        if (loadData.onError != null) {
-                            loadData.onError(event);
-                            return;
-                        }
-                        try {
-                            byteLoader.dispatchEvent(event);
-                        } catch (_:Dynamic) {}
-                    });
-                }
-
-                try {
-                    byteLoader.loadBytes(finalBytes, loadData.context);
-                } catch (e:Dynamic) {
-                    trace("loadBytes error: " + Std.string(e));
-                }
-            };
+            // Store downloaded bytes into hot RAM & local disk cache
+            SWFCache.put(loadData.url, rawBytes);
 
             if (animationOn || filterOn || soundStripOn) {
                 SWFWorkerClient.instance.process(rawBytes, animationOn, filterOn, soundStripOn, finishLoad);

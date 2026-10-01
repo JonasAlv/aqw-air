@@ -21,6 +21,8 @@ import ui.api.ApiNotificationManager;
 import ui.Overlay;
 import ui.shortcut.ShortcutPicker;
 import controller.walk.MouseWalkSimulatorController;
+import controller.ViewportController;
+import load.SWFCache;
 import ui.api.prompts.ApiPrompts;
 import util.HelperSetting;
 
@@ -1628,6 +1630,82 @@ class ApiDashboardModal extends Sprite {
                 var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LOCK_ORIENTATION);
                 if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
                 return orientations[curIdx];
+            }
+        );
+
+        // 3. Render Resolution Lock
+        var resModes = ["native", "720p", "900p", "550p"];
+        var resLabels = ["Native Window", "Fixed 720p (1280x720)", "Fixed 900p (1600x900)", "Fixed Classic (960x550)"];
+        addItemRow(
+            "Render Resolution Lock",
+            "Caps vector rasterization to a fixed resolution and scales via GPU. Prevents FPS drops on large windows and 4K displays.",
+            "cycle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getString(HelperSetting.OPTION_RENDER_RESOLUTION, "native");
+                var idx = resModes.indexOf(cur);
+                if (idx == -1) idx = 0;
+                var nextIdx = (idx + 1) % resModes.length;
+                HelperSetting.setString(HelperSetting.OPTION_RENDER_RESOLUTION, resModes[nextIdx]);
+                ViewportController.instance.apply();
+            },
+            null,
+            function():String {
+                var cur = HelperSetting.getString(HelperSetting.OPTION_RENDER_RESOLUTION, "native");
+                var idx = resModes.indexOf(cur);
+                if (idx == -1) idx = 0;
+                return resLabels[idx];
+            }
+        );
+
+        // 4. Maintain Aspect Ratio
+        addItemRow(
+            "Maintain 16:9 Aspect Ratio",
+            "Keep true 16:9 proportions with letterboxing when using fixed resolution lock instead of stretching.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
+                HelperSetting.setBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, !cur);
+                ViewportController.instance.apply();
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
+            }
+        );
+
+        addSectionHeader("Asset Streaming & Cache");
+
+        // 5. Persistent SWF Caching
+        addItemRow(
+            "Persistent SWF Caching",
+            "Cache weapons, armors, and monsters locally in NVMe/SSD storage. Eliminates re-downloading and cuts map transition lag.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var cur = HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, true);
+                HelperSetting.setBool(HelperSetting.OPTION_SWF_CACHE, !cur);
+                SWFCache.setEnabled(!cur);
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SWF_CACHE, true);
+            }
+        );
+
+        // 6. Clear SWF Cache
+        addItemRow(
+            "Clear Local SWF Cache",
+            "Delete all cached weapon, armor, and monster SWF assets stored on disk.",
+            "button",
+            "Clear (" + SWFCache.getDiskSizeFormatted() + ")",
+            false,
+            function():Void {
+                SWFCache.clear();
+                ApiNotificationManager.notify("SWF disk and RAM cache cleared!");
+                switchTab(_currentTab);
             }
         );
 

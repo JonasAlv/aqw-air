@@ -75,6 +75,8 @@ class GameLoad extends Load {
             }
         } catch (_:Dynamic) {}
 
+        controller.ViewportController.instance.init(this.pocket);
+
         this.pocket.networkCore = new Network(this.pocket);
 
         if (this.pocket.gameCore != null) {
