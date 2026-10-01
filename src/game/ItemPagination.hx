@@ -40,16 +40,26 @@ class ItemPagination {
         var scr:Dynamic = untyped lpf.scr;
         var layout:Dynamic = untyped state.getLayout();
 
+        var optPagination:Bool = (this.pocket.config != null) ? this.pocket.config.option_pagination == true : true;
+        itemsPerPage = optPagination ? 7 : 9;
+
+        #if flash
         try {
-            var popupLabel:String = Std.string(this.pocket.game.ui.mcPopup.currentLabel);
-            if (popupLabel == "Bank" || popupLabel == "MergeShop") {
-                itemsPerPage = 7;
-            } else {
-                itemsPerPage = 9;
+            var proto:Dynamic = untyped flash.display.MovieClip["prototype"];
+            if (proto != null && proto.removeAllChildren == null) {
+                proto.removeAllChildren = function():Void {
+                    var self:Dynamic = untyped __this__;
+                    if (self != null && self.numChildren != null) {
+                        var i:Int = Std.int(self.numChildren) - 1;
+                        while (i >= 0) {
+                            self.removeChildAt(i);
+                            i--;
+                        }
+                    }
+                };
             }
-        } catch (e:Dynamic) {
-            itemsPerPage = 9;
-        }
+        } catch (_:Dynamic) {}
+        #end
 
         var lpfElementListItemItemCls:Dynamic = null;
         try {
@@ -232,7 +242,13 @@ class ItemPagination {
             if (optPagination && totalPages > 1) {
                 var pagination = new Pagination();
                 iList.addChild(pagination);
-                pagination.y = iList.height + 6.5;
+                if (iList.numChildren > 1) {
+                    var lastChild:Dynamic = iList.getChildAt(iList.numChildren - 2);
+                    var lastH:Float = (lastChild != null && lastChild.height > 0) ? lastChild.height : 26.0;
+                    pagination.y = (lastChild != null ? lastChild.y : 0) + lastH + 4.0;
+                } else {
+                    pagination.y = 4.0;
+                }
 
                 pagination.fOpen({
                     "page": curPage + 1,
@@ -264,8 +280,8 @@ class ItemPagination {
     }
 
     private function onPrevClick(e:MouseEvent):Void {
-        var btn:SimpleButton = cast e.currentTarget;
-        var pagination:Pagination = cast btn.parent;
+        var target:flash.display.DisplayObject = cast e.currentTarget;
+        var pagination:Pagination = (Std.isOfType(target, Pagination)) ? cast target : cast target.parent;
         if (pagination == null || pagination.fData == null) return;
 
         var data = pagination.fData;
@@ -278,8 +294,8 @@ class ItemPagination {
     }
 
     private function onNextClick(e:MouseEvent):Void {
-        var btn:SimpleButton = cast e.currentTarget;
-        var pagination:Pagination = cast btn.parent;
+        var target:flash.display.DisplayObject = cast e.currentTarget;
+        var pagination:Pagination = (Std.isOfType(target, Pagination)) ? cast target : cast target.parent;
         if (pagination == null || pagination.fData == null) return;
 
         var data = pagination.fData;
@@ -301,7 +317,17 @@ class ItemPagination {
         iList.addChild(listItem);
 
         if (listItem.subscribeTo != null) listItem.subscribeTo(lpf);
-        if (listItem.fOpen != null) listItem.fOpen(itemConfig);
+        try {
+            if (listItem.fOpen != null) listItem.fOpen(itemConfig);
+        } catch (err:Dynamic) {
+            // fOpen can fail if stage.getChildAt(0) returns the wrong root
+            // (e.g. during layout reshuffling). Remove the broken item so we
+            // don't leave an invisible blank slot in iList.
+            try {
+                if (listItem.parent != null) listItem.parent.removeChild(listItem);
+            } catch (_:Dynamic) {}
+            return;
+        }
 
         if (listItem.fData == iSel && listItem.select != null) {
             listItem.select();

@@ -47,6 +47,24 @@ class PocketRoot extends Sprite {
         SINGLETON = this;
         load = LoadManager.load;
 
+        #if flash
+        try {
+            var proto:Dynamic = untyped flash.display.MovieClip["prototype"];
+            if (proto != null && proto.removeAllChildren == null) {
+                proto.removeAllChildren = function():Void {
+                    var self:Dynamic = untyped __this__;
+                    if (self != null && self.numChildren != null) {
+                        var i:Int = Std.int(self.numChildren) - 1;
+                        while (i >= 0) {
+                            self.removeChildAt(i);
+                            i--;
+                        }
+                    }
+                };
+            }
+        } catch (_:Dynamic) {}
+        #end
+
         // Keep system awake if on AIR
         try {
             var nativeAppClass:Dynamic = Type.resolveClass("flash.desktop.NativeApplication");

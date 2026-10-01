@@ -2,194 +2,209 @@ package ui.util;
 
 import flash.display.Graphics;
 import flash.display.MovieClip;
-import flash.display.Shape;
 import flash.display.Sprite;
 import flash.events.MouseEvent;
+import flash.geom.Matrix;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 
 /**
- * Pagination bar drawn entirely in vector code.
- * Renders as:  [◄]  Page X of Y  [►]
+ * Modern vector Pagination control for Inventory, Bank, and MergeShop.
  *
- * Matches the dark-glass aesthetic of our other modern UI components.
- * Width: 180px  Height: 30px  (same visual footprint as Anthony's FLA version)
+ * Visually matches the AQW UI style:
+ *  - Left/Right square rounded-corner buttons with crimson red glowing borders
+ *  - High-contrast white chevrons (< / >)
+ *  - Clean centered "Page X of Y" label
+ *  - Transparent row background (fits seamlessly inside listMask)
  */
 class Pagination extends MovieClip {
 
-    // ── Layout constants ──────────────────────────────────────────────────────
-    private static inline var W:Float         = 180;   // total width
-    private static inline var H:Float         = 30;    // total height
-    private static inline var BTN_W:Float     = 30;    // arrow button width
-    private static inline var BTN_H:Float     = 30;    // arrow button height
-    private static inline var CORNER:Float    = 6;     // rounded-rect radius
+    public static inline var ROW_WIDTH:Float   = 264.0;
+    public static inline var ROW_HEIGHT:Float  = 34.0;
+    public static inline var BTN_SIZE:Float    = 32.0;
+    public static inline var BTN_RADIUS:Float  = 6.0;
 
-    // ── Colours (match ShortcutButton / Joystick dark-glass palette) ──────────
-    private static inline var C_BG_TOP:Int    = 0x1A1A2E;
-    private static inline var C_BG_BOT:Int    = 0x0D0D1A;
-    private static inline var C_BTN_NORM:Int  = 0xCC2200;   // red  (matches AQW arrow style)
-    private static inline var C_BTN_HOV:Int   = 0xFF4422;
-    private static inline var C_BTN_DIS:Int   = 0x553311;
-    private static inline var C_BORDER:Int    = 0x553311;
-    private static inline var C_TEXT:Int      = 0xEEEEEE;
-    private static inline var ALPHA_DIS:Float = 0.45;
+    // Colours
+    private static inline var C_RED_BORDER:Int     = 0xCC1A1A;
+    private static inline var C_RED_HOVER:Int      = 0xFF3333;
+    private static inline var C_RED_PRESS:Int      = 0x990E0E;
+    private static inline var C_DIS_BORDER:Int     = 0x442222;
 
-    // ── State ─────────────────────────────────────────────────────────────────
+    private static inline var C_BG_TOP:Int         = 0x221414;
+    private static inline var C_BG_BOT:Int         = 0x0E0808;
+
+    private static inline var C_TEXT_WHITE:Int     = 0xFFFFFF;
+    private static inline var C_TEXT_DISABLED:Int  = 0x666666;
+
+    // Public API expected by callers / game
+    public var btnPrev:Sprite;
+    public var btnNext:Sprite;
+    public var tPage:TextField;
     public var fData:Dynamic;
+    public var sel:Dynamic;
 
-    private var _prevBtn:Sprite;
-    private var _nextBtn:Sprite;
-    private var _pageLabel:TextField;
-
-    // ─────────────────────────────────────────────────────────────────────────
+    private var _prevChevron:TextField;
+    private var _nextChevron:TextField;
+    private var _prevEnabled:Bool = false;
+    private var _nextEnabled:Bool = false;
 
     public function new() {
         super();
-        _build();
+        _initUI();
     }
 
-    // ── Build ─────────────────────────────────────────────────────────────────
+    private function _initUI():Void {
+        // Prev Button (<) on the left
+        btnPrev = new Sprite();
+        btnPrev.x = 4.0;
+        btnPrev.y = 1.0;
+        btnPrev.buttonMode = true;
+        btnPrev.useHandCursor = true;
+        addChild(btnPrev);
 
-    private function _build():Void {
-        // background bar
-        var bg:Shape = new Shape();
-        _fillRoundRect(bg.graphics, 0, 0, W, H, CORNER, C_BG_TOP, C_BG_BOT, 0.92);
-        bg.graphics.lineStyle(1, C_BORDER, 0.6);
-        bg.graphics.drawRoundRect(0, 0, W, H, CORNER, CORNER);
-        bg.graphics.endFill();
-        addChild(bg);
+        _prevChevron = _createChevron("<");
+        btnPrev.addChild(_prevChevron);
 
-        // prev button (left side)
-        _prevBtn = _makeArrow("◄", 0, 0);
-        addChild(_prevBtn);
-        _prevBtn.addEventListener(MouseEvent.ROLL_OVER, _onBtnOver, false, 0, true);
-        _prevBtn.addEventListener(MouseEvent.ROLL_OUT,  _onBtnOut,  false, 0, true);
+        btnPrev.addEventListener(MouseEvent.ROLL_OVER, _onPrevOver, false, 0, true);
+        btnPrev.addEventListener(MouseEvent.ROLL_OUT,  _onPrevOut,  false, 0, true);
 
-        // next button (right side)
-        _nextBtn = _makeArrow("►", W - BTN_W, 0);
-        addChild(_nextBtn);
-        _nextBtn.addEventListener(MouseEvent.ROLL_OVER, _onBtnOver, false, 0, true);
-        _nextBtn.addEventListener(MouseEvent.ROLL_OUT,  _onBtnOut,  false, 0, true);
+        // Next Button (>) on the right
+        btnNext = new Sprite();
+        btnNext.x = ROW_WIDTH - BTN_SIZE - 4.0;
+        btnNext.y = 1.0;
+        btnNext.buttonMode = true;
+        btnNext.useHandCursor = true;
+        addChild(btnNext);
 
-        // page label (centred between the two buttons)
-        _pageLabel = new TextField();
-        _pageLabel.defaultTextFormat = new TextFormat("_sans", 11, C_TEXT, true, false, false, null, null, TextFormatAlign.CENTER);
-        _pageLabel.selectable    = false;
-        _pageLabel.mouseEnabled  = false;
-        _pageLabel.autoSize      = TextFieldAutoSize.NONE;
-        _pageLabel.width         = W - BTN_W * 2;
-        _pageLabel.height        = H;
-        _pageLabel.x             = BTN_W;
-        _pageLabel.y             = 0;
-        _pageLabel.text          = "Page 1 of 1";
-        addChild(_pageLabel);
-        // vertically centre
-        _pageLabel.y = (H - _pageLabel.textHeight) / 2 - 1;
+        _nextChevron = _createChevron(">");
+        btnNext.addChild(_nextChevron);
+
+        btnNext.addEventListener(MouseEvent.ROLL_OVER, _onNextOver, false, 0, true);
+        btnNext.addEventListener(MouseEvent.ROLL_OUT,  _onNextOut,  false, 0, true);
+
+        // Center "Page X of Y" TextField
+        tPage = new TextField();
+        tPage.defaultTextFormat = new TextFormat("_sans", 13, C_TEXT_WHITE, true, false, false, null, null, TextFormatAlign.CENTER);
+        tPage.selectable   = false;
+        tPage.mouseEnabled = false;
+        tPage.autoSize     = TextFieldAutoSize.NONE;
+        tPage.width        = ROW_WIDTH - (BTN_SIZE * 2) - 16.0;
+        tPage.height       = 24.0;
+        tPage.x            = BTN_SIZE + 8.0;
+        tPage.y            = (BTN_SIZE - 20.0) / 2.0;
+        tPage.text         = "Page 1 of 1";
+        addChild(tPage);
+
+        // Initial draw in disabled state
+        _drawButton(btnPrev, false, false);
+        _drawButton(btnNext, false, false);
     }
 
-    private function _makeArrow(label:String, bx:Float, by:Float):Sprite {
-        var sp:Sprite = new Sprite();
-        sp.x = bx;
-        sp.y = by;
-        _drawBtn(sp, C_BTN_NORM);
-
-        // arrow glyph
+    private function _createChevron(char:String):TextField {
         var tf:TextField = new TextField();
-        tf.defaultTextFormat = new TextFormat("_sans", 14, 0xFFFFFF, true, false, false, null, null, TextFormatAlign.CENTER);
+        tf.defaultTextFormat = new TextFormat("_sans", 16, C_TEXT_WHITE, true, false, false, null, null, TextFormatAlign.CENTER);
         tf.selectable   = false;
         tf.mouseEnabled = false;
         tf.autoSize     = TextFieldAutoSize.NONE;
-        tf.width        = BTN_W;
-        tf.height       = BTN_H;
-        tf.text         = label;
-        tf.y            = (BTN_H - tf.textHeight) / 2 - 2;
-        sp.addChild(tf);
-
-        sp.buttonMode   = true;
-        sp.useHandCursor = true;
-        return sp;
+        tf.width        = BTN_SIZE;
+        tf.height       = BTN_SIZE;
+        tf.text         = char;
+        tf.x            = 0;
+        tf.y            = (BTN_SIZE - 22.0) / 2.0;
+        return tf;
     }
 
-    private function _drawBtn(sp:Sprite, col:Int, ?alpha:Float = 1.0):Void {
-        sp.graphics.clear();
-        _fillRoundRect(sp.graphics, 0, 0, BTN_W, BTN_H, CORNER, col, col, alpha);
-        sp.graphics.lineStyle(1, 0x000000, 0.3);
-        sp.graphics.drawRoundRect(0, 0, BTN_W, BTN_H, CORNER, CORNER);
-        sp.graphics.endFill();
-    }
+    private function _drawButton(btn:Sprite, enabled:Bool, hovered:Bool):Void {
+        var g:Graphics = btn.graphics;
+        g.clear();
 
-    private function _fillRoundRect(g:Graphics, x:Float, y:Float, w:Float, h:Float,
-                                    r:Float, colTop:Int, colBot:Int, alpha:Float):Void {
+        var borderColor:Int = enabled ? (hovered ? C_RED_HOVER : C_RED_BORDER) : C_DIS_BORDER;
+        var borderAlpha:Float = enabled ? 0.95 : 0.35;
+        var bgAlpha:Float = enabled ? (hovered ? 0.95 : 0.85) : 0.5;
+
+        // Subtle gradient background
+        var m:Matrix = new Matrix();
+        m.createGradientBox(BTN_SIZE, BTN_SIZE, Math.PI / 2, 0, 0);
         g.beginGradientFill(
             flash.display.GradientType.LINEAR,
-            [colTop, colBot],
-            [alpha, alpha],
+            [hovered && enabled ? 0x331C1C : C_BG_TOP, C_BG_BOT],
+            [bgAlpha, bgAlpha],
             [0, 255],
-            _verticalMatrix(x, y, w, h)
+            m
         );
-        g.drawRoundRect(x, y, w, h, r, r);
+
+        // Crimson glowing outer border
+        g.lineStyle(enabled ? 1.6 : 1.0, borderColor, borderAlpha, true);
+        g.drawRoundRect(0, 0, BTN_SIZE, BTN_SIZE, BTN_RADIUS, BTN_RADIUS);
         g.endFill();
+
+        // Optional inner top highlight for 3D bevel effect
+        if (enabled) {
+            g.lineStyle(1.0, 0xFF6666, hovered ? 0.3 : 0.15);
+            g.moveTo(BTN_RADIUS, 1.0);
+            g.lineTo(BTN_SIZE - BTN_RADIUS, 1.0);
+        }
     }
 
-    private function _verticalMatrix(x:Float, y:Float, w:Float, h:Float):flash.geom.Matrix {
-        var m:flash.geom.Matrix = new flash.geom.Matrix();
-        m.createGradientBox(w, h, Math.PI / 2, x, y);
-        return m;
+    private function _onPrevOver(e:MouseEvent):Void {
+        if (_prevEnabled) _drawButton(btnPrev, true, true);
     }
 
-    // ── Event handlers ────────────────────────────────────────────────────────
-
-    private function _onBtnOver(e:MouseEvent):Void {
-        var sp:Sprite = cast e.currentTarget;
-        if (sp.mouseEnabled) _drawBtn(sp, C_BTN_HOV);
+    private function _onPrevOut(e:MouseEvent):Void {
+        _drawButton(btnPrev, _prevEnabled, false);
     }
 
-    private function _onBtnOut(e:MouseEvent):Void {
-        var sp:Sprite = cast e.currentTarget;
-        if (sp.mouseEnabled) _drawBtn(sp, C_BTN_NORM);
+    private function _onNextOver(e:MouseEvent):Void {
+        if (_nextEnabled) _drawButton(btnNext, true, true);
     }
 
-    // ── Public API (matches Anthony's Pagination.as interface) ────────────────
+    private function _onNextOut(e:MouseEvent):Void {
+        _drawButton(btnNext, _nextEnabled, false);
+    }
 
-    /**
-     * Called once after the pagination is added to the display list.
-     * fData = { page, totalPages, canPrev, canNext, state, lpf }
-     */
     public function fOpen(data:Dynamic):Void {
-        fData = data;
-        _refresh();
+        this.fData = data;
+        refresh();
     }
 
     public function update(data:Dynamic):Void {
-        fData = data;
-        _refresh();
+        this.fData = data;
+        refresh();
     }
 
-    private function _refresh():Void {
+    public function refresh():Void {
         if (fData == null) return;
 
-        var page:Int       = Std.int(fData.page);
-        var total:Int      = Std.int(fData.totalPages);
-        var canPrev:Bool   = (fData.canPrev == true);
-        var canNext:Bool   = (fData.canNext == true);
+        var page:Int      = Std.int(fData.page);
+        var total:Int     = Std.int(fData.totalPages);
+        _prevEnabled      = (fData.canPrev == true);
+        _nextEnabled      = (fData.canNext == true);
 
-        _pageLabel.text = "Page " + page + " of " + total;
+        if (tPage != null) {
+            tPage.text = "Page " + page + " of " + total;
+        }
 
-        _setButtonState(_prevBtn, canPrev);
-        _setButtonState(_nextBtn, canNext);
-    }
+        // Prev button state
+        btnPrev.mouseEnabled  = _prevEnabled;
+        btnPrev.useHandCursor = _prevEnabled;
+        btnPrev.alpha         = _prevEnabled ? 1.0 : 0.4;
+        _prevChevron.textColor = _prevEnabled ? C_TEXT_WHITE : C_TEXT_DISABLED;
+        _drawButton(btnPrev, _prevEnabled, false);
 
-    private function _setButtonState(sp:Sprite, enabled:Bool):Void {
-        sp.mouseEnabled  = enabled;
-        sp.useHandCursor = enabled;
-        sp.alpha         = enabled ? 1.0 : ALPHA_DIS;
-        _drawBtn(sp, enabled ? C_BTN_NORM : C_BTN_DIS);
+        // Next button state
+        btnNext.mouseEnabled  = _nextEnabled;
+        btnNext.useHandCursor = _nextEnabled;
+        btnNext.alpha         = _nextEnabled ? 1.0 : 0.4;
+        _nextChevron.textColor = _nextEnabled ? C_TEXT_WHITE : C_TEXT_DISABLED;
+        _drawButton(btnNext, _nextEnabled, false);
     }
 
     public function fClose():Void {
         fData = null;
-        if (parent != null) parent.removeChild(this);
+        if (parent != null) {
+            parent.removeChild(this);
+        }
     }
 }
