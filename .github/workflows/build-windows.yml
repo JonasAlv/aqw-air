@@ -1,0 +1,272 @@
+name: Build Windows app
+
+on:
+  push:
+    branches:
+      - feat/enhancements
+  pull_request:
+    branches:
+      - feat/enhancements
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out UI source
+        uses: actions/checkout@v4
+        with:
+          path: aqw-haxe-ui
+
+      - name: Check out API enhancements source
+        uses: actions/checkout@v4
+        with:
+          repository: JonasAlv/aqw-haxe-api
+          ref: feat/enhancements
+          path: aqw-haxe-api
+
+      - name: Check out SWF parser source
+        uses: actions/checkout@v4
+        with:
+          repository: claus/as3swf
+          ref: 9b971f6deb433f02d2991b69aa04e8800e7bf326
+          path: as3swf
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Haxe
+        uses: HaxeFoundation/setup-haxe@v1
+        with:
+          haxe-version: "4.3.7"
+
+      - name: Install Haxe libraries
+        shell: pwsh
+        run: |
+          & haxelib install hscript --always
+          if ($LASTEXITCODE -ne 0) { throw "Failed to install the Haxe hscript library." }
+
+      - name: Download and verify AIR SDK
+        shell: pwsh
+        env:
+          AIR_SDK_URL: ${{ vars.AIR_SDK_WINDOWS_URL }}
+          AIR_SDK_SHA256: ${{ vars.AIR_SDK_WINDOWS_SHA256 }}
+        run: |
+          if ($env:AIR_SDK_URL -notmatch '^https://') {
+            throw "Set the AIR_SDK_WINDOWS_URL repository variable to the HTTPS URL of the Windows AIR SDK zip."
+          }
+          if ($env:AIR_SDK_SHA256 -notmatch '^[0-9a-fA-F]{64}$') {
+            throw "Set AIR_SDK_WINDOWS_SHA256 to the SDK zip's 64-character SHA-256 digest."
+          }
+
+          $archive = Join-Path $env:RUNNER_TEMP "air-sdk.zip"
+          $extractDir = Join-Path $env:RUNNER_TEMP "air-sdk"
+          Invoke-WebRequest -Uri $env:AIR_SDK_URL -OutFile $archive
+          $actualHash = (Get-FileHash -Path $archive -Algorithm SHA256).Hash
+          if ($actualHash -ne $env:AIR_SDK_SHA256.ToUpperInvariant()) {
+            throw "AIR SDK SHA-256 mismatch. Expected $env:AIR_SDK_SHA256, received $actualHash."
+          }
+
+          Expand-Archive -Path $archive -DestinationPath $extractDir -Force
+          $compiler = Get-ChildItem -Path $extractDir -Filter amxmlc.bat -Recurse | Select-Object -First 1
+          $packager = Get-ChildItem -Path $extractDir -Filter adt.bat -Recurse | Select-Object -First 1
+          $swcCompiler = Get-ChildItem -Path $extractDir -Filter compc.bat -Recurse | Select-Object -First 1
+          if ($null -eq $compiler -or $null -eq $packager -or $null -eq $swcCompiler) {
+            throw "The downloaded archive does not contain the AIR SDK compiler, SWC compiler, and packager."
+          }
+          $sdkRoot = $compiler.Directory.Parent.FullName
+          "AIR_HOME=$sdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Sync latest stable upstream gamefiles
+        shell: pwsh
+        run: |
+          $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
+          $destination = Join-Path $uiDir "loader\gamefiles"
+          $tempDir = Join-Path $env:RUNNER_TEMP "aqw-gamefiles"
+          New-Item -ItemType Directory -Path $destination, $tempDir -Force | Out-Null
+
+          $headers = @{
+            Accept = "application/vnd.github+json"
+            "User-Agent" = "aqw-haxe-ui-windows-build"
+          }
+          $release = Invoke-RestMethod `
+            -Uri "https://api.github.com/repos/anthony-hyo/aqw-mobile/releases/latest" `
+            -Headers $headers
+          if ($release.draft -or $release.prerelease) {
+            throw "The latest upstream release is not a stable release."
+          }
+
+          $apk = $release.assets | Where-Object { $_.name -match '-armv8\.apk$' } | Select-Object -First 1
+          if ($null -eq $apk) {
+            $apk = $release.assets | Where-Object { $_.name -match '-armv7\.apk$' } | Select-Object -First 1
+          }
+          if ($null -eq $apk -or $apk.browser_download_url -notlike "https://github.com/anthony-hyo/aqw-mobile/releases/download/*") {
+            throw "The upstream stable release has no supported ARM APK asset."
+          }
+
+          $apkPath = Join-Path $tempDir "upstream.apk"
+          Invoke-WebRequest -Uri $apk.browser_download_url -Headers $headers -OutFile $apkPath
+          $digest = [string]$apk.digest
+          if ($digest) {
+            if ($digest -notmatch '^sha256:[0-9a-fA-F]{64}$') {
+              throw "The upstream APK has an unsupported release digest."
+            }
+            $expected = $digest.Substring(7).ToUpperInvariant()
+            $actual = (Get-FileHash -Path $apkPath -Algorithm SHA256).Hash
+            if ($actual -ne $expected) { throw "The upstream APK SHA-256 digest did not match." }
+          }
+
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          $zip = [System.IO.Compression.ZipFile]::OpenRead($apkPath)
+          try {
+            $required = @(
+              "gamefiles/game.swf",
+              "gamefiles/book-of-lore.swf",
+              "gamefiles/character-select.swf"
+            )
+            $optional = @("gamefiles/world-map.swf")
+            foreach ($assetPath in ($required + $optional)) {
+              $entry = $zip.Entries | Where-Object { $_.FullName -ceq $assetPath } | Select-Object -First 1
+              if ($null -eq $entry) {
+                $entry = $zip.Entries | Where-Object { $_.FullName -ceq "assets/$assetPath" } | Select-Object -First 1
+              }
+              if ($null -eq $entry) {
+                if ($optional -contains $assetPath) {
+                  Write-Host "Upstream APK omits optional '$assetPath'; continuing without it."
+                  continue
+                }
+                throw "The upstream APK is missing required asset '$assetPath'."
+              }
+
+              $relativePath = $assetPath.Substring("gamefiles/".Length).Replace("/", [IO.Path]::DirectorySeparatorChar)
+              $target = Join-Path $destination $relativePath
+              [IO.Directory]::CreateDirectory([IO.Path]::GetDirectoryName($target)) | Out-Null
+              $inputStream = $entry.Open()
+              $outputStream = [IO.File]::Create($target)
+              try { $inputStream.CopyTo($outputStream) }
+              finally {
+                $inputStream.Dispose()
+                $outputStream.Dispose()
+              }
+              if ((Get-Item $target).Length -le 0) { throw "Extracted asset '$assetPath' is empty." }
+            }
+          }
+          finally {
+            $zip.Dispose()
+          }
+
+      - name: Build API, UI, worker, and Desktop.swf
+        shell: pwsh
+        run: |
+          $workspace = $env:GITHUB_WORKSPACE
+          $uiDir = Join-Path $workspace "aqw-haxe-ui"
+          $apiDir = Join-Path $workspace "aqw-haxe-api"
+          $swfParserDir = Join-Path $workspace "as3swf"
+          $loaderDir = Join-Path $uiDir "loader"
+          $buildDir = Join-Path $uiDir "build"
+          $staging = Join-Path $buildDir "staging"
+          $airBin = Join-Path $env:AIR_HOME "bin"
+
+          function Invoke-Checked([string]$Executable, [string[]]$Arguments, [string]$Description) {
+            & $Executable @Arguments
+            if ($LASTEXITCODE -ne 0) { throw "$Description failed with exit code $LASTEXITCODE." }
+          }
+
+          Push-Location $apiDir
+          try { Invoke-Checked "haxe" @("build.hxml") "API compilation" }
+          finally { Pop-Location }
+
+          $swcOutput = Join-Path $uiDir "libs\as3swf.swc"
+          $swcSource = Join-Path $swfParserDir "src"
+          $compc = Join-Path $airBin "compc.bat"
+          New-Item -ItemType Directory -Path (Split-Path $swcOutput -Parent) -Force | Out-Null
+          Invoke-Checked $compc @(
+            "-source-path+=$swcSource",
+            "-include-sources=$swcSource",
+            "-output=$swcOutput"
+          ) "Building the as3swf SWC"
+
+          Push-Location $uiDir
+          try {
+            Invoke-Checked "haxe" @("build.hxml") "UI compilation"
+            Invoke-Checked "haxe" @("build-worker.hxml") "Worker compilation"
+          }
+          finally { Pop-Location }
+
+          if (Test-Path $staging) { Remove-Item -Path $staging -Recurse -Force }
+          New-Item -ItemType Directory -Path `
+            (Join-Path $staging "libs"), `
+            (Join-Path $staging "gamefiles\embed"), `
+            (Join-Path $buildDir "licenses") -Force | Out-Null
+
+          Copy-Item -Path (Join-Path $loaderDir "src") -Destination (Join-Path $staging "src") -Recurse -Force
+          Copy-Item -Path (Join-Path $loaderDir "gamefiles\*") -Destination (Join-Path $staging "gamefiles") -Recurse -Force
+          $loaderLibs = Join-Path $loaderDir "libs"
+          if (Test-Path $loaderLibs) {
+            Get-ChildItem -Path $loaderLibs -File | Copy-Item -Destination (Join-Path $staging "libs") -Force
+          }
+          Copy-Item -Path (Join-Path $apiDir "bin\AqwApi.swc") -Destination (Join-Path $staging "libs\AqwApi.swc") -Force
+          Copy-Item -Path (Join-Path $uiDir "bin\ModUI.swc") -Destination (Join-Path $staging "libs\ModUI.swc") -Force
+          Copy-Item -Path (Join-Path $uiDir "bin\WorkerMain.swf") -Destination (Join-Path $staging "gamefiles\embed\WorkerMain.swf") -Force
+          Copy-Item -Path (Join-Path $swfParserDir "LICENSE") -Destination (Join-Path $buildDir "licenses\as3swf-LICENSE.txt") -Force
+
+          $amxmlc = Join-Path $airBin "amxmlc.bat"
+          $desktopSwf = Join-Path $buildDir "Desktop.swf"
+          Invoke-Checked $amxmlc @(
+            "+configname=air",
+            "-strict=false",
+            "-debug=true",
+            "-default-size", "960", "550",
+            "-default-frame-rate", "120",
+            "-default-background-color", "0x000000",
+            "-define+=POCKET::IS_DESKTOP,true",
+            "-define+=POCKET::IS_MOBILE,false",
+            "-library-path+=$(Join-Path $staging 'libs')",
+            "-source-path+=$(Join-Path $staging 'src')",
+            "-output", $desktopSwf,
+            (Join-Path $staging "src\Pocket.as")
+          ) "Desktop.swf compilation"
+
+      - name: Package Windows installer
+        shell: pwsh
+        run: |
+          $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
+          $adt = Join-Path $env:AIR_HOME "bin\adt.bat"
+          $certificate = Join-Path $env:RUNNER_TEMP "aqw-pocket-ci.p12"
+          $outputDir = Join-Path $uiDir "artifacts"
+          $output = Join-Path $outputDir "AQW-Pocket-Windows.exe"
+          $descriptor = Join-Path $uiDir "loader\Desktop-app.xml"
+
+          if (-not (Test-Path $adt)) { throw "AIR packager not found: $adt" }
+          if (-not (Test-Path $descriptor)) { throw "Desktop AIR descriptor not found: $descriptor" }
+          New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
+
+          & $adt -certificate -cn "AQW Pocket CI" 2048-RSA $certificate "temporary-ci-password"
+          if ($LASTEXITCODE -ne 0) { throw "Failed to create the temporary AIR signing certificate." }
+
+          & $adt -package -target native -storetype pkcs12 `
+            -keystore $certificate -storepass "temporary-ci-password" `
+            $output $descriptor `
+            -C (Join-Path $uiDir "build") Desktop.swf licenses `
+            -C (Join-Path $uiDir "build\staging") gamefiles `
+            -C (Join-Path $uiDir "loader") assets icons
+          if ($LASTEXITCODE -ne 0) { throw "AIR packaging failed with exit code $LASTEXITCODE." }
+
+      - name: Upload Windows installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: AQW-Pocket-Windows-${{ github.sha }}
+          path: aqw-haxe-ui/artifacts/AQW-Pocket-Windows.exe
+          if-no-files-found: error
+          retention-days: 14

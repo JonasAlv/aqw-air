@@ -9,34 +9,27 @@ class SWFStripper {
         originalBytes.position = 0;
 
         var swfCls:Dynamic = untyped __global__["com.codeazur.as3swf.SWF"];
-        if (swfCls == null) return originalBytes;
+        if (swfCls == null) throw "SWF parser library is unavailable";
 
-        try {
-            var swf:Dynamic = untyped __new__(swfCls, originalBytes);
+        var swf:Dynamic = untyped __new__(swfCls, originalBytes);
+        stripTags(swf.tags, stripAnimation, stripFilters, stripSounds);
 
-            stripTags(swf.tags, stripAnimation, stripFilters, stripSounds);
-
-            if (swf.tagsRaw != null && swf.tagsRaw.length > swf.tags.length) {
-                swf.tagsRaw.length = swf.tags.length;
-            }
-
-            // Fix: If original SWF was LZMA compressed, as3swf cannot publish LZMA. Fall back to ZLIB!
-            try {
-                if (Reflect.field(swf, "compressionMethod") == "lzma") {
-                    Reflect.setField(swf, "compressionMethod", "zlib");
-                }
-            } catch (_:Dynamic) {}
-
-            var newBytes:ByteArray = new ByteArray();
-            // NEVER set newBytes.shareable = true! Loader.loadBytes rejects shareable ByteArrays with Error #3735.
-            swf.publish(newBytes);
-            newBytes.position = 0;
-            return newBytes;
-        } catch (e:Dynamic) {
-            trace("SWFStripper error: " + Std.string(e));
-            originalBytes.position = 0;
-            return originalBytes;
+        if (swf.tagsRaw != null && swf.tagsRaw.length > swf.tags.length) {
+            swf.tagsRaw.length = swf.tags.length;
         }
+
+        if (Reflect.field(swf, "compressionMethod") == "lzma") {
+            Reflect.setField(swf, "compressionMethod", "zlib");
+            if (Reflect.field(swf, "compressionMethod") != "zlib") {
+                throw "Unable to convert LZMA SWF to ZLIB before publishing";
+            }
+        }
+
+        var newBytes:ByteArray = new ByteArray();
+        // NEVER set newBytes.shareable = true! Loader.loadBytes rejects shareable ByteArrays with Error #3735.
+        swf.publish(newBytes);
+        newBytes.position = 0;
+        return newBytes;
     }
 
     private static function stripTags(tags:Dynamic, stripAnimation:Bool, stripFilters:Bool, stripSounds:Bool):Void {

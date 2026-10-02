@@ -6,6 +6,7 @@ import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.MouseEvent;
+import flash.events.TouchEvent;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
@@ -23,6 +24,7 @@ class LayoutController {
     private var widgets:Array<WidgetEntry> = [];
     public var pocket:Dynamic = null;
     private var toolbar:Sprite = null;
+    private var selectedWidgetId:String;
 
     public function new() {}
 
@@ -32,6 +34,8 @@ class LayoutController {
                 w.target = target;
                 w.defaultPositionX = defaultPositionX;
                 w.defaultPositionY = defaultPositionY;
+                w.defaultScaleX = defaultScaleX;
+                w.defaultScaleY = defaultScaleY;
                 return;
             }
         }
@@ -49,19 +53,19 @@ class LayoutController {
 
     public function load():Void {
         for (w in widgets) {
-            if (w.target == null) continue;
+            loadWidget(w.id);
+        }
+    }
+
+    public function loadWidget(id:String):Void {
+        for (w in widgets) {
+            if (w.id != id || w.target == null) continue;
             var saved:Dynamic = HelperSetting._get(w.id);
-            if (saved != null) {
-                w.target.x = (saved.x != null) ? saved.x : w.defaultPositionX;
-                w.target.y = (saved.y != null) ? saved.y : w.defaultPositionY;
-                w.target.scaleX = (saved.scaleX != null) ? saved.scaleX : w.defaultScaleX;
-                w.target.scaleY = (saved.scaleY != null) ? saved.scaleY : w.defaultScaleY;
-            } else {
-                w.target.x = w.defaultPositionX;
-                w.target.y = w.defaultPositionY;
-                w.target.scaleX = w.defaultScaleX;
-                w.target.scaleY = w.defaultScaleY;
-            }
+            w.target.x = (saved != null && saved.x != null) ? saved.x : w.defaultPositionX;
+            w.target.y = (saved != null && saved.y != null) ? saved.y : w.defaultPositionY;
+            w.target.scaleX = (saved != null && saved.scaleX != null) ? saved.scaleX : w.defaultScaleX;
+            w.target.scaleY = (saved != null && saved.scaleY != null) ? saved.scaleY : w.defaultScaleY;
+            return;
         }
     }
 
@@ -81,6 +85,7 @@ class LayoutController {
 
     public function toggleEdit(state:Bool):Void {
         editMode = state;
+        if (editMode) selectedWidgetId = null;
         var p = getPocketInstance();
 
         // 1. Notify all widgets of edit mode state
@@ -92,6 +97,7 @@ class LayoutController {
                 cast(w.target, ui.input.Joystick).setEditMode(editMode);
             }
         }
+        if (p != null && p.gameUI != null) p.gameUI.setSkillBarLayoutEditMode(editMode);
 
         if (editMode) {
             if (p != null && p.gameCore != null) {
@@ -99,7 +105,7 @@ class LayoutController {
             }
             showToolbar();
             attachWheelScaleListener();
-            ui.api.ApiNotificationManager.notify("Layout Editor Active: Drag buttons directly to move!");
+            ui.api.ApiNotificationManager.notify("Layout editor: select a control, drag to move, and use Size +/- or the mouse wheel to resize.");
         } else {
             if (p != null && p.gameCore != null) {
                 p.gameCore.setWorldFilters([]);
@@ -116,7 +122,7 @@ class LayoutController {
         if (p == null || p.gameUI == null) return;
 
         var stageW:Float = (p.game != null && p.game.stage != null) ? p.game.stage.stageWidth : 960;
-        var barW:Float = 340;
+        var barW:Float = 462;
         var barH:Float = 42;
 
         toolbar = new Sprite();
@@ -137,23 +143,56 @@ class LayoutController {
             toggleEdit(false);
             ui.api.ApiNotificationManager.notify("Controls layout saved!");
         });
+        saveBtn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            toggleEdit(false);
+            ui.api.ApiNotificationManager.notify("Controls layout saved!");
+        });
         toolbar.addChild(saveBtn);
 
         // Button 2: Reset (Dark Grey)
-        var resetBtn = makeToolbarButton("Reset", 0x333333, 90, 28);
+        var resetBtn = makeToolbarButton("Reset", 0x333333, 70, 28);
         resetBtn.x = 138;
         resetBtn.y = 7;
         resetBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
             resetToDefaults();
             ui.api.ApiNotificationManager.notify("Layout reset to defaults!");
         });
+        resetBtn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            resetToDefaults();
+            ui.api.ApiNotificationManager.notify("Layout reset to defaults!");
+        });
         toolbar.addChild(resetBtn);
 
-        // Button 3: Close (Red)
-        var closeBtn = makeToolbarButton("Exit", 0xDC3545, 90, 28);
-        closeBtn.x = 238;
+        var sizeDownBtn = makeToolbarButton("Size -", 0x333333, 70, 28);
+        sizeDownBtn.x = 216;
+        sizeDownBtn.y = 7;
+        sizeDownBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            adjustSelectedScale(-0.1);
+        });
+        sizeDownBtn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            adjustSelectedScale(-0.1);
+        });
+        toolbar.addChild(sizeDownBtn);
+
+        var sizeUpBtn = makeToolbarButton("Size +", 0x333333, 70, 28);
+        sizeUpBtn.x = 294;
+        sizeUpBtn.y = 7;
+        sizeUpBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            adjustSelectedScale(0.1);
+        });
+        sizeUpBtn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            adjustSelectedScale(0.1);
+        });
+        toolbar.addChild(sizeUpBtn);
+
+        // Button 5: Close (Red)
+        var closeBtn = makeToolbarButton("Exit", 0xDC3545, 70, 28);
+        closeBtn.x = 372;
         closeBtn.y = 7;
         closeBtn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            toggleEdit(false);
+        });
+        closeBtn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
             toggleEdit(false);
         });
         toolbar.addChild(closeBtn);
@@ -224,14 +263,54 @@ class LayoutController {
         for (w in widgets) {
             if (w.target == null) continue;
             if (w.target.hitTestPoint(e.stageX, e.stageY, true)) {
-                var deltaScale = (e.delta > 0) ? 0.08 : -0.08;
-                var newScale = Math.max(0.5, Math.min(2.5, w.target.scaleX + deltaScale));
-                w.target.scaleX = newScale;
-                w.target.scaleY = newScale;
-                updatePosition(w.id, w.target.x, w.target.y);
+                selectedWidgetId = w.id;
+                adjustSelectedScale((e.delta > 0) ? 0.1 : -0.1);
                 break;
             }
         }
+    }
+
+    public function selectWidget(id:String):Void {
+        if (!editMode) return;
+        for (w in widgets) {
+            if (w.id == id && w.target != null) {
+                selectedWidgetId = id;
+                if (Std.isOfType(w.target, ui.shortcut.ShortcutButton)) {
+                    cast(w.target, ui.shortcut.ShortcutButton).setSelected(true);
+                } else if (Std.isOfType(w.target, ui.input.Joystick)) {
+                    cast(w.target, ui.input.Joystick).setSelected(true);
+                }
+                for (other in widgets) {
+                    if (other.id == id || other.target == null) continue;
+                    if (Std.isOfType(other.target, ui.shortcut.ShortcutButton)) {
+                        cast(other.target, ui.shortcut.ShortcutButton).setSelected(false);
+                    } else if (Std.isOfType(other.target, ui.input.Joystick)) {
+                        cast(other.target, ui.input.Joystick).setSelected(false);
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    private function adjustSelectedScale(delta:Float):Void {
+        if (!editMode || selectedWidgetId == null) {
+            ui.api.ApiNotificationManager.notify("Select a control first.");
+            return;
+        }
+        for (w in widgets) {
+            if (w.id != selectedWidgetId || w.target == null) continue;
+            var nextScale:Float = Math.max(0.5, Math.min(2.5, w.target.scaleX + delta));
+            w.target.scaleX = nextScale;
+            w.target.scaleY = nextScale;
+            updatePosition(w.id, w.target.x, w.target.y);
+            if (StringTools.startsWith(w.id, HelperSetting.LAYOUT_SKILL_BAR + "_i")) {
+                var p = getPocketInstance();
+                if (p != null && p.gameUI != null) p.gameUI.applySkillBarStyle();
+            }
+            return;
+        }
+        selectedWidgetId = null;
     }
 
     public function saveAll():Void {
@@ -255,6 +334,9 @@ class LayoutController {
             w.target.scaleY = w.defaultScaleY;
             HelperSetting._set(w.id, null);
         }
+        var p = getPocketInstance();
+        if (p != null && p.gameUI != null) p.gameUI.applySkillBarStyle();
+        selectedWidgetId = null;
     }
 
     private function getPocketInstance():Dynamic {

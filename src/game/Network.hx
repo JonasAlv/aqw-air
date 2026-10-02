@@ -1,7 +1,6 @@
 package game;
 
 import flash.display.Sprite;
-import util.HelperSetting;
 
 @:native("game.Network")
 class Network {
@@ -35,26 +34,9 @@ class Network {
             var actBar:Sprite = cast(this.pocket.game.ui.mcInterface.actBar, Sprite);
             if (actBar == null) return;
 
-            var icon:Sprite;
-            var id:String;
-
-            for (i in 0...6) {
-                id = HelperSetting.LAYOUT_SKILL_BAR + "_i" + (i + 1);
-
-                if (this.pocket.gameUI != null && this.pocket.gameUI.layoutController != null) {
-                    this.pocket.gameUI.layoutController.unregister(id);
-                }
-
-                icon = cast(actBar.getChildByName("i" + (i + 1)), Sprite);
-                if (icon == null) continue;
-
-                if (this.pocket.gameUI != null && this.pocket.gameUI.layoutController != null) {
-                    this.pocket.gameUI.layoutController.register(id, icon, icon.x, icon.y, icon.scaleX, icon.scaleY);
-                }
-            }
-
-            if (this.pocket.gameUI != null && this.pocket.gameUI.layoutController != null) {
-                this.pocket.gameUI.layoutController.load();
+            if (this.pocket.gameUI != null) {
+                this.pocket.gameUI.registerSkillBarWidgets(actBar);
+                this.pocket.gameUI.applySkillBarStyle();
             }
         } catch (_:Dynamic) {}
     }

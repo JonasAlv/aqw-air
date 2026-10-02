@@ -24,7 +24,6 @@ class MouseWalkSimulatorController extends WalkController {
 
     private var isDashingVisual:Bool = false;
     private var lastDashTime:Int = 0;
-
     public function new(pocket:Dynamic) {
         super(pocket);
     }
@@ -48,19 +47,10 @@ class MouseWalkSimulatorController extends WalkController {
         }
 
         var world:Dynamic = this.pocket.game.world;
-        var canMove:Bool = true;
-        try {
-            if (world.isMoveOK != null && world.myAvatar.dataLeaf != null) {
-                canMove = world.isMoveOK(world.myAvatar.dataLeaf);
-            }
-        } catch (_:Dynamic) {}
-        if (!canMove) return;
-
-        if (world.bitWalk == false || world.bitWalk == 0) return;
+        if (!world.isMoveOK(world.myAvatar.dataLeaf) || world.bitWalk == false || world.bitWalk == 0) return;
 
         var angle:Float = Math.atan2(dirY, dirX);
-        var baseSpeed:Float = Std.parseFloat(Std.string(world.WALKSPEED));
-        if (Math.isNaN(baseSpeed) || baseSpeed <= 0) baseSpeed = 8.0;
+        var baseSpeed:Float = world.WALKSPEED;
 
         var moveSpeed:Float = baseSpeed;
 
@@ -123,15 +113,9 @@ class MouseWalkSimulatorController extends WalkController {
         var localX:Float = pMC.x + Math.cos(angle) * MOVE_SPEED_MULTIPLIER * 10;
         var localY:Float = pMC.y + Math.sin(angle) * MOVE_SPEED_MULTIPLIER * 10;
 
-        if (world.CHARS != null) {
-            var charsSp:Sprite = cast world.CHARS;
-            var stagePt:Point = charsSp.localToGlobal(new Point(localX, localY));
-            var stageW:Float = (this.pocket.game.stage != null && this.pocket.game.stage.stageWidth > 0) ? this.pocket.game.stage.stageWidth : 960;
-            var stageH:Float = (this.pocket.game.stage != null && this.pocket.game.stage.stageHeight > 0) ? this.pocket.game.stage.stageHeight : 550;
-
-            if (stagePt.x < -50 || stagePt.x > stageW + 50 || stagePt.y < -50 || stagePt.y > stageH + 50) {
-                return;
-            }
+        var stagePt:Point = cast(world.CHARS, Sprite).localToGlobal(new Point(localX, localY));
+        if (stagePt.x < 0 || stagePt.x > 960 || stagePt.y < 0 || stagePt.y > 550) {
+            return;
         }
 
         var mvPT:Point = pMC.simulateTo(localX, localY, moveSpeed);
@@ -143,10 +127,8 @@ class MouseWalkSimulatorController extends WalkController {
         pMC.walkTo(mvPT.x, mvPT.y, moveSpeed);
 
         this.frameTick++;
-
         if (this.frameTick >= SEND_EVERY_N_FRAMES) {
             this.frameTick = 0;
-
             world.moveRequest({
                 mc: pMC,
                 tx: mvPT.x,

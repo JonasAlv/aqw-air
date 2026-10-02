@@ -6,6 +6,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.events.TouchEvent;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
 import flash.text.TextFieldType;
@@ -44,8 +45,9 @@ class ShortcutPicker extends Sprite {
         new ShortcutActionItem("Skill 6", "Combat", "Use potion or consumable"),
         new ShortcutActionItem("Target Random Monster", "Combat", "Target nearest monster"),
         new ShortcutActionItem("Cancel Target", "Combat", "Deselect active target"),
-        new ShortcutActionItem("Battle Analyzer", "Combat", "Open combat DPS analyzer"),
-        new ShortcutActionItem("Battle Analyzer Toggle", "Combat", "Toggle floating DPS meter"),
+        new ShortcutActionItem("Battle Analyzer", "Combat", "Estimate DPS from target HP loss"),
+        new ShortcutActionItem("Battle Analyzer Toggle", "Combat", "Toggle floating target DPS meter"),
+        new ShortcutActionItem("Stats Overview", "Combat", "Open the game stats overview"),
 
         // STORAGE
         new ShortcutActionItem("Bank", "Storage", "Toggle bank storage panel"),
@@ -75,7 +77,12 @@ class ShortcutPicker extends Sprite {
         new ShortcutActionItem("Hide UI", "Interface", "Toggle game HUD visibility"),
         new ShortcutActionItem("Toggle Joystick", "Interface", "Toggle virtual walk joystick"),
         new ShortcutActionItem("Toggle Skills", "Interface", "Toggle AQW skill action bar"),
-        new ShortcutActionItem("Toggle Shortcuts", "Interface", "Toggle all shortcut buttons")
+        new ShortcutActionItem("Toggle Skills Shortcuts", "Interface", "Toggle skill shortcut button visibility"),
+        new ShortcutActionItem("Toggle Shortcuts", "Interface", "Toggle all shortcut buttons"),
+        new ShortcutActionItem("Travel Menu's Travel", "Movement", "Open the travel menu"),
+        new ShortcutActionItem("Camera Tool", "Interface", "Open the camera tool"),
+        new ShortcutActionItem("World Camera", "Interface", "Open the world camera"),
+        new ShortcutActionItem("World Camera's Hide", "Interface", "Hide the world camera")
     ];
 
     private static var TAB_DEFS:Array<{id:String, label:String, w:Float}> = [
@@ -195,6 +202,7 @@ class ShortcutPicker extends Sprite {
         closeBtn.addEventListener(MouseEvent.ROLL_OVER, function(_):Void drawClose(true));
         closeBtn.addEventListener(MouseEvent.ROLL_OUT, function(_):Void drawClose(false));
         closeBtn.addEventListener(MouseEvent.CLICK, function(_):Void onDismiss());
+        closeBtn.addEventListener(TouchEvent.TOUCH_TAP, function(_):Void onDismiss());
         win.addChild(closeBtn);
 
         // 5. Category Tabs with Fixed Widths (No shrinking or text clipping)
@@ -289,25 +297,30 @@ class ShortcutPicker extends Sprite {
         sp.addChild(txt);
 
         sp.addEventListener(MouseEvent.CLICK, function(_):Void {
-            selectedCategory = cat;
-            for (tDef in TAB_DEFS) {
-                var otherTab:Sprite = cast win.getChildByName("tab_" + tDef.id);
-                if (otherTab != null) {
-                    var otherSelected = (tDef.id == selectedCategory);
-                    drawTabGraphics(otherTab, tDef.w, tabH, otherSelected);
-                    var otherTxt:TextField = cast otherTab.getChildAt(0);
-                    if (otherTxt != null) {
-                        var otf = new TextFormat("_sans", 10, otherSelected ? 0x000000 : 0xAAAAAA, true);
-                        otf.align = TextFormatAlign.CENTER;
-                        otherTxt.defaultTextFormat = otf;
-                        otherTxt.setTextFormat(otf);
-                    }
-                }
-            }
-            refreshList();
+            selectCategory(cat, tabH);
         });
+        sp.addEventListener(TouchEvent.TOUCH_TAP, function(_):Void selectCategory(cat, tabH));
 
         return sp;
+    }
+
+    private function selectCategory(cat:String, tabH:Float):Void {
+        selectedCategory = cat;
+        for (tDef in TAB_DEFS) {
+            var otherTab:Sprite = cast win.getChildByName("tab_" + tDef.id);
+            if (otherTab != null) {
+                var otherSelected = (tDef.id == selectedCategory);
+                drawTabGraphics(otherTab, tDef.w, tabH, otherSelected);
+                var otherTxt:TextField = cast otherTab.getChildAt(0);
+                if (otherTxt != null) {
+                    var otf = new TextFormat("_sans", 10, otherSelected ? 0x000000 : 0xAAAAAA, true);
+                    otf.align = TextFormatAlign.CENTER;
+                    otherTxt.defaultTextFormat = otf;
+                    otherTxt.setTextFormat(otf);
+                }
+            }
+        }
+        refreshList();
     }
 
     private function drawTabGraphics(tab:Sprite, w:Float, h:Float, isSelected:Bool):Void {
@@ -430,6 +443,12 @@ class ShortcutPicker extends Sprite {
                 drawCard(false);
             });
             card.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+                if (onPick != null) {
+                    onPick(item.name);
+                }
+                onDismiss();
+            });
+            card.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
                 if (onPick != null) {
                     onPick(item.name);
                 }

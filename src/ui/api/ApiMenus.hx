@@ -64,7 +64,7 @@ class ApiMenus {
         if (Api.map != null) {
             Api.map.autoDeathSpawn = HelperSetting.getBool("api_death_spawn", false);
             Api.map.usePrivateRoom = HelperSetting.getBool("api_private_rooms", true);
-            Api.map.skipCutscenes  = HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false);
+            Api.map.skipCutscenes = HelperSetting.getBool("api_skip_cutscenes", false);
         }
         ApiLogger.printToChat = HelperSetting.getBool("api_chat_logging", true);
 

@@ -11,6 +11,8 @@ import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.ui.Multitouch;
+import ui.api.ApiCombatAnalyzerModal;
+import ui.api.ApiNotificationManager;
 import util.Helper;
 
 /**
@@ -25,9 +27,10 @@ class ShortcutButton extends Sprite {
     private var pocket:Dynamic;
     private var bg:Sprite;
     private var deleteBadge:Sprite;
+    private var isSelected:Bool = false;
 
-    public static inline var WIDTH:Float = 60;
-    public static inline var HEIGHT:Float = 50;
+    public static inline var WIDTH:Float = 48;
+    public static inline var HEIGHT:Float = 40;
     private static inline var RADIUS:Float = 8;
 
     // Dragging state in edit mode
@@ -61,7 +64,7 @@ class ShortcutButton extends Sprite {
 
         // 3. Label
         var txt = new TextField();
-        var tf = new TextFormat("_sans", 9, 0xFFFFFF, true);
+        var tf = new TextFormat("_sans", 8, 0xFFFFFF, true);
         tf.align = TextFormatAlign.CENTER;
         txt.defaultTextFormat = tf;
         txt.text = formatLabel(actionName);
@@ -123,17 +126,23 @@ class ShortcutButton extends Sprite {
     }
 
     public function setEditMode(active:Bool):Void {
+        isSelected = false;
         deleteBadge.visible = active;
         renderBackground(false, active);
+    }
+
+    public function setSelected(active:Bool):Void {
+        isSelected = active;
+        renderBackground(false, LayoutController.editMode);
     }
 
     private function renderBackground(isHover:Bool, isEdit:Bool):Void {
         bg.graphics.clear();
 
         if (isEdit) {
-            // Gold dashed outline in edit mode
+            var borderColor:Int = isSelected ? 0x00D8FF : 0xFFCC00;
             bg.graphics.beginFill(0x1F1F1F, 0.9);
-            bg.graphics.lineStyle(2, 0xFFCC00, 1.0);
+            bg.graphics.lineStyle(2, borderColor, 1.0);
             bg.graphics.drawRoundRect(0, 0, WIDTH, HEIGHT, RADIUS, RADIUS);
             bg.graphics.endFill();
             return;
@@ -166,6 +175,9 @@ class ShortcutButton extends Sprite {
 
     private function onMouseDownHandler(e:MouseEvent):Void {
         if (LayoutController.editMode && stage != null) {
+            if (this.pocket != null && this.pocket.gameUI != null) {
+                this.pocket.gameUI.layoutController.selectWidget(this.name);
+            }
             isDragging = true;
             dragStartMouseX = stage.mouseX;
             dragStartMouseY = stage.mouseY;
@@ -201,8 +213,17 @@ class ShortcutButton extends Sprite {
     }
 
     private function onClickHandler(e:Dynamic):Void {
-        if (LayoutController.editMode) return;
-        executeAction();
+        if (LayoutController.editMode) {
+            if (this.pocket != null && this.pocket.gameUI != null) {
+                this.pocket.gameUI.layoutController.selectWidget(this.name);
+            }
+            return;
+        }
+        try {
+            executeAction();
+        } catch (error:Dynamic) {
+            ApiNotificationManager.notify("Shortcut failed (" + this.actionName + "): " + Std.string(error));
+        }
     }
 
     private function getActionAccentColor(action:String):Int {
@@ -262,6 +283,10 @@ class ShortcutButton extends Sprite {
 
         var p = this.pocket;
         var g:Dynamic = (p != null) ? p.game : null;
+        if (usesNativeGameAction(this.actionName)) {
+            triggerNativeGameAction(g, this.actionName);
+            return;
+        }
         var w:Dynamic = (g != null) ? g.world : null;
         var ui:Dynamic = (g != null) ? g.ui : null;
         var mc:Dynamic = (ui != null) ? ui.mcInterface : null;
@@ -371,7 +396,7 @@ class ShortcutButton extends Sprite {
                 if (g != null && g.stopAllMovieClips != null) {
                     try {
                         g.stopAllMovieClips();
-                        ui.api.ApiNotificationManager.notify("Lag Fixed: Stopped background animations");
+                        ApiNotificationManager.notify("Lag Fixed: Stopped background animations");
                     } catch (_:Dynamic) {}
                 }
 
@@ -417,22 +442,22 @@ class ShortcutButton extends Sprite {
                 }
 
             case "Friendships UI":
-                ui.api.ApiFriendshipModal.show(this.pocket);
+                ApiNotificationManager.notify("Friendships UI is not available in this build.");
 
             case "Area List":
-                ui.api.ApiCellNavModal.show(this.pocket);
+                ApiNotificationManager.notify("Area List is not available in this build.");
 
             case "Outfits":
-                ui.api.ApiPresetModal.show(this.pocket);
+                ApiNotificationManager.notify("Outfits UI is not available in this build.");
 
             case "Battle Analyzer":
-                ui.api.ApiCombatAnalyzerModal.show(this.pocket);
+                ApiCombatAnalyzerModal.show(this.pocket);
 
             case "Battle Analyzer Toggle":
-                ui.api.ApiHudManager.toggleHud();
+                ApiCombatAnalyzerModal.toggleMeter(this.pocket);
 
             case "Custom Drops UI":
-                ui.api.ApiDropsModal.show(this.pocket);
+                ApiNotificationManager.notify("Custom Drops UI is not available in this build.");
 
             case "Decline All Drops":
                 if (ui != null && ui.dropStack != null) {
@@ -466,6 +491,23 @@ class ShortcutButton extends Sprite {
                     else p.gameUI.hideSkillBar();
                 }
 
+            case "Toggle Skills Shortcuts":
+                if (p.gameUI != null && p.gameUI.shortcutButtons != null) {
+                    var skillActions = ["Auto Attack", "Skill 2", "Skill 3", "Skill 4", "Skill 5", "Skill 6"];
+                    var nextVisibility:Bool = true;
+                    for (name in skillActions) {
+                        var button:Dynamic = Reflect.field(p.gameUI.shortcutButtons, name);
+                        if (button != null) {
+                            nextVisibility = !button.visible;
+                            break;
+                        }
+                    }
+                    for (name in skillActions) {
+                        var button:Dynamic = Reflect.field(p.gameUI.shortcutButtons, name);
+                        if (button != null) button.visible = nextVisibility;
+                    }
+                }
+
             case "Toggle Shortcuts":
                 if (p.gameUI != null && p.gameUI.shortcutButtons != null) {
                     for (name in Reflect.fields(p.gameUI.shortcutButtons)) {
@@ -476,11 +518,27 @@ class ShortcutButton extends Sprite {
                 }
 
             default:
-                if (g != null && Reflect.hasField(g, "triggerGameAction")) {
-                    try {
-                        Reflect.callMethod(g, Reflect.field(g, "triggerGameAction"), [this.actionName]);
-                    } catch (_:Dynamic) {}
-                }
+                triggerNativeGameAction(g, this.actionName);
         }
+    }
+
+    private function usesNativeGameAction(action:String):Bool {
+        return switch (action) {
+            case "Character Panel", "Stats Overview", "Options", "Quest Log", "Inventory", "Bank", "Outfits",
+                "Friends List", "Friendships UI", "Area List", "Custom Drops UI", "Decline All Drops",
+                "Target Random Monster", "Cancel Target", "Rest", "Jump", "Dash", "Player HP Bar",
+                "Hide Monsters", "Hide Players", "Hide UI", "Travel Menu's Travel", "Camera Tool",
+                "World Camera", "World Camera's Hide":
+                true;
+            default:
+                false;
+        };
+    }
+
+    private function triggerNativeGameAction(game:Dynamic, action:String):Void {
+        if (game == null) {
+            throw "Game client is unavailable.";
+        }
+        game.triggerGameAction(action);
     }
 }

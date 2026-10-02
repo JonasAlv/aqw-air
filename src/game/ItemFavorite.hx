@@ -9,6 +9,7 @@ class ItemFavorite {
     private var favoriteIds:Array<Dynamic>;
     private var favoriteLookup:Map<String, Bool>;
     private var favoriteButton:Favorite;
+    public var revision(default, null):Int = 0;
 
     public function new(pocket:Dynamic) {
         this.pocket = pocket;
@@ -46,6 +47,7 @@ class ItemFavorite {
             this.favoriteLookup.remove(key);
         }
 
+        revision++;
         HelperSetting.setArray(HelperSetting.OPTION_FAVORITE_ITEMS, this.favoriteIds);
         return nowFavorited;
     }
@@ -126,11 +128,7 @@ class ItemFavorite {
                         try {
                             isUpgMember = this.pocket.game.world.myAvatar.isUpgraded();
                         } catch (e:Dynamic) {}
-                        if (item.bUpg == 1 && !isUpgMember) {
-                            btnTry.visible = false;
-                        } else {
-                            btnTry.visible = true;
-                        }
+                        btnTry.visible = item.bUpg != 1 || isUpgMember;
                     default:
                         btnTry.visible = false;
                 }
@@ -157,34 +155,44 @@ class ItemFavorite {
             }
 
             if (btnWiki != null) {
-                var fVis:Bool = (btnFGender != null && btnFGender.visible == true);
-                var mVis:Bool = (btnMGender != null && btnMGender.visible == true);
+                var fVis:Bool = btnFGender != null && btnFGender.visible == true;
+                var mVis:Bool = btnMGender != null && btnMGender.visible == true;
                 btnWiki.y = (!fVis && !mVis && btnMGender != null) ? btnMGender.y : 121;
-
                 if (btnTry != null && btnDelete != null && !btnTry.visible && !btnDelete.visible) {
                     btnWiki.y = btnTry.y;
                 }
                 btnWiki.visible = true;
             }
-
-            var favorite = new Favorite();
-            lpf.addChild(favorite);
-            favorite.x += 5;
-            favorite.y += 5;
-
-            var self = this;
-            favorite.fOpen({
-                "favorited": this.isFavorite(item),
-                "onToggle": function():Bool {
-                    var result:Bool = self.toggleFavorite(item);
-                    try {
-                        untyped lpf.getLayout().update({"eventType": "refreshItems"});
-                    } catch (e:Dynamic) {}
-                    return result;
-                }
-            });
-
-            this.favoriteButton = favorite;
         }
+
+        drawFavoriteButton(state, lpf);
+    }
+
+    public function drawFavoriteButton(state:Dynamic, lpf:MovieClip):Void {
+        if (this.favoriteButton != null) {
+            this.favoriteButton.fClose();
+            this.favoriteButton = null;
+        }
+        if (state == null || state.iSel == null || lpf == null) return;
+
+        var item = state.iSel;
+        var favorite = new Favorite();
+        lpf.addChild(favorite);
+        favorite.x += 5;
+        favorite.y += 5;
+
+        var self = this;
+        favorite.fOpen({
+            "favorited": this.isFavorite(item),
+            "onToggle": function():Bool {
+                var result:Bool = self.toggleFavorite(item);
+                try {
+                    untyped lpf.getLayout().update({"eventType": "refreshItems"});
+                } catch (e:Dynamic) {}
+                return result;
+            }
+        });
+
+        this.favoriteButton = favorite;
     }
 }

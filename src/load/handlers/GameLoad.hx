@@ -7,6 +7,7 @@ import flash.events.IOErrorEvent;
 import flash.events.ProgressEvent;
 import game.Network;
 import load.Load;
+import load.SWFCache;
 import util.HelperLoader;
 
 @:native("load.handlers.GameLoad")
@@ -76,6 +77,9 @@ class GameLoad extends Load {
         } catch (_:Dynamic) {}
 
         util.HelperSetting.syncToPocket(this.pocket);
+        SWFCache.setEnabled(
+            util.HelperSetting.getBool(util.HelperSetting.OPTION_SWF_CACHE, true)
+        );
         controller.ViewportController.instance.init(this.pocket);
 
         this.pocket.networkCore = new Network(this.pocket);

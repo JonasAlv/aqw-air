@@ -13,6 +13,20 @@ class ItemPagination {
     private static inline var FAVORITE_ALPHA:Float = 0.3;
     private static var FAVORITE_CT:ColorTransform = new ColorTransform(0, 0, 0, 1, 255, 215, 0, 0);
 
+    private var cachedState:Dynamic;
+    private var cachedLayout:Dynamic;
+    private var cachedFilterMap:Dynamic;
+    private var cachedItemList:Array<Dynamic>;
+    private var cachedItemCount:Int = -1;
+    private var cachedOrderedItems:Array<Dynamic>;
+    private var cachedFilter:String;
+    private var cachedSortSignature:String;
+    private var cachedEventType:String;
+    private var cachedLayoutMode:String;
+    private var cachedEquippedOnTop:Bool;
+    private var cachedFavoriteRevision:Int = -1;
+    private var cachedPage:Int = -1;
+
     public function new(pocket:Dynamic) {
         this.pocket = pocket;
     }
@@ -42,6 +56,27 @@ class ItemPagination {
 
         var optPagination:Bool = (this.pocket.config != null) ? this.pocket.config.option_pagination == true : true;
         itemsPerPage = optPagination ? 7 : 9;
+        var optEquippedOnTop:Bool = (this.pocket.config != null) ? this.pocket.config.option_equipped_on_top == true : true;
+        var favoriteRevision:Int = (this.pocket.gameCore != null && this.pocket.gameCore.itemFavorite != null)
+            ? this.pocket.gameCore.itemFavorite.revision : 0;
+        var filterKey:String = (tSel != null) ? Std.string(tSel.filter) : "";
+        var sortSignature:String = [for (order in sortOrder) Std.string(order)].join("\u0001");
+        var eventTypeKey:String = (itemEventType != null) ? itemEventType : "";
+        var layoutMode:String = (layout != null && layout.sMode != null) ? Std.string(layout.sMode) : "";
+        var requestedPage:Int = (iList != null && untyped iList.curPage != null) ? untyped iList.curPage : 0;
+        var cacheMatches:Bool = !reset && requestedPage != cachedPage
+            && state == cachedState
+            && layout == cachedLayout
+            && filterMap == cachedFilterMap
+            && itemList == cachedItemList
+            && itemList.length == cachedItemCount
+            && filterKey == cachedFilter
+            && sortSignature == cachedSortSignature
+            && eventTypeKey == cachedEventType
+            && layoutMode == cachedLayoutMode
+            && optEquippedOnTop == cachedEquippedOnTop
+            && favoriteRevision == cachedFavoriteRevision
+            && cachedOrderedItems != null;
 
         #if flash
         try {
@@ -86,6 +121,7 @@ class ItemPagination {
         }
 
         if (tSel == null) {
+            cachedOrderedItems = null;
             state.setMessage("No Tab Selected");
             if (scr != null) {
                 scr.fOpen({
@@ -99,107 +135,117 @@ class ItemPagination {
 
         state.setMessage("");
 
-        if (tSel.filter != "*") {
-            for (itemData in itemList) {
-                var filterKey:String = Std.string(tSel.filter);
-                var filterList:Dynamic = filterMap != null ? Reflect.field(filterMap, filterKey) : null;
-                var matchesFilter:Bool = false;
-
-                var sTypeStr:String = Std.string(itemData.sType);
-                if (filterList != null) {
-                    matchesFilter = (Std.string(filterList).indexOf(sTypeStr) > -1);
-                }
-                if (!matchesFilter && itemData.sType == "Enhancement" && itemData.sES != null) {
-                    matchesFilter = (Std.string(itemData.sES).indexOf(filterKey) > -1);
-                }
-
-                var isExcludedPot:Bool = (filterKey == "pots" &&
-                    itemData.sLink != "potion" &&
-                    itemData.sLink != "elixir" &&
-                    itemData.sLink != "tonic" &&
-                    itemData.sLink != "scroll");
-
-                if (matchesFilter && !isExcludedPot) {
-                    filteredItems.push(itemData);
-                }
-            }
+        if (cacheMatches) {
+            listA = cachedOrderedItems.copy();
         } else {
-            filteredItems = itemList;
-        }
+            if (tSel.filter != "*") {
+                var selectedFilter:String = Std.string(tSel.filter);
+                var filterList:Dynamic = filterMap != null ? Reflect.field(filterMap, selectedFilter) : null;
+                for (itemData in itemList) {
+                    var matchesFilter:Bool = false;
 
-        if (onDemand && filteredItems.length == 0) {
-            state.setMessage("No items of this type");
-            if (scr != null) {
-                scr.fOpen({
-                    "subject": iList,
-                    "subjectMask": listMask,
-                    "reset": reset
-                });
+                    var sTypeStr:String = Std.string(itemData.sType);
+                    if (filterList != null) {
+                        matchesFilter = (Std.string(filterList).indexOf(sTypeStr) > -1);
+                    }
+                    if (!matchesFilter && itemData.sType == "Enhancement" && itemData.sES != null) {
+                        matchesFilter = (Std.string(itemData.sES).indexOf(selectedFilter) > -1);
+                    }
+
+                    var isExcludedPot:Bool = (selectedFilter == "pots" &&
+                        itemData.sLink != "potion" &&
+                        itemData.sLink != "elixir" &&
+                        itemData.sLink != "tonic" &&
+                        itemData.sLink != "scroll");
+
+                    if (matchesFilter && !isExcludedPot) {
+                        filteredItems.push(itemData);
+                    }
+                }
+            } else {
+                filteredItems = itemList;
             }
-            return {listA: listA};
-        }
 
-        var sortedItemIds = new Map<String, Bool>();
+            if (!cacheMatches && onDemand && filteredItems.length == 0) {
+                cachedOrderedItems = null;
+                state.setMessage("No items of this type");
+                if (scr != null) {
+                    scr.fOpen({
+                        "subject": iList,
+                        "subjectMask": listMask,
+                        "reset": reset
+                    });
+                }
+                return {listA: listA};
+            }
 
-        for (ord in sortOrder) {
+            var sortedItemIds = new Map<String, Bool>();
+            var groupsByType = new Map<String, Array<Dynamic>>();
+            for (itemData in filteredItems) {
+                var typeKey:String = Std.string(itemData.sType);
+                var group:Array<Dynamic> = groupsByType.get(typeKey);
+                if (group == null) {
+                    group = [];
+                    groupsByType.set(typeKey, group);
+                }
+                group.push(itemData);
+            }
+
+            for (ord in sortOrder) {
+                sortedGroup = groupsByType.get(Std.string(ord));
+                if (sortedGroup != null && sortedGroup.length > 0) {
+                    #if flash
+                    untyped sortedGroup.sortOn(["sName", "iLvl"], [null, 2 | 16]); // Array.DESCENDING | Array.NUMERIC
+                    #end
+                    for (itemData in sortedGroup) {
+                        sortedItemIds.set(Std.string(itemData.ItemID), true);
+                    }
+                    listA = listA.concat(sortedGroup);
+                }
+            }
+
             sortedGroup = [];
             for (itemData in filteredItems) {
-                if (itemData.sType == ord) {
+                if (!sortedItemIds.exists(Std.string(itemData.ItemID))) {
                     sortedGroup.push(itemData);
-                    sortedItemIds.set(Std.string(itemData.ItemID), true);
                 }
             }
 
             if (sortedGroup.length > 0) {
                 #if flash
-                untyped sortedGroup.sortOn(["sName", "iLvl"], [null, 2 | 16]); // Array.DESCENDING | Array.NUMERIC
+                untyped sortedGroup.sortOn(["sType", "sName"]);
                 #end
                 listA = listA.concat(sortedGroup);
             }
-        }
 
-        sortedGroup = [];
-        for (itemData in filteredItems) {
-            if (!sortedItemIds.exists(Std.string(itemData.ItemID))) {
-                sortedGroup.push(itemData);
-            }
-        }
+            if (layout != null && layout.sMode != "bank" && optEquippedOnTop) {
+                var pinnedItems:Array<Dynamic> = [];
+                var unpinnedItems:Array<Dynamic> = [];
 
-        if (sortedGroup.length > 0) {
-            #if flash
-            untyped sortedGroup.sortOn(["sType", "sName"]);
-            #end
-            listA = listA.concat(sortedGroup);
-        }
-
-        var optEquippedOnTop:Bool = (this.pocket.config != null) ? this.pocket.config.option_equipped_on_top == true : true;
-        if (layout != null && layout.sMode != "bank" && optEquippedOnTop) {
-            var pinnedItems:Array<Dynamic> = [];
-            var unpinnedItems:Array<Dynamic> = [];
-
-            for (itemData in listA) {
-                if (itemData.bEquip == 1 || itemData.bEquip == true) {
-                    pinnedItems.push(itemData);
-                } else {
-                    unpinnedItems.push(itemData);
+                for (itemData in listA) {
+                    if (itemData.bEquip == 1 || itemData.bEquip == true) {
+                        pinnedItems.push(itemData);
+                    } else {
+                        unpinnedItems.push(itemData);
+                    }
                 }
+                listA = pinnedItems.concat(unpinnedItems);
             }
-            listA = pinnedItems.concat(unpinnedItems);
-        }
 
-        var itemFavorite:ItemFavorite = (this.pocket.gameCore != null) ? this.pocket.gameCore.itemFavorite : null;
-        if (itemFavorite != null) {
-            var favoritedItems:Array<Dynamic> = [];
-            var unfavoritedItems:Array<Dynamic> = [];
+            var itemFavorite:ItemFavorite = (this.pocket.gameCore != null) ? this.pocket.gameCore.itemFavorite : null;
+            if (itemFavorite != null) {
+                var favoritedItems:Array<Dynamic> = [];
+                var unfavoritedItems:Array<Dynamic> = [];
 
-            for (itemData in listA) {
-                if (itemFavorite.isFavorite(itemData)) {
-                    favoritedItems.push(itemData);
-                } else {
-                    unfavoritedItems.push(itemData);
+                for (itemData in listA) {
+                    if (itemFavorite.isFavorite(itemData)) {
+                        favoritedItems.push(itemData);
+                    } else {
+                        unfavoritedItems.push(itemData);
+                    }
                 }
+                listA = favoritedItems.concat(unfavoritedItems);
             }
-            listA = favoritedItems.concat(unfavoritedItems);
         }
 
         var itemConfig:Dynamic = {};
@@ -233,6 +279,20 @@ class ItemPagination {
         } else {
             if (iList != null) untyped iList.curPage = 0;
         }
+
+        cachedState = state;
+        cachedLayout = layout;
+        cachedFilterMap = filterMap;
+        cachedItemList = itemList;
+        cachedItemCount = itemList.length;
+        cachedOrderedItems = listA.copy();
+        cachedFilter = filterKey;
+        cachedSortSignature = sortSignature;
+        cachedEventType = eventTypeKey;
+        cachedLayoutMode = layoutMode;
+        cachedEquippedOnTop = optEquippedOnTop;
+        cachedFavoriteRevision = favoriteRevision;
+        cachedPage = (iList != null && untyped iList.curPage != null) ? untyped iList.curPage : 0;
 
         if (iList != null && lpfElementListItemItemCls != null) {
             for (idx in startIndex...endIndex) {

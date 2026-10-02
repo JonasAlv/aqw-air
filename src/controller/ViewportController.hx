@@ -52,45 +52,13 @@ class ViewportController {
         var stg:Stage = (_stage != null) ? _stage : (game.stage != null ? game.stage : null);
         if (stg == null) return;
 
-        var mode:String = HelperSetting.getString(HelperSetting.OPTION_RENDER_RESOLUTION, "native");
         var letterbox:Bool = HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
-
-        var targetW:Float = 0;
-        var targetH:Float = 0;
-
-        switch (mode) {
-            case "550p", "classic":
-                targetW = 960;
-                targetH = 550;
-            default: // "native"
-                targetW = 0;
-                targetH = 0;
-        }
-
-        // Apply Graphic Quality (Flash vector rasterization detail)
-        var quality:String = HelperSetting.getString("api_graphic_quality", "HIGH");
-        try {
-            stg.quality = switch (quality) {
-                case "LOW": flash.display.StageQuality.LOW;
-                case "MEDIUM": flash.display.StageQuality.MEDIUM;
-                default: flash.display.StageQuality.HIGH;
-            };
-        } catch (_:Dynamic) {}
+        var targetW:Float = 960;
+        var targetH:Float = 550;
 
         var winW:Float = (stg.stageWidth > 0) ? stg.stageWidth : 960;
         var winH:Float = (stg.stageHeight > 0) ? stg.stageHeight : 550;
 
-        if (targetW <= 0 || targetH <= 0) {
-            // Native Window Resolution (Dynamic Unlocked)
-            game.scaleX = 1.0;
-            game.scaleY = 1.0;
-            game.x = 0;
-            game.y = 0;
-            game.scrollRect = null;
-            return;
-        }
-
-        // Fixed Resolution with Viewport Hardware Scaling
         var scaleX:Float;
         var scaleY:Float;
         var offsetX:Float = 0;

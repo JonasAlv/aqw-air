@@ -9,6 +9,9 @@ class HelperSetting {
     public static inline var OPTION_SHOW_JOYSTICK_KEYBOARD:String = "option_show_joystick_keyboard";
     public static inline var OPTION_JOYSTICK_DASH:String = "option_joystick_dash";
     public static inline var OPTION_SHOW_SKILL_BAR:String = "option_show_skill_bar";
+    public static inline var OPTION_SKILL_BAR_STYLE:String = "option_skill_bar_style";
+    public static inline var SKILL_BAR_STYLE_CLASSIC:Int = 0;
+    public static inline var SKILL_BAR_STYLE_INFINITY:Int = 1;
     public static inline var OPTION_SNAP_TO_GRID:String = "option_snap_to_grid";
     public static inline var OPTION_FPS:String = "option_fps";
     public static inline var OPTION_LANGUAGE:String = "option_language";
@@ -33,9 +36,6 @@ class HelperSetting {
 
     public static inline var OPTION_SHORTCUTS:String = "shortcut_buttons";
 
-    public static inline var OPTION_RASTERIZER:String = "option_rasterizer";
-    public static inline var OPTION_RASTERIZER_LEVELS:String = "option_rasterizer_levels";
-
     public static inline var OPTION_ANIMATION_MONSTER:String = "option_animation_monster";
     public static inline var OPTION_ANIMATION_HELM:String = "option_animation_helm";
     public static inline var OPTION_ANIMATION_ARMOR:String = "option_animation_armor";
@@ -45,10 +45,10 @@ class HelperSetting {
     public static inline var OPTION_ANIMATION_MISC:String = "option_animation_misc";
     public static inline var OPTION_ANIMATION_WEAPON:String = "option_animation_weapon";
     public static inline var OPTION_ANIMATION_MAP:String = "option_animation_map";
+    public static inline var OPTION_SOUND:String = "option_sound";
 
     public static inline var OPTION_FILTER:String = "option_filter";
     public static inline var OPTION_SWF_CACHE:String = "option_swf_cache";
-    public static inline var OPTION_RENDER_RESOLUTION:String = "option_render_resolution";
     public static inline var OPTION_RESOLUTION_LETTERBOX:String = "option_resolution_letterbox";
 
     public static inline var LAYOUT_JOYSTICK_MOUSE:String = "layout_joystick";
@@ -76,7 +76,6 @@ class HelperSetting {
             }
         }
         #end
-        _set(key, defaultValue);
         return defaultValue;
     }
 
@@ -157,6 +156,53 @@ class HelperSetting {
         _set(key, value);
     }
 
+    public static function getFrameRateIndex():Int {
+        var index = getInt(OPTION_FPS, 0);
+        return index >= 0 && index < 5 ? index : 0;
+    }
+
+    public static function getFrameRate():Int {
+        return [24, 30, 60, 75, 120][getFrameRateIndex()];
+    }
+
+    public static function getOrientationIndex():Int {
+        var index = getInt(OPTION_LOCK_ORIENTATION, 0);
+        return index >= 0 && index < Helper.ORIENTATIONS.length ? index : 0;
+    }
+
+    public static function applyStageSettings(stage:Dynamic):Int {
+        var frameRate = getFrameRate();
+        if (stage == null) return frameRate;
+
+        applyFrameRate(stage);
+        applyOrientation(stage);
+        return frameRate;
+    }
+
+    public static function applyFrameRate(stage:Dynamic):Int {
+        var frameRate = getFrameRate();
+        if (stage != null) stage.frameRate = frameRate;
+        return frameRate;
+    }
+
+    public static function applyOrientation(stage:Dynamic):Void {
+        if (stage == null) return;
+
+        var orientationIndex = getOrientationIndex();
+        try {
+            if (orientationIndex == 0) {
+                untyped stage.autoOrients = true;
+                untyped stage.setAspectRatio("landscape");
+            } else {
+                untyped stage.autoOrients = false;
+                untyped stage.setAspectRatio("any");
+                untyped stage.setOrientation(Helper.ORIENTATIONS[orientationIndex]);
+            }
+        } catch (error:Dynamic) {
+            trace("Unable to apply saved stage orientation: " + Std.string(error));
+        }
+    }
+
     public static function syncToPocket(pocket:Dynamic):Void {
         if (pocket == null) return;
         var cfg:Dynamic = pocket.config;
@@ -183,6 +229,8 @@ class HelperSetting {
             cfg.option_animation_pet_off = getBool(OPTION_ANIMATION_PET, false);
             cfg.option_animation_weapon_off = getBool(OPTION_ANIMATION_WEAPON, false);
             cfg.option_animation_misc_off = getBool(OPTION_ANIMATION_MISC, false);
+            cfg.option_animation_map_off = getBool(OPTION_ANIMATION_MAP, false);
+            cfg.option_sound_off = getBool(OPTION_SOUND, false);
 
             var langIdx = getInt(OPTION_LANGUAGE, 0);
             var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
@@ -190,12 +238,7 @@ class HelperSetting {
                 cfg.option_language = langCodes[langIdx];
             }
 
-            var fpsValues = [24, 30, 60, 75, 120];
-            var fpsIdx = getInt(OPTION_FPS, 2);
-            if (fpsIdx < 0 || fpsIdx >= fpsValues.length) fpsIdx = 2;
-            try {
-                cfg.option_fps = fpsValues[fpsIdx];
-            } catch (_:Dynamic) {}
+            cfg.option_fps = getFrameRate();
         }
 
         // Apply stage settings (FPS, Orientation)
@@ -205,24 +248,7 @@ class HelperSetting {
         else if (pocket.overlay != null && pocket.overlay.stage != null) stg = pocket.overlay.stage;
 
         if (stg != null) {
-            var fpsValues = [24, 30, 60, 75, 120];
-            var fpsIdx = getInt(OPTION_FPS, 2);
-            if (fpsIdx < 0 || fpsIdx >= fpsValues.length) fpsIdx = 2;
-            stg.frameRate = fpsValues[fpsIdx];
-
-            var orientIdx = getInt(OPTION_LOCK_ORIENTATION, 0);
-            try {
-                if (orientIdx == 2) {
-                    untyped stg.autoOrients = true;
-                    untyped stg.setAspectRatio("any");
-                } else if (orientIdx == 1) {
-                    untyped stg.autoOrients = false;
-                    untyped stg.setAspectRatio("portrait");
-                } else {
-                    untyped stg.autoOrients = false;
-                    untyped stg.setAspectRatio("landscape");
-                }
-            } catch (_:Dynamic) {}
+            applyStageSettings(stg);
         }
     }
 }

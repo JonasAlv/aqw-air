@@ -4,7 +4,7 @@ class Config {
     public static var API_LOGIN_URL:String = GAME_BASE_URL + "api/login/now";
     public static inline var APP_VERSION:String = "1.0.0";
 
-    public var option_fps:Int = 60;
+    public var option_fps:Int = 24;
 
     public var option_pagination:Bool = true;
     public var option_equipped_on_top:Bool = true;
@@ -17,6 +17,7 @@ class Config {
     public var option_animation_misc_off:Bool = false;
     public var option_animation_pet_off:Bool = false;
     public var option_animation_weapon_off:Bool = false;
+    public var option_animation_map_off:Bool = false;
 
     public var option_filter_off:Bool = false;
     public var option_sound_off:Bool = false;

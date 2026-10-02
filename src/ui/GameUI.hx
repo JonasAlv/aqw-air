@@ -7,6 +7,9 @@ import controller.walk.WalkController;
 import flash.display.DisplayObjectContainer;
 import flash.display.Sprite;
 import flash.events.Event;
+import flash.events.MouseEvent;
+import flash.events.TouchEvent;
+import flash.geom.Rectangle;
 import ui.input.Joystick;
 import ui.shortcut.ShortcutButton;
 import util.Helper;
@@ -25,6 +28,19 @@ class GameUI extends Sprite {
 
     public var layoutController:LayoutController = new LayoutController();
     public var shortcutButtons:Dynamic = {};
+    private var skillBarFrames:Array<Sprite> = [null, null, null, null, null, null, null];
+    private var skillBarMasks:Array<Sprite> = [null, null, null, null, null, null, null];
+    private var skillBarOriginalMasks:Array<Dynamic> = [null, null, null, null, null, null, null];
+    private var skillLayoutHitAreas:Array<Sprite> = [null, null, null, null, null, null, null];
+    private var skillLayoutIcons:Array<Dynamic> = [null, null, null, null, null, null, null];
+    private var skillLayoutDragTarget:Sprite;
+    private var skillLayoutDragOffset:flash.geom.Point;
+    private var skillLayoutTouchID:Int = -1;
+    private var nextShortcutX:Float = 0;
+    private var nextShortcutY:Float = 0;
+    private var shortcutPlacementWidth:Float = 0;
+    private var shortcutPlacementHeight:Float = 0;
+    private var shortcutPlacementInitialized:Bool = false;
 
     public function new(pocket:Dynamic) {
         super();
@@ -144,16 +160,284 @@ class GameUI extends Sprite {
         } catch (_:Dynamic) {}
     }
 
-    public function addShortcutButton(actionName:String):Void {
+    public function applySkillBarStyle():Void {
+        if (this.pocket == null || this.pocket.game == null || this.pocket.game.ui == null
+            || this.pocket.game.ui.mcInterface == null || this.pocket.game.ui.mcInterface.actBar == null) {
+            return;
+        }
+
+        var actBar:Sprite = cast this.pocket.game.ui.mcInterface.actBar;
+        registerSkillBarWidgets(actBar);
+        var useInfinityStyle = HelperSetting.getInt(HelperSetting.OPTION_SKILL_BAR_STYLE, HelperSetting.SKILL_BAR_STYLE_CLASSIC)
+            == HelperSetting.SKILL_BAR_STYLE_INFINITY;
+
+        for (id in 1...7) {
+            var icon:Sprite = cast actBar.getChildByName("i" + id);
+            if (skillLayoutIcons[id] != icon) {
+                if (skillLayoutIcons[id] != null) {
+                    var staleIcon:Sprite = cast skillLayoutIcons[id];
+                    removeSkillBarStyle(id, staleIcon);
+                    removeSkillLayoutHitArea(id, staleIcon);
+                }
+            }
+            if (icon == null) continue;
+
+            var hitArea = skillLayoutHitAreas[id];
+            if (hitArea == null || hitArea.parent != actBar) {
+                if (hitArea != null && hitArea.parent != null) hitArea.parent.removeChild(hitArea);
+                hitArea = new Sprite();
+                hitArea.name = "SkillLayoutHitArea" + id;
+                hitArea.mouseChildren = false;
+                hitArea.alpha = 0.01;
+                hitArea.addEventListener(MouseEvent.MOUSE_DOWN, onSkillIconMouseDown, false, 100, true);
+                hitArea.addEventListener(TouchEvent.TOUCH_BEGIN, onSkillIconTouchBegin, false, 100, true);
+                actBar.addChild(hitArea);
+                skillLayoutHitAreas[id] = hitArea;
+            }
+            hitArea.mouseEnabled = LayoutController.editMode;
+            positionSkillLayoutHitArea(actBar, icon, hitArea);
+
+            if (!useInfinityStyle) {
+                removeSkillBarStyle(id, icon);
+                actBar.setChildIndex(hitArea, actBar.numChildren - 1);
+                continue;
+            }
+
+            var mask:Sprite = skillBarMasks[id];
+            if (mask == null || mask.parent != actBar) {
+                skillBarOriginalMasks[id] = icon.mask;
+                mask = new Sprite();
+                mask.name = "InfinitySkillMask" + id;
+                mask.visible = false;
+                mask.mouseEnabled = false;
+                mask.mouseChildren = false;
+                actBar.addChild(mask);
+                skillBarMasks[id] = mask;
+                icon.mask = mask;
+            } else if (icon.mask != mask) {
+                skillBarOriginalMasks[id] = icon.mask;
+                icon.mask = mask;
+            }
+
+            var frame:Sprite = skillBarFrames[id];
+            if (frame == null) {
+                frame = createSkillBarFrame();
+                frame.name = "InfinitySkillFrame" + id;
+                frame.mouseEnabled = false;
+                frame.mouseChildren = false;
+                actBar.addChild(frame);
+                skillBarFrames[id] = frame;
+            }
+            positionSkillBarStyle(actBar, icon, mask, frame);
+            actBar.setChildIndex(hitArea, actBar.numChildren - 1);
+        }
+    }
+
+    public function setSkillBarLayoutEditMode(enabled:Bool):Void {
+        if (this.pocket == null || this.pocket.game == null || this.pocket.game.ui == null
+            || this.pocket.game.ui.mcInterface == null || this.pocket.game.ui.mcInterface.actBar == null) {
+            return;
+        }
+        var actBar:Sprite = cast this.pocket.game.ui.mcInterface.actBar;
+        registerSkillBarWidgets(actBar);
+        for (id in 1...7) {
+            if (skillLayoutHitAreas[id] != null) skillLayoutHitAreas[id].mouseEnabled = enabled;
+        }
+        applySkillBarStyle();
+    }
+
+    private function positionSkillLayoutHitArea(actBar:Sprite, icon:Sprite, hitArea:Sprite):Void {
+        var bounds:Rectangle = icon.getBounds(actBar);
+        var diameter:Float = Math.min(bounds.width, bounds.height);
+        if (diameter <= 0) return;
+        hitArea.graphics.clear();
+        hitArea.graphics.beginFill(0xFFFFFF);
+        hitArea.graphics.drawCircle(bounds.x + bounds.width * 0.5, bounds.y + bounds.height * 0.5, diameter * 0.5);
+        hitArea.graphics.endFill();
+    }
+
+    private function removeSkillLayoutHitArea(id:Int, icon:Sprite):Void {
+        var hitArea = skillLayoutHitAreas[id];
+        if (hitArea != null) {
+            hitArea.removeEventListener(MouseEvent.MOUSE_DOWN, onSkillIconMouseDown);
+            hitArea.removeEventListener(TouchEvent.TOUCH_BEGIN, onSkillIconTouchBegin);
+            if (hitArea.parent != null) hitArea.parent.removeChild(hitArea);
+        }
+        skillLayoutHitAreas[id] = null;
+    }
+
+    private function createSkillBarFrame():Sprite {
+        return new Sprite();
+    }
+
+    private function positionSkillBarStyle(actBar:Sprite, icon:Sprite, mask:Sprite, frame:Sprite):Void {
+        var bounds:Rectangle = icon.getBounds(actBar);
+        var diameter:Float = Math.min(bounds.width, bounds.height);
+        if (diameter <= 0) return;
+        var centerX:Float = bounds.x + bounds.width * 0.5;
+        var centerY:Float = bounds.y + bounds.height * 0.5;
+        var radius:Float = diameter * 0.5;
+
+        mask.graphics.clear();
+        mask.graphics.beginFill(0xFFFFFF);
+        mask.graphics.drawCircle(centerX, centerY, radius);
+        mask.graphics.endFill();
+
+        frame.graphics.clear();
+        frame.graphics.lineStyle(Math.max(2, diameter * 0.055), 0x08090B, 1);
+        frame.graphics.drawCircle(centerX, centerY, radius + diameter * 0.015);
+        frame.graphics.lineStyle(Math.max(1, diameter * 0.022), 0x7A7D80, 0.9);
+        frame.graphics.drawCircle(centerX, centerY, radius - diameter * 0.025);
+        frame.graphics.lineStyle(Math.max(1, diameter * 0.018), 0x17191C, 1);
+        frame.graphics.drawCircle(centerX, centerY, radius - diameter * 0.015);
+    }
+
+    private function removeSkillBarStyle(id:Int, icon:Dynamic):Void {
+        var mask = skillBarMasks[id];
+        var frame = skillBarFrames[id];
+        if (icon != null && mask != null && icon.mask == mask) icon.mask = skillBarOriginalMasks[id];
+        if (mask != null && mask.parent != null) mask.parent.removeChild(mask);
+        if (frame != null && frame.parent != null) frame.parent.removeChild(frame);
+        skillBarMasks[id] = null;
+        skillBarFrames[id] = null;
+        skillBarOriginalMasks[id] = null;
+    }
+
+    public function registerSkillBarWidgets(actBar:Sprite):Bool {
+        if (actBar == null || this.layoutController == null) return false;
+        var changed = false;
+        for (id in 1...7) {
+            var icon:Sprite = cast actBar.getChildByName("i" + id);
+            if (skillLayoutIcons[id] == icon) continue;
+
+            changed = true;
+            var layoutId = HelperSetting.LAYOUT_SKILL_BAR + "_i" + id;
+            if (skillLayoutIcons[id] != null) {
+                var oldIcon:Sprite = cast skillLayoutIcons[id];
+                removeSkillBarStyle(id, oldIcon);
+                oldIcon.removeEventListener(MouseEvent.MOUSE_DOWN, onSkillIconMouseDown, true);
+                oldIcon.removeEventListener(TouchEvent.TOUCH_BEGIN, onSkillIconTouchBegin, true);
+                this.layoutController.unregister(layoutId);
+            }
+            skillLayoutIcons[id] = icon;
+            if (icon == null) {
+                continue;
+            }
+
+            this.layoutController.register(layoutId, icon, icon.x, icon.y, icon.scaleX, icon.scaleY);
+            this.layoutController.loadWidget(layoutId);
+        }
+        return changed;
+    }
+
+    private function onSkillIconMouseDown(event:MouseEvent):Void {
+        if (!LayoutController.editMode || stage == null) return;
+        var icon = getSkillIconForHitArea(cast event.currentTarget);
+        if (icon == null) return;
+        beginSkillIconDrag(icon, event.stageX, event.stageY);
+        event.stopImmediatePropagation();
+        stage.addEventListener(MouseEvent.MOUSE_MOVE, onSkillIconMouseMove, false, 0, true);
+        stage.addEventListener(MouseEvent.MOUSE_UP, onSkillIconMouseUp, false, 0, true);
+    }
+
+    private function onSkillIconTouchBegin(event:TouchEvent):Void {
+        if (!LayoutController.editMode || stage == null || skillLayoutTouchID != -1) return;
+        var icon = getSkillIconForHitArea(cast event.currentTarget);
+        if (icon == null) return;
+        skillLayoutTouchID = event.touchPointID;
+        beginSkillIconDrag(icon, event.stageX, event.stageY);
+        event.stopImmediatePropagation();
+        stage.addEventListener(TouchEvent.TOUCH_MOVE, onSkillIconTouchMove, false, 0, true);
+        stage.addEventListener(TouchEvent.TOUCH_END, onSkillIconTouchEnd, false, 0, true);
+    }
+
+    private function getSkillIconForHitArea(hitArea:Sprite):Sprite {
+        for (id in 1...7) {
+            if (skillLayoutHitAreas[id] == hitArea) return cast skillLayoutIcons[id];
+        }
+        return null;
+    }
+
+    private function beginSkillIconDrag(icon:Sprite, stageX:Float, stageY:Float):Void {
+        skillLayoutDragTarget = icon;
+        this.layoutController.selectWidget(getSkillLayoutId(icon));
+        skillLayoutDragOffset = icon.parent.globalToLocal(new flash.geom.Point(stageX, stageY));
+        skillLayoutDragOffset.x -= icon.x;
+        skillLayoutDragOffset.y -= icon.y;
+    }
+
+    private function onSkillIconMouseMove(event:MouseEvent):Void {
+        moveSkillIcon(event.stageX, event.stageY);
+    }
+
+    private function onSkillIconMouseUp(event:MouseEvent):Void {
+        if (stage != null) {
+            stage.removeEventListener(MouseEvent.MOUSE_MOVE, onSkillIconMouseMove);
+            stage.removeEventListener(MouseEvent.MOUSE_UP, onSkillIconMouseUp);
+        }
+        saveSkillIconPosition();
+    }
+
+    private function onSkillIconTouchMove(event:TouchEvent):Void {
+        if (event.touchPointID == skillLayoutTouchID) moveSkillIcon(event.stageX, event.stageY);
+    }
+
+    private function onSkillIconTouchEnd(event:TouchEvent):Void {
+        if (event.touchPointID != skillLayoutTouchID) return;
+        if (stage != null) {
+            stage.removeEventListener(TouchEvent.TOUCH_MOVE, onSkillIconTouchMove);
+            stage.removeEventListener(TouchEvent.TOUCH_END, onSkillIconTouchEnd);
+        }
+        skillLayoutTouchID = -1;
+        saveSkillIconPosition();
+    }
+
+    private function moveSkillIcon(stageX:Float, stageY:Float):Void {
+        if (skillLayoutDragTarget == null || skillLayoutDragTarget.parent == null || skillLayoutDragOffset == null) return;
+        var pointer = skillLayoutDragTarget.parent.globalToLocal(new flash.geom.Point(stageX, stageY));
+        skillLayoutDragTarget.x = pointer.x - skillLayoutDragOffset.x;
+        skillLayoutDragTarget.y = pointer.y - skillLayoutDragOffset.y;
+        for (id in 1...7) {
+            if (skillLayoutIcons[id] == skillLayoutDragTarget && skillLayoutHitAreas[id] != null) {
+                var actBar:Sprite = cast skillLayoutDragTarget.parent;
+                positionSkillLayoutHitArea(actBar, skillLayoutDragTarget, skillLayoutHitAreas[id]);
+                break;
+            }
+        }
+        applySkillBarStyle();
+    }
+
+    private function saveSkillIconPosition():Void {
+        if (skillLayoutDragTarget != null) {
+            this.layoutController.updatePosition(
+                getSkillLayoutId(skillLayoutDragTarget),
+                skillLayoutDragTarget.x,
+                skillLayoutDragTarget.y
+            );
+        }
+        skillLayoutDragTarget = null;
+        skillLayoutDragOffset = null;
+    }
+
+    private function getSkillLayoutId(icon:Sprite):String {
+        for (id in 1...7) {
+            if (skillLayoutIcons[id] == icon) return HelperSetting.LAYOUT_SKILL_BAR + "_i" + id;
+        }
+        return "";
+    }
+
+    public function addShortcutButton(actionName:String, notify:Bool = true):Void {
         if (Reflect.field(shortcutButtons, actionName) != null) {
-            ui.api.ApiNotificationManager.notify("Shortcut already placed: " + actionName);
+            if (notify) {
+                ui.api.ApiNotificationManager.notify("Shortcut already placed: " + actionName);
+            }
             return;
         }
 
         ensureAttached();
 
         var layoutKey:String = "shortcut_" + Helper.sanitize(actionName);
-        var coords = getSmartDefaultPosition(actionName);
+        var coords = getSmartDefaultPosition();
 
         var btn = new ShortcutButton(this.pocket, actionName);
         btn.name = layoutKey;
@@ -167,51 +451,37 @@ class GameUI extends Sprite {
         Reflect.setField(shortcutButtons, actionName, added);
 
         persistShortcuts();
-        ui.api.ApiNotificationManager.notify("Added shortcut: " + actionName);
+        if (notify) {
+            ui.api.ApiNotificationManager.notify("Added shortcut: " + actionName);
+        }
     }
 
-    private function getSmartDefaultPosition(actionName:String):{x:Float, y:Float} {
-        // Ergonomic mobile placement defaults
-        switch (actionName) {
-            case "Auto Attack":
-                return {x: 875, y: 395};
-            case "Skill 2":
-                return {x: 805, y: 420};
-            case "Skill 3":
-                return {x: 775, y: 355};
-            case "Skill 4":
-                return {x: 815, y: 295};
-            case "Skill 5":
-                return {x: 885, y: 265};
-            case "Skill 6":
-                return {x: 710, y: 420};
-            case "Target Random Monster":
-                return {x: 885, y: 330};
-            case "Cancel Target":
-                return {x: 725, y: 355};
-            case "Rest":
-                return {x: 880, y: 195};
-            case "Jump":
-                return {x: 810, y: 230};
-            case "Dash":
-                return {x: 740, y: 230};
-            case "Bank":
-                return {x: 880, y: 80};
-            case "Inventory":
-                return {x: 880, y: 135};
-            default:
-                // Grid layout for other utility/interface buttons
-                var index:Int = countShortcuts();
-                var COLS:Int = 3;
-                var CELL_X:Float = 64;
-                var CELL_Y:Float = 54;
-                var ORIGIN_X:Float = 460;
-                var ORIGIN_Y:Float = 200;
+    private function getSmartDefaultPosition():{x:Float, y:Float} {
+        var stageW:Float = (this.pocket != null && this.pocket.game != null && this.pocket.game.stage != null)
+            ? this.pocket.game.stage.stageWidth : 960;
+        var stageH:Float = (this.pocket != null && this.pocket.game != null && this.pocket.game.stage != null)
+            ? this.pocket.game.stage.stageHeight : 550;
+        if (stageW <= 0) stageW = 960;
+        if (stageH <= 0) stageH = 550;
 
-                var col:Int = index % COLS;
-                var row:Int = Std.int(index / COLS);
-                return {x: ORIGIN_X + col * CELL_X, y: ORIGIN_Y + row * CELL_Y};
+        if (!shortcutPlacementInitialized || shortcutPlacementWidth != stageW || shortcutPlacementHeight != stageH) {
+            shortcutPlacementInitialized = true;
+            shortcutPlacementWidth = stageW;
+            shortcutPlacementHeight = stageH;
+            nextShortcutX = (stageW - ShortcutButton.WIDTH) / 2;
+            nextShortcutY = (stageH - ShortcutButton.HEIGHT) / 2;
         }
+
+        var position = {x: nextShortcutX, y: nextShortcutY};
+        nextShortcutX += ShortcutButton.WIDTH + 8;
+        if (nextShortcutX + ShortcutButton.WIDTH > stageW) {
+            nextShortcutX = (stageW - ShortcutButton.WIDTH) / 2;
+            nextShortcutY += ShortcutButton.HEIGHT + 8;
+            if (nextShortcutY + ShortcutButton.HEIGHT > stageH) {
+                nextShortcutY = Math.max(0, stageH - ShortcutButton.HEIGHT);
+            }
+        }
+        return position;
     }
 
     public function removeShortcutButton(actionName:String):Void {
@@ -238,7 +508,7 @@ class GameUI extends Sprite {
         for (action in saved.split(",")) {
             var trimmed = StringTools.trim(action);
             if (trimmed.length > 0 && Reflect.field(shortcutButtons, trimmed) == null) {
-                addShortcutButton(trimmed);
+                addShortcutButton(trimmed, false);
             }
         }
     }
@@ -246,10 +516,6 @@ class GameUI extends Sprite {
     private function persistShortcuts():Void {
         var keys:Array<String> = Reflect.fields(shortcutButtons);
         HelperSetting.setString(HelperSetting.OPTION_SHORTCUTS, keys.join(","));
-    }
-
-    private function countShortcuts():Int {
-        return Reflect.fields(shortcutButtons).length;
     }
 
     public function showEditLayout():Void {
@@ -276,6 +542,7 @@ class GameUI extends Sprite {
 
         this.layoutController.load();
         this.shortcutButtons = {};
+        shortcutPlacementInitialized = false;
         persistShortcuts();
     }
 }

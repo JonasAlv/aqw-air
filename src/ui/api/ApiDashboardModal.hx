@@ -11,6 +11,7 @@ import flash.display.Sprite;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.events.TouchEvent;
 import flash.geom.Point;
 import flash.text.TextField;
 import flash.text.TextFieldAutoSize;
@@ -21,7 +22,6 @@ import ui.api.ApiNotificationManager;
 import ui.Overlay;
 import ui.shortcut.ShortcutPicker;
 import controller.walk.MouseWalkSimulatorController;
-import controller.ViewportController;
 import load.SWFCache;
 import ui.api.prompts.ApiPrompts;
 import util.HelperSetting;
@@ -32,6 +32,7 @@ enum DashboardTab {
     TabAutomation;
     TabEnhancements;
     TabHud;
+    TabApiSettings;
     TabSettings;
     // Client Settings tabs
     TabGeneral;
@@ -277,7 +278,8 @@ class ApiDashboardModal extends Sprite {
             { id: TabScripts, label: "Scripts" },
             { id: TabAutomation, label: "Combat & Quests" },
             { id: TabEnhancements, label: "Enhancements" },
-            { id: TabHud, label: "HUD Controls" }
+            { id: TabHud, label: "HUD Controls" },
+            { id: TabApiSettings, label: "API Settings" }
         ];
 
         for (t in autoTabs) {
@@ -773,6 +775,10 @@ class ApiDashboardModal extends Sprite {
             if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onClick != null) onClick();
         });
+        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
+            if (onClick != null) onClick();
+        });
 
         return btn;
     }
@@ -810,6 +816,11 @@ class ApiDashboardModal extends Sprite {
             updateVisual(false);
         });
         btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
+            if (onCycle != null) onCycle();
+            updateVisual(false);
+        });
+        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
             if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onCycle != null) onCycle();
             updateVisual(false);
@@ -859,6 +870,11 @@ class ApiDashboardModal extends Sprite {
             if (onToggle != null) onToggle();
             updateVisual();
         });
+        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            if (_isDraggingScroll || _hasDraggedScroll) return;
+            if (onToggle != null) onToggle();
+            updateVisual();
+        });
 
         btn.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
             updateVisual();
@@ -884,6 +900,8 @@ class ApiDashboardModal extends Sprite {
                 renderEnhancementsTab();
             case TabHud:
                 renderHudTab();
+            case TabApiSettings:
+                renderApiSettingsTab();
             case TabSettings:
                 renderSettingsTab();
             case TabGeneral:
@@ -1374,7 +1392,7 @@ class ApiDashboardModal extends Sprite {
         );
     }
 
-    private function renderSettingsTab():Void {
+    private function renderApiSettingsTab():Void {
         addSectionHeader("Combat & Movement");
 
         // 1. Infinite Range
@@ -1426,15 +1444,14 @@ class ApiDashboardModal extends Sprite {
             "",
             false,
             function():Void {
-                var cur = HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false);
+                var cur = HelperSetting.getBool("api_skip_cutscenes", false);
                 var next = !cur;
                 HelperSetting.setBool("api_skip_cutscenes", next);
-                HelperSetting.setBool("option_disable_cutscenes", next);
                 if (Api.map != null) Api.map.skipCutscenes = next;
                 ApiNotificationManager.notify("Skip Cutscenes: " + (next ? "Enabled" : "Disabled"));
             },
             function():Bool {
-                return (Api.map != null) ? Api.map.skipCutscenes : (HelperSetting.getBool("api_skip_cutscenes", false) || HelperSetting.getBool("option_disable_cutscenes", false));
+                return (Api.map != null) ? Api.map.skipCutscenes : HelperSetting.getBool("api_skip_cutscenes", false);
             }
         );
 
@@ -1571,65 +1588,30 @@ class ApiDashboardModal extends Sprite {
 
     private function getPocket():Dynamic {
         if (_pocket != null) return _pocket;
-        if (_overlay != null && _overlay.pocket != null) return _overlay.pocket;
-        try {
-            var p:Dynamic = pocket.PocketRoot.SINGLETON;
-            if (p != null) return p;
-        } catch (_:Dynamic) {}
-        try {
-            if (com.aqwapi.Api.game != null && Reflect.field(com.aqwapi.Api.game, "pocket") != null) {
-                return Reflect.field(com.aqwapi.Api.game, "pocket");
-            }
-        } catch (_:Dynamic) {}
-        try {
-            var g:Dynamic = untyped __global__["Pocket"];
-            if (g != null && g.SINGLETON != null) return g.SINGLETON;
-        } catch (_:Dynamic) {}
-        if (_overlay != null && _overlay.parent != null) return _overlay.parent;
-        return null;
+        return _overlay != null ? _overlay.pocket : null;
     }
 
     private function getGameUI(pkt:Dynamic):Dynamic {
         if (pkt != null && pkt.gameUI != null) return pkt.gameUI;
-        var p = getPocket();
-        if (p != null && p.gameUI != null) return p.gameUI;
-        try {
-            if (com.aqwapi.Api.game != null) {
-                var pktG:Dynamic = Reflect.field(com.aqwapi.Api.game, "pocket");
-                if (pktG != null && pktG.gameUI != null) return pktG.gameUI;
-                var ui:Dynamic = com.aqwapi.Api.game.getChildByName("GameUI");
-                if (ui != null) return ui;
-            }
-        } catch (_:Dynamic) {}
-        return null;
+        var pocket = getPocket();
+        return pocket != null ? pocket.gameUI : null;
     }
 
     private function getStage():flash.display.Stage {
         if (this.stage != null) return this.stage;
         if (_overlay != null && _overlay.stage != null) return _overlay.stage;
-        try {
-            if (com.aqwapi.Api.game != null && com.aqwapi.Api.game.stage != null) {
-                return com.aqwapi.Api.game.stage;
-            }
-        } catch (_:Dynamic) {}
         var pkt:Dynamic = getPocket();
         if (pkt != null) {
             if (pkt.game != null && pkt.game.stage != null) return pkt.game.stage;
             if (pkt.stage != null) return pkt.stage;
         }
-        try {
-            if (flash.Lib.current != null && flash.Lib.current.stage != null) {
-                return flash.Lib.current.stage;
-            }
-        } catch (_:Dynamic) {}
         return null;
     }
 
     private function renderGeneralTab():Void {
         addSectionHeader("Display & Engine");
 
-        // 1. Frame Rate (Target FPS)
-        var fpsValues = ["24", "30", "60", "75", "120"];
+        var fpsValues = [24, 30, 60, 75, 120];
         addItemRow(
             "Target Frame Rate",
             "Set the maximum game rendering frame rate (FPS). Higher FPS produces smoother gameplay.",
@@ -1637,28 +1619,20 @@ class ApiDashboardModal extends Sprite {
             "",
             false,
             function():Void {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_FPS);
-                if (curIdx < 0 || curIdx >= fpsValues.length) curIdx = 2; // default 60
+                var curIdx = HelperSetting.getFrameRateIndex();
                 var nextIdx = (curIdx + 1) % fpsValues.length;
-                var fps = Std.parseInt(fpsValues[nextIdx]);
                 HelperSetting.setInt(HelperSetting.OPTION_FPS, nextIdx);
+                var fps = HelperSetting.applyFrameRate(getStage());
                 var pkt:Dynamic = getPocket();
-                var stg:flash.display.Stage = getStage();
-                if (stg != null) stg.frameRate = fps;
-                try {
-                    if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
-                } catch (_:Dynamic) {}
+                if (pkt != null && pkt.config != null) pkt.config.option_fps = fps;
             },
             null,
             function():String {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_FPS);
-                if (curIdx < 0 || curIdx >= fpsValues.length) curIdx = 2;
-                return fpsValues[curIdx] + " FPS";
+                return fpsValues[HelperSetting.getFrameRateIndex()] + " FPS";
             }
         );
 
-        // 2. Screen Orientation
-        var orientations = ["Landscape", "Portrait", "Auto"];
+        var orientations = ["Landscape", "Portrait", "Landscape Left", "Landscape Right", "Portrait Flipped"];
         addItemRow(
             "Screen Orientation",
             "Controls device orientation lock for mobile and tablet devices.",
@@ -1666,61 +1640,18 @@ class ApiDashboardModal extends Sprite {
             "",
             false,
             function():Void {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LOCK_ORIENTATION);
-                if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
+                var curIdx = HelperSetting.getOrientationIndex();
                 var nextIdx = (curIdx + 1) % orientations.length;
                 HelperSetting.setInt(HelperSetting.OPTION_LOCK_ORIENTATION, nextIdx);
-                var stg:flash.display.Stage = getStage();
-                if (stg != null) {
-                    try {
-                        if (nextIdx == 2) {
-                            untyped stg.autoOrients = true;
-                            untyped stg.setAspectRatio("any");
-                        } else if (nextIdx == 1) {
-                            untyped stg.autoOrients = false;
-                            untyped stg.setAspectRatio("portrait");
-                        } else {
-                            untyped stg.autoOrients = false;
-                            untyped stg.setAspectRatio("landscape");
-                        }
-                    } catch (e:Dynamic) {}
-                }
+                HelperSetting.applyOrientation(getStage());
             },
             null,
             function():String {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LOCK_ORIENTATION);
-                if (curIdx < 0 || curIdx >= orientations.length) curIdx = 0;
-                return orientations[curIdx];
+                return orientations[HelperSetting.getOrientationIndex()];
             }
         );
 
-        // 3. Render Resolution Lock
-        var resModes = ["native", "550p"];
-        var resLabels = ["Native Window", "Classic (960x550)"];
-        addItemRow(
-            "Render Resolution Lock",
-            "Caps vector rasterization to a fixed resolution and scales via GPU. Prevents FPS drops on large windows and 4K displays.",
-            "cycle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getString(HelperSetting.OPTION_RENDER_RESOLUTION, "native");
-                var idx = resModes.indexOf(cur);
-                if (idx == -1) idx = 0;
-                var nextIdx = (idx + 1) % resModes.length;
-                HelperSetting.setString(HelperSetting.OPTION_RENDER_RESOLUTION, resModes[nextIdx]);
-                ViewportController.instance.apply();
-            },
-            null,
-            function():String {
-                var cur = HelperSetting.getString(HelperSetting.OPTION_RENDER_RESOLUTION, "native");
-                var idx = resModes.indexOf(cur);
-                if (idx == -1) idx = 0;
-                return resLabels[idx];
-            }
-        );
-
-        // 4. Maintain Aspect Ratio
+        // 3. Maintain Aspect Ratio
         addItemRow(
             "Maintain Aspect Ratio",
             "Keep classic 96:55 proportions with letterboxing when resizing window instead of stretching.",
@@ -1730,42 +1661,42 @@ class ApiDashboardModal extends Sprite {
             function():Void {
                 var cur = HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
                 HelperSetting.setBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, !cur);
-                ViewportController.instance.apply();
+                controller.ViewportController.instance.apply();
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
             }
         );
 
-        // 5. Vector Graphic Quality (Flash performance scaler)
-        var qualityModes = ["HIGH", "MEDIUM", "LOW"];
-        var qualityLabels = ["High Quality", "Medium Quality", "Low (Fast FPS)"];
+        var languages = ["English", "Português", "Tagalog", "Español", "Bahasa Indonesia", "Cebuano"];
+        var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
         addItemRow(
-            "Vector Graphic Quality",
-            "Controls Flash vector curve smoothing and anti-aliasing. Set to Low for a massive FPS boost on low-spec hardware.",
+            "Quest Language",
+            "Translate quest text.",
             "cycle",
             "",
             false,
             function():Void {
-                var cur = HelperSetting.getString("api_graphic_quality", "HIGH");
-                var idx = qualityModes.indexOf(cur);
-                if (idx == -1) idx = 0;
-                var nextIdx = (idx + 1) % qualityModes.length;
-                HelperSetting.setString("api_graphic_quality", qualityModes[nextIdx]);
-                ViewportController.instance.apply();
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE, 0);
+                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
+                var nextIdx = (curIdx + 1) % languages.length;
+                HelperSetting.setInt(HelperSetting.OPTION_LANGUAGE, nextIdx);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_language = langCodes[nextIdx];
             },
             null,
             function():String {
-                var cur = HelperSetting.getString("api_graphic_quality", "HIGH");
-                var idx = qualityModes.indexOf(cur);
-                if (idx == -1) idx = 0;
-                return qualityLabels[idx];
+                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE, 0);
+                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
+                return languages[curIdx];
             }
         );
 
-        addSectionHeader("Asset Streaming & Cache");
+    }
 
-        // 5. Persistent SWF Caching
+    private function renderSettingsTab():Void {
+        addSectionHeader("Asset Cache");
+
         addItemRow(
             "Persistent SWF Caching",
             "Cache weapons, armors, and monsters locally in NVMe/SSD storage. Eliminates re-downloading and cuts map transition lag.",
@@ -1782,7 +1713,6 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 6. Clear SWF Cache
         addItemRow(
             "Clear Local SWF Cache",
             "Delete all cached weapon, armor, and monster SWF assets stored on disk.",
@@ -1796,72 +1726,6 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        addSectionHeader("Inventory & Interface");
-
-        // 3. Inventory Pagination
-        addItemRow(
-            "Inventory Pagination",
-            "Enable page numbers and next/previous arrows in Inventory, Bank, and House storage.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
-                var next = !cur;
-                HelperSetting.setBool(HelperSetting.OPTION_PAGINATION, next);
-                var pkt:Dynamic = getPocket();
-                if (pkt != null && pkt.config != null) pkt.config.option_pagination = next;
-            },
-            function():Bool {
-                return HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
-            }
-        );
-
-        // 4. Equipped On Top
-        addItemRow(
-            "Equipped Items On Top",
-            "Pins currently equipped weapons, armors, and helms to the top of inventory lists.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
-                var next = !cur;
-                HelperSetting.setBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, next);
-                var pkt:Dynamic = getPocket();
-                if (pkt != null && pkt.config != null) pkt.config.option_equipped_on_top = next;
-            },
-            function():Bool {
-                return HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
-            }
-        );
-
-        // 5. Quest Language
-        var languages = ["English", "Português", "Tagalog", "Español", "Bahasa", "Cebuano"];
-        var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
-        addItemRow(
-            "Quest Language",
-            "Translates in-game quest objectives and dialog text.",
-            "cycle",
-            "",
-            false,
-            function():Void {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE);
-                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
-                var nextIdx = (curIdx + 1) % languages.length;
-                HelperSetting.setInt(HelperSetting.OPTION_LANGUAGE, nextIdx);
-                var pkt:Dynamic = getPocket();
-                if (pkt != null && pkt.config != null) pkt.config.option_language = langCodes[nextIdx];
-            },
-            null,
-            function():String {
-                var curIdx = HelperSetting.getInt(HelperSetting.OPTION_LANGUAGE);
-                if (curIdx < 0 || curIdx >= languages.length) curIdx = 0;
-                return languages[curIdx];
-            }
-        );
-
-        // 7. Hide Pocket Overlay
         addItemRow(
             "Hide Pocket Overlay",
             "Temporarily hide the Pocket UI button and overlay elements from the screen.",
@@ -1912,10 +1776,8 @@ class ApiDashboardModal extends Sprite {
                 var cur = HelperSetting.getBool(HelperSetting.OPTION_DISABLE_CUTSCENES, false);
                 var next = !cur;
                 HelperSetting.setBool(HelperSetting.OPTION_DISABLE_CUTSCENES, next);
-                HelperSetting.setBool("api_skip_cutscenes", next);
                 var pkt:Dynamic = getPocket();
                 if (pkt != null && pkt.config != null) pkt.config.option_disable_cutscenes = next;
-                if (com.aqwapi.Api.map != null) com.aqwapi.Api.map.skipCutscenes = next;
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_DISABLE_CUTSCENES, false);
@@ -1938,6 +1800,42 @@ class ApiDashboardModal extends Sprite {
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_SLOW_WALK, false);
+            }
+        );
+
+        addSectionHeader("Inventory & Bags");
+
+        addItemRow(
+            "Inventory Pagination",
+            "Show page controls in inventory, bank, and house storage.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var next = !HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
+                HelperSetting.setBool(HelperSetting.OPTION_PAGINATION, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_pagination = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_PAGINATION, true);
+            }
+        );
+
+        addItemRow(
+            "Equipped Items On Top",
+            "Keep equipped items at the top of inventory and bank lists.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var next = !HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
+                HelperSetting.setBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_equipped_on_top = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_EQUIPPED_ON_TOP, true);
             }
         );
 
@@ -2073,16 +1971,28 @@ class ApiDashboardModal extends Sprite {
                 var next = !cur;
                 HelperSetting.setBool(HelperSetting.OPTION_FILTER, next);
                 var pkt:Dynamic = getPocket();
-                if (pkt != null) {
-                    if (pkt.config != null) pkt.config.option_filter_off = next;
-                    if (pkt.gameCore != null) {
-                        if (next) pkt.gameCore.setWorldFilters([]);
-                    }
-                }
-                ApiNotificationManager.notify("Filters " + (next ? "disabled" : "restored") + ".");
+                if (pkt != null && pkt.config != null) pkt.config.option_filter_off = next;
+                ApiNotificationManager.notify("Filter setting saved. Join a new map or relog to apply it.");
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_FILTER, false);
+            }
+        );
+
+        addItemRow(
+            "Strip Embedded SWF Sounds",
+            "Removes embedded sound tags from SWFs as they load. Relog or reload affected assets to apply.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var next = !HelperSetting.getBool(HelperSetting.OPTION_SOUND, false);
+                HelperSetting.setBool(HelperSetting.OPTION_SOUND, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_sound_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_SOUND, false);
             }
         );
 
@@ -2239,6 +2149,23 @@ class ApiDashboardModal extends Sprite {
                 return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MISC, false);
             }
         );
+
+        addItemRow(
+            "Freeze Map Animations",
+            "Keeps map SWFs on their first frame when loaded. Join a new map or relog to apply.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var next = !HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MAP, false);
+                HelperSetting.setBool(HelperSetting.OPTION_ANIMATION_MAP, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.config != null) pkt.config.option_animation_map_off = next;
+            },
+            function():Bool {
+                return HelperSetting.getBool(HelperSetting.OPTION_ANIMATION_MAP, false);
+            }
+        );
     }
 
     private function renderControlsTab():Void {
@@ -2307,6 +2234,29 @@ class ApiDashboardModal extends Sprite {
             },
             function():Bool {
                 return HelperSetting.getBool(HelperSetting.OPTION_SHOW_SKILL_BAR, true);
+            }
+        );
+
+        addItemRow(
+            "Infinity Skill Bar Style",
+            "Use numbered teal frames to distinguish each skill on the action bar.",
+            "toggle",
+            "",
+            false,
+            function():Void {
+                var current = HelperSetting.getInt(HelperSetting.OPTION_SKILL_BAR_STYLE, HelperSetting.SKILL_BAR_STYLE_CLASSIC);
+                var next = current == HelperSetting.SKILL_BAR_STYLE_INFINITY
+                    ? HelperSetting.SKILL_BAR_STYLE_CLASSIC
+                    : HelperSetting.SKILL_BAR_STYLE_INFINITY;
+                HelperSetting.setInt(HelperSetting.OPTION_SKILL_BAR_STYLE, next);
+                var pkt:Dynamic = getPocket();
+                if (pkt != null && pkt.gameUI != null) {
+                    pkt.gameUI.applySkillBarStyle();
+                }
+            },
+            function():Bool {
+                return HelperSetting.getInt(HelperSetting.OPTION_SKILL_BAR_STYLE, HelperSetting.SKILL_BAR_STYLE_CLASSIC)
+                    == HelperSetting.SKILL_BAR_STYLE_INFINITY;
             }
         );
 
@@ -2389,20 +2339,8 @@ class ApiDashboardModal extends Sprite {
     }
 
     private function isInGame(?pkt:Dynamic):Bool {
-        // Primary check: our own API says the game world is ready
-        try {
-            if (com.aqwapi.Api.isReady) return true;
-            if (com.aqwapi.Api.player != null && com.aqwapi.Api.player.isAlive) return true;
-            if (com.aqwapi.Api.game != null && com.aqwapi.Api.game.world != null) return true;
-        } catch (_:Dynamic) {}
-        // Fallback: try reading it from the pocket
         if (pkt == null) pkt = getPocket();
-        if (pkt == null) return false;
-        try {
-            if (pkt.game != null && pkt.game.world != null && pkt.game.world.myAvatar != null) return true;
-            if (pkt.gameCore != null && pkt.gameCore.currentFrame == "Game") return true;
-        } catch (_:Dynamic) {}
-        return false;
+        return pkt != null && pkt.game != null && pkt.gameUI != null;
     }
 
     private function renderShortcutsTab():Void {
@@ -2421,9 +2359,9 @@ class ApiDashboardModal extends Sprite {
                     ApiNotificationManager.notify("Shortcuts are only available while in-game.");
                     return;
                 }
-                close();
                 var stg = getStage();
                 if (stg == null) return;
+                close();
                 var picker:DisplayObject = stg.getChildByName("ShortcutPicker");
                 if (picker != null && picker.parent != null) {
                     picker.parent.removeChild(picker);
@@ -2447,9 +2385,9 @@ class ApiDashboardModal extends Sprite {
                     ApiNotificationManager.notify("Shortcuts are only available while in-game.");
                     return;
                 }
-                close();
                 var stg = getStage();
                 if (stg == null) return;
+                close();
                 var picker:DisplayObject = stg.getChildByName("ShortcutPicker");
                 if (picker != null && picker.parent != null) {
                     picker.parent.removeChild(picker);

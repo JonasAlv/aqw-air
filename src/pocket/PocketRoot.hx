@@ -6,8 +6,8 @@ import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
-import game.Core;
 import game.Network;
+import pocket.GameCore;
 import load.LoadManager;
 import load.handlers.BackgroundLoad;
 import load.handlers.GameLoad;
@@ -30,7 +30,7 @@ class PocketRoot extends Sprite {
     public var overlay:Overlay;
     public var gameUI:GameUI;
     public var game:MovieClip;
-    public var gameCore:Core;
+    public var gameCore:GameCore;
     public var networkCore:Network;
 
     private var backgroundLoad:BackgroundLoad;
@@ -116,7 +116,7 @@ class PocketRoot extends Sprite {
         loadManager = new LoadManager();
         overlay = new Overlay(this);
         gameUI = new GameUI(this);
-        gameCore = new Core(this);
+        gameCore = new GameCore(this);
 
         versionLoad = new VersionLoad(this);
         backgroundLoad = new BackgroundLoad(this);

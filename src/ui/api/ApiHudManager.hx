@@ -31,8 +31,13 @@ class ApiHudManager {
     private static var _pocket:Dynamic = null;
     private static var _overlay:Overlay = null;
     private static var _buttons:Map<String, Sprite> = new Map<String, Sprite>();
+    private static var _visualUpdates:Map<String, Void->Void> = new Map<String, Void->Void>();
+    private static var _enabledStates:Map<String, Bool> = new Map<String, Bool>();
     private static var _defs:Array<HudButtonDef> = [];
     private static var _initialized:Bool = false;
+    private static var _stage:Dynamic;
+    private static var _updateFrame:Int = 0;
+    private static inline var UPDATE_INTERVAL_FRAMES:Int = 6;
 
     public static function init(pocket:Dynamic, overlay:Overlay):Void {
         if (_initialized) return;
@@ -187,6 +192,13 @@ class ApiHudManager {
 
         var attachToStage = function(stageObj:Dynamic):Void {
             if (stageObj == null) return;
+            if (_stage != stageObj) {
+                if (_stage != null) {
+                    _stage.removeEventListener(Event.ENTER_FRAME, onUpdateFrame);
+                }
+                _stage = stageObj;
+                _stage.addEventListener(Event.ENTER_FRAME, onUpdateFrame, false, 0, true);
+            }
             for (def in _defs) {
                 if (!_buttons.exists(def.id)) {
                     var btn = createButton(def, stageObj);
@@ -204,6 +216,35 @@ class ApiHudManager {
                     attachToStage(_overlay.stage);
                 }
             });
+        }
+    }
+
+    private static function onUpdateFrame(e:Event):Void {
+        _updateFrame++;
+        if (_updateFrame < UPDATE_INTERVAL_FRAMES) return;
+        _updateFrame = 0;
+
+        var isPanelOpen:Bool = (_overlay != null && (_overlay.currentFrameLabel == "Panel" || ApiDashboardModal.isOpen()));
+        for (def in _defs) {
+            var btn:Sprite = _buttons.get(def.id);
+            if (btn == null) continue;
+
+            var enabled:Bool;
+            if (_enabledStates.exists(def.id)) {
+                enabled = _enabledStates.get(def.id);
+            } else {
+                enabled = HelperSetting.getBool("api_hud_" + def.id + "_enabled", false);
+                _enabledStates.set(def.id, enabled);
+            }
+
+            var shouldBeVisible:Bool = enabled && !isPanelOpen;
+            if (btn.visible != shouldBeVisible) {
+                btn.visible = shouldBeVisible;
+            }
+            if (shouldBeVisible) {
+                var updateVisual:Void->Void = _visualUpdates.get(def.id);
+                if (updateVisual != null) updateVisual();
+            }
         }
     }
 
@@ -268,6 +309,7 @@ class ApiHudManager {
                 renderBtn(active, isHovered);
             }
         };
+        _visualUpdates.set(def.id, updateVisual);
 
         btn.addEventListener(MouseEvent.MOUSE_OVER, function(e:MouseEvent):Void {
             isHovered = true;
@@ -332,30 +374,23 @@ class ApiHudManager {
             }
         });
 
-        // Visibility and live state update loop
-        btn.addEventListener(Event.ENTER_FRAME, function(e:Event):Void {
-            var isEnabled = HelperSetting.getBool("api_hud_" + def.id + "_enabled", false);
-            if (!isEnabled) {
-                btn.visible = false;
-                return;
-            }
-            var isPanelOpen:Bool = (_overlay != null && (_overlay.currentFrameLabel == "Panel" || ApiDashboardModal.isOpen()));
-            btn.visible = !isPanelOpen;
-            if (btn.visible) {
-                updateVisual();
-            }
-        });
-
+        if (!_enabledStates.exists(def.id)) {
+            _enabledStates.set(def.id, HelperSetting.getBool("api_hud_" + def.id + "_enabled", false));
+        }
+        var isPanelOpen:Bool = (_overlay != null && (_overlay.currentFrameLabel == "Panel" || ApiDashboardModal.isOpen()));
+        btn.visible = _enabledStates.get(def.id) && !isPanelOpen;
         updateVisual();
         return btn;
     }
 
     public static function isButtonEnabled(id:String):Bool {
+        if (_enabledStates.exists(id)) return _enabledStates.get(id);
         return HelperSetting.getBool("api_hud_" + id + "_enabled", false);
     }
 
     public static function setButtonEnabled(id:String, enabled:Bool):Void {
         HelperSetting.setBool("api_hud_" + id + "_enabled", enabled);
+        _enabledStates.set(id, enabled);
     }
 
     public static function resetAllPositions():Void {

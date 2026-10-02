@@ -8,6 +8,7 @@ import flash.events.MouseEvent;
 import flash.events.TouchEvent;
 import flash.geom.Point;
 import flash.ui.Multitouch;
+import util.HelperSetting;
 
 /**
  * Modern Virtual Joystick created from scratch.
@@ -30,6 +31,7 @@ class Joystick extends Sprite {
 
     // Direct drag state in Edit Mode
     private var isDraggingWidget:Bool = false;
+    private var isSelected:Bool = false;
     private var dragStartMouseX:Float = 0;
     private var dragStartMouseY:Float = 0;
     private var dragStartX:Float = 0;
@@ -56,16 +58,22 @@ class Joystick extends Sprite {
     }
 
     public function setEditMode(active:Bool):Void {
+        isSelected = false;
         drawBase(active);
+    }
+
+    public function setSelected(active:Bool):Void {
+        isSelected = active;
+        drawBase(LayoutController.editMode);
     }
 
     private function drawBase(isEdit:Bool):Void {
         graphics.clear();
 
         if (isEdit) {
-            // Gold dashed outline in Edit Mode
+            var borderColor:Int = isSelected ? 0x00D8FF : 0xFFCC00;
             graphics.beginFill(0x181818, 0.85);
-            graphics.lineStyle(2, 0xFFCC00, 1.0);
+            graphics.lineStyle(2, borderColor, 1.0);
             graphics.drawCircle(0, 0, 46);
             graphics.endFill();
             return;
@@ -195,12 +203,20 @@ class Joystick extends Sprite {
 
         if (Multitouch.supportsTouchEvents) {
             addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
+        } else {
+            addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
         }
-        addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
     }
 
     private function onTouchBegin(e:TouchEvent):Void {
-        if (!this.visible || LayoutController.editMode || this.activeTouchID != -1 || stage == null) {
+        if (!this.visible || this.activeTouchID != -1 || stage == null) {
+            return;
+        }
+        if (LayoutController.editMode) {
+            var p:Dynamic = (this.walkController != null) ? Reflect.field(this.walkController, "pocket") : null;
+            if (p != null && p.gameUI != null && p.gameUI.layoutController != null) {
+                p.gameUI.layoutController.selectWidget(getLayoutId());
+            }
             return;
         }
 
@@ -242,6 +258,10 @@ class Joystick extends Sprite {
 
         if (LayoutController.editMode) {
             // Direct drag repositioning in Edit Mode
+            var p:Dynamic = (this.walkController != null) ? Reflect.field(this.walkController, "pocket") : null;
+            if (p != null && p.gameUI != null && p.gameUI.layoutController != null) {
+                p.gameUI.layoutController.selectWidget(getLayoutId());
+            }
             isDraggingWidget = true;
             dragStartMouseX = stage.mouseX;
             dragStartMouseY = stage.mouseY;
@@ -298,8 +318,14 @@ class Joystick extends Sprite {
         }
         var p:Dynamic = (this.walkController != null) ? Reflect.field(this.walkController, "pocket") : null;
         if (p != null && p.gameUI != null && p.gameUI.layoutController != null) {
-            p.gameUI.layoutController.updatePosition(this.name, this.x, this.y);
+            p.gameUI.layoutController.updatePosition(getLayoutId(), this.x, this.y);
         }
+    }
+
+    private function getLayoutId():String {
+        return isKeyboardMode
+            ? HelperSetting.LAYOUT_JOYSTICK_KEYBOARD
+            : HelperSetting.LAYOUT_JOYSTICK_MOUSE;
     }
 
     private function onEnterFrameJoystick(e:Event):Void {

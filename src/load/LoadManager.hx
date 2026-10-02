@@ -208,6 +208,33 @@ class LoadManager {
         return function(finalBytes:ByteArray):Void {
             var byteLoader:Loader = (loadData.loader == null) ? new Loader() : loadData.loader;
 
+            if (finalBytes == null || finalBytes.length == 0) {
+                var errorEvent:IOErrorEvent = new IOErrorEvent(
+                    IOErrorEvent.IO_ERROR,
+                    false,
+                    false,
+                    "Received empty SWF data for " + loadData.url
+                );
+                if (loadData.onError != null) {
+                    try {
+                        loadData.onError(errorEvent);
+                    } catch (error:Dynamic) {
+                        trace("Failed to load empty SWF data: " + Std.string(error));
+                    }
+                } else if (loadData.loader != null) {
+                    try {
+                        loadData.loader.dispatchEvent(errorEvent);
+                    } catch (error:Dynamic) {
+                        trace("Failed to dispatch empty SWF error: " + Std.string(error));
+                    }
+                }
+                if (loadData.isQueued) {
+                    concurrentCount--;
+                    loadNext();
+                }
+                return;
+            }
+
             if (loadData.isQueued) {
                 byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):Void {
                     try {
@@ -289,37 +316,64 @@ class LoadManager {
         var finishLoad = createFinishLoad(loadData);
 
         var categoryCheck = resolveCategoryCheck(loadData.url);
-        var animationOn:Bool = (categoryCheck != null && categoryCheck());
         var p = pocket.PocketRoot.SINGLETON;
-        var filterOn:Bool = (categoryCheck != null && p != null && p.config != null && p.config.option_filter_off);
-        var soundStripOn:Bool = (p != null && p.config != null && p.config.option_sound_off);
+        var config:Dynamic = (p != null) ? p.config : null;
+        var isMapAsset:Bool = loadData.kind == KIND_MAP;
+        var animationOn:Bool = (categoryCheck != null && categoryCheck())
+            || (isMapAsset && config != null && config.option_animation_map_off);
+        var filterOn:Bool = (categoryCheck != null && config != null && config.option_filter_off);
+        var soundStripOn:Bool = (config != null && config.option_sound_off);
 
-        // 1. Check Two-Tier SWF Cache (Hot RAM + NVMe/Disk Cache)
-        var cachedBytes:ByteArray = SWFCache.get(loadData.url);
-        if (cachedBytes != null) {
+        var processBytes = function(rawBytes:ByteArray):Void {
             if (animationOn || filterOn || soundStripOn) {
-                SWFWorkerClient.instance.process(cachedBytes, animationOn, filterOn, soundStripOn, finishLoad);
+                SWFWorkerClient.instance.process(rawBytes, animationOn, filterOn, soundStripOn, finishLoad, loadData.url);
             } else {
-                finishLoad(cachedBytes);
+                finishLoad(rawBytes);
             }
-            return;
-        }
+        };
 
-        // 2. Cache Miss: Fetch over Network and store in SWFCache
+        SWFCache.getAsync(loadData.url, function(cachedBytes:ByteArray):Void {
+            if (cachedBytes != null) {
+                processBytes(cachedBytes);
+            } else {
+                loadRemote(loadData, processBytes);
+            }
+        });
+    }
+
+    private function loadRemote(loadData:LoadData, processBytes:ByteArray->Void):Void {
         var urlLoader = new URLLoader();
         urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
 
         urlLoader.addEventListener(Event.COMPLETE, function(event:Event):Void {
             var rawBytes:ByteArray = cast(cast(event.target, URLLoader).data, ByteArray);
 
+            if (rawBytes == null || rawBytes.length == 0) {
+                var errorEvent:IOErrorEvent = new IOErrorEvent(
+                    IOErrorEvent.IO_ERROR,
+                    false,
+                    false,
+                    "Received empty SWF response for " + loadData.url
+                );
+                if (loadData.onError != null) {
+                    try {
+                        loadData.onError(errorEvent);
+                    } catch (error:Dynamic) {
+                        trace("Failed to handle empty SWF response: " + Std.string(error));
+                    }
+                } else if (loadData.loader != null) {
+                    loadData.loader.dispatchEvent(errorEvent);
+                }
+                if (loadData.isQueued) {
+                    concurrentCount--;
+                    loadNext();
+                }
+                return;
+            }
+
             // Store downloaded bytes into hot RAM & local disk cache
             SWFCache.put(loadData.url, rawBytes);
-
-            if (animationOn || filterOn || soundStripOn) {
-                SWFWorkerClient.instance.process(rawBytes, animationOn, filterOn, soundStripOn, finishLoad);
-            } else {
-                finishLoad(rawBytes);
-            }
+            processBytes(rawBytes);
         });
 
         if (loadData.onProgress != null) {

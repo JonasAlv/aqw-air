@@ -1,9 +1,14 @@
 bin/
 *.swc
+*.sh
 .DS_Store
 .haxelib
-build/
+/build/
+/loader/gamefiles/
+/android_builds/
+/artifacts/
 *.log
 api.log
 *.apk
 *.p12
+/gamefiles/*
