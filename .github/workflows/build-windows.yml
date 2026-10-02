@@ -41,7 +41,7 @@ jobs:
           java-version: "17"
 
       - name: Set up Haxe
-        uses: HaxeFoundation/setup-haxe@v1
+        uses: HaxeFoundation/setup-haxe@v2
         with:
           haxe-version: "4.3.7"
 
