@@ -59,6 +59,8 @@ jobs:
 
       - name: Sync latest stable upstream gamefiles
         shell: pwsh
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
           $destination = Join-Path $uiDir "loader\gamefiles"
@@ -68,6 +70,7 @@ jobs:
           $headers = @{
             Accept = "application/vnd.github+json"
             "User-Agent" = "aqw-haxe-ui-windows-build"
+            Authorization = "Bearer $env:GITHUB_TOKEN"
           }
           $release = Invoke-RestMethod `
             -Uri "https://api.github.com/repos/anthony-hyo/aqw-mobile/releases/latest" `
@@ -85,7 +88,11 @@ jobs:
           }
 
           $apkPath = Join-Path $tempDir "upstream.apk"
-          Invoke-WebRequest -Uri $apk.browser_download_url -Headers $headers -OutFile $apkPath
+          $downloadHeaders = @{
+            Accept = "application/vnd.github+json"
+            "User-Agent" = "aqw-haxe-ui-windows-build"
+          }
+          Invoke-WebRequest -Uri $apk.browser_download_url -Headers $downloadHeaders -OutFile $apkPath
           $digest = [string]$apk.digest
           if ($digest) {
             if ($digest -notmatch '^sha256:[0-9a-fA-F]{64}$') {
