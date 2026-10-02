@@ -12,10 +12,10 @@ remain local and are not part of this workflow.
 The worker's `as3swf.swc` dependency is built from the pinned upstream
 `claus/as3swf` source during CI, rather than downloaded as an unverified binary.
 
-The downloaded `AQW-Pocket-Windows.zip` is a CI build artifact available for
-14 days. Extract the archive and launch the app executable from the bundled
-folder; this avoids a separate AIR runtime installation. CI creates a
-temporary self-signed certificate for packaging, so Windows may show a
-publisher or SmartScreen warning. Use the project's private release
-certificate and protected secrets for trusted public releases; do not use the
-temporary CI certificate for distribution.
+Each successful run publishes a GitHub Release with the ZIP attached, named
+`aqw-mod-DD-MM-YYYY.zip`, and also stores it as a CI artifact for 14 days.
+Extract the archive and launch the app executable from the bundled folder;
+this avoids a separate AIR runtime installation. CI creates a temporary
+self-signed certificate for packaging, so Windows may show a publisher or
+SmartScreen warning. Use the project's private release certificate for
+trusted public distribution; do not distribute the temporary CI certificate.

@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: windows-build-${{ github.ref }}
@@ -212,6 +212,7 @@ jobs:
           ) "Desktop.swf compilation"
 
       - name: Package Windows bundle
+        id: package-windows
         shell: pwsh
         run: |
           $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
@@ -220,7 +221,9 @@ jobs:
           $outputDir = Join-Path $uiDir "artifacts"
           $bundleName = "AQW-Pocket-Windows"
           $bundle = Join-Path $outputDir $bundleName
-          $archive = Join-Path $outputDir "$bundleName.zip"
+          $date = Get-Date -Format "dd-MM-yyyy"
+          $archiveName = "aqw-mod-$date.zip"
+          $archive = Join-Path $outputDir $archiveName
           $descriptor = Join-Path $uiDir "loader\Desktop-app.xml"
 
           if (-not (Test-Path $adt)) { throw "AIR packager not found: $adt" }
@@ -243,11 +246,33 @@ jobs:
 
           Compress-Archive -Path $bundle -DestinationPath $archive -CompressionLevel Optimal
           if (-not (Test-Path $archive)) { throw "Windows bundle archive was not created." }
+          "zip_name=$archiveName" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
 
       - name: Upload Windows bundle
         uses: actions/upload-artifact@v4
         with:
-          name: AQW-Pocket-Windows-${{ github.sha }}
-          path: aqw-haxe-ui/artifacts/AQW-Pocket-Windows.zip
+          name: AQW-Mod-${{ github.run_number }}
+          path: aqw-haxe-ui/artifacts/${{ steps.package-windows.outputs.zip_name }}
           if-no-files-found: error
           retention-days: 14
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $date = Get-Date -Format "dd-MM-yyyy"
+          $tagDate = Get-Date -Format "yyyyMMdd"
+          $archiveName = "${{ steps.package-windows.outputs.zip_name }}"
+          $archive = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui\artifacts\$archiveName"
+          $tag = "aqw-mod-$tagDate-run${{ github.run_number }}-attempt${{ github.run_attempt }}"
+          $title = "AQW Mod $date"
+          $notes = "Preinstalled Windows x64 AIR bundle built from commit $env:GITHUB_SHA."
+
+          if (-not (Test-Path $archive)) { throw "Windows bundle archive not found: $archive" }
+          & gh release create $tag $archive `
+            --repo $env:GITHUB_REPOSITORY `
+            --target $env:GITHUB_SHA `
+            --title $title `
+            --notes $notes
+          if ($LASTEXITCODE -ne 0) { throw "GitHub release creation failed with exit code $LASTEXITCODE." }
