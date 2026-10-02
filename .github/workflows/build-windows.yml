@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: windows-build-${{ github.ref }}
@@ -255,3 +255,24 @@ jobs:
           path: aqw-haxe-ui/artifacts/${{ steps.package-windows.outputs.zip_name }}
           if-no-files-found: error
           retention-days: 14
+
+      - name: Publish GitHub release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $date = Get-Date -Format "dd-MM-yyyy"
+          $tagDate = Get-Date -Format "yyyyMMdd"
+          $archiveName = "${{ steps.package-windows.outputs.zip_name }}"
+          $archive = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui\artifacts\$archiveName"
+          $tag = "aqw-mod-$tagDate-run${{ github.run_number }}-attempt${{ github.run_attempt }}"
+          $title = "AQW Mod $date"
+          $notes = "Preinstalled Windows x64 AIR bundle built from commit $env:GITHUB_SHA."
+
+          if (-not (Test-Path $archive)) { throw "Windows bundle archive not found: $archive" }
+          & gh release create $tag $archive `
+            --repo $env:GITHUB_REPOSITORY `
+            --target $env:GITHUB_SHA `
+            --title $title `
+            --notes $notes
+          if ($LASTEXITCODE -ne 0) { throw "GitHub release creation failed with exit code $LASTEXITCODE." }
