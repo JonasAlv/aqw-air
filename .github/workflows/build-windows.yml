@@ -228,8 +228,9 @@ jobs:
           & $adt -certificate -cn "AQW Pocket CI" 2048-RSA $certificate "temporary-ci-password"
           if ($LASTEXITCODE -ne 0) { throw "Failed to create the temporary AIR signing certificate." }
 
-          & $adt -package -target native -storetype pkcs12 `
+          & $adt -package -storetype pkcs12 `
             -keystore $certificate -storepass "temporary-ci-password" `
+            -target native `
             $output $descriptor `
             -C (Join-Path $uiDir "build") Desktop.swf licenses `
             -C (Join-Path $uiDir "build\staging") gamefiles `
