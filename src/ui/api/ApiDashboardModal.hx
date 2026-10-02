@@ -8,6 +8,7 @@ import com.aqwapi.utils.ApiLogger;
 import flash.display.DisplayObject;
 import flash.display.Shape;
 import flash.display.Sprite;
+import flash.Lib;
 import flash.events.Event;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
@@ -70,6 +71,7 @@ class ApiDashboardModal extends Sprite {
     private static inline var SIDEBAR_WIDTH:Float = 175;
     private static inline var CONTENT_WIDTH:Float = 565;
     private static inline var CONTENT_HEIGHT:Float = 405;
+    private static inline var ACTIVATION_DEDUPE_MS:Int = 100;
 
     private var _overlay:Dynamic;
     private var _pocket:Dynamic;
@@ -771,11 +773,7 @@ class ApiDashboardModal extends Sprite {
             txt.textColor = textColor;
         });
 
-        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            if (_isDraggingScroll || _hasDraggedScroll) return;
-            if (onClick != null) onClick();
-        });
-        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+        addActivationListeners(btn, function():Void {
             if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onClick != null) onClick();
         });
@@ -815,12 +813,7 @@ class ApiDashboardModal extends Sprite {
         btn.addEventListener(MouseEvent.MOUSE_OUT, function(e:MouseEvent):Void {
             updateVisual(false);
         });
-        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            if (_isDraggingScroll || _hasDraggedScroll) return;
-            if (onCycle != null) onCycle();
-            updateVisual(false);
-        });
-        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+        addActivationListeners(btn, function():Void {
             if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onCycle != null) onCycle();
             updateVisual(false);
@@ -865,12 +858,7 @@ class ApiDashboardModal extends Sprite {
             }
         };
 
-        btn.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            if (_isDraggingScroll || _hasDraggedScroll) return;
-            if (onToggle != null) onToggle();
-            updateVisual();
-        });
-        btn.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+        addActivationListeners(btn, function():Void {
             if (_isDraggingScroll || _hasDraggedScroll) return;
             if (onToggle != null) onToggle();
             updateVisual();
@@ -882,6 +870,23 @@ class ApiDashboardModal extends Sprite {
 
         updateVisual();
         return btn;
+    }
+
+    private function addActivationListeners(target:Sprite, activate:Void->Void):Void {
+        var lastActivation:Int = -1000;
+        var handleActivation = function():Void {
+            var now:Int = Lib.getTimer();
+            if (now - lastActivation < ACTIVATION_DEDUPE_MS) return;
+            lastActivation = now;
+            activate();
+        };
+
+        target.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
+            handleActivation();
+        });
+        target.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
+            handleActivation();
+        });
     }
 
     // =========================================================================
