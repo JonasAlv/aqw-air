@@ -71,7 +71,7 @@ class ApiDashboardModal extends Sprite {
     private static inline var SIDEBAR_WIDTH:Float = 175;
     private static inline var CONTENT_WIDTH:Float = 565;
     private static inline var CONTENT_HEIGHT:Float = 405;
-    private static inline var ACTIVATION_DEDUPE_MS:Int = 100;
+    private static inline var ACTIVATION_DEDUPE_MS:Int = 500;
 
     private var _overlay:Dynamic;
     private var _pocket:Dynamic;
@@ -874,18 +874,20 @@ class ApiDashboardModal extends Sprite {
 
     private function addActivationListeners(target:Sprite, activate:Void->Void):Void {
         var lastActivation:Int = -1000;
-        var handleActivation = function():Void {
+        var lastEventType:String = "";
+        var handleActivation = function(eventType:String):Void {
             var now:Int = Lib.getTimer();
-            if (now - lastActivation < ACTIVATION_DEDUPE_MS) return;
+            if (eventType != lastEventType && now - lastActivation < ACTIVATION_DEDUPE_MS) return;
             lastActivation = now;
+            lastEventType = eventType;
             activate();
         };
 
         target.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):Void {
-            handleActivation();
+            handleActivation("mouse");
         });
         target.addEventListener(TouchEvent.TOUCH_TAP, function(e:TouchEvent):Void {
-            handleActivation();
+            handleActivation("touch");
         });
     }
 

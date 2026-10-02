@@ -1,12 +1,6 @@
 name: Build Windows app
 
 on:
-  push:
-    branches:
-      - feat/enhancements
-  pull_request:
-    branches:
-      - feat/enhancements
   workflow_dispatch:
 
 permissions:
