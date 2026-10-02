@@ -59,8 +59,6 @@ jobs:
 
       - name: Sync latest stable upstream gamefiles
         shell: pwsh
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
         run: |
           $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
           $destination = Join-Path $uiDir "loader\gamefiles"
@@ -70,7 +68,6 @@ jobs:
           $headers = @{
             Accept = "application/vnd.github+json"
             "User-Agent" = "aqw-haxe-ui-windows-build"
-            Authorization = "Bearer $env:GITHUB_TOKEN"
           }
           $release = Invoke-RestMethod `
             -Uri "https://api.github.com/repos/anthony-hyo/aqw-mobile/releases/latest" `
