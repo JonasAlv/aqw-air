@@ -80,8 +80,6 @@ class GameLoad extends Load {
         SWFCache.setEnabled(
             util.HelperSetting.getBool(util.HelperSetting.OPTION_SWF_CACHE, true)
         );
-        controller.ViewportController.instance.init(this.pocket);
-
         this.pocket.networkCore = new Network(this.pocket);
 
         if (this.pocket.gameCore != null) {

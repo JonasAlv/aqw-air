@@ -9,8 +9,9 @@ import flash.Lib;
 class MouseWalkSimulatorController extends WalkController {
     public static var IS_DASHING_ON:Bool = false;
 
-    private static inline var SEND_EVERY_N_FRAMES:Int = 5;
+    private static inline var SEND_EVERY_N_FRAMES:Int = 2;
     private static inline var MOVE_SPEED_MULTIPLIER:Float = 8;
+    private static inline var JOYSTICK_SPEED_MULTIPLIER:Float = 10;
     private static inline var WALK_MAX_THRESHOLD:Float = 0.65;
     private static inline var DASH_THRESHOLD:Float = 0.85;
     private static inline var DASH_COOLDOWN_MS:Int = 1000;
@@ -99,6 +100,7 @@ class MouseWalkSimulatorController extends WalkController {
             moveSpeed = baseSpeed * 3;
         }
 
+        moveSpeed *= JOYSTICK_SPEED_MULTIPLIER;
         world.speed2 = moveSpeed;
 
         var localX:Float = pMC.x + Math.cos(angle) * MOVE_SPEED_MULTIPLIER * 10;

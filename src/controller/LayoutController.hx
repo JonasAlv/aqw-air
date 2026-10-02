@@ -13,11 +13,6 @@ import flash.text.TextFormatAlign;
 import util.Helper;
 import util.HelperSetting;
 
-/**
- * Modern Direct Drag-and-Drop Layout Manager created from scratch.
- * Replaces legacy 2018 Handle buttons with intuitive direct mouse/touch dragging,
- * mouse-wheel scaling, and a floating gold control toolbar.
- */
 class LayoutController {
     public static var editMode:Bool = false;
 

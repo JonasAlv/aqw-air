@@ -14,7 +14,7 @@
         <transparent>false</transparent>
         <visible>true</visible>
         <fullScreen>true</fullScreen>
-        <renderMode>direct</renderMode>
+        <renderMode>auto</renderMode>
         <maximizable>true</maximizable>
         <minimizable>true</minimizable>
         <resizable>true</resizable>

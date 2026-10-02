@@ -1658,23 +1658,6 @@ class ApiDashboardModal extends Sprite {
             }
         );
 
-        // 3. Maintain Aspect Ratio
-        addItemRow(
-            "Maintain Aspect Ratio",
-            "Keep classic 96:55 proportions with letterboxing when resizing window instead of stretching.",
-            "toggle",
-            "",
-            false,
-            function():Void {
-                var cur = HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
-                HelperSetting.setBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, !cur);
-                controller.ViewportController.instance.apply();
-            },
-            function():Bool {
-                return HelperSetting.getBool(HelperSetting.OPTION_RESOLUTION_LETTERBOX, true);
-            }
-        );
-
         var languages = ["English", "Português", "Tagalog", "Español", "Bahasa Indonesia", "Cebuano"];
         var langCodes = ["en", "pt", "tl", "es", "id", "ceb"];
         addItemRow(

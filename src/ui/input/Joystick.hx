@@ -173,8 +173,13 @@ class Joystick extends Sprite {
     private function onAdded(e:Event):Void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
-        addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
+        var pocket:Dynamic = walkController != null ? walkController.pocket : null;
+        var useTouchInput:Bool = pocket != null && pocket.isMobileInput == true;
+        if (useTouchInput) {
+            addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
+        } else {
+            addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
+        }
         this._limit = (Std.int(this.width) >> 1) - (Std.int(this.knob.width) >> 1) * 0.4;
     }
 

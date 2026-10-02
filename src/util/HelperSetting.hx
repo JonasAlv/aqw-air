@@ -49,7 +49,6 @@ class HelperSetting {
 
     public static inline var OPTION_FILTER:String = "option_filter";
     public static inline var OPTION_SWF_CACHE:String = "option_swf_cache";
-    public static inline var OPTION_RESOLUTION_LETTERBOX:String = "option_resolution_letterbox";
 
     public static inline var LAYOUT_JOYSTICK_MOUSE:String = "layout_joystick";
     public static inline var LAYOUT_JOYSTICK_KEYBOARD:String = "layout_joystick_keyboard";

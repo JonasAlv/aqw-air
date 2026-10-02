@@ -20,6 +20,16 @@ package {
 
 		public function Pocket() {
 			super();
+
+			//noinspection JSUnresolvedReference
+			POCKET::IS_MOBILE {
+				setInputPlatform(true);
+			}
+
+			//noinspection JSUnresolvedReference
+			POCKET::IS_DESKTOP {
+				setInputPlatform(false);
+			}
 		}
 
 	}

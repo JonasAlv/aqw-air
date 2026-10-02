@@ -32,6 +32,7 @@ class PocketRoot extends Sprite {
     public var game:MovieClip;
     public var gameCore:GameCore;
     public var networkCore:Network;
+    public var isMobileInput:Bool = false;
 
     private var backgroundLoad:BackgroundLoad;
     private var gameLoader:GameLoad;
@@ -70,14 +71,6 @@ class PocketRoot extends Sprite {
             var nativeAppClass:Dynamic = Type.resolveClass("flash.desktop.NativeApplication");
             if (nativeAppClass != null && nativeAppClass.nativeApplication != null) {
                 nativeAppClass.nativeApplication.systemIdleMode = "keepAwake";
-            }
-        } catch (_:Dynamic) {}
-
-        // Touch mode for mobile
-        try {
-            var mtClass:Dynamic = Type.resolveClass("flash.ui.Multitouch");
-            if (mtClass != null) {
-                mtClass.inputMode = "touchPoint";
             }
         } catch (_:Dynamic) {}
 
@@ -130,6 +123,17 @@ class PocketRoot extends Sprite {
         initModBootstrap();
 
         check();
+    }
+
+    public function setInputPlatform(isMobile:Bool):Void {
+        isMobileInput = isMobile;
+        if (!isMobile) return;
+
+        var mtClass:Dynamic = Type.resolveClass("flash.ui.Multitouch");
+        if (mtClass == null) {
+            throw "Multitouch is unavailable for the mobile input target.";
+        }
+        mtClass.inputMode = "touchPoint";
     }
 
     private var _gameInitialized:Bool = false;
