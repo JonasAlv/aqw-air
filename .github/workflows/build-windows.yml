@@ -211,36 +211,43 @@ jobs:
             (Join-Path $staging "src\Pocket.as")
           ) "Desktop.swf compilation"
 
-      - name: Package Windows installer
+      - name: Package Windows bundle
         shell: pwsh
         run: |
           $uiDir = Join-Path $env:GITHUB_WORKSPACE "aqw-haxe-ui"
           $adt = Join-Path $env:AIR_HOME "bin\adt.bat"
           $certificate = Join-Path $env:RUNNER_TEMP "aqw-pocket-ci.p12"
           $outputDir = Join-Path $uiDir "artifacts"
-          $output = Join-Path $outputDir "AQW-Pocket-Windows.exe"
+          $bundleName = "AQW-Pocket-Windows"
+          $bundle = Join-Path $outputDir $bundleName
+          $archive = Join-Path $outputDir "$bundleName.zip"
           $descriptor = Join-Path $uiDir "loader\Desktop-app.xml"
 
           if (-not (Test-Path $adt)) { throw "AIR packager not found: $adt" }
           if (-not (Test-Path $descriptor)) { throw "Desktop AIR descriptor not found: $descriptor" }
           New-Item -ItemType Directory -Path $outputDir -Force | Out-Null
+          if (Test-Path $bundle) { Remove-Item -Path $bundle -Recurse -Force }
+          if (Test-Path $archive) { Remove-Item -Path $archive -Force }
 
           & $adt -certificate -cn "AQW Pocket CI" 2048-RSA $certificate "temporary-ci-password"
           if ($LASTEXITCODE -ne 0) { throw "Failed to create the temporary AIR signing certificate." }
 
           & $adt -package -storetype pkcs12 `
             -keystore $certificate -storepass "temporary-ci-password" `
-            -target native `
-            $output $descriptor `
+            -target bundle -arch x64 `
+            $bundle $descriptor `
             -C (Join-Path $uiDir "build") Desktop.swf licenses `
             -C (Join-Path $uiDir "build\staging") gamefiles `
             -C (Join-Path $uiDir "loader") assets icons
-          if ($LASTEXITCODE -ne 0) { throw "AIR packaging failed with exit code $LASTEXITCODE." }
+          if ($LASTEXITCODE -ne 0) { throw "AIR bundle packaging failed with exit code $LASTEXITCODE." }
 
-      - name: Upload Windows installer
+          Compress-Archive -Path $bundle -DestinationPath $archive -CompressionLevel Optimal
+          if (-not (Test-Path $archive)) { throw "Windows bundle archive was not created." }
+
+      - name: Upload Windows bundle
         uses: actions/upload-artifact@v4
         with:
           name: AQW-Pocket-Windows-${{ github.sha }}
-          path: aqw-haxe-ui/artifacts/AQW-Pocket-Windows.exe
+          path: aqw-haxe-ui/artifacts/AQW-Pocket-Windows.zip
           if-no-files-found: error
           retention-days: 14
