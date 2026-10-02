@@ -51,36 +51,11 @@ jobs:
           & haxelib install hscript --always
           if ($LASTEXITCODE -ne 0) { throw "Failed to install the Haxe hscript library." }
 
-      - name: Download and verify AIR SDK
-        shell: pwsh
-        env:
-          AIR_SDK_URL: ${{ vars.AIR_SDK_WINDOWS_URL }}
-          AIR_SDK_SHA256: ${{ vars.AIR_SDK_WINDOWS_SHA256 }}
-        run: |
-          if ($env:AIR_SDK_URL -notmatch '^https://') {
-            throw "Set the AIR_SDK_WINDOWS_URL repository variable to the HTTPS URL of the Windows AIR SDK zip."
-          }
-          if ($env:AIR_SDK_SHA256 -notmatch '^[0-9a-fA-F]{64}$') {
-            throw "Set AIR_SDK_WINDOWS_SHA256 to the SDK zip's 64-character SHA-256 digest."
-          }
-
-          $archive = Join-Path $env:RUNNER_TEMP "air-sdk.zip"
-          $extractDir = Join-Path $env:RUNNER_TEMP "air-sdk"
-          Invoke-WebRequest -Uri $env:AIR_SDK_URL -OutFile $archive
-          $actualHash = (Get-FileHash -Path $archive -Algorithm SHA256).Hash
-          if ($actualHash -ne $env:AIR_SDK_SHA256.ToUpperInvariant()) {
-            throw "AIR SDK SHA-256 mismatch. Expected $env:AIR_SDK_SHA256, received $actualHash."
-          }
-
-          Expand-Archive -Path $archive -DestinationPath $extractDir -Force
-          $compiler = Get-ChildItem -Path $extractDir -Filter amxmlc.bat -Recurse | Select-Object -First 1
-          $packager = Get-ChildItem -Path $extractDir -Filter adt.bat -Recurse | Select-Object -First 1
-          $swcCompiler = Get-ChildItem -Path $extractDir -Filter compc.bat -Recurse | Select-Object -First 1
-          if ($null -eq $compiler -or $null -eq $packager -or $null -eq $swcCompiler) {
-            throw "The downloaded archive does not contain the AIR SDK compiler, SWC compiler, and packager."
-          }
-          $sdkRoot = $compiler.Directory.Parent.FullName
-          "AIR_HOME=$sdkRoot" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Set up AIR SDK
+        uses: joshtynjala/setup-adobe-air-action@v2
+        with:
+          air-version: "51.3.1"
+          accept-license: yes
 
       - name: Sync latest stable upstream gamefiles
         shell: pwsh

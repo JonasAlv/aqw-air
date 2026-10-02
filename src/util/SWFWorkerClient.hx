@@ -232,11 +232,15 @@ class SWFWorkerClient {
      * Off-thread SWF asset stripping & optimization (Animation, Filters, Sounds).
      */
     public function process(bytes:ByteArray, stripAnimation:Bool, stripFilters:Bool, ?stripSounds:Bool = false, onDone:ByteArray->Void, ?assetUrl:String):Void {
-        if (!supported || toWorker == null) {
+        if (!stripAnimation && !stripFilters && !stripSounds) {
             onDone(ensureNonShared(bytes));
             return;
         }
-        if (!stripAnimation && !stripFilters && !stripSounds) {
+        if (isLzmaSwf(bytes)) {
+            onDone(ensureNonShared(bytes));
+            return;
+        }
+        if (!supported || toWorker == null) {
             onDone(ensureNonShared(bytes));
             return;
         }
@@ -273,6 +277,17 @@ class SWFWorkerClient {
             stripFilters: stripFilters,
             stripSounds: stripSounds
         });
+    }
+
+    private static function isLzmaSwf(bytes:ByteArray):Bool {
+        if (bytes == null || bytes.length < 3) return false;
+
+        bytes.position = 0;
+        var isLzma:Bool = bytes.readUnsignedByte() == 0x5A
+            && bytes.readUnsignedByte() == 0x57
+            && bytes.readUnsignedByte() == 0x53;
+        bytes.position = 0;
+        return isLzma;
     }
 
     private function onWorkerMessage(e:Event):Void {

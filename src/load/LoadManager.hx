@@ -237,10 +237,14 @@ class LoadManager {
 
             if (loadData.isQueued) {
                 byteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, function(e:Event):Void {
-                    try {
-                        if (loadData.onComplete != null) {
+                    if (loadData.onComplete != null) {
+                        try {
                             loadData.onComplete(e);
+                        } catch (error:Dynamic) {
+                            trace("Asset load callback failed for " + loadData.url + " (key=" + loadData.key + "): " + describeError(error));
                         }
+                    }
+                    try {
                         if (loadData.key != null) {
                             clearLoader(loadData.key);
                             loaderStack.set(loadData.key, {
@@ -249,7 +253,7 @@ class LoadManager {
                             });
                         }
                     } catch (error:Dynamic) {
-                        trace("Failed to load: " + Std.string(error));
+                        trace("Asset loader bookkeeping failed for " + loadData.url + " (key=" + loadData.key + "): " + describeError(error));
                     }
 
                     concurrentCount--;
@@ -310,6 +314,20 @@ class LoadManager {
                 }
             }
         };
+    }
+
+    private function describeError(error:Dynamic):String {
+        var message:String = Std.string(error);
+        try {
+            var getStackTrace:Dynamic = Reflect.field(error, "getStackTrace");
+            if (Reflect.isFunction(getStackTrace)) {
+                var stack:String = getStackTrace();
+                if (stack != null && stack != "") message += "\n" + stack;
+            }
+        } catch (stackError:Dynamic) {
+            trace("Unable to read asset load error stack: " + Std.string(stackError));
+        }
+        return message;
     }
 
     private function onLoad(loadData:LoadData):Void {

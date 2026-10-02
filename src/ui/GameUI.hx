@@ -127,7 +127,7 @@ class GameUI extends Sprite {
     }
 
     public function showJoystickMouseSimulator():Void {
-        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_MOUSE, "joystickMouseSimulator", true, 75, 410);
+        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_MOUSE, "joystickMouseSimulator", true, 73, 348);
     }
 
     public function hideJoystickMouseSimulator():Void {
@@ -135,7 +135,7 @@ class GameUI extends Sprite {
     }
 
     public function showJoystickKeyboardSimulator():Void {
-        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 75 + 110, 410);
+        this.showJoystick(HelperSetting.LAYOUT_JOYSTICK_KEYBOARD, "joystickKeyboardSimulator", false, 73 + 100, 348);
     }
 
     public function hideJoystickKeyboardSimulator():Void {

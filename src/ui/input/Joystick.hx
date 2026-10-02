@@ -7,7 +7,6 @@ import flash.events.Event;
 import flash.events.MouseEvent;
 import flash.events.TouchEvent;
 import flash.geom.Point;
-import flash.ui.Multitouch;
 import util.HelperSetting;
 
 /**
@@ -24,10 +23,7 @@ class Joystick extends Sprite {
     private var _limit:Float = 36;
     private var walkController:WalkController;
     private var activeTouchID:Int = -1;
-
-    // Double-flick dash detection
-    private var lastFlickTime:Int = 0;
-    private var wasFlicked:Bool = false;
+    private var isMouseActive:Bool = false;
 
     // Direct drag state in Edit Mode
     private var isDraggingWidget:Bool = false;
@@ -162,30 +158,6 @@ class Joystick extends Sprite {
             this.dirX = dx / this._limit;
             this.dirY = dy / this._limit;
         }
-
-        // Double flick dash detection
-        var mag = dist / this._limit;
-        if (mag > 0.85) {
-            if (!wasFlicked) {
-                wasFlicked = true;
-                var now = flash.Lib.getTimer();
-                if (now - lastFlickTime < 350) {
-                    triggerDash();
-                }
-                lastFlickTime = now;
-            }
-        } else if (mag < 0.3) {
-            wasFlicked = false;
-        }
-    }
-
-    private function triggerDash():Void {
-        try {
-            var pocket:Dynamic = (this.walkController != null) ? Reflect.field(this.walkController, "pocket") : null;
-            if (pocket != null && pocket.game != null && pocket.game.world != null && pocket.game.world.myAvatar != null) {
-                pocket.game.world.myAvatar.pMC.spAtt();
-            }
-        } catch (_:Dynamic) {}
     }
 
     public function snapHome():Void {
@@ -201,15 +173,13 @@ class Joystick extends Sprite {
     private function onAdded(e:Event):Void {
         removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 
-        if (Multitouch.supportsTouchEvents) {
-            addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
-        } else {
-            addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
-        }
+        addEventListener(TouchEvent.TOUCH_BEGIN, onTouchBegin, false, 0, true);
+        addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown, false, 0, true);
+        this._limit = (Std.int(this.width) >> 1) - (Std.int(this.knob.width) >> 1) * 0.4;
     }
 
     private function onTouchBegin(e:TouchEvent):Void {
-        if (!this.visible || this.activeTouchID != -1 || stage == null) {
+        if (!this.visible || this.activeTouchID != -1 || isMouseActive || stage == null) {
             return;
         }
         if (LayoutController.editMode) {
@@ -236,7 +206,9 @@ class Joystick extends Sprite {
 
     private function onTouchMove(e:TouchEvent):Void {
         if (e.touchPointID != this.activeTouchID) return;
-        this.move(e.stageX, e.stageY);
+        if (this.dirX != 0 || this.dirY != 0) {
+            this.move(e.stageX, e.stageY);
+        }
     }
 
     private function onTouchEnd(e:TouchEvent):Void {
@@ -247,6 +219,10 @@ class Joystick extends Sprite {
         stage.removeEventListener(Event.ENTER_FRAME, onEnterFrameJoystick);
 
         this.activeTouchID = -1;
+        if (this.dirX == 0 && this.dirY == 0) {
+            return;
+        }
+
         this.snapHome();
         if (this.walkController != null) {
             this.walkController.stop();
@@ -254,7 +230,7 @@ class Joystick extends Sprite {
     }
 
     private function onMouseDown(e:MouseEvent):Void {
-        if (!this.visible || stage == null) return;
+        if (!this.visible || activeTouchID != -1 || isMouseActive || stage == null) return;
 
         if (LayoutController.editMode) {
             // Direct drag repositioning in Edit Mode
@@ -274,6 +250,7 @@ class Joystick extends Sprite {
             return;
         }
 
+        isMouseActive = true;
         drawKnob(true);
         stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
         stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -287,14 +264,20 @@ class Joystick extends Sprite {
     }
 
     private function onMouseMove(e:MouseEvent):Void {
-        this.move(e.stageX, e.stageY);
+        if (isMouseActive) this.move(e.stageX, e.stageY);
     }
 
     private function onMouseUp(e:MouseEvent):Void {
+        if (!isMouseActive) return;
+        isMouseActive = false;
         if (stage != null) {
             stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
             stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
             stage.removeEventListener(Event.ENTER_FRAME, onEnterFrameJoystick);
+        }
+
+        if (this.dirX == 0 && this.dirY == 0) {
+            return;
         }
 
         this.snapHome();

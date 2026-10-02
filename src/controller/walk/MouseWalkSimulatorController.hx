@@ -6,15 +6,11 @@ import flash.geom.ColorTransform;
 import flash.geom.Point;
 import flash.Lib;
 
-/**
- * Virtual Analog Mouse Walk Simulator Controller.
- * Simulates smooth 360-degree character walking and sprint/dash in AQW.
- */
 class MouseWalkSimulatorController extends WalkController {
     public static var IS_DASHING_ON:Bool = false;
 
     private static inline var SEND_EVERY_N_FRAMES:Int = 5;
-    private static inline var MOVE_SPEED_MULTIPLIER:Float = 8.0;
+    private static inline var MOVE_SPEED_MULTIPLIER:Float = 8;
     private static inline var WALK_MAX_THRESHOLD:Float = 0.65;
     private static inline var DASH_THRESHOLD:Float = 0.85;
     private static inline var DASH_COOLDOWN_MS:Int = 1000;
@@ -24,87 +20,82 @@ class MouseWalkSimulatorController extends WalkController {
 
     private var isDashingVisual:Bool = false;
     private var lastDashTime:Int = 0;
+
     public function new(pocket:Dynamic) {
         super(pocket);
     }
 
     override public function update():Void {
-        if (this.pocket == null || this.pocket.game == null || this.pocket.game.world == null || this.pocket.game.world.myAvatar == null) {
+        if (!this.pocket.game.world || !this.pocket.game.world.myAvatar) {
             return;
         }
 
-        var pMC:MovieClip = cast this.pocket.game.world.myAvatar.pMC;
-        var joystick:Dynamic = (this.pocket.gameUI != null) ? this.pocket.gameUI.joystickMouseSimulator : null;
-        if (joystick == null) return;
-
+        var world:Dynamic = this.pocket.game.world;
+        var pMC:MovieClip = cast world.myAvatar.pMC;
+        var joystick:Dynamic = this.pocket.gameUI.joystickMouseSimulator;
         var dirX:Float = joystick.dirX;
         var dirY:Float = joystick.dirY;
-
         var directionMagnitude:Float = Math.sqrt(dirX * dirX + dirY * dirY);
 
         if (pMC == null || directionMagnitude == 0) {
             return;
         }
 
-        var world:Dynamic = this.pocket.game.world;
-        if (!world.isMoveOK(world.myAvatar.dataLeaf) || world.bitWalk == false || world.bitWalk == 0) return;
+        if (!world.isMoveOK(world.myAvatar.dataLeaf) || !untyped __global__["Boolean"](world.bitWalk)) {
+            return;
+        }
 
         var angle:Float = Math.atan2(dirY, dirX);
         var baseSpeed:Float = world.WALKSPEED;
-
         var moveSpeed:Float = baseSpeed;
 
-        if (IS_DASHING_ON && directionMagnitude >= DASH_THRESHOLD && !this.isDashingVisual) {
+        if (IS_DASHING_ON && directionMagnitude >= DASH_THRESHOLD && !isDashingVisual) {
             if (joystick.knob != null) {
                 joystick.knob.transform.colorTransform = dashColor;
             }
-            this.isDashingVisual = true;
-        } else if ((!IS_DASHING_ON || directionMagnitude < DASH_THRESHOLD) && this.isDashingVisual) {
+            isDashingVisual = true;
+        } else if ((!IS_DASHING_ON || directionMagnitude < DASH_THRESHOLD) && isDashingVisual) {
             if (joystick.knob != null) {
                 joystick.knob.transform.colorTransform = normalColor;
             }
-            this.isDashingVisual = false;
+            isDashingVisual = false;
         }
 
         if (directionMagnitude < WALK_MAX_THRESHOLD) {
-            if (this.pocket.config != null && this.pocket.config.option_slow_walk == true) {
+            if (this.pocket.config.option_slow_walk) {
                 moveSpeed = Math.max(baseSpeed * 0.3, baseSpeed * (directionMagnitude / WALK_MAX_THRESHOLD));
             } else {
                 moveSpeed = baseSpeed;
             }
-        } else if (directionMagnitude >= WALK_MAX_THRESHOLD && directionMagnitude < DASH_THRESHOLD) {
+        } else if (directionMagnitude < DASH_THRESHOLD) {
             moveSpeed = baseSpeed;
-        } else if (IS_DASHING_ON && !(world.justRan2 == true)) {
+        } else if (IS_DASHING_ON && !world.justRan2) {
             var currentTime:Int = Lib.getTimer();
-
-            if (currentTime - this.lastDashTime >= DASH_COOLDOWN_MS) {
+            if (currentTime - lastDashTime >= DASH_COOLDOWN_MS) {
                 var myAvatar:Dynamic = world.myAvatar;
                 var playerName:String = myAvatar.pnm;
                 var dashCost:Float = 100;
-                try {
-                    var uoTree:Dynamic = world.uoTree;
-                    if (uoTree != null) {
-                        var pData = Reflect.field(uoTree, playerName);
-                        if (pData != null && pData.sta != null) {
-                            var dshVal = Reflect.field(pData.sta, "$dsh");
-                            if (dshVal != null) dashCost = Std.parseFloat(Std.string(dshVal));
-                        }
+                var playerData:Dynamic = (world.uoTree != null) ? Reflect.field(world.uoTree, playerName) : null;
+                if (playerData != null && playerData.sta != null) {
+                    var dashCostValue:Dynamic = Reflect.field(playerData.sta, "$dsh");
+                    if (dashCostValue != null && dashCostValue != 0) {
+                        dashCost = Std.parseFloat(Std.string(dashCostValue));
                     }
-                } catch (e:Dynamic) {}
+                }
 
-                if (myAvatar.dataLeaf != null && myAvatar.dataLeaf.intSP >= dashCost) {
+                if (myAvatar.dataLeaf.intSP >= dashCost) {
                     this.pocket.game.pDash = true;
-                    this.lastDashTime = currentTime;
+                    lastDashTime = currentTime;
                 }
             }
         }
 
-        if (this.pocket.game.pDash == true && !(world.justRan2 == true)) {
+        if (this.pocket.game.pDash && !world.justRan2) {
             world.justRan2 = true;
             this.pocket.game.pDash = false;
         }
 
-        if (world.justRan2 == true) {
+        if (world.justRan2) {
             moveSpeed = baseSpeed * 3;
         }
 
@@ -112,45 +103,43 @@ class MouseWalkSimulatorController extends WalkController {
 
         var localX:Float = pMC.x + Math.cos(angle) * MOVE_SPEED_MULTIPLIER * 10;
         var localY:Float = pMC.y + Math.sin(angle) * MOVE_SPEED_MULTIPLIER * 10;
-
-        var stagePt:Point = cast(world.CHARS, Sprite).localToGlobal(new Point(localX, localY));
-        if (stagePt.x < 0 || stagePt.x > 960 || stagePt.y < 0 || stagePt.y > 550) {
+        var stagePoint:Point = cast(world.CHARS, Sprite).localToGlobal(new Point(localX, localY));
+        if (stagePoint.x < 0 || stagePoint.x > 960 || stagePoint.y < 0 || stagePoint.y > 550) {
             return;
         }
 
-        var mvPT:Point = pMC.simulateTo(localX, localY, moveSpeed);
-
-        if (mvPT == null) {
+        var movePoint:Point = pMC.simulateTo(localX, localY, moveSpeed);
+        if (movePoint == null) {
             return;
         }
 
-        pMC.walkTo(mvPT.x, mvPT.y, moveSpeed);
+        pMC.walkTo(movePoint.x, movePoint.y, moveSpeed);
 
-        this.frameTick++;
-        if (this.frameTick >= SEND_EVERY_N_FRAMES) {
-            this.frameTick = 0;
+        frameTick++;
+        if (frameTick >= SEND_EVERY_N_FRAMES) {
+            frameTick = 0;
             world.moveRequest({
                 mc: pMC,
-                tx: mvPT.x,
-                ty: mvPT.y,
+                tx: movePoint.x,
+                ty: movePoint.y,
                 sp: moveSpeed
             });
         }
     }
 
     override public function stop():Void {
-        this.frameTick = 0;
+        frameTick = 0;
 
-        if (this.pocket != null && this.pocket.game != null && this.pocket.game.world != null && this.pocket.game.world.myAvatar != null && this.pocket.game.world.myAvatar.pMC != null) {
+        if (this.pocket.game.world && this.pocket.game.world.myAvatar && this.pocket.game.world.myAvatar.pMC) {
             this.pocket.game.world.myAvatar.pMC.stopWalking();
         }
 
-        if (this.isDashingVisual) {
-            var joystick:Dynamic = (this.pocket.gameUI != null) ? this.pocket.gameUI.joystickMouseSimulator : null;
+        if (isDashingVisual) {
+            var joystick:Dynamic = this.pocket.gameUI.joystickMouseSimulator;
             if (joystick != null && joystick.knob != null) {
                 joystick.knob.transform.colorTransform = normalColor;
             }
-            this.isDashingVisual = false;
+            isDashingVisual = false;
         }
     }
 }
